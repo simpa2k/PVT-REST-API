@@ -3,6 +3,7 @@ package models.user;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import models.Interest;
 import models.accommodation.Accommodation;
+import models.accommodation.RentalPeriod;
 import play.Logger;
 
 import javax.persistence.*;
@@ -21,6 +22,8 @@ public class Tenant extends User {
     public double income;
     public String occupation;
     public double deposit;
+    public RentalPeriod rentalPeriod;
+
 
     @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL)

@@ -2,6 +2,7 @@ package models.user;
 
 import com.avaje.ebean.Model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonUnwrapped;
 import models.Interest;
 import play.data.validation.Constraints;
 
@@ -58,6 +59,7 @@ public class User extends Model {
     public String fullName;
 
     @Column(nullable = false, columnDefinition = "datetime") // columnDefinition prevents ebeans from generating
+    @JsonIgnore
     public Date creationDate;                                // SQL that the DSV mysql server cannot handle.
 
     public String description;
@@ -65,9 +67,11 @@ public class User extends Model {
     public int age;
 
     @OneToOne
+    @JsonUnwrapped
     public FacebookData facebookData;
 
     @ManyToOne
+    @JsonIgnore
     public Authorization authorization = Authorization.USER;
 
     private static Finder<Long, User> find = new Finder<>(User.class);

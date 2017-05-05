@@ -14,6 +14,8 @@ POST    /logout                                   controllers.SecurityController
 
 POST    /facebook/login                           controllers.FacebookSecurityController.login
 
+GET     /users/tenants                            controllers.UsersController.returnTenantProfile
+
 GET     /interests                                controllers.InterestsController.get(count: Option[java.lang.Integer], offset: Option[java.lang.Integer], tenantId: Option[java.lang.Long], accommodationId: Option[java.lang.Long], mutual: Option[java.lang.Boolean])
 POST    /interests                                controllers.InterestsController.create
 PUT     /interests                                controllers.InterestsController.setMutual(tenantId: Long, accommodationId: Long)
