@@ -11,6 +11,7 @@ import repositories.facebookData.FacebookDataRepository;
 import repositories.facebookData.FacebookDataStorage;
 
 import javax.inject.Inject;
+import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionStage;
 
@@ -71,7 +72,7 @@ public class FacebookService {
 
                 buildFaceBookData(userData.asJson());
 
-            } catch (JsonProcessingException e) {
+            } catch (IOException e) {
                 return null;
             }
 
@@ -80,7 +81,7 @@ public class FacebookService {
         });
     }
 
-    private void buildFaceBookData(JsonNode data) throws JsonProcessingException {
+    private void buildFaceBookData(JsonNode data) throws JsonProcessingException, IOException {
 
         String id = data.findValue("id").textValue();
 

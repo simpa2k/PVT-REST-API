@@ -5,10 +5,14 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import models.user.FacebookData;
 
+import java.io.IOException;
+
 /**
  * @author Simon Olofsson
  */
 public class FacebookDataRepository implements FacebookDataStorage {
+
+    private ObjectMapper mapper = new ObjectMapper();
 
     @Override
     public FacebookData findByFacebookUserId(String facebookUserId) {
@@ -18,9 +22,7 @@ public class FacebookDataRepository implements FacebookDataStorage {
     @Override
     public FacebookData create(JsonNode data) throws JsonProcessingException {
 
-        ObjectMapper mapper = new ObjectMapper();
         FacebookData fbData = mapper.treeToValue(data, FacebookData.class);
-
         save(fbData);
 
         return fbData;
@@ -28,16 +30,9 @@ public class FacebookDataRepository implements FacebookDataStorage {
     }
 
     @Override
-    public FacebookData update(FacebookData fbData, JsonNode data) {
+    public FacebookData update(FacebookData fbData, JsonNode data) throws IOException {
 
-        fbData.facebookUserId = data.findValue("id").textValue();
-        fbData.email = data.findValue("email").textValue();
-        fbData.firstName = data.findValue("first_name").textValue();
-        fbData.lastName = data.findValue("last_name").textValue();
-        fbData.gender = data.findValue("gender").textValue();
-        fbData.locale = data.findValue("locale").textValue();
-        fbData.timezone = data.findValue("timezone").intValue();
-
+        mapper.readerForUpdating(fbData).readValue(data);
         save(fbData);
 
         return fbData;

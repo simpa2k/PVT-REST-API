@@ -13,6 +13,7 @@ scalaVersion := "2.11.7"
 libraryDependencies ++= Seq(
   javaJdbc,
   "mysql" % "mysql-connector-java" % "5.1.34",
+  "org.mockito" % "mockito-core" % "1.10.19",
   cache,
   javaWs,
   evolutions,

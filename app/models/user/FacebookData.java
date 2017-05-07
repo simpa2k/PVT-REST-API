@@ -71,6 +71,7 @@ public class FacebookData extends Model {
        this.email = email;
        this.firstName = firstName;
        this.lastName = lastName;
+       this.name = firstName + " " + lastName;
        this.gender = gender;
        this.locale = locale;
        this.timezone = timezone;
