@@ -2,6 +2,7 @@ package models.user;
 
 import com.avaje.ebean.Model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import play.data.validation.Constraints;
 
 import javax.persistence.*;
@@ -21,22 +22,27 @@ public class FacebookData extends Model {
 
    @Column(unique = true, nullable = false)
    @Constraints.Required
-   @JsonIgnore
+   //@JsonIgnore
+   @JsonProperty(value = "id", access = JsonProperty.Access.WRITE_ONLY)
    public String facebookUserId;
 
    @Column(unique = true, nullable = false)
    @Constraints.MaxLength(255)
    @Constraints.Required
    @Constraints.Email
-   public String emailAddress;
+   public String email;
 
    @Column(length = 256)
    @Constraints.MaxLength(256)
+   @JsonProperty("first_name")
    public String firstName;
 
    @Column(length = 256)
    @Constraints.MaxLength(256)
+   @JsonProperty("last_name")
    public String lastName;
+
+   public String name;
 
    @Column(length = 15)
    @Constraints.MaxLength(256)
@@ -44,11 +50,11 @@ public class FacebookData extends Model {
 
    @Column(length = 10)
    @Constraints.MaxLength(10)
-   @JsonIgnore
+   @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
    public String locale;
 
    @Column
-   @JsonIgnore
+   @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
    public int timezone;
 
    @OneToOne
@@ -59,10 +65,10 @@ public class FacebookData extends Model {
 
    public FacebookData() {};
 
-   public FacebookData(String facebookUserId, String emailAddress, String firstName, String lastName, String gender, String locale, int timezone) {
+   public FacebookData(String facebookUserId, String email, String firstName, String lastName, String gender, String locale, int timezone) {
 
        this.facebookUserId = facebookUserId;
-       this.emailAddress = emailAddress;
+       this.email = email;
        this.firstName = firstName;
        this.lastName = lastName;
        this.gender = gender;

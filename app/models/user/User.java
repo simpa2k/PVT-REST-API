@@ -30,9 +30,10 @@ public class User extends Model {
 
     private String authToken;
 
-    @Column(unique = true, nullable = false)
+    //@Column(unique = true, nullable = false)
+    @Column(unique = true)
     @Constraints.MaxLength(255)
-    @Constraints.Required
+    //@Constraints.Required
     @Constraints.Email
     private String emailAddress;
 
@@ -52,8 +53,9 @@ public class User extends Model {
     @JsonIgnore
     private String facebookAuthToken;
 
-    @Column(length = 256, nullable = false)
-    @Constraints.Required
+    //@Column(length = 256, nullable = false)
+    @Column(unique = true)
+    //@Constraints.Required
     @Constraints.MinLength(2)
     @Constraints.MaxLength(256)
     public String fullName;

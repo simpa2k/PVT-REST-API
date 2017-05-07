@@ -6,6 +6,7 @@ import models.accommodation.Accommodation;
 import models.user.Renter;
 import models.user.Tenant;
 import models.user.User;
+import play.Logger;
 import repositories.accommodation.AccommodationRepository;
 import repositories.accommodation.AccommodationStorage;
 import repositories.facebookData.FacebookDataRepository;
@@ -63,8 +64,10 @@ public class UsersService {
     public void withdrawInterest(long tenantId, long accommodationId) {
 
         Interest interest = interestsRepository.findInterest(tenantId, accommodationId);
-        interestsRepository.delete(interest);
 
+        if (interest != null) {
+            interestsRepository.delete(interest);
+        }
     }
 
     public User createFromFacebookData(JsonNode facebookData) {
@@ -77,7 +80,9 @@ public class UsersService {
         }
 
         String facebookUserId = facebookData.findValue("id").textValue();
+        user.setEmailAddress(email);
         user.facebookData = facebookDataRepository.findByFacebookUserId(facebookUserId);
+
         usersRepository.save(user);
 
         return user;

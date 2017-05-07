@@ -33,6 +33,4 @@ public class UsersRepository implements UserStorage {
     public void save(User user) {
         user.save();
     }
-
-
 }
