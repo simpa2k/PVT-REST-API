@@ -57,11 +57,7 @@ som skickas med varje request.
 
     + Headers
 
-        Request-Time: 105
-        Content-Length: 332
         Content-Type: application/json; charset=UTF-8
-        Connection: close
-        Date: Sun, 07 May 2017 18:57:28 GMT
 
     + Attributes (Tenant)
 
@@ -188,8 +184,8 @@ som skickas med varje request.
 
 + Parameters
     + count: 10 (number, optional)
-    + offset: 10 (number, optional)
-    + tenantId: 1 (number, optional)
+    + offset: 0 (number, optional)
+    + tenantId: 5 (number, optional)
     + accommodationId: 1 (number, optional)
     + mutual: false (boolean, optional)
 
@@ -200,7 +196,11 @@ som skickas med varje request.
             X-AUTH-TOKEN: en valid autentiseringstoken
 
 + Response 200 (application/json)
-    
+
+    + Headers
+
+        Content-Type: application/json; charset=UTF-8
+
     + Attributes (array[Interest])
 
 ## Skapa en intresseanmälan. [POST]
@@ -301,6 +301,6 @@ Notera att en nyskapad intresseanmälan alltid är icke-ömsesidig.
 + latitude: ""
 
 ### Interest
-+ tenantId: 1 (number, optional)
++ tenantId: 5 (number, optional)
 + accommodationId: 1 (number, optional)
 + mutual: false (boolean, optional)

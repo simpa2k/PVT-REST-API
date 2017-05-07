@@ -43,7 +43,6 @@ hooks.before("Användare > Hyresgäst > Hämta en hyresgästs profil.", (transac
         done();
 
     });
-    //transaction.skip = true;
 });
 
 hooks.before("Användare > Hyresgäst > Uppdatera en hyresgästs profil.", (transaction) => {
@@ -62,9 +61,12 @@ hooks.before("Hyresobjekt > Hyresobjekt > Hämta hyresobjekt.", (transaction) =>
     transaction.skip = true;
 });
 
-hooks.before("Intresseanmälningar > Intresseanmälningar > Hämta intresseanmälningar.", function(transaction) {
+hooks.before("Intresseanmälningar > Intresseanmälningar > Hämta intresseanmälningar.", (transaction, done)  => {
 
-    hooks.log("Intresseanmälningar");
-    transaction.skip = true;
+    functions.localLogin('http://localhost:9000', 'kalle@example.com', 'password', (responseObject) => {
 
+        transaction.request['headers']['X-AUTH-TOKEN'] = responseObject.authToken;
+        done();
+
+    });
 });
