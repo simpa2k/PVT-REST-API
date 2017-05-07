@@ -17,7 +17,7 @@ import testResources.mocks.MockUserRepository;
  */
 public class MockTest extends BaseTest {
 
-    /*@Override
+    @Override
     protected Application provideApplication() {
 
         return new GuiceApplicationBuilder().overrides(binder -> {
@@ -28,5 +28,5 @@ public class MockTest extends BaseTest {
             binder.bind(UserStorage.class).to(MockUserRepository.class);
 
         }).in(Mode.TEST).build();
-    }*/
+    }
 }
