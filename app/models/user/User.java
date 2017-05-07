@@ -28,6 +28,7 @@ public class User extends Model {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public long id;
 
+    @JsonIgnore
     private String authToken;
 
     //@Column(unique = true, nullable = false)

@@ -7,10 +7,7 @@ package utils;
 import models.*;
 import models.accommodation.Accommodation;
 import models.accommodation.Address;
-import models.user.Authorization;
-import models.user.Renter;
-import models.user.Tenant;
-import models.user.User;
+import models.user.*;
 import play.Environment;
 import play.Logger;
 
@@ -93,6 +90,12 @@ public class DemoData {
         tenant1 = new Tenant("kalle@example.com", "password", "Kalle Blomkvist",
                 "Hej! Jag letar boende", 23, 1, 5000, 18000, "Karaktär i berättelse", 8000);
         tenant1.createToken();
+
+        FacebookData tenant1FacebookData = new FacebookData("tenant1FB", "kalle@example.com", "Kalle", "Blomkvist", "male", "en_GB", 2);
+        tenant1FacebookData.save();
+
+        tenant1.facebookData = tenant1FacebookData;
+
         tenant1.save();
 
         interest1 = tenant1.addInterest(renter1Accommodation);
