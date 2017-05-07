@@ -121,6 +121,7 @@ create table users (
   income                        double,
   occupation                    varchar(255),
   deposit                       double,
+  rental_period_id              bigint,
   accommodation_id              bigint,
   constraint ck_users_authorization check (authorization in (0,1)),
   constraint uq_users_email_address unique (email_address),
@@ -169,6 +170,9 @@ create index ix_swiping_session_activity_activity on swiping_session_activity (a
 
 alter table users add constraint fk_users_facebook_data_id foreign key (facebook_data_id) references facebook_data (id) on delete restrict on update restrict;
 
+alter table users add constraint fk_users_rental_period_id foreign key (rental_period_id) references rental_period (id) on delete restrict on update restrict;
+create index ix_users_rental_period_id on users (rental_period_id);
+
 alter table users add constraint fk_users_accommodation_id foreign key (accommodation_id) references accommodation (id) on delete restrict on update restrict;
 
 
@@ -212,6 +216,9 @@ alter table swiping_session_activity drop constraint if exists fk_swiping_sessio
 drop index if exists ix_swiping_session_activity_activity;
 
 alter table users drop constraint if exists fk_users_facebook_data_id;
+
+alter table users drop constraint if exists fk_users_rental_period_id;
+drop index if exists ix_users_rental_period_id;
 
 alter table users drop constraint if exists fk_users_accommodation_id;
 

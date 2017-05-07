@@ -55,6 +55,14 @@ som skickas med varje request.
 
 + Response 200 (application/json)
 
+    + Headers
+
+        Request-Time: 105
+        Content-Length: 332
+        Content-Type: application/json; charset=UTF-8
+        Connection: close
+        Date: Sun, 07 May 2017 18:57:28 GMT
+
     + Attributes (Tenant)
 
 + Response 401 (application/json)
@@ -247,25 +255,25 @@ Notera att en nyskapad intresseanmälan alltid är icke-ömsesidig.
 ## Data Structures
 
 ### FacebookUser
-+ emailAddress: kalle@example.com
++ email: kalle@example.com
 + firstName: Kalle
 + lastName: Blomkvist
++ name: Kalle Blomkvist
 + gender: male
 
 ### LocalUser (FacebookUser)
-+ id: 2
-+ images: bilder (array)
++ id: 2 (number)
 
 
 ### Tenant (LocalUser)
 + description: `Hej, jag heter Kalle och behöver någonstans att bo.`
-+ age: 23
-+ numberoftenants: 1
-+ income: 18000
-+ maxrent: 5000
++ age: 23 (number)
++ numberOfTenants: 1 (number)
++ income: 18000 (number)
++ maxRent: 5000 (number)
 + occupation: Karaktär i berättelse
-+ deposit: 8000
-+ rentalperiod
++ deposit: 8000 (number)
++ rentalPeriod
     + start: `2017-05-01`
     + end: `2018-05-01`
 

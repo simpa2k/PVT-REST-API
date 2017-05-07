@@ -22,8 +22,9 @@ public class Tenant extends User {
     public double income;
     public String occupation;
     public double deposit;
-    public RentalPeriod rentalPeriod;
 
+    @ManyToOne
+    public RentalPeriod rentalPeriod;
 
     @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL)

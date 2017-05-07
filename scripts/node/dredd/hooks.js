@@ -7,6 +7,7 @@ let facebookLogin = "Inloggning > Facebook-inloggning > Logga in en användare v
 
 hooks.before(facebookLogin, (transaction) => {
 
+    transaction.skip = true;
     let requestBody = JSON.parse(transaction.request.body);
     requestBody['facebookAuthToken'] = 'EAAa2D7XPp6oBAIC0aolIuCkUZBYqwm2vp3ZAOM2ZC2vXmoqyw7G298oC6gU2WgcKHZBcthRc0IuiP7Na74QKz8FHj7n9ZCWoBXuedNNtF5ZBL3cauD0wk9BTberrJ6tZAtPLbPohSTZBWBZBrZBdyucb85NSEVJMicrFGwvCZCNtskdf4lSPi0rM6GA';
 

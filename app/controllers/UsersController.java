@@ -20,9 +20,7 @@ public class UsersController extends Controller {
 
     public Result returnTenantProfile(){
 
-        Tenant tenant = (Tenant)ctx().args.get("user");
-        
-
+        Tenant tenant = (Tenant) ctx().args.get("user");
         return ResponseBuilder.buildOKObject(tenant);
 
 

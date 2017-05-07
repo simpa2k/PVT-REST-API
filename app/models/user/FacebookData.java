@@ -34,12 +34,12 @@ public class FacebookData extends Model {
 
    @Column(length = 256)
    @Constraints.MaxLength(256)
-   @JsonProperty("first_name")
+   //@JsonProperty("first_name")
    public String firstName;
 
    @Column(length = 256)
    @Constraints.MaxLength(256)
-   @JsonProperty("last_name")
+   //@JsonProperty("last_name")
    public String lastName;
 
    public String name;
@@ -77,6 +77,26 @@ public class FacebookData extends Model {
        this.timezone = timezone;
 
    }
+
+    @JsonProperty("firstName")
+    public String getFirstName() {
+        return firstName;
+    }
+
+    @JsonProperty("first_name")
+    public void setFirstNameUnderscored(String firstName) {
+        this.firstName = firstName;
+    }
+
+    @JsonProperty("lastName")
+    public String getLastName() {
+        return lastName;
+    }
+
+    @JsonProperty("last_name")
+    public void setLastNameUnderScored(String lastName) {
+        this.lastName = lastName;
+    }
 
     public static FacebookData findByFacebookUserId(String facebookUserId) {
         return find.where().eq("facebookUserId", facebookUserId).findUnique();

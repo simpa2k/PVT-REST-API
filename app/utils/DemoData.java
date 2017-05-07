@@ -7,12 +7,14 @@ package utils;
 import models.*;
 import models.accommodation.Accommodation;
 import models.accommodation.Address;
+import models.accommodation.RentalPeriod;
 import models.user.*;
 import play.Environment;
 import play.Logger;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
+import java.text.ParseException;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -93,6 +95,19 @@ public class DemoData {
 
         FacebookData tenant1FacebookData = new FacebookData("tenant1FB", "kalle@example.com", "Kalle", "Blomkvist", "male", "en_GB", 2);
         tenant1FacebookData.save();
+
+        try {
+
+            RentalPeriod rentalPeriod = new RentalPeriod("2017-05-01", "2018-05-01");
+            rentalPeriod.save();
+
+            tenant1.rentalPeriod = rentalPeriod;
+
+        } catch (ParseException e) {
+
+            Logger.debug("Could not create rental period for tenant1");
+
+        }
 
         tenant1.facebookData = tenant1FacebookData;
 

@@ -2,6 +2,7 @@ package models.user;
 
 import com.avaje.ebean.Model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonUnwrapped;
 import models.Interest;
 import play.data.validation.Constraints;
@@ -36,6 +37,7 @@ public class User extends Model {
     @Constraints.MaxLength(255)
     //@Constraints.Required
     @Constraints.Email
+    @JsonIgnore
     private String emailAddress;
 
     @Column(length = 64)
@@ -59,6 +61,7 @@ public class User extends Model {
     //@Constraints.Required
     @Constraints.MinLength(2)
     @Constraints.MaxLength(256)
+    @JsonIgnore
     public String fullName;
 
     @Column(nullable = false, columnDefinition = "datetime") // columnDefinition prevents ebeans from generating
