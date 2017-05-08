@@ -66,8 +66,8 @@ public class FacebookUtils {
         return Arrays.asList(
 
                 (json, fbData) -> assertEquals(fbData.email, json.findValue("email").textValue()),
-                (json, fbData) -> assertEquals(fbData.firstName, json.findValue("first_name").textValue()),
-                (json, fbData) -> assertEquals(fbData.lastName, json.findValue("last_name").textValue()),
+                (json, fbData) -> assertEquals(fbData.firstName, json.findValue("firstName").textValue()),
+                (json, fbData) -> assertEquals(fbData.lastName, json.findValue("lastName").textValue()),
                 (json, fbData) -> assertEquals(fbData.gender, json.findValue("gender").textValue()),
                 (json, fbData) -> assertEquals(fbData.name, json.findValue("name").textValue()),
                 (json, fbData) -> assertEquals(null, json.findValue("locale")),
