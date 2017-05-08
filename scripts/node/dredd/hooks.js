@@ -1,3 +1,6 @@
+"use strict";
+
+let server = "http://localhost:8080";
 let hooks = require('hooks');
 let functions = require('../functions');
 
@@ -37,7 +40,7 @@ hooks.before("Användare > Användare > Hämta en användares profil.", (transac
 
 hooks.before("Användare > Hyresgäst > Hämta en hyresgästs profil.", (transaction, done) => {
 
-    functions.localLogin('http://localhost:9000', 'kalle@example.com', 'password', (responseObject) => {
+    functions.localLogin(server, 'kalle@example.com', 'password', (responseObject) => {
 
         transaction.request['headers']['X-AUTH-TOKEN'] = responseObject.authToken;
         done();
@@ -61,9 +64,9 @@ hooks.before("Hyresobjekt > Hyresobjekt > Hämta hyresobjekt.", (transaction) =>
     transaction.skip = true;
 });
 
-hooks.before("Intresseanmälningar > Intresseanmälningar > Hämta intresseanmälningar.", (transaction, done)  => {
+hooks.before("Intresseanmälningar > Intresseanmälningar > Hämta intresseanmälningar.", (transaction, done) => {
 
-    functions.localLogin('http://localhost:9000', 'kalle@example.com', 'password', (responseObject) => {
+    functions.localLogin(server, 'kalle@example.com', 'password', (responseObject) => {
 
         transaction.request['headers']['X-AUTH-TOKEN'] = responseObject.authToken;
         done();

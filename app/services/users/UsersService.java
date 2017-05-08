@@ -1,6 +1,7 @@
 package services.users;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import exceptions.NoEmailFoundException;
 import models.Interest;
 import models.accommodation.Accommodation;
 import models.user.Renter;
@@ -70,7 +71,11 @@ public class UsersService {
         }
     }
 
-    public User createFromFacebookData(JsonNode facebookData) {
+    public User createFromFacebookData(JsonNode facebookData) throws NoEmailFoundException {
+
+        if  (facebookData.findValue("email") == null) {
+            throw new NoEmailFoundException("Email was null. Email is required.");
+        }
 
         String email = facebookData.findValue("email").textValue();
         User user = usersRepository.findByEmailAddress(email);

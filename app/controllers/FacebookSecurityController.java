@@ -3,6 +3,7 @@ package controllers;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.fasterxml.jackson.databind.JsonNode;
+import exceptions.NoEmailFoundException;
 import models.user.FacebookData;
 import models.user.User;
 import play.Configuration;
@@ -111,15 +112,25 @@ public class FacebookSecurityController extends Controller {
                 return badRequest(facebookData.asJson());
             }
 
-            User user = usersService.createFromFacebookData(facebookJson);
-            String userToken = usersService.getToken(user);
+            try {
 
-            ObjectNode responseJson = Json.newObject();
+                User user = usersService.createFromFacebookData(facebookJson);
 
-            responseJson.put(AUTH_TOKEN, userToken);
-            setAuthTokenCookie(userToken);
+                String userToken = usersService.getToken(user);
 
-            return ok(responseJson);
+                ObjectNode responseJson = Json.newObject();
+
+                responseJson.put(AUTH_TOKEN, userToken);
+                setAuthTokenCookie(userToken);
+
+                return ok(responseJson);
+
+
+            } catch (NoEmailFoundException e) {
+
+                return ResponseBuilder.buildBadRequest("Permission to access email is required.", ResponseBuilder.ILLEGAL_ARGUMENT);
+
+            }
 
         }, ec.current());
     }
