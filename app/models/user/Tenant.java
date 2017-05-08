@@ -22,8 +22,9 @@ public class Tenant extends User {
     public double income;
     public String occupation;
     public double deposit;
-    public RentalPeriod rentalPeriod;
 
+    @ManyToOne
+    public RentalPeriod rentalPeriod;
 
     @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL)
@@ -65,6 +66,10 @@ public class Tenant extends User {
 
     }
 
+    public boolean addInterest(Interest interest) {
+        return interests.add(interest);
+    }
+
     public static Tenant findByAuthToken(String authToken) {
         return find.where().eq("auth_token", authToken).findUnique();
     }
@@ -73,4 +78,7 @@ public class Tenant extends User {
         return find.where().eq("email_address", emailAddress).findUnique();
     }
 
+    public static Tenant findById(long tenantId) {
+        return find.byId(tenantId);
+    }
 }

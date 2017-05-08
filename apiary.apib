@@ -55,6 +55,10 @@ som skickas med varje request.
 
 + Response 200 (application/json)
 
+    + Headers
+
+        Content-Type: application/json; charset=UTF-8
+
     + Attributes (Tenant)
 
 + Response 401 (application/json)
@@ -180,8 +184,8 @@ som skickas med varje request.
 
 + Parameters
     + count: 10 (number, optional)
-    + offset: 10 (number, optional)
-    + tenantId: 1 (number, optional)
+    + offset: 0 (number, optional)
+    + tenantId: 5 (number, optional)
     + accommodationId: 1 (number, optional)
     + mutual: false (boolean, optional)
 
@@ -192,7 +196,11 @@ som skickas med varje request.
             X-AUTH-TOKEN: en valid autentiseringstoken
 
 + Response 200 (application/json)
-    
+
+    + Headers
+
+        Content-Type: application/json; charset=UTF-8
+
     + Attributes (array[Interest])
 
 ## Skapa en intresseanmälan. [POST]
@@ -247,25 +255,25 @@ Notera att en nyskapad intresseanmälan alltid är icke-ömsesidig.
 ## Data Structures
 
 ### FacebookUser
-+ emailAddress: kalle@example.com
++ email: kalle@example.com
 + firstName: Kalle
 + lastName: Blomkvist
++ name: Kalle Blomkvist
 + gender: male
 
 ### LocalUser (FacebookUser)
-+ id: 2
-+ images: bilder (array)
++ id: 2 (number)
 
 
 ### Tenant (LocalUser)
 + description: `Hej, jag heter Kalle och behöver någonstans att bo.`
-+ age: 23
-+ numberoftenants: 1
-+ income: 18000
-+ maxrent: 5000
++ age: 23 (number)
++ numberOfTenants: 1 (number)
++ income: 18000 (number)
++ maxRent: 5000 (number)
 + occupation: Karaktär i berättelse
-+ deposit: 8000
-+ rentalperiod
++ deposit: 8000 (number)
++ rentalPeriod
     + start: `2017-05-01`
     + end: `2018-05-01`
 
@@ -273,10 +281,10 @@ Notera att en nyskapad intresseanmälan alltid är icke-ömsesidig.
 + accommodation (Accommodation)
 
 ### Accommodation
-+ rent: 5000
-+ size: 20
-+ rooms: 1
-+ deposit: 8000
++ rent: 5000 (number)
++ size: 20 (number)
++ rooms: 1 (number)
++ deposit: 8000 (number)
 + smokingAllowed: false (boolean)
 + animalsAllowed: false (boolean)
 + tv: true (boolean)
@@ -286,13 +294,13 @@ Notera att en nyskapad intresseanmälan alltid är icke-ömsesidig.
 
 ### Address
 + streetName: Dymlingsgränd
-+ streetNumber: 3
++ streetNumber: 3 (number)
 + streetNumberLetter: A
 + area: Hägerstensåsen
 + longitude: ""
 + latitude: ""
 
 ### Interest
-+ tenantId: 1 (number, optional)
++ tenantId: 5 (number, optional)
 + accommodationId: 1 (number, optional)
 + mutual: false (boolean, optional)

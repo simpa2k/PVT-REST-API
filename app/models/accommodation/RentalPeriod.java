@@ -2,6 +2,8 @@ package models.accommodation;
 
 import com.avaje.ebean.Model;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import play.Logger;
 
 import javax.persistence.*;
 import java.text.ParseException;
@@ -13,9 +15,12 @@ import java.util.Date;
  */
 @Entity
 public class RentalPeriod extends Model {
+
     private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JsonIgnore
     public long id;
 
     @Column(columnDefinition = "datetime")

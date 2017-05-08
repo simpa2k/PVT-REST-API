@@ -2,6 +2,7 @@ package models.user;
 
 import com.avaje.ebean.Model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonUnwrapped;
 import models.Interest;
 import play.data.validation.Constraints;
@@ -28,12 +29,15 @@ public class User extends Model {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public long id;
 
+    @JsonIgnore
     private String authToken;
 
-    @Column(unique = true, nullable = false)
+    //@Column(unique = true, nullable = false)
+    @Column(unique = true)
     @Constraints.MaxLength(255)
-    @Constraints.Required
+    //@Constraints.Required
     @Constraints.Email
+    @JsonIgnore
     private String emailAddress;
 
     @Column(length = 64)
@@ -52,10 +56,12 @@ public class User extends Model {
     @JsonIgnore
     private String facebookAuthToken;
 
-    @Column(length = 256, nullable = false)
-    @Constraints.Required
+    //@Column(length = 256, nullable = false)
+    @Column(unique = true)
+    //@Constraints.Required
     @Constraints.MinLength(2)
     @Constraints.MaxLength(256)
+    @JsonIgnore
     public String fullName;
 
     @Column(nullable = false, columnDefinition = "datetime") // columnDefinition prevents ebeans from generating
@@ -118,6 +124,10 @@ public class User extends Model {
         }
     }
 
+    public String getAuthToken() {
+        return authToken;
+    }
+
     public String getEmailAddress() {
         return emailAddress;
     }
@@ -155,17 +165,12 @@ public class User extends Model {
     public String createToken() {
 
         authToken = UUID.randomUUID().toString();
-        save();
-
         return authToken;
 
     }
 
     public void deleteAuthToken() {
-
         authToken = null;
-        save();
-
     }
 
     public static User findByAuthToken(String authToken) {

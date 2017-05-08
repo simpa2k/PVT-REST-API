@@ -55,15 +55,16 @@ create table address (
 create table facebook_data (
   id                            bigint auto_increment not null,
   facebook_user_id              varchar(255) not null,
-  email_address                 varchar(255) not null,
+  email                         varchar(255) not null,
   first_name                    varchar(256),
   last_name                     varchar(256),
+  name                          varchar(255),
   gender                        varchar(15),
   locale                        varchar(10),
   timezone                      integer,
   user_id                       bigint,
   constraint uq_facebook_data_facebook_user_id unique (facebook_user_id),
-  constraint uq_facebook_data_email_address unique (email_address),
+  constraint uq_facebook_data_email unique (email),
   constraint uq_facebook_data_user_id unique (user_id),
   constraint pk_facebook_data primary key (id)
 );
@@ -106,10 +107,10 @@ create table users (
   dtype                         varchar(10) not null,
   id                            bigint auto_increment not null,
   auth_token                    varchar(255),
-  email_address                 varchar(255) not null,
+  email_address                 varchar(255),
   sha_password                  varbinary(64),
   sha_facebook_auth_token       varbinary(255),
-  full_name                     varchar(256) not null,
+  full_name                     varchar(255),
   creation_date                 datetime not null,
   description                   varchar(255),
   age                           integer,
@@ -120,9 +121,11 @@ create table users (
   income                        double,
   occupation                    varchar(255),
   deposit                       double,
+  rental_period_id              bigint,
   accommodation_id              bigint,
   constraint ck_users_authorization check (authorization in (0,1)),
   constraint uq_users_email_address unique (email_address),
+  constraint uq_users_full_name unique (full_name),
   constraint uq_users_facebook_data_id unique (facebook_data_id),
   constraint uq_users_accommodation_id unique (accommodation_id),
   constraint pk_users primary key (id)
@@ -167,6 +170,9 @@ create index ix_swiping_session_activity_activity on swiping_session_activity (a
 
 alter table users add constraint fk_users_facebook_data_id foreign key (facebook_data_id) references facebook_data (id) on delete restrict on update restrict;
 
+alter table users add constraint fk_users_rental_period_id foreign key (rental_period_id) references rental_period (id) on delete restrict on update restrict;
+create index ix_users_rental_period_id on users (rental_period_id);
+
 alter table users add constraint fk_users_accommodation_id foreign key (accommodation_id) references accommodation (id) on delete restrict on update restrict;
 
 
@@ -210,6 +216,9 @@ alter table swiping_session_activity drop constraint if exists fk_swiping_sessio
 drop index if exists ix_swiping_session_activity_activity;
 
 alter table users drop constraint if exists fk_users_facebook_data_id;
+
+alter table users drop constraint if exists fk_users_rental_period_id;
+drop index if exists ix_users_rental_period_id;
 
 alter table users drop constraint if exists fk_users_accommodation_id;
 

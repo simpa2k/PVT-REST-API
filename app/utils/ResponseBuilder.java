@@ -4,13 +4,13 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import models.Interest;
+import models.user.Tenant;
+import play.Logger;
 import play.mvc.Result;
 
 import java.util.List;
 
-import static play.mvc.Results.badRequest;
-import static play.mvc.Results.ok;
-import static play.mvc.Results.unauthorized;
+import static play.mvc.Results.*;
 
 /**
  * @author Simon Olofsson
@@ -23,8 +23,20 @@ public class ResponseBuilder {
     public static final String MALFORMED_LIST = "Malformed list.";
     public static final String NO_SUCH_ENTITY = "No such entity.";
     public static final String FORBIDDEN_ACTIVITY_CHOICE = "Forbidden activity choice.";
+    public static final String OUT_OF_RANGE = "Offset out of range.";
 
     private static ObjectMapper mapper = new ObjectMapper();
+
+    public static Result buildInternalServerError(String message) {
+
+        ObjectNode responseBody = mapper.createObjectNode();
+
+        ObjectNode error = responseBody.putObject("error");
+        error.put("message", message);
+
+        return internalServerError(responseBody);
+
+    }
 
     public static Result buildUnauthorizedRequest(String message) {
 
