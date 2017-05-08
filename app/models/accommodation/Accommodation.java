@@ -3,7 +3,8 @@ package models.accommodation;
 import com.avaje.ebean.ExpressionList;
 import com.avaje.ebean.Model;
 import com.fasterxml.jackson.annotation.*;
-import models.user.Renter;
+import models.RentalPeriod;
+import models.user.User;
 
 import javax.persistence.*;
 import java.util.List;
@@ -19,15 +20,10 @@ public class Accommodation extends Model {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public long id;
 
-    public double rent;
+    public int rent;
     public double size;
     public double rooms;
-    public double deposit;
-    public boolean smokingAllowed;
-    public boolean animalsAllowed;
-    public boolean tv;
-    public boolean broadband;
-    public String description;
+    public int deposit;
 
     /*
      * The JsonIdentity annotations make sure that only id is serialized.
@@ -36,26 +32,23 @@ public class Accommodation extends Model {
     @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
     @JsonIdentityReference(alwaysAsId = true)
     @JsonProperty("renterId")
-    public Renter renter;
+    public User renter;
 
     @ManyToOne
     public Address address;
 
+    @ManyToOne
+    public RentalPeriod rentalPeriod;
+
     private static Finder<Long, Accommodation> find = new Finder<>(Accommodation.class);
 
-    public Accommodation(double rent, double size, double rooms, double deposit,
-                         boolean smokingAllowed, boolean animalsAllowed, boolean tv, boolean broadband,
-                         String description, Address address, Renter renter) {
+    public Accommodation(int rent, double size, double rooms, int deposit,
+                         Address address, User renter) {
 
         this.rent = rent;
         this.size = size;
         this.rooms = rooms;
         this.deposit = deposit;
-        this.smokingAllowed = smokingAllowed;
-        this.animalsAllowed = animalsAllowed;
-        this.tv = tv;
-        this.broadband = broadband;
-        this.description = description;
         this.address = address;
         this.renter = renter;
 

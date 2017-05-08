@@ -8,18 +8,16 @@ import models.Activity;
 import models.Interest;
 import models.accommodation.Accommodation;
 import models.accommodation.Address;
-import models.accommodation.RentalPeriod;
+import models.RentalPeriod;
 import models.user.*;
 import models.SwipingSession;
 import play.Configuration;
 import play.Logger;
-import play.libs.ws.WSClient;
 import services.users.UsersService;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
 import java.text.ParseException;
-import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -34,7 +32,7 @@ public class TestData {
     private Renter renter1;
     private Accommodation renter1Accommodation;
 
-    private Tenant tenant1;
+    //private Tenant tenant1;
     private Interest interest1;
 
     private SwipingSession session;
@@ -76,7 +74,7 @@ public class TestData {
             session = new SwipingSession(participants, activities);
             session.save();
 
-            addInterestSpecificData();
+            //addInterestSpecificData();
 
         }
 
@@ -87,7 +85,7 @@ public class TestData {
 
     }
 
-    private void addInterestSpecificData() {
+    /*private void addInterestSpecificData() {
 
         renter1 = new Renter("anna@example.com", "password", "Anna Svensson", "Hej! Jag är en skön prick.", 35);
         renter1.save();
@@ -118,7 +116,7 @@ public class TestData {
         Logger.debug("This is the place"+ tenant1.rentalPeriod.start.toString());
         interest1 = tenant1.addInterest(renter1Accommodation);
 
-    }
+    }*/
 
     public UsersService getUsersService() {
         return usersService;
@@ -144,9 +142,9 @@ public class TestData {
         return renter1Accommodation;
     }
 
-    public Tenant getTenant1() {
+    /*public Tenant getTenant1() {
         return tenant1;
-    }
+    }*/
 
     public Interest getInterest1() {
         return interest1;

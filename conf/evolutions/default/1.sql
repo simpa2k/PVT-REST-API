@@ -5,17 +5,13 @@
 
 create table accommodation (
   id                            bigint auto_increment not null,
-  rent                          double,
+  rent                          integer,
   size                          double,
   rooms                         double,
-  deposit                       double,
-  smoking_allowed               boolean,
-  animals_allowed               boolean,
-  tv                            boolean,
-  broadband                     boolean,
-  description                   varchar(255),
+  deposit                       integer,
   renter_id                     bigint,
   address_id                    bigint,
+  rental_period_id              bigint,
   constraint uq_accommodation_renter_id unique (renter_id),
   constraint pk_accommodation primary key (id)
 );
@@ -45,7 +41,7 @@ create table address (
   id                            bigint auto_increment not null,
   street_name                   varchar(255),
   street_number                 integer,
-  street_letter                 varchar(255),
+  street_number_letter          varchar(255),
   area                          varchar(255),
   longitude                     double,
   latitude                      double,
@@ -71,10 +67,9 @@ create table facebook_data (
 
 create table interest (
   id                            bigint auto_increment not null,
+  renter_id                     bigint,
   tenant_id                     bigint,
-  interest_accommodation_id     bigint,
-  mutual                        boolean,
-  constraint uq_interest_tenant_id_interest_accommodation_id unique (tenant_id,interest_accommodation_id),
+  constraint uq_interest_renter_id_tenant_id unique (renter_id,tenant_id),
   constraint pk_interest primary key (id)
 );
 
@@ -83,6 +78,9 @@ create table rental_period (
   start                         datetime,
   end                           datetime,
   constraint pk_rental_period primary key (id)
+);
+
+create table renter (
 );
 
 create table swiping_session (
@@ -103,6 +101,15 @@ create table swiping_session_activity (
   constraint pk_swiping_session_activity primary key (swiping_session_id,activity_id)
 );
 
+create table tenant_profile (
+  id                            bigint auto_increment not null,
+  max_rent                      integer,
+  max_deposit                   integer,
+  description                   varchar(255),
+  rental_period_id              bigint,
+  constraint pk_tenant_profile primary key (id)
+);
+
 create table users (
   dtype                         varchar(10) not null,
   id                            bigint auto_increment not null,
@@ -112,22 +119,17 @@ create table users (
   sha_facebook_auth_token       varbinary(255),
   full_name                     varchar(255),
   creation_date                 datetime not null,
-  description                   varchar(255),
   age                           integer,
   facebook_data_id              bigint,
-  authorization                 integer,
-  number_of_tenants             integer,
-  max_rent                      integer,
-  income                        double,
-  occupation                    varchar(255),
-  deposit                       double,
-  rental_period_id              bigint,
   accommodation_id              bigint,
+  tenant_profile_id             bigint,
+  authorization                 integer,
   constraint ck_users_authorization check (authorization in (0,1)),
   constraint uq_users_email_address unique (email_address),
   constraint uq_users_full_name unique (full_name),
   constraint uq_users_facebook_data_id unique (facebook_data_id),
   constraint uq_users_accommodation_id unique (accommodation_id),
+  constraint uq_users_tenant_profile_id unique (tenant_profile_id),
   constraint pk_users primary key (id)
 );
 
@@ -135,6 +137,9 @@ alter table accommodation add constraint fk_accommodation_renter_id foreign key 
 
 alter table accommodation add constraint fk_accommodation_address_id foreign key (address_id) references address (id) on delete restrict on update restrict;
 create index ix_accommodation_address_id on accommodation (address_id);
+
+alter table accommodation add constraint fk_accommodation_rental_period_id foreign key (rental_period_id) references rental_period (id) on delete restrict on update restrict;
+create index ix_accommodation_rental_period_id on accommodation (rental_period_id);
 
 alter table activity_choice add constraint fk_activity_choice_user_id foreign key (user_id) references users (id) on delete restrict on update restrict;
 create index ix_activity_choice_user_id on activity_choice (user_id);
@@ -150,11 +155,11 @@ create index ix_activity_choice_activity_activity on activity_choice_activity (a
 
 alter table facebook_data add constraint fk_facebook_data_user_id foreign key (user_id) references users (id) on delete restrict on update restrict;
 
+alter table interest add constraint fk_interest_renter_id foreign key (renter_id) references users (id) on delete restrict on update restrict;
+create index ix_interest_renter_id on interest (renter_id);
+
 alter table interest add constraint fk_interest_tenant_id foreign key (tenant_id) references users (id) on delete restrict on update restrict;
 create index ix_interest_tenant_id on interest (tenant_id);
-
-alter table interest add constraint fk_interest_interest_accommodation_id foreign key (interest_accommodation_id) references accommodation (id) on delete restrict on update restrict;
-create index ix_interest_interest_accommodation_id on interest (interest_accommodation_id);
 
 alter table swiping_session_users add constraint fk_swiping_session_users_swiping_session foreign key (swiping_session_id) references swiping_session (id) on delete restrict on update restrict;
 create index ix_swiping_session_users_swiping_session on swiping_session_users (swiping_session_id);
@@ -168,12 +173,14 @@ create index ix_swiping_session_activity_swiping_session on swiping_session_acti
 alter table swiping_session_activity add constraint fk_swiping_session_activity_activity foreign key (activity_id) references activity (id) on delete restrict on update restrict;
 create index ix_swiping_session_activity_activity on swiping_session_activity (activity_id);
 
+alter table tenant_profile add constraint fk_tenant_profile_rental_period_id foreign key (rental_period_id) references rental_period (id) on delete restrict on update restrict;
+create index ix_tenant_profile_rental_period_id on tenant_profile (rental_period_id);
+
 alter table users add constraint fk_users_facebook_data_id foreign key (facebook_data_id) references facebook_data (id) on delete restrict on update restrict;
 
-alter table users add constraint fk_users_rental_period_id foreign key (rental_period_id) references rental_period (id) on delete restrict on update restrict;
-create index ix_users_rental_period_id on users (rental_period_id);
-
 alter table users add constraint fk_users_accommodation_id foreign key (accommodation_id) references accommodation (id) on delete restrict on update restrict;
+
+alter table users add constraint fk_users_tenant_profile_id foreign key (tenant_profile_id) references tenant_profile (id) on delete restrict on update restrict;
 
 
 # --- !Downs
@@ -182,6 +189,9 @@ alter table accommodation drop constraint if exists fk_accommodation_renter_id;
 
 alter table accommodation drop constraint if exists fk_accommodation_address_id;
 drop index if exists ix_accommodation_address_id;
+
+alter table accommodation drop constraint if exists fk_accommodation_rental_period_id;
+drop index if exists ix_accommodation_rental_period_id;
 
 alter table activity_choice drop constraint if exists fk_activity_choice_user_id;
 drop index if exists ix_activity_choice_user_id;
@@ -197,11 +207,11 @@ drop index if exists ix_activity_choice_activity_activity;
 
 alter table facebook_data drop constraint if exists fk_facebook_data_user_id;
 
+alter table interest drop constraint if exists fk_interest_renter_id;
+drop index if exists ix_interest_renter_id;
+
 alter table interest drop constraint if exists fk_interest_tenant_id;
 drop index if exists ix_interest_tenant_id;
-
-alter table interest drop constraint if exists fk_interest_interest_accommodation_id;
-drop index if exists ix_interest_interest_accommodation_id;
 
 alter table swiping_session_users drop constraint if exists fk_swiping_session_users_swiping_session;
 drop index if exists ix_swiping_session_users_swiping_session;
@@ -215,12 +225,14 @@ drop index if exists ix_swiping_session_activity_swiping_session;
 alter table swiping_session_activity drop constraint if exists fk_swiping_session_activity_activity;
 drop index if exists ix_swiping_session_activity_activity;
 
+alter table tenant_profile drop constraint if exists fk_tenant_profile_rental_period_id;
+drop index if exists ix_tenant_profile_rental_period_id;
+
 alter table users drop constraint if exists fk_users_facebook_data_id;
 
-alter table users drop constraint if exists fk_users_rental_period_id;
-drop index if exists ix_users_rental_period_id;
-
 alter table users drop constraint if exists fk_users_accommodation_id;
+
+alter table users drop constraint if exists fk_users_tenant_profile_id;
 
 drop table if exists accommodation;
 
@@ -238,11 +250,15 @@ drop table if exists interest;
 
 drop table if exists rental_period;
 
+drop table if exists renter;
+
 drop table if exists swiping_session;
 
 drop table if exists swiping_session_users;
 
 drop table if exists swiping_session_activity;
+
+drop table if exists tenant_profile;
 
 drop table if exists users;
 

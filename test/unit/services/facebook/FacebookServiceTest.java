@@ -1,4 +1,4 @@
-package services.facebook;
+package unit.services.facebook;
 
 import org.junit.Test;
 import play.libs.ws.WSClient;

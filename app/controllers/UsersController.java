@@ -1,15 +1,16 @@
 package controllers;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
-import models.user.Renter;
-import models.user.Tenant;
+import models.user.TenantProfile;
 import models.user.User;
-import play.Logger;
-import play.libs.Json;
 import play.mvc.Controller;
 import play.mvc.Result;
 import play.mvc.Security;
+import services.users.UsersService;
 import utils.ResponseBuilder;
+
+import javax.inject.Inject;
 
 /**
  * Created by Enver on 2017-05-05.
@@ -18,15 +19,22 @@ import utils.ResponseBuilder;
 @Security.Authenticated(Secured.class)
 public class UsersController extends Controller {
 
+    private UsersService usersService;
+
+    @Inject
+    public UsersController(UsersService usersService) {
+        this.usersService = usersService;
+    }
+
     public Result returnTenantProfile(){
 
-        Tenant tenant = (Tenant) ctx().args.get("user");
+        User tenant = (User) ctx().args.get("user");
         return ResponseBuilder.buildOKObject(tenant);
 
 
     }
     
-    private Result createTenant(JsonNode body){
+    /*private Result createTenant(JsonNode body){
 	    int maxRent=body.findValue("maxRent").asInt();
 	    int numberOfTenants=body.findValue("numberOfTenants").asInt();
 	    int age=body.findValue("age").asInt();
@@ -70,7 +78,19 @@ public class UsersController extends Controller {
     	else usr=createTenant(body);
 		
 		return usr;
+	}*/
+
+    public Result createProfile() {
+
+        JsonNode requestBody = request().body().asJson();
+
+        try {
+            TenantProfile profile = usersService.setProfile(FacebookSecurityController.getUser(), requestBody);
+        } catch (JsonProcessingException e) {
+            return ResponseBuilder.buildBadRequest("Could not parse request body.", ResponseBuilder.MALFORMED_REQUEST_BODY);
+        }
+
+        return noContent();
+
 	}
-	
-	
 }

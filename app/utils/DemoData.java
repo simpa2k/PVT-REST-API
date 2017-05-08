@@ -7,7 +7,7 @@ package utils;
 import models.*;
 import models.accommodation.Accommodation;
 import models.accommodation.Address;
-import models.accommodation.RentalPeriod;
+import models.RentalPeriod;
 import models.user.*;
 import play.Environment;
 import play.Logger;
@@ -28,7 +28,7 @@ public class DemoData {
     private Renter renter1;
     private Accommodation renter1Accommodation;
 
-    private Tenant tenant1;
+    //private Tenant tenant1;
     private Interest interest1;
 
     public SwipingSession session;
@@ -72,13 +72,13 @@ public class DemoData {
                 session = new SwipingSession(participants, activities);
                 session.save();
 
-                addInterestSpecificData();
+                //addInterestSpecificData();
 
             }
         }
     }
 
-    private void addInterestSpecificData() {
+    /*private void addInterestSpecificData() {
 
         renter1 = new Renter("anna@example.com", "password", "Anna Svensson", "Hej! Jag är en skön prick.", 35);
         renter1.createToken();
@@ -115,5 +115,5 @@ public class DemoData {
 
         interest1 = tenant1.addInterest(renter1Accommodation);
 
-    }
+    }*/
 }

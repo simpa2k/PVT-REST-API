@@ -1,7 +1,5 @@
 package repositories.users;
 
-import com.avaje.ebean.Model;
-import models.user.Tenant;
 import models.user.User;
 
 /**
@@ -15,11 +13,6 @@ public class UsersRepository implements UserStorage {
     }
 
     @Override
-    public Tenant findTenantById(long tenantId) {
-        return Tenant.findById(tenantId);
-    }
-
-    @Override
     public User findByEmailAddress(String email) {
         return User.findByEmailAddress(email);
     }
@@ -27,6 +20,11 @@ public class UsersRepository implements UserStorage {
     @Override
     public User findByEmailAddressAndPassword(String emailAddress, String password) {
         return User.findByEmailAddressAndPassword(emailAddress, password);
+    }
+
+    @Override
+    public User findById(long id) {
+        return User.findById(id);
     }
 
     @Override

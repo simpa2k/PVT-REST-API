@@ -34,4 +34,9 @@ public class AccommodationRepository implements AccommodationStorage {
         return Accommodation.filterBy(functions);
 
     }
+
+    @Override
+    public void save(Accommodation accommodation) {
+        accommodation.save();
+    }
 }

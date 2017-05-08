@@ -3,7 +3,6 @@ package controllers;
 import com.fasterxml.jackson.databind.JsonNode;
 import models.Interest;
 import models.user.Renter;
-import models.user.Tenant;
 import models.user.User;
 import play.mvc.Controller;
 import play.mvc.Result;
@@ -57,10 +56,10 @@ public class InterestsController extends Controller {
 
         try {
 
-            Tenant tenant = (Tenant) ctx().args.get("user");
+            User renter = SecurityController.getUser();
             long accommodationId = body.findValue("accommodationId").asLong();
 
-            usersService.addInterest(tenant, accommodationId);
+            usersService.addInterest(renter, accommodationId);
 
             return noContent();
 

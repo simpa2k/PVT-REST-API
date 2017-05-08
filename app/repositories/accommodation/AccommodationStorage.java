@@ -14,4 +14,6 @@ public interface AccommodationStorage {
 
     List<Accommodation> findAccommodation(final Option<Double> rent, final Option<Double> size,
                                           final Option<Boolean> smokingAllowed, final Option<Boolean> animalsAllowed);
+
+    void save(Accommodation accommodation);
 }

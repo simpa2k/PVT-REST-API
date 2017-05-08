@@ -3,9 +3,6 @@ package utils;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import models.Interest;
-import models.user.Tenant;
-import play.Logger;
 import play.mvc.Result;
 
 import java.util.List;

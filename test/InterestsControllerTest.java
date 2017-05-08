@@ -1,35 +1,13 @@
 package controllers;
 
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.node.ObjectNode;
-import models.Interest;
-import models.accommodation.Accommodation;
-import models.accommodation.Address;
-import models.user.Renter;
-import models.user.Tenant;
-import org.junit.Test;
-import play.Logger;
-import play.api.libs.iteratee.RunQueue;
-import play.libs.Json;
-import play.mvc.Http;
-import play.mvc.Result;
-import scala.None;
 import scala.Option;
-import scala.tools.cmd.Opt;
 import testResources.BaseTest;
-import testResources.MockTest;
-import utils.ResponseBuilder;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import static junit.framework.TestCase.assertEquals;
 import static junit.framework.TestCase.assertNotNull;
 import static junit.framework.TestCase.fail;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
-import static play.mvc.Http.Status.*;
 import static play.test.Helpers.contentAsString;
 import static play.test.Helpers.fakeRequest;
 import static play.test.Helpers.route;
@@ -49,7 +27,7 @@ public class InterestsControllerTest extends BaseTest {
      * Utility methods.
      */
 
-    private Result makeAuthenticatedRequest(Option<Integer> count, Option<Integer> offset, Option<Long> tenantId, Option<Long> accommodationId, Option<Boolean> mutual) {
+    /*private Result makeAuthenticatedRequest(Option<Integer> count, Option<Integer> offset, Option<Long> tenantId, Option<Long> accommodationId, Option<Boolean> mutual) {
 
         //String authToken = renter1.createToken();
         String authToken = usersService.getToken(renter1);
@@ -101,13 +79,13 @@ public class InterestsControllerTest extends BaseTest {
 
         return makePostRequest(authToken, tenant1.id, renter2Accommodation.id);
 
-    }
+    }*/
 
     /*
      * GET
      */
 
-    @Test
+    /*@Test
     public void returns401OnUnauthorizedGetRequest() {
 
         Result result = route(fakeRequest(controllers.routes.InterestsController.get(count, offset, tenantId, accommodationId, mutual)));
@@ -211,13 +189,13 @@ public class InterestsControllerTest extends BaseTest {
     @Test
     public void cannotViewInterestsUserIsNotAuthorizedToView() {
         // Implement this
-    }
+    }*/
 
     /*
      * POST
      */
 
-    @Test
+    /*@Test
     public void authorizedPostReturnsNOCONTENT() {
 
         Result result = createRenterAndAccommodationAndMakePostRequest();
@@ -252,13 +230,13 @@ public class InterestsControllerTest extends BaseTest {
     @Test
     public void canHandleNonExistingAccommodation() {
         // Implement this
-    }
+    }*/
 
     /*
      * PUT
      */
 
-    @Test
+    /*@Test
     public void authorizedPutReturnsUpdatedInterest() {
 
         //String authToken = renter1.createToken();
@@ -292,13 +270,13 @@ public class InterestsControllerTest extends BaseTest {
     @Test
     public void authorizedPutReturnsBadRequestOnNonBooleanBodyValue() {
         // Implement this
-    }
+    }*/
 
     /*
      * DELETE
      */
 
-    private Renter createSampleRenter() {
+    /*private Renter createSampleRenter() {
 
         Renter renter = new Renter("renter@example.com", "password", "Renter Rentersson",
                 "I'm a renter", 35);
@@ -372,6 +350,6 @@ public class InterestsControllerTest extends BaseTest {
         Logger.debug(tenant.interests.toString());
         //addInterest(accommodation, tenant);
 
-    }
+    }*/
 
 }

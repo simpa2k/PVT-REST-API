@@ -1,8 +1,9 @@
-package models.accommodation;
+package models;
 
 import com.avaje.ebean.Model;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import play.Logger;
 
 import javax.persistence.*;
@@ -36,14 +37,5 @@ public class RentalPeriod extends Model {
         this.start = dateFormat.parse(start);
         this.end = dateFormat.parse(end);
 
-    }
-
-    public void setStart(String start) throws ParseException{
-        this.start = dateFormat.parse(start);
-
-    }
-
-    public void setEnd(String end) throws ParseException {
-        this.end = dateFormat.parse(end);
     }
 }

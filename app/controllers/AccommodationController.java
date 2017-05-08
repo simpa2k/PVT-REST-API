@@ -1,11 +1,13 @@
 package controllers;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import exceptions.OffsetOutOfRangeException;
 import models.accommodation.Accommodation;
+import models.user.User;
 import play.mvc.Controller;
 import play.mvc.Result;
 import scala.Option;
@@ -57,12 +59,21 @@ public class AccommodationController extends Controller{
 			Result result = ResponseBuilder.buildBadRequest("Request body required", ResponseBuilder.MALFORMED_REQUEST_BODY);
 			return result;
 		}
-		
-		
-		
-		
-		
-		
+
 		return ok("description is :"+body.get("description").asText());
 	}
+
+    public Result createAccommodation() {
+
+	    JsonNode requestBody = request().body().asJson();
+
+        try {
+            accommodationService.createAccommodationFromJson(FacebookSecurityController.getUser(), requestBody);
+        } catch (JsonProcessingException e) {
+            return ResponseBuilder.buildBadRequest("Could not parse request body", ResponseBuilder.MALFORMED_REQUEST_BODY);
+        }
+
+        return noContent();
+
+    }
 }

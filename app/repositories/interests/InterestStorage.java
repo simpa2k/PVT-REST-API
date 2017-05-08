@@ -2,7 +2,7 @@ package repositories.interests;
 
 import models.Interest;
 import models.accommodation.Accommodation;
-import models.user.Tenant;
+import models.user.User;
 import scala.Option;
 
 import java.util.List;
@@ -12,7 +12,7 @@ import java.util.List;
  */
 public interface InterestStorage {
 
-    Interest create(Tenant tenant, Accommodation accommodation);
+    Interest create(User renter, User tenant);
 
     List<Interest> findInterests(Option<Long> tenantId, Option<Long> accommodationId, Option<Boolean> mutual);
 

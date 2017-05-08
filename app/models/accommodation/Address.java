@@ -19,7 +19,7 @@ public class Address extends Model {
 
     public String streetName;
     public int streetNumber;
-    public char streetLetter;
+    public char streetNumberLetter;
 
     public String area;
 
@@ -36,11 +36,11 @@ public class Address extends Model {
 
     }
 
-    public Address(String streetName, int streetNumber, char streetLetter, String area, double longitude, double latitude) {
+    public Address(String streetName, int streetNumber, char streetNumberLetter) {
 
         this.streetName = streetName;
         this.streetNumber = streetNumber;
-        this.streetLetter = streetLetter;
+        this.streetNumberLetter = streetNumberLetter;
         this.area = area;
         this.longitude = longitude;
         this.latitude = latitude;

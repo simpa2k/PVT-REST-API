@@ -1,5 +1,6 @@
 package models.user;
 
+import com.avaje.ebean.Model;
 import models.accommodation.Accommodation;
 import models.accommodation.Address;
 
@@ -10,9 +11,9 @@ import javax.persistence.*;
  */
 @Entity
 @DiscriminatorValue("RENTER")
-public class Renter extends User {
+public class Renter extends Model {
 
-    @OneToOne
+    /*@OneToOne
     public Accommodation accommodation;
 
     private static Finder<Long, Renter> find = new Finder<>(Renter.class);
@@ -29,7 +30,7 @@ public class Renter extends User {
                                              boolean smokingAllowed, boolean animalsAllowed,
                                              boolean tv, boolean broadband, String description, Address address) {
 
-        Accommodation accommodation = new Accommodation(rent, size, rooms, deposit,
+        /*Accommodation accommodation = new Accommodation(rent, size, rooms, deposit,
                 smokingAllowed, animalsAllowed, tv, broadband, description, address, this);
 
         accommodation.save();
@@ -37,7 +38,8 @@ public class Renter extends User {
         this.accommodation = accommodation;
         save();
 
-        return accommodation;
+        return accommodation;*/
+        /*return null;
 
     }
 
@@ -47,5 +49,5 @@ public class Renter extends User {
 
     public static Renter findByEmailAddress(String emailAddress) {
         return find.where().eq("email_address", emailAddress).findUnique();
-    }
+    }*/
 }

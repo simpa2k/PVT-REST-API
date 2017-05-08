@@ -2,7 +2,6 @@ package testResources.mocks;
 
 import models.user.Authorization;
 import models.user.Renter;
-import models.user.Tenant;
 import models.user.User;
 import play.Logger;
 import repositories.users.UserStorage;
@@ -17,7 +16,7 @@ public class MockUserRepository implements UserStorage {
 
     private Set<User> users = new HashSet<>();
 
-    public MockUserRepository() {
+    /*public MockUserRepository() {
 
         User user1 = new User("user1@demo.com", "password", "John Doe");
         users.add(user1);
@@ -36,16 +35,11 @@ public class MockUserRepository implements UserStorage {
                 "Hej, Jag heter Kalle och behöver någonstans att bo.", 23, 1, 5000, 18000, "Karaktär i berättelse", 8000);
         users.add(tenant1);
 
-    }
+    }*/
 
     @Override
     public User findByAuthToken(String authToken) {
         return users.stream().filter(user -> user.getAuthToken().equals(authToken)).findFirst().orElse(null);
-    }
-
-    @Override
-    public Tenant findTenantById(long tenantId) {
-       return (Tenant) users.stream().filter(user -> user.id == tenantId).findFirst().orElse(null);
     }
 
     @Override
@@ -59,7 +53,12 @@ public class MockUserRepository implements UserStorage {
     }
 
     @Override
+    public User findById(long id) {
+        return null;
+    }
+
+    @Override
     public void save(User user) {
-        users.add(user);
+
     }
 }

@@ -2,7 +2,7 @@ package testResources.mocks;
 
 import models.Interest;
 import models.accommodation.Accommodation;
-import models.user.Tenant;
+import models.user.User;
 import repositories.interests.InterestStorage;
 import scala.Option;
 
@@ -14,7 +14,7 @@ import java.util.List;
 public class MockInterestRepository implements InterestStorage {
 
     @Override
-    public Interest create(Tenant tenant, Accommodation accommodation) {
+    public Interest create(User renter, User tenant) {
         return null;
     }
 

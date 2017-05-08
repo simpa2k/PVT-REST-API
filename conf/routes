@@ -14,10 +14,12 @@ POST    /logout                                   controllers.SecurityController
 
 POST    /facebook/login                           controllers.FacebookSecurityController.login
 
-PUT     /users/createTenant                       controllers.UsersController.create
-GET     /users/tenants                            controllers.UsersController.returnTenantProfile
+#PUT     /users/createTenant                       controllers.UsersController.create
+GET     /users                                    controllers.UsersController.returnTenantProfile
 
-PUT     /users/createRenter                       controllers.UsersController.create
+#PUT     /users/createRenter                       controllers.UsersController.create
+
+POST    /users/profiles                           controllers.UsersController.createProfile
 
 GET     /interests                                controllers.InterestsController.get(count: Option[java.lang.Integer], offset: Option[java.lang.Integer], tenantId: Option[java.lang.Long], accommodationId: Option[java.lang.Long], mutual: Option[java.lang.Boolean])
 POST    /interests                                controllers.InterestsController.create
@@ -26,6 +28,7 @@ DELETE  /interests                                controllers.InterestsControlle
 
 GET     /accommodation                            controllers.AccommodationController.get(count: Option[java.lang.Integer], offset: Option[java.lang.Integer], rent: Option[java.lang.Double], size: Option[java.lang.Double], smokingAllowed: Option[java.lang.Boolean], animalsAllowed: Option[java.lang.Boolean])
 PUT     /accommodation                            controllers.AccommodationController.put
+POST    /accommodation                            controllers.AccommodationController.createAccommodation
 
 GET     /swipingsessions                          controllers.SwipingSessionsController.getSwipingSessionWithExactParticipants(emailAddresses)
 GET     /swipingsessions/:emailAddress            controllers.SwipingSessionsController.getSwipingSessionWithParticipant(emailAddress)

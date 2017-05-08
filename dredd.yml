@@ -1,5 +1,5 @@
 dry-run: null
-hookfiles: ./scripts/node/dredd/hooks.js
+hookfiles: ./scripts/node/dredd/old_hooks.js
 language: nodejs
 sandbox: false
 server:

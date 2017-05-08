@@ -21,4 +21,9 @@ public class MockAccommodationRepository implements AccommodationStorage {
         return null;
     }
 
+    @Override
+    public void save(Accommodation accommodation) {
+
+    }
+
 }

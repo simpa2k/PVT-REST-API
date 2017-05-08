@@ -5,6 +5,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonUnwrapped;
 import models.Interest;
+import models.accommodation.Accommodation;
+import models.accommodation.Address;
 import play.data.validation.Constraints;
 
 import javax.persistence.*;
@@ -13,6 +15,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 /**
@@ -68,13 +71,21 @@ public class User extends Model {
     @JsonIgnore
     public Date creationDate;                                // SQL that the DSV mysql server cannot handle.
 
-    public String description;
-
     public int age;
+
+    @JsonIgnore
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "renter")
+    public Set<Interest> interests;
 
     @OneToOne
     @JsonUnwrapped
     public FacebookData facebookData;
+
+    @OneToOne
+    public Accommodation accommodation;
+
+    @OneToOne
+    public TenantProfile tenantProfile;
 
     @ManyToOne
     @JsonIgnore
@@ -103,15 +114,50 @@ public class User extends Model {
 
     }
 
-    public User(String emailAddress, String password, String fullName, String description, int age) {
+    public User(String emailAddress, String password, String fullName, int age) {
 
         setEmailAddress(emailAddress);
         setPassword(password);
 
         this.fullName = fullName;
         this.creationDate = new Date();
-        this.description = description;
         this.age = age;
+
+    }
+
+    public Interest addInterest(User tenant) {
+
+        if (Interest.findByRenterAndTenant(id, tenant.id) != null) {
+            throw new IllegalArgumentException("You may not add an interest that has already been added.");
+        }
+
+        Interest interest = new Interest(this, tenant);
+        interest.save();
+
+        interests.add(interest);
+
+        save();
+
+        return interest;
+
+    }
+
+    public void addInterest(Interest interest) {
+        interests.add(interest);
+    }
+
+    public Accommodation createAccommodation(int rent, double size, double rooms, int deposit,
+                                             Address address) {
+
+        Accommodation accommodation = new Accommodation(rent, size, rooms, deposit,
+                address, this);
+
+        accommodation.save();
+
+        this.accommodation = accommodation;
+        save();
+
+        return accommodation;
 
     }
 
@@ -192,5 +238,9 @@ public class User extends Model {
 
     public static User findByEmailAddressAndPassword(String emailAddress, String password) {
         return find.where().eq("emailAddress", emailAddress.toLowerCase()).eq("shaPassword", getSha512(password)).findUnique();
+    }
+
+    public static User findById(long id) {
+        return find.byId(id);
     }
 }

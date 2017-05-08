@@ -4,7 +4,7 @@ import com.avaje.ebean.ExpressionList;
 import com.avaje.ebean.Model;
 import models.Interest;
 import models.accommodation.Accommodation;
-import models.user.Tenant;
+import models.user.User;
 import scala.Option;
 import utils.ResponseBuilder;
 
@@ -18,9 +18,9 @@ import java.util.function.Function;
 public class InterestsRepository implements InterestStorage {
 
     @Override
-    public Interest create(Tenant tenant, Accommodation accommodation) {
+    public Interest create(User renter, User tenant) {
 
-        Interest interest = new Interest(tenant, accommodation);
+        Interest interest = new Interest(renter, tenant);
         save(interest);
 
         return interest;
@@ -42,8 +42,8 @@ public class InterestsRepository implements InterestStorage {
     }
 
     @Override
-    public Interest findInterest(long tenantId, long accommodationId) {
-        return Interest.findByTenantAndAccommodation(tenantId, accommodationId);
+    public Interest findInterest(long renterId, long tenantId) {
+        return Interest.findByRenterAndTenant(renterId, tenantId);
     }
 
     @Override

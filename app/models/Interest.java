@@ -3,11 +3,7 @@ package models;
 import com.avaje.ebean.ExpressionList;
 import com.avaje.ebean.Model;
 import com.fasterxml.jackson.annotation.*;
-import models.accommodation.Accommodation;
-import models.user.Tenant;
 import models.user.User;
-import play.Logger;
-import scala.Option;
 
 import javax.persistence.*;
 import java.util.List;
@@ -16,7 +12,7 @@ import java.util.function.Function;
 /**
  * @author Simon Olofsson
  */
-@Table(uniqueConstraints = @UniqueConstraint(columnNames = {"tenant_id", "interest_accommodation_id"}))
+@Table(uniqueConstraints = @UniqueConstraint(columnNames = {"renter_id", "tenant_id"}))
 @Entity
 public class Interest extends Model {
 
@@ -25,6 +21,10 @@ public class Interest extends Model {
     @JsonIgnore
     public long id;
 
+    @ManyToOne
+    @JsonProperty("renter")
+    public User renter;
+
     /*
      * The JsonIdentity annotations make sure that only id is serialized.
      */
@@ -32,23 +32,14 @@ public class Interest extends Model {
     @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
     @JsonIdentityReference(alwaysAsId = true)
     @JsonProperty("tenantId")
-    public Tenant tenant;
-
-    @ManyToOne
-    @JoinColumn(name = "interest_accommodation_id")
-    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
-    @JsonIdentityReference(alwaysAsId = true)
-    @JsonProperty("accommodationId")
-    public Accommodation accommodation;
-
-    public boolean mutual = false;
+    public User tenant;
 
     private static Finder<Long, Interest> find = new Finder<>(Interest.class);
 
-    public Interest(Tenant tenant, Accommodation accommodation) {
+    public Interest(User renter, User tenant) {
 
+        this.renter = renter;
         this.tenant = tenant;
-        this.accommodation = accommodation;
 
     }
 
@@ -68,14 +59,7 @@ public class Interest extends Model {
         return find.all();
     }
 
-    public static Interest findByTenantAndAccommodation(Long tenantId, Long accommodationId) {
-        return find.where().eq("tenant_id", tenantId).eq("interest_accommodation_id", accommodationId).findUnique();
-    }
-
-    public void setMutual(boolean mutual) {
-
-        this.mutual = mutual;
-        save();
-
+    public static Interest findByRenterAndTenant(Long renterId, Long tenantId) {
+        return find.where().eq("renter_id", renterId).eq("tenant_id", tenantId).findUnique();
     }
 }

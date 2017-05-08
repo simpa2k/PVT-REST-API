@@ -2,115 +2,127 @@ FORMAT: 1A
 HOST: https://protected-gorge-44302.herokuapp.com
 
 # rentSTHLM
-REST-API för rentSTHLMs mobilapp
+Välkommen! På den här sidan hittar du API-dokumentationen för rentSTHLMs REST-API.
 
-# Group Inloggning
+Följande requests opererar på olika resurser som finns på servern. Om inget annat
+specificeras utförs operationerna på den användare som indikeras av den autentiseringstoken
+som skickas med varje request.
 
-## Facebook-inloggning [/facebook/login]
+# Group Logga in och skapa hyresgästsprofil
 
-## Logga in en användare via Facebook [POST]
+## 1. Logga in via facebook [/facebook/login]
+## POST mot /facebook/login [POST]
 
 + Request (application/json)
 
     + Attributes
-        + facebookAuthToken: En token för auktorisering mot Facebooks Graph API.
+        + facebookAuthToken: `EAACEdEose0cBAIID5sKglHcm01UYAGWP0cHgDEcAxrbDg0oZAzZCZC1Tlhw62ZBkhqMO6imdMtcQJqDfAGc8bKl08Q1FrR0Vz7SgVWh9sMEqUkUow07a3Vk3LwdHBMZANCXeTTKrlQGz2jOuOQJwGFZAk8RnHGpd1nU6F36OGtxtqZC50m7gSfo` -
+        En token för auktorisering mot Facebooks Graph API.
         
++ Response 200 (application/json)
+
+    + Attributes
+        + authToken: `990c4d
+        
+## 2. Skapa en hyresgästprofil [/users/profiles]
+## POST mot /users/profiles [POST]
+
++ Request (application/json)
+
+    + Headers
+    
+            X-AUTH-TOKEN: en valid autentiseringstoken
+
+    + Attributes (TenantProfile)
+
 + Response 204
 
-# Group Användare
+# Group Logga in och skapa hyresobjekt
 
-## Användare [/users{?id}]
+## 1. Logga in via facebook [/facebook/login]
+## POST mot /facebook/login [POST]
 
-## Hämta en användares profil [GET]
++ Request (application/json)
 
-+ Parameters
-    + id: 2 (number, optional) - Observera att denna parameter endast är nödvändig om den användare som ska hämtas inte är den som identifieras av den token som skickas i headern. Denna token är tillräcklig för att identifiera användaren som gör requesten. Parametern är tänkt för att till exempel låta en hyresvärd hämta information om en hyresgäst.
-
-+ Request
-
-    + Headers
-        X-AUTH-TOKEN: en valid autentiseringstoken
-
-+ Response 200 (application/json)
-    + Attributes (LocalUser)
-
-## Hyresgäst [/users/tenants]
-
-## Hämta en hyresgästs profil [GET]
-
-+ Request
-    + Headers
-        X-AUTH-TOKEN: en valid autentiseringstoken
-
-+ Response 200 (application/json)
-    + Attributes (Tenant)
-
-+ Response 401 (application/json)
     + Attributes
-        + error: fel
-
-## Uppdatera en hyresgästs profil [PUT]
-
-+ Request
-    + Headers
-        X-AUTH-TOKEN: en valid autentiseringstoken
-
-    + Body
-        + Attributes (Tenant)
-
-+ Response 200 (application/json)
-    + Attributes (Tenant)
-
-## Hyresvärd [/users/renters]
-
-## Hämta en hyresvärds profil [GET]
-
-+ Request
-    + Headers
-        X-AUTH-TOKEN: en valid autentiseringstoken
-
+        + facebookAuthToken: `EAACEdEose0cBAIID5sKglHcm01UYAGWP0cHgDEcAxrbDg0oZAzZCZC1Tlhw62ZBkhqMO6imdMtcQJqDfAGc8bKl08Q1FrR0Vz7SgVWh9sMEqUkUow07a3Vk3LwdHBMZANCXeTTKrlQGz2jOuOQJwGFZAk8RnHGpd1nU6F36OGtxtqZC50m7gSfo` -
+        En token för auktorisering mot Facebooks Graph API.
+        
 + Response 200 (application/json)
 
-    + Attributes (Renter)
+    + Attributes
+        + authToken: `990c4d
+        
+## 2. Skapa ett hyresobjekt [/accommodation{?count,offset,id,rent,size,rooms,deposit,smokingAllowed,animalsAllowed,tv,broadband,start,end}]
+## POST mot /accommodation [POST]
 
-## Uppdatera en hyresvärds profil [PUT]
++ Request (application/json)
+
+    + Headers
+    
+            X-AUTH-TOKEN: en valid autentiseringstoken
+
+    + Attributes (Accommodation)
+
++ Response 204
+
+# Group Anmäl intresse för hyresgäster
+
+## 1. Hämta hyresgäster [/users{?maxrent,maxdeposit}]
+## GET mot /users [GET]
 
 + Request
+
     + Headers
-        X-AUTH-TOKEN: en valid autentiseringstoken
 
-+ Response 200 (application/json)
-    + Attributes (Renter)
-
-# Group Hyresobjekt 
-
-## Hyresobjekt [/accommodation{?count}]
-
-## Hämta hyresobjekt [GET]
-
-+ Parameters
-    + count: 2
-
-+ Request
-    + Headers
         X-AUTH-TOKEN: en valid autentiseringstoken
 
 + Response 200 (application/json)
-    + Attributes (array[Accommodation])
 
-# Group Intresseanmälningar
-
-## Intresseanmälningar [/interests]
-
-## Hämta intresseanmälningar [GET]
-+ Request
     + Headers
+
+        Content-Type: application/json; charset=UTF8
+
+    + Attributes(array[Tenant])
+
+## 2. Skicka valda hyresgäster [/users]
+## POST mot /users [POST]
+
++ Request (application/json)
+
+    + Headers
+
         X-AUTH-TOKEN: en valid autentiseringstoken
+        Content-Type: application/json; charset=UTF8
+
+    + Attributes
+        + userIds: 2 (array[number])
+
++ Response 204
+
+# Group Hämta hyresobjekt vars hyresvärd visat intresse för en
+
+## 1. Hämta intressenamälningar [/interests{?renterId}]
+## GET mot /interests [GET]
+
++ Request
+
+    + Headers
+
+        X-AUTH-TOKEN: en valid autentiseringstoken
+
++ Response 200 (application/json)
+
+    + Headers
+
+        Content-Type: application/json; charset=UTF8
+
+    + Attributes(array[Interest])
 
 ## Data Structures
 
 ### FacebookUser
-+ emailAddress: kalle@example.com
++ email: kalle@example.com
 + firstName: Kalle
 + lastName: Blomkvist
 + gender: male
@@ -120,37 +132,31 @@ REST-API för rentSTHLMs mobilapp
 + images: bilder (array)
 
 
-### Tenant (LocalUser)
+### TenantProfile
 + description: `Hej, jag heter Kalle och behöver någonstans att bo.`
-+ age: 23
-+ numberoftenants: 1
-+ income: 18000
-+ maxrent: 5000
-+ occupation: Karaktär i berättelse
-+ deposition: 8000
-+ rentalperiod
-    + start: 2017-05-01
-    + end: 2018-05-01
++ maxRent: 5000
++ deposit: 8000
++ rentalPeriod
+    + start: `2017-05-01`
+    + end: `2018-05-01`
+
+### Tenant (LocalUser)
++ profile (TenantProfile)
 
 ### Renter (LocalUser)
 + accommodation (Accommodation)
 
 ### Accommodation
-+ rent: 5000
-+ size: 20
-+ rooms: 1
-+ deposition: 8000
-+ smokingAllowed: false (boolean)
-+ animalsAllowed: false (boolean)
-+ tv: true (boolean)
-+ broadband: true (boolean)
-+ description: `Schysst etta i lugnt område`
++ rent: 5000 (number)
++ size: 20 (number)
++ rooms: 1 (number)
++ deposit: 8000 (number)
 + address (Address)
 
 ### Address
 + streetName: Dymlingsgränd
-+ streetNumber: 3
++ streetNumber: 3 (number)
 + streetNumberLetter: A
-+ area: Hägerstensåsen
-+ longitude: ""
-+ latitude: ""
+
+### Interest
++ renter (Renter)

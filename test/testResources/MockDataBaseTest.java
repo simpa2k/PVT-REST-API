@@ -3,6 +3,7 @@ package testResources;
 import play.Application;
 import play.Mode;
 import play.inject.guice.GuiceApplicationBuilder;
+import play.test.WithApplication;
 import repositories.accommodation.AccommodationStorage;
 import repositories.facebookData.FacebookDataStorage;
 import repositories.interests.InterestStorage;
@@ -15,7 +16,7 @@ import testResources.mocks.MockUserRepository;
 /**
  * @author Simon Olofsson
  */
-public class MockTest extends BaseTest {
+public class MockDataBaseTest extends WithApplication {
 
     @Override
     protected Application provideApplication() {
