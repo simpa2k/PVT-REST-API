@@ -4,10 +4,13 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import exceptions.NoEmailFoundException;
+import exceptions.OffsetOutOfRangeException;
 import models.Interest;
+import models.accommodation.Accommodation;
 import models.user.Renter;
 import models.user.TenantProfile;
 import models.user.User;
+import play.Logger;
 import repositories.RentalPeriodRepository.RentalPeriodStorage;
 import repositories.accommodation.AccommodationStorage;
 import repositories.facebookData.FacebookDataStorage;
@@ -15,8 +18,10 @@ import repositories.interests.InterestStorage;
 import repositories.tenantProfile.TenantProfileRepository;
 import repositories.tenantProfile.TenantProfileStorage;
 import repositories.users.UserStorage;
+import scala.Option;
 
 import javax.inject.Inject;
+import java.util.List;
 
 /**
  * @author Simon Olofsson
@@ -137,4 +142,15 @@ public class UsersService {
         return profile;
 
     }
+
+    public List<User> getSubset(final Option<Integer> maxRent, final Option<Integer> maxDeposit)  {
+
+        List<User> users = usersRepository.findUser(maxRent, maxDeposit);
+
+
+
+        return users;
+
+    }
+
 }

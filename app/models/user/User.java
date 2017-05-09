@@ -1,5 +1,6 @@
 package models.user;
 
+import com.avaje.ebean.ExpressionList;
 import com.avaje.ebean.Model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -17,6 +18,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Set;
 import java.util.UUID;
+import java.util.function.Function;
 
 /**
  * An entity representing a tenant.
@@ -242,5 +244,22 @@ public class User extends Model {
 
     public static User findById(long id) {
         return find.byId(id);
+    }
+
+    public static List<User> filterBy(List<Function<ExpressionList<User>, ExpressionList<User>>> functions) {
+
+        ExpressionList<User> expressionList = find.where();
+
+        for (Function<ExpressionList<User>, ExpressionList<User>> function : functions) {
+            expressionList = function.apply(expressionList);
+        }
+
+        return expressionList.findList();
+
+    }
+    public static List<User> findByMaxRent(int maxRent){
+            List<User>  users = find.where().le("tenantProfile.maxRent", maxRent).findList();
+
+        return users;
     }
 }

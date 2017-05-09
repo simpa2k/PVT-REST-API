@@ -1,6 +1,9 @@
 package repositories.users;
 
 import models.user.User;
+import scala.Option;
+
+import java.util.List;
 
 /**
  * @author Simon Olofsson
@@ -16,4 +19,6 @@ public interface UserStorage {
     User findByEmailAddressAndPassword(String emailAddress, String password);
 
     User findById(long id);
+
+    List<User> findUser (Option<Integer> maxRent, Option<Integer> maxDeposit);
 }

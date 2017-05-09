@@ -4,13 +4,16 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import models.user.TenantProfile;
 import models.user.User;
+import play.Logger;
 import play.mvc.Controller;
 import play.mvc.Result;
 import play.mvc.Security;
+import scala.Option;
 import services.users.UsersService;
 import utils.ResponseBuilder;
 
 import javax.inject.Inject;
+import java.util.List;
 
 /**
  * Created by Enver on 2017-05-05.
@@ -26,12 +29,17 @@ public class UsersController extends Controller {
         this.usersService = usersService;
     }
 
-    public Result getUser(){
+    public Result getUser(final Option<Integer> maxRent, final Option<Integer> maxDeposit){
 
+       List<User> users = usersService.getSubset(maxRent, maxDeposit);
+      
         // GET http://localhost:9000/users?maxRent=5000&maxDeposit=8000&start=2017-05-01&end=2018-05-1
 
-        User tenant = (User) ctx().args.get("user");
-        return ResponseBuilder.buildOKObject(tenant);
+
+
+        //User tenant = (User) ctx().args.get("user");
+
+        return ResponseBuilder.buildOKList(users);
 
 
     }
