@@ -5,6 +5,7 @@ import com.avaje.ebean.Model;
 import com.fasterxml.jackson.annotation.*;
 import models.RentalPeriod;
 import models.user.User;
+import scala.Option;
 
 import javax.persistence.*;
 import java.util.List;
@@ -73,4 +74,29 @@ public class Accommodation extends Model {
         return expressionList.findList();
 
     }
+
+    /*
+     * Example
+     */
+    /*public static List<Accommodation> findByRentAndDeposit(Option<Integer> rent, Option<Integer> deposit) {
+
+        // SELECT * FROM ACCOMMODATION WHERE ;
+        // SELECT * FROM ACCOMMODATION WHERE rent <= 5000;
+        // SELECT * FROM ACCOMMODATION WHERE rent <= 10 AND deposit <= 8000;
+
+        ExpressionList<Accommodation> expressionList = find.where();
+
+        if (rent.isDefined()) {
+            expressionList = expressionList.le("rent", rent);
+        }
+
+        if (deposit.isDefined()) {
+            expressionList = expressionList.le("deposit", deposit);
+        }
+
+        List<Accommodation> accommodation = expressionList.findList();
+
+        return accommodation;
+
+    }*/
 }

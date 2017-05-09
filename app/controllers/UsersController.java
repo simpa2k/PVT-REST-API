@@ -28,6 +28,8 @@ public class UsersController extends Controller {
 
     public Result getUser(){
 
+        // GET http://localhost:9000/users?maxRent=5000&maxDeposit=8000&start=2017-05-01&end=2018-05-1
+
         User tenant = (User) ctx().args.get("user");
         return ResponseBuilder.buildOKObject(tenant);
 
