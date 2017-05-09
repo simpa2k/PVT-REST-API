@@ -1,6 +1,7 @@
 package controllers;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.node.ArrayNode;
 import models.Interest;
 import models.user.Renter;
 import models.user.User;
@@ -34,15 +35,11 @@ public class InterestsController extends Controller {
     }
 
     public Result get(Option<Integer> count, Option<Integer> offset,
-                      Option<Long> tenantId, Option<Long> accommodationId, Option<Boolean> mutual) {
-
-        if (!tenantId.isDefined() && !accommodationId.isDefined()) {
-            return ResponseBuilder.buildBadRequest("At least one of tenantId and accommodationId has to be defined.", ResponseBuilder.MALFORMED_URI_PARAMETERS);
-        }
+                      Option<Long> tenantId, Option<Long> accommodationId) {
 
         try {
 
-            List<Interest> interests = interestsService.getSubset(count, offset, tenantId, accommodationId, mutual);
+            List<Interest> interests = interestsService.getSubset(count, offset, tenantId, accommodationId);
             return ResponseBuilder.buildOKList(interests);
 
         } catch(OffsetOutOfRangeException e) {
@@ -57,16 +54,14 @@ public class InterestsController extends Controller {
         try {
 
             User renter = SecurityController.getUser();
-            long accommodationId = body.findValue("accommodationId").asLong();
-
-            usersService.addInterest(renter, accommodationId);
+            interestsService.addInterests(renter, (ArrayNode) body);
 
             return noContent();
 
         } catch (IllegalArgumentException iae) {
             return ResponseBuilder.buildBadRequest(iae.getMessage(), ResponseBuilder.ILLEGAL_ARGUMENT);
         } catch (ClassCastException cce) {
-            return ResponseBuilder.buildBadRequest("User must be a valid tenant.", ResponseBuilder.NO_SUCH_ENTITY);
+            return ResponseBuilder.buildBadRequest("User ids must be passed as an array.", ResponseBuilder.MALFORMED_REQUEST_BODY);
         }
     }
 

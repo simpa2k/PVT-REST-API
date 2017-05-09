@@ -1,8 +1,10 @@
 package services.interests;
 
+import com.fasterxml.jackson.databind.node.ArrayNode;
 import models.Interest;
+import models.user.User;
 import repositories.interests.InterestStorage;
-import repositories.interests.InterestsRepository;
+import repositories.users.UserStorage;
 import scala.Option;
 import exceptions.OffsetOutOfRangeException;
 
@@ -15,16 +17,36 @@ import java.util.List;
 public class InterestsService {
 
     private final InterestStorage interestsRepository;
+    private final UserStorage usersRepository;
 
     @Inject
-    public InterestsService(InterestStorage interestsRepository) {
+    public InterestsService(InterestStorage interestsRepository, UserStorage usersRepository) {
+
         this.interestsRepository = interestsRepository;
+        this.usersRepository = usersRepository;
+
     }
 
-    public List<Interest> getSubset(Option<Integer> count, Option<Integer> offset,
-                                    Option<Long> tenantId, Option<Long> accommodationId, Option<Boolean> mutual) throws OffsetOutOfRangeException {
+    public void addInterests(User renter, ArrayNode tenantIds) {
 
-        List<Interest> interests = interestsRepository.findInterests(tenantId, accommodationId, mutual);
+        tenantIds.forEach(tenantId -> {
+
+            User tenant = usersRepository.findById(tenantId.asLong());
+
+            if (tenant != null) {
+
+                Interest interest = interestsRepository.create(renter, tenant);
+                renter.addInterest(interest);
+
+            }
+        });
+    }
+
+
+    public List<Interest> getSubset(Option<Integer> count, Option<Integer> offset,
+                                    Option<Long> tenantId, Option<Long> renterId) throws OffsetOutOfRangeException {
+
+        List<Interest> interests = interestsRepository.findInterests(tenantId, renterId);
 
         int evaluatedOffset = offset.isDefined() ? offset.get() : 0;
         int evaluatedCount = count.isDefined() && ((count.get() + evaluatedOffset) < interests.size()) ? count.get() : interests.size();

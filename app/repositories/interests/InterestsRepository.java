@@ -20,21 +20,25 @@ public class InterestsRepository implements InterestStorage {
     @Override
     public Interest create(User renter, User tenant) {
 
-        Interest interest = new Interest(renter, tenant);
-        save(interest);
+        Interest interest = Interest.findByRenterAndTenant(renter.id, tenant.id);
 
+        if (interest == null) {
+
+            interest = new Interest(renter, tenant);
+            save(interest);
+
+        }
         return interest;
 
     }
 
     @Override
-    public List<Interest> findInterests(Option<Long> tenantId, Option<Long> accommodationId, Option<Boolean> mutual) {
+    public List<Interest> findInterests(Option<Long> tenantId, Option<Long> accommodationId) {
 
         List<Function<ExpressionList<Interest>, ExpressionList<Interest>>> functions = Arrays.asList(
 
                 exprList -> tenantId.isDefined() ? exprList.eq("tenant_id", tenantId.get()) : exprList,
-                exprList -> accommodationId.isDefined() ? exprList.eq("interest_accommodation_id", accommodationId.get()) : exprList,
-                exprList -> mutual.isDefined() ? exprList.eq("mutual", mutual.get()) : exprList
+                exprList -> accommodationId.isDefined() ? exprList.eq("interest_accommodation_id", accommodationId.get()) : exprList
 
         );
 

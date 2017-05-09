@@ -1,11 +1,13 @@
 package integration;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import exceptions.NoEmailFoundException;
 import models.user.FacebookData;
 import models.user.User;
 import org.junit.Test;
+import play.libs.Json;
 import repositories.RentalPeriodRepository.RentalPeriodRepository;
 import repositories.accommodation.AccommodationRepository;
 import repositories.facebookData.FacebookDataRepository;
@@ -22,10 +24,19 @@ import static org.junit.Assert.assertNotNull;
 /**
  * @author Simon Olofsson
  */
-public class SaveUser extends BaseTest {
+public class UserStackTest extends BaseTest {
 
     UsersRepository usersRepository = new UsersRepository();
     FacebookDataRepository facebookDataRepository = new FacebookDataRepository();
+
+    UsersService usersService = new UsersService(new UsersRepository(),
+            new AccommodationRepository(),
+            new InterestsRepository(),
+            new FacebookDataRepository(),
+            new TenantProfileRepository(),
+            new RentalPeriodRepository(),
+            new ObjectMapper());
+
 
     @Test
     public void canSaveUserWithMinimalData() {
@@ -60,15 +71,8 @@ public class SaveUser extends BaseTest {
         facebookData.put("timezone", 2);
         facebookData.put("id", "10154623247991818");
 
-        UsersService usersService = new UsersService(new UsersRepository(),
-                new AccommodationRepository(),
-                new InterestsRepository(),
-                new FacebookDataRepository(),
-                new TenantProfileRepository(),
-                new RentalPeriodRepository(),
-                new ObjectMapper());
-
         User user = usersService.createFromFacebookData(facebookData);
 
     }
+
 }

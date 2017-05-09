@@ -3,6 +3,7 @@ package services.users;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ArrayNode;
 import exceptions.NoEmailFoundException;
 import models.Interest;
 import models.user.Renter;
@@ -47,15 +48,6 @@ public class UsersService {
         this.facebookDataRepository = facebookDataRepository;
         this.tenantProfileRepository = tenantProfileRepository;
         this.rentalPeriodRepository = rentalPeriodRepository;
-
-    }
-
-    public void addInterest(User renter, long tenantId) {
-
-        User tenant = usersRepository.findById(tenantId);
-        Interest interest = interestsRepository.create(renter, tenant);
-
-        renter.addInterest(interest);
 
     }
 

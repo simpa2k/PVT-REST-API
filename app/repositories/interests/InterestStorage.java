@@ -14,7 +14,7 @@ public interface InterestStorage {
 
     Interest create(User renter, User tenant);
 
-    List<Interest> findInterests(Option<Long> tenantId, Option<Long> accommodationId, Option<Boolean> mutual);
+    List<Interest> findInterests(Option<Long> tenantId, Option<Long> accommodationId);
 
     Interest findInterest(long tenantId, long accommodationId);
 

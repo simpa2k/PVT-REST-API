@@ -19,7 +19,7 @@ public class MockInterestRepository implements InterestStorage {
     }
 
     @Override
-    public List<Interest> findInterests(Option<Long> tenantId, Option<Long> accommodationId, Option<Boolean> mutual) {
+    public List<Interest> findInterests(Option<Long> tenantId, Option<Long> accommodationId) {
         return null;
     }
 
