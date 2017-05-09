@@ -77,7 +77,7 @@ public class FunctionalTest extends WithApplication {
         Result result = route(createProfileRequest);
         assertEquals(NO_CONTENT, result.status());
 
-        Http.RequestBuilder getProfileRequest = fakeRequest(controllers.routes.UsersController.returnTenantProfile());
+        Http.RequestBuilder getProfileRequest = fakeRequest(controllers.routes.UsersController.getUser());
         getProfileRequest.header(SecurityController.AUTH_TOKEN_HEADER, authToken);
 
         Result getResult = route(getProfileRequest);

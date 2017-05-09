@@ -16,7 +16,7 @@ import javax.inject.Inject;
  * Created by Enver on 2017-05-05.
  */
 
-@Security.Authenticated(Secured.class)
+@Security.Authenticated(Security.Authenticator.class)
 public class UsersController extends Controller {
 
     private UsersService usersService;

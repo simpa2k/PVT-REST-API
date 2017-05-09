@@ -1,4 +1,6 @@
 import com.google.inject.AbstractModule;
+import controllers.Secured;
+import play.mvc.Security;
 import repositories.RentalPeriodRepository.RentalPeriodRepository;
 import repositories.RentalPeriodRepository.RentalPeriodStorage;
 import repositories.accommodation.AccommodationRepository;
@@ -29,6 +31,8 @@ public class Module extends AbstractModule {
         bind(TenantProfileStorage.class).to(TenantProfileRepository.class);
         bind(RentalPeriodStorage.class).to(RentalPeriodRepository.class);
         bind(AddressStorage.class).to(AddressRepository.class);
+
+        bind(Security.Authenticator.class).to(Secured.class);
 
     }
 }
