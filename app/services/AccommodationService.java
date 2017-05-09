@@ -7,6 +7,7 @@ import exceptions.OffsetOutOfRangeException;
 import models.accommodation.Accommodation;
 import models.accommodation.Address;
 import models.user.User;
+import play.Logger;
 import repositories.AccommodationRepository;
 import repositories.AddressRepository;
 import scala.Option;
@@ -58,11 +59,17 @@ public class AccommodationService {
         Address address = accommodation.address;
 
         accommodation.renter = user;
-
         addressRepository.save(address);
-        accommodationRepository.save(accommodation);
 
-        return accommodation;
+        Accommodation existing = accommodationRepository.findByRenter(accommodation.renter.id);
+        if (existing == null) {
+
+            accommodationRepository.save(accommodation);
+            return accommodation;
+
+        }
+
+        return existing;
 
     }
 }

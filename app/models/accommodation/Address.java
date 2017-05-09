@@ -26,6 +26,8 @@ public class Address extends Model {
     public double longitude;
     public double latitude;
 
+    private static Finder<Long, Address> find = new Finder<>(Address.class);
+
     public Address(String streetName, int streetNumber, String area, double longitude, double latitude) {
 
         this.streetName = streetName;
@@ -45,5 +47,9 @@ public class Address extends Model {
         this.longitude = longitude;
         this.latitude = latitude;
 
+    }
+
+    public static Address findById(long id) {
+        return find.byId(id);
     }
 }

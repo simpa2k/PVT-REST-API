@@ -9,7 +9,7 @@ let facebookLogin = "Logga in och skapa hyresgästsprofil > 1. Logga in via face
 hooks.before(facebookLogin, (transaction) => {
 
     let requestBody = JSON.parse(transaction.request.body);
-    requestBody['facebookAuthToken'] = 'EAAa2D7XPp6oBAG5EJwM0zmFzKUz8ZCoIZAaIo2SjVjIdyowcLrDOxC0vxZBcu3RE3HNe1PIZCyw6lqQJREp1jqKIp1OL3xBo3k4BAUZC2PpeeCciz2iaWzFcbXxeB8lF04gCAtyQJQ0BOjiu3dI9s3Q3BEsFGHsLHmOyusA3x4hI1LHjsRWfaEglxGR0xP0UZD';
+    requestBody['facebookAuthToken'] = 'EAAa2D7XPp6oBANiMSPjQExKkBOHFsPGWb4giRh1OSaJC5B1GweZBAgos4zZB8xcEXEZCj6pYk4ITO4oYEadMAEJKSe40JBqxu6KGcRgi9ZCIHbb453O5sSQYmfbZBaZArxU3IBBZATWhkdx0ZAuMlWGS6j5ZCgIvt30vGp5HbCsrcXub781Tng9PTVrQ7ZAI8vdWkZD';
 
     transaction.request.body = JSON.stringify(requestBody);
 

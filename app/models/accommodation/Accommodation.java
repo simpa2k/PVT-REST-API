@@ -75,6 +75,10 @@ public class Accommodation extends Model {
 
     }
 
+    public static Accommodation findByRenterId(long renterId) {
+        return find.where().eq("renter_id", renterId).findUnique();
+    }
+
     /*
      * Example
      */
