@@ -1,4 +1,4 @@
-package repositories.accommodation;
+package repositories;
 
 import com.avaje.ebean.ExpressionList;
 import models.accommodation.Accommodation;
@@ -11,14 +11,12 @@ import java.util.function.Function;
 /**
  * @author Simon Olofsson
  */
-public class AccommodationRepository implements AccommodationStorage {
+public class AccommodationRepository {
 
-    @Override
     public Accommodation findById(long id) {
         return Accommodation.findById(id);
     }
 
-    @Override
     public List<Accommodation> findAccommodation(final Option<Double> rent, final Option<Double> size,
                                                  final Option<Boolean> smokingAllowed, final Option<Boolean> animalsAllowed) {
 
@@ -35,7 +33,6 @@ public class AccommodationRepository implements AccommodationStorage {
 
     }
 
-    @Override
     public void save(Accommodation accommodation) {
         accommodation.save();
     }

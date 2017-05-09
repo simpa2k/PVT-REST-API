@@ -9,10 +9,11 @@ import play.mvc.Controller;
 import play.mvc.Result;
 import play.mvc.Security;
 import scala.Option;
-import services.users.UsersService;
+import services.UsersService;
 import utils.ResponseBuilder;
 
 import javax.inject.Inject;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -29,10 +30,11 @@ public class UsersController extends Controller {
         this.usersService = usersService;
     }
 
-    public Result getUser(final Option<Integer> maxRent, final Option<Integer> maxDeposit){
+    public Result getUser(final Option<Integer> maxRent, final Option<Integer> maxDeposit,
+                          final Option<String> start, final Option<String> end){
+        Logger.debug("Jag kom iafall hit");
+       List<User> users = usersService.getSubset(maxRent, maxDeposit, start, end);
 
-       List<User> users = usersService.getSubset(maxRent, maxDeposit);
-      
         // GET http://localhost:9000/users?maxRent=5000&maxDeposit=8000&start=2017-05-01&end=2018-05-1
 
 

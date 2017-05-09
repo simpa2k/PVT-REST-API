@@ -1,12 +1,10 @@
 package controllers;
 
 import models.user.User;
-import play.Logger;
 import play.mvc.Http.Context;
 import play.mvc.Result;
 import play.mvc.Security;
-import repositories.users.UserStorage;
-import repositories.users.UsersRepository;
+import repositories.UsersRepository;
 
 import javax.inject.Inject;
 import java.util.function.Predicate;
@@ -19,7 +17,7 @@ import java.util.function.Predicate;
  */
 public class Secured extends Security.Authenticator {
 
-    private UserStorage usersRepository;
+    private UsersRepository usersRepository;
 
     @Inject
     public Secured(UsersRepository usersRepository) {

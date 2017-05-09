@@ -1,14 +1,12 @@
-package services.facebook;
+package services;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import models.user.FacebookData;
-import play.Logger;
 import play.libs.ws.WSClient;
 import play.libs.ws.WSRequest;
 import play.libs.ws.WSResponse;
-import repositories.facebookData.FacebookDataRepository;
-import repositories.facebookData.FacebookDataStorage;
+import repositories.FacebookDataRepository;
 
 import javax.inject.Inject;
 import java.io.IOException;
@@ -21,12 +19,12 @@ import java.util.concurrent.CompletionStage;
 public class FacebookService {
 
     private WSClient ws;
-    private FacebookDataStorage facebookDataRepository;
+    private FacebookDataRepository facebookDataRepository;
 
     private static final String FIELDS = "email,first_name,last_name,gender,locale,name,timezone";
 
     @Inject
-    public FacebookService(WSClient ws, FacebookDataStorage facebookDataRepository) {
+    public FacebookService(WSClient ws, FacebookDataRepository facebookDataRepository) {
 
         this.ws = ws;
         this.facebookDataRepository = facebookDataRepository;

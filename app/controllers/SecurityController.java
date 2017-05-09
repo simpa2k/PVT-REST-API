@@ -2,13 +2,12 @@ package controllers;
 
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import models.user.User;
-import play.Logger;
 import play.data.Form;
 import play.data.FormFactory;
 import play.data.validation.Constraints;
 import play.libs.Json;
 import play.mvc.*;
-import services.users.UsersService;
+import services.UsersService;
 
 import javax.inject.Inject;
 

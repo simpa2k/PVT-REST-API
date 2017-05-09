@@ -1,13 +1,12 @@
-package repositories.address;
+package repositories;
 
 import models.accommodation.Address;
 
 /**
  * @author Simon Olofsson
  */
-public class AddressRepository implements AddressStorage {
+public class AddressRepository {
 
-    @Override
     public void save(Address address) {
         address.save();
     }

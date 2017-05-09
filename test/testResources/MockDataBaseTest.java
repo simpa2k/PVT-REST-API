@@ -4,10 +4,10 @@ import play.Application;
 import play.Mode;
 import play.inject.guice.GuiceApplicationBuilder;
 import play.test.WithApplication;
-import repositories.accommodation.AccommodationStorage;
-import repositories.facebookData.FacebookDataStorage;
-import repositories.interests.InterestStorage;
-import repositories.users.UserStorage;
+import repositories.AccommodationRepository;
+import repositories.FacebookDataRepository;
+import repositories.InterestsRepository;
+import repositories.UsersRepository;
 import testResources.mocks.MockAccommodationRepository;
 import testResources.mocks.MockFacebookDataRepository;
 import testResources.mocks.MockInterestRepository;
@@ -23,10 +23,10 @@ public class MockDataBaseTest extends WithApplication {
 
         return new GuiceApplicationBuilder().overrides(binder -> {
 
-            binder.bind(AccommodationStorage.class).to(MockAccommodationRepository.class);
-            binder.bind(FacebookDataStorage.class).to(MockFacebookDataRepository.class);
-            binder.bind(InterestStorage.class).to(MockInterestRepository.class);
-            binder.bind(UserStorage.class).to(MockUserRepository.class);
+            binder.bind(AccommodationRepository.class).to(MockAccommodationRepository.class);
+            binder.bind(FacebookDataRepository.class).to(MockFacebookDataRepository.class);
+            binder.bind(InterestsRepository.class).to(MockInterestRepository.class);
+            binder.bind(UsersRepository.class).to(MockUserRepository.class);
 
         }).in(Mode.TEST).build();
     }

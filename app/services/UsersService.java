@@ -1,4 +1,4 @@
-package services.users;
+package services;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -10,17 +10,17 @@ import models.accommodation.Accommodation;
 import models.user.Renter;
 import models.user.TenantProfile;
 import models.user.User;
-import play.Logger;
-import repositories.RentalPeriodRepository.RentalPeriodStorage;
-import repositories.accommodation.AccommodationStorage;
-import repositories.facebookData.FacebookDataStorage;
-import repositories.interests.InterestStorage;
-import repositories.tenantProfile.TenantProfileRepository;
-import repositories.tenantProfile.TenantProfileStorage;
-import repositories.users.UserStorage;
+
 import scala.Option;
+import repositories.RentalPeriodRepository;
+import repositories.AccommodationRepository;
+import repositories.FacebookDataRepository;
+import repositories.InterestsRepository;
+import repositories.TenantProfileRepository;
+import repositories.UsersRepository;
 
 import javax.inject.Inject;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -28,22 +28,22 @@ import java.util.List;
  */
 public class UsersService {
 
-    private UserStorage usersRepository;
-    private AccommodationStorage accommodationRepository;
-    private InterestStorage interestsRepository;
-    private FacebookDataStorage facebookDataRepository;
-    private TenantProfileStorage tenantProfileRepository;
-    private RentalPeriodStorage rentalPeriodRepository;
+    private UsersRepository usersRepository;
+    private AccommodationRepository accommodationRepository;
+    private InterestsRepository interestsRepository;
+    private FacebookDataRepository facebookDataRepository;
+    private TenantProfileRepository tenantProfileRepository;
+    private RentalPeriodRepository rentalPeriodRepository;
 
     private ObjectMapper mapper;
 
     @Inject
-    public UsersService(UserStorage usersRepository,
-                        AccommodationStorage accommodationRepository,
-                        InterestStorage interestsRepository,
-                        FacebookDataStorage facebookDataRepository,
-                        TenantProfileStorage tenantProfileRepository,
-                        RentalPeriodStorage rentalPeriodRepository,
+    public UsersService(UsersRepository usersRepository,
+                        AccommodationRepository accommodationRepository,
+                        InterestsRepository interestsRepository,
+                        FacebookDataRepository facebookDataRepository,
+                        TenantProfileRepository tenantProfileRepository,
+                        RentalPeriodRepository rentalPeriodRepository,
                         ObjectMapper mapper) {
 
         this.usersRepository = usersRepository;
@@ -52,15 +52,6 @@ public class UsersService {
         this.facebookDataRepository = facebookDataRepository;
         this.tenantProfileRepository = tenantProfileRepository;
         this.rentalPeriodRepository = rentalPeriodRepository;
-
-    }
-
-    public void addInterest(User renter, long tenantId) {
-
-        User tenant = usersRepository.findById(tenantId);
-        Interest interest = interestsRepository.create(renter, tenant);
-
-        renter.addInterest(interest);
 
     }
 
@@ -143,9 +134,10 @@ public class UsersService {
 
     }
 
-    public List<User> getSubset(final Option<Integer> maxRent, final Option<Integer> maxDeposit)  {
+    public List<User> getSubset(final Option<Integer> maxRent, final Option<Integer> maxDeposit,
+                                final Option<String> start, final Option<String> end)  {
 
-        List<User> users = usersRepository.findUser(maxRent, maxDeposit);
+        List<User> users = usersRepository.findUser(maxRent, maxDeposit, start, end);
 
 
 

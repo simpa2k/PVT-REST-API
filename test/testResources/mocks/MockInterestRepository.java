@@ -1,9 +1,8 @@
 package testResources.mocks;
 
 import models.Interest;
-import models.accommodation.Accommodation;
 import models.user.User;
-import repositories.interests.InterestStorage;
+import repositories.InterestsRepository;
 import scala.Option;
 
 import java.util.List;
@@ -11,7 +10,7 @@ import java.util.List;
 /**
  * @author Simon Olofsson
  */
-public class MockInterestRepository implements InterestStorage {
+public class MockInterestRepository extends InterestsRepository {
 
     @Override
     public Interest create(User renter, User tenant) {
@@ -19,7 +18,7 @@ public class MockInterestRepository implements InterestStorage {
     }
 
     @Override
-    public List<Interest> findInterests(Option<Long> tenantId, Option<Long> accommodationId, Option<Boolean> mutual) {
+    public List<Interest> findInterests(Option<Long> tenantId, Option<Long> accommodationId) {
         return null;
     }
 

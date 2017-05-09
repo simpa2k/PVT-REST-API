@@ -6,7 +6,7 @@ import models.user.Renter;
 import models.user.User;
 import org.junit.Before;
 import play.test.WithApplication;
-import services.users.UsersService;
+import services.UsersService;
 
 public class BaseTest extends WithApplication {
 

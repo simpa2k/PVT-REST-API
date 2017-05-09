@@ -6,26 +6,34 @@ import exceptions.NoEmailFoundException;
 import models.user.FacebookData;
 import models.user.User;
 import org.junit.Test;
-import repositories.RentalPeriodRepository.RentalPeriodRepository;
-import repositories.accommodation.AccommodationRepository;
-import repositories.facebookData.FacebookDataRepository;
-import repositories.interests.InterestsRepository;
-import repositories.tenantProfile.TenantProfileRepository;
-import repositories.users.UsersRepository;
-import services.users.UsersService;
+import repositories.RentalPeriodRepository;
+import repositories.AccommodationRepository;
+import repositories.FacebookDataRepository;
+import repositories.InterestsRepository;
+import repositories.TenantProfileRepository;
+import repositories.UsersRepository;
+import services.UsersService;
 import testResources.BaseTest;
 import testResources.FacebookUtils;
 
-import static org.mockito.Mockito.*;
 import static org.junit.Assert.assertNotNull;
 
 /**
  * @author Simon Olofsson
  */
-public class SaveUser extends BaseTest {
+public class UserStackTest extends BaseTest {
 
     UsersRepository usersRepository = new UsersRepository();
     FacebookDataRepository facebookDataRepository = new FacebookDataRepository();
+
+    UsersService usersService = new UsersService(new UsersRepository(),
+            new AccommodationRepository(),
+            new InterestsRepository(),
+            new FacebookDataRepository(),
+            new TenantProfileRepository(),
+            new RentalPeriodRepository(),
+            new ObjectMapper());
+
 
     @Test
     public void canSaveUserWithMinimalData() {
@@ -60,15 +68,8 @@ public class SaveUser extends BaseTest {
         facebookData.put("timezone", 2);
         facebookData.put("id", "10154623247991818");
 
-        UsersService usersService = new UsersService(new UsersRepository(),
-                new AccommodationRepository(),
-                new InterestsRepository(),
-                new FacebookDataRepository(),
-                new TenantProfileRepository(),
-                new RentalPeriodRepository(),
-                new ObjectMapper());
-
         User user = usersService.createFromFacebookData(facebookData);
 
     }
+
 }

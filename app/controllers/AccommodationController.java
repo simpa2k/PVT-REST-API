@@ -2,26 +2,16 @@ package controllers;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.node.ArrayNode;
-import com.fasterxml.jackson.databind.node.ObjectNode;
 import exceptions.OffsetOutOfRangeException;
 import models.accommodation.Accommodation;
-import models.user.User;
 import play.mvc.Controller;
 import play.mvc.Result;
 import scala.Option;
-import services.accommodation.AccommodationService;
-import utils.DynamicFilter;
+import services.AccommodationService;
 import utils.ResponseBuilder;
 
 import javax.inject.Inject;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.concurrent.CompletableFuture;
-import java.util.function.Predicate;
-import java.util.stream.Collectors;
 
 import static play.mvc.Results.ok;
 

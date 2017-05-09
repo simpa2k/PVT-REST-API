@@ -1,7 +1,7 @@
 package testResources.mocks;
 
 import models.accommodation.Accommodation;
-import repositories.accommodation.AccommodationStorage;
+import repositories.AccommodationRepository;
 import scala.Option;
 
 import java.util.List;
@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * @author Simon Olofsson
  */
-public class MockAccommodationRepository implements AccommodationStorage {
+public class MockAccommodationRepository extends AccommodationRepository {
 
     @Override
     public Accommodation findById(long id) {

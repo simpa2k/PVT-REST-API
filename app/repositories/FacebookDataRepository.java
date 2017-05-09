@@ -1,4 +1,4 @@
-package repositories.facebookData;
+package repositories;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -10,16 +10,14 @@ import java.io.IOException;
 /**
  * @author Simon Olofsson
  */
-public class FacebookDataRepository implements FacebookDataStorage {
+public class FacebookDataRepository {
 
     private ObjectMapper mapper = new ObjectMapper();
 
-    @Override
     public FacebookData findByFacebookUserId(String facebookUserId) {
         return FacebookData.findByFacebookUserId(facebookUserId);
     }
 
-    @Override
     public FacebookData create(JsonNode data) throws JsonProcessingException {
 
         FacebookData fbData = mapper.treeToValue(data, FacebookData.class);
@@ -29,7 +27,6 @@ public class FacebookDataRepository implements FacebookDataStorage {
 
     }
 
-    @Override
     public FacebookData update(FacebookData fbData, JsonNode data) throws IOException {
 
         mapper.readerForUpdating(fbData).readValue(data);
@@ -39,7 +36,6 @@ public class FacebookDataRepository implements FacebookDataStorage {
 
     }
 
-    @Override
     public void save(FacebookData fbData) {
         fbData.save();
     }

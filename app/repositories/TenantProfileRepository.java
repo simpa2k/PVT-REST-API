@@ -1,13 +1,12 @@
-package repositories.tenantProfile;
+package repositories;
 
 import models.user.TenantProfile;
 
 /**
  * @author Simon Olofsson
  */
-public class TenantProfileRepository implements TenantProfileStorage {
+public class TenantProfileRepository {
 
-    @Override
     public void save(TenantProfile tenantProfile) {
         tenantProfile.save();
     }

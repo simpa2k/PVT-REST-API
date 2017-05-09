@@ -1,4 +1,4 @@
-package services.accommodation;
+package services;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -7,8 +7,8 @@ import exceptions.OffsetOutOfRangeException;
 import models.accommodation.Accommodation;
 import models.accommodation.Address;
 import models.user.User;
-import repositories.accommodation.AccommodationStorage;
-import repositories.address.AddressStorage;
+import repositories.AccommodationRepository;
+import repositories.AddressRepository;
 import scala.Option;
 
 import javax.inject.Inject;
@@ -19,13 +19,14 @@ import java.util.List;
  */
 public class AccommodationService {
 
-    private AccommodationStorage accommodationRepository;
-    private AddressStorage addressRepository;
+    private AccommodationRepository accommodationRepository;
+    private AddressRepository addressRepository;
 
     private ObjectMapper mapper;
 
     @Inject
-    public AccommodationService(AccommodationStorage accommodationRepository, AddressStorage addressRepository, ObjectMapper mapper) {
+    public AccommodationService(AccommodationRepository accommodationRepository,
+                                AddressRepository addressRepository, ObjectMapper mapper) {
 
         this.accommodationRepository = accommodationRepository;
         this.addressRepository = addressRepository;

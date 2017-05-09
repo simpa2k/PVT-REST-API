@@ -1,28 +1,21 @@
 package unit.services.users;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import exceptions.NoEmailFoundException;
-import models.Interest;
-import models.RentalPeriod;
 import models.user.TenantProfile;
 import models.user.User;
 import org.junit.Test;
 import org.mockito.Mockito;
 import play.libs.Json;
-import repositories.RentalPeriodRepository.RentalPeriodRepository;
-import repositories.accommodation.AccommodationRepository;
-import repositories.facebookData.FacebookDataRepository;
-import repositories.interests.InterestsRepository;
-import repositories.tenantProfile.TenantProfileRepository;
-import repositories.users.UsersRepository;
-import services.users.UsersService;
+import repositories.RentalPeriodRepository;
+import repositories.AccommodationRepository;
+import repositories.FacebookDataRepository;
+import repositories.InterestsRepository;
+import repositories.TenantProfileRepository;
+import repositories.UsersRepository;
+import services.UsersService;
 import testResources.BaseTest;
-
-import java.text.SimpleDateFormat;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;

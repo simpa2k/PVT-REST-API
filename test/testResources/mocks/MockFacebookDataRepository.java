@@ -3,7 +3,7 @@ package testResources.mocks;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import models.user.FacebookData;
-import repositories.facebookData.FacebookDataStorage;
+import repositories.FacebookDataRepository;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -11,7 +11,7 @@ import java.util.Set;
 /**
  * @author Simon Olofsson
  */
-public class MockFacebookDataRepository implements FacebookDataStorage {
+public class MockFacebookDataRepository extends FacebookDataRepository {
 
     private Set<FacebookData> facebookData = new HashSet<>();
 

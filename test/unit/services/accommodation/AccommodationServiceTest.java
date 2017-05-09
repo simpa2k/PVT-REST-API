@@ -7,9 +7,9 @@ import models.accommodation.Accommodation;
 import models.accommodation.Address;
 import org.junit.Test;
 import org.mockito.Mockito;
-import repositories.accommodation.AccommodationRepository;
-import repositories.address.AddressRepository;
-import services.accommodation.AccommodationService;
+import repositories.AccommodationRepository;
+import repositories.AddressRepository;
+import services.AccommodationService;
 import testResources.AccommodationUtils;
 
 import static org.mockito.Matchers.any;

@@ -1,20 +1,17 @@
 package controllers;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.fasterxml.jackson.databind.JsonNode;
 import exceptions.NoEmailFoundException;
-import models.user.FacebookData;
 import models.user.User;
 import play.Configuration;
 import play.libs.concurrent.HttpExecutionContext;
 import play.libs.Json;
 import play.libs.ws.WSClient;
-import play.libs.ws.WSResponse;
 import play.mvc.*;
 import play.mvc.Http.*;
-import services.facebook.FacebookService;
-import services.users.UsersService;
+import services.FacebookService;
+import services.UsersService;
 import utils.ResponseBuilder;
 
 import javax.inject.Inject;

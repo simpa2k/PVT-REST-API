@@ -7,17 +7,13 @@ package testResources;
 import models.Activity;
 import models.Interest;
 import models.accommodation.Accommodation;
-import models.accommodation.Address;
-import models.RentalPeriod;
 import models.user.*;
 import models.SwipingSession;
 import play.Configuration;
-import play.Logger;
-import services.users.UsersService;
+import services.UsersService;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
-import java.text.ParseException;
 import java.util.HashSet;
 import java.util.Set;
 
