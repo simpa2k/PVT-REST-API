@@ -19,10 +19,14 @@ som skickas med varje request.
         + facebookAuthToken: `EAACEdEose0cBAIID5sKglHcm01UYAGWP0cHgDEcAxrbDg0oZAzZCZC1Tlhw62ZBkhqMO6imdMtcQJqDfAGc8bKl08Q1FrR0Vz7SgVWh9sMEqUkUow07a3Vk3LwdHBMZANCXeTTKrlQGz2jOuOQJwGFZAk8RnHGpd1nU6F36OGtxtqZC50m7gSfo` -
         En token för auktorisering mot Facebooks Graph API.
         
-+ Response 200 (application/json)
++ Response 200
+
+    + Headers
+
+        Content-Type: application/json; charset=UTF-8
 
     + Attributes
-        + authToken: `990c4d
+        + authToken: `fa7f28df-8e2f-4c6d-8a78-0c0893318075`
         
 ## 2. Skapa en hyresgästprofil [/users/profiles]
 ## POST mot /users/profiles [POST]
@@ -31,7 +35,7 @@ som skickas med varje request.
 
     + Headers
     
-            X-AUTH-TOKEN: en valid autentiseringstoken
+            X-AUTH-TOKEN: fa7f28df-8e2f-4c6d-8a78-0c0893318075
 
     + Attributes (TenantProfile)
 
@@ -48,19 +52,23 @@ som skickas med varje request.
         + facebookAuthToken: `EAACEdEose0cBAIID5sKglHcm01UYAGWP0cHgDEcAxrbDg0oZAzZCZC1Tlhw62ZBkhqMO6imdMtcQJqDfAGc8bKl08Q1FrR0Vz7SgVWh9sMEqUkUow07a3Vk3LwdHBMZANCXeTTKrlQGz2jOuOQJwGFZAk8RnHGpd1nU6F36OGtxtqZC50m7gSfo` -
         En token för auktorisering mot Facebooks Graph API.
         
-+ Response 200 (application/json)
++ Response 200
+
+    + Headers
+
+        Content-Type: application/json; charset=UTF-8
 
     + Attributes
-        + authToken: `990c4d
-        
-## 2. Skapa ett hyresobjekt [/accommodation{?count,offset,id,rent,size,rooms,deposit,smokingAllowed,animalsAllowed,tv,broadband,start,end}]
+        + authToken: `fa7f28df-8e2f-4c6d-8a78-0c0893318075`
+
+## 2. Skapa ett hyresobjekt [/accommodation]
 ## POST mot /accommodation [POST]
 
 + Request (application/json)
 
     + Headers
     
-            X-AUTH-TOKEN: en valid autentiseringstoken
+            X-AUTH-TOKEN: fa7f28df-8e2f-4c6d-8a78-0c0893318075
 
     + Attributes (Accommodation)
 
@@ -77,11 +85,11 @@ som skickas med varje request.
 
         X-AUTH-TOKEN: en valid autentiseringstoken
 
-+ Response 200 (application/json)
++ Response 200
 
     + Headers
 
-        Content-Type: application/json; charset=UTF8
+        Content-Type: application/json; charset=UTF-8
 
     + Attributes(array[Tenant])
 
@@ -93,7 +101,7 @@ som skickas med varje request.
     + Headers
 
         X-AUTH-TOKEN: en valid autentiseringstoken
-        Content-Type: application/json; charset=UTF8
+        Content-Type: application/json; charset=UTF-8
 
     + Attributes
         + userIds: 2 (array[number])
@@ -111,11 +119,11 @@ som skickas med varje request.
 
         X-AUTH-TOKEN: en valid autentiseringstoken
 
-+ Response 200 (application/json)
++ Response 200
 
     + Headers
 
-        Content-Type: application/json; charset=UTF8
+        Content-Type: application/json; charset=UTF-8
 
     + Attributes(array[Interest])
 
@@ -134,8 +142,8 @@ som skickas med varje request.
 
 ### TenantProfile
 + description: `Hej, jag heter Kalle och behöver någonstans att bo.`
-+ maxRent: 5000
-+ deposit: 8000
++ maxRent: 5000 (number)
++ maxDeposit: 8000 (number)
 + rentalPeriod
     + start: `2017-05-01`
     + end: `2018-05-01`

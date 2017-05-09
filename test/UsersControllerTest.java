@@ -78,7 +78,7 @@ public class UsersControllerTest extends BaseTest {
         //String authToken = tenant1.createToken();
         String authToken = usersService.getToken(tenant1);
 
-        Http.RequestBuilder fakeRequest = fakeRequest(routes.UsersController.returnTenantProfile());
+        Http.RequestBuilder fakeRequest = fakeRequest(routes.UsersController.getUser());
         fakeRequest.header(SecurityController.AUTH_TOKEN_HEADER, authToken);
 
         return route(fakeRequest);

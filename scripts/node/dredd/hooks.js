@@ -4,11 +4,10 @@ let functions = require('../functions');
 let server = "http://localhost:9000";
 let stash = {};
 
-let facebookLogin = "Logga in och skapa hyresgästsprofil > 1. Logga in via Facebook > POST mot /facebook/login";
+let facebookLogin = "Logga in och skapa hyresgästsprofil > 1. Logga in via facebook > POST mot /facebook/login";
 
 hooks.before(facebookLogin, (transaction) => {
 
-    transaction.skip = true;
     let requestBody = JSON.parse(transaction.request.body);
     requestBody['facebookAuthToken'] = '';
 
@@ -30,12 +29,16 @@ hooks.after(facebookLogin, (transaction) => {
 
  });
 
-hooks.before("Logga in och skapa hyresgästsprofil > 2. Skapa en hyresgästsprofil > POST mot /users/profiles", (transaction) => {
-   transaction.skip = true;
+hooks.before("Logga in och skapa hyresgästsprofil > 2. Skapa en hyresgästprofil > POST mot /users/profiles", (transaction) => {
+
 });
 
 hooks.before("Logga in och skapa hyresobjekt > 1. Logga in via facebook > POST mot /facebook/login", (transaction) => {
     transaction.skip = true;
+});
+
+hooks.before("Logga in och skapa hyresobjekt > 2. Skapa ett hyresobjekt > POST mot /accommodation", (transaction) => {
+
 });
 
 hooks.before("Anmäl intresse för hyresgäster > 2. Skicka valda hyresgäster > POST mot /users", (transaction) => {

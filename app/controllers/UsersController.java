@@ -26,7 +26,7 @@ public class UsersController extends Controller {
         this.usersService = usersService;
     }
 
-    public Result returnTenantProfile(){
+    public Result getUser(){
 
         User tenant = (User) ctx().args.get("user");
         return ResponseBuilder.buildOKObject(tenant);
