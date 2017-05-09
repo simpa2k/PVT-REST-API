@@ -1,10 +1,7 @@
 package testResources.mocks;
 
-import models.user.Authorization;
-import models.user.Renter;
 import models.user.User;
-import play.Logger;
-import repositories.users.UserStorage;
+import repositories.UsersRepository;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -12,7 +9,7 @@ import java.util.Set;
 /**
  * @author Simon Olofsson
  */
-public class MockUserRepository implements UserStorage {
+public class MockUserRepository extends UsersRepository {
 
     private Set<User> users = new HashSet<>();
 

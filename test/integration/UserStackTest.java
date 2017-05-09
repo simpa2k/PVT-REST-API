@@ -1,24 +1,21 @@
 package integration;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import exceptions.NoEmailFoundException;
 import models.user.FacebookData;
 import models.user.User;
 import org.junit.Test;
-import play.libs.Json;
-import repositories.RentalPeriodRepository.RentalPeriodRepository;
-import repositories.accommodation.AccommodationRepository;
-import repositories.facebookData.FacebookDataRepository;
-import repositories.interests.InterestsRepository;
-import repositories.tenantProfile.TenantProfileRepository;
-import repositories.users.UsersRepository;
-import services.users.UsersService;
+import repositories.RentalPeriodRepository;
+import repositories.AccommodationRepository;
+import repositories.FacebookDataRepository;
+import repositories.InterestsRepository;
+import repositories.TenantProfileRepository;
+import repositories.UsersRepository;
+import services.UsersService;
 import testResources.BaseTest;
 import testResources.FacebookUtils;
 
-import static org.mockito.Mockito.*;
 import static org.junit.Assert.assertNotNull;
 
 /**

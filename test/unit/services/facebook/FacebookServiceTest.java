@@ -3,7 +3,7 @@ package unit.services.facebook;
 import org.junit.Test;
 import play.libs.ws.WSClient;
 import play.server.Server;
-import services.facebook.FacebookService;
+import services.FacebookService;
 import testResources.BaseTest;
 
 import static play.mvc.Results.ok;

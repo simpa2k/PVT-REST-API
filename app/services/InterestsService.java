@@ -1,10 +1,10 @@
-package services.interests;
+package services;
 
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import models.Interest;
 import models.user.User;
-import repositories.interests.InterestStorage;
-import repositories.users.UserStorage;
+import repositories.InterestsRepository;
+import repositories.UsersRepository;
 import scala.Option;
 import exceptions.OffsetOutOfRangeException;
 
@@ -16,11 +16,11 @@ import java.util.List;
  */
 public class InterestsService {
 
-    private final InterestStorage interestsRepository;
-    private final UserStorage usersRepository;
+    private final InterestsRepository interestsRepository;
+    private final UsersRepository usersRepository;
 
     @Inject
-    public InterestsService(InterestStorage interestsRepository, UserStorage usersRepository) {
+    public InterestsService(InterestsRepository interestsRepository, UsersRepository usersRepository) {
 
         this.interestsRepository = interestsRepository;
         this.usersRepository = usersRepository;

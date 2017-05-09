@@ -1,4 +1,4 @@
-package repositories.interests;
+package repositories;
 
 import com.avaje.ebean.ExpressionList;
 import com.avaje.ebean.Model;
@@ -15,9 +15,8 @@ import java.util.function.Function;
 /**
  * @author Simon Olofsson
  */
-public class InterestsRepository implements InterestStorage {
+public class InterestsRepository {
 
-    @Override
     public Interest create(User renter, User tenant) {
 
         Interest interest = Interest.findByRenterAndTenant(renter.id, tenant.id);
@@ -32,7 +31,6 @@ public class InterestsRepository implements InterestStorage {
 
     }
 
-    @Override
     public List<Interest> findInterests(Option<Long> tenantId, Option<Long> accommodationId) {
 
         List<Function<ExpressionList<Interest>, ExpressionList<Interest>>> functions = Arrays.asList(
@@ -45,17 +43,14 @@ public class InterestsRepository implements InterestStorage {
         return Interest.filterBy(functions);
     }
 
-    @Override
     public Interest findInterest(long renterId, long tenantId) {
         return Interest.findByRenterAndTenant(renterId, tenantId);
     }
 
-    @Override
     public void save(Interest interest) {
         interest.save();
     }
 
-    @Override
     public void delete(Interest interest) {
 
         if (interest == null) {

@@ -1,14 +1,12 @@
-package repositories.RentalPeriodRepository;
+package repositories;
 
 import models.RentalPeriod;
 
 /**
  * @author Simon Olofsson
  */
-public class RentalPeriodRepository implements RentalPeriodStorage {
+public class RentalPeriodRepository {
 
-
-    @Override
     public void save(RentalPeriod rentalPeriod) {
         rentalPeriod.save();
     }

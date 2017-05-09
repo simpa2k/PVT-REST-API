@@ -7,7 +7,7 @@ import models.user.User;
 import play.mvc.Controller;
 import play.mvc.Result;
 import play.mvc.Security;
-import services.users.UsersService;
+import services.UsersService;
 import utils.ResponseBuilder;
 
 import javax.inject.Inject;

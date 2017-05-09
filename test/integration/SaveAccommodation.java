@@ -4,9 +4,9 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import models.accommodation.Accommodation;
 import org.junit.Test;
-import repositories.accommodation.AccommodationRepository;
-import repositories.address.AddressRepository;
-import services.accommodation.AccommodationService;
+import repositories.AccommodationRepository;
+import repositories.AddressRepository;
+import services.AccommodationService;
 import testResources.AccommodationUtils;
 import testResources.BaseTest;
 

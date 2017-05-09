@@ -2,28 +2,19 @@ package functional;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import controllers.FacebookSecurityController;
 import controllers.SecurityController;
-import controllers.routes;
-import models.user.User;
-import org.apache.commons.lang3.time.DateUtils;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import play.Configuration;
-import play.Logger;
 import play.libs.Json;
 import play.mvc.Http;
 import play.mvc.Result;
 import play.test.WithApplication;
-import repositories.users.UsersRepository;
+import repositories.UsersRepository;
 import testResources.AccommodationUtils;
-import testResources.MockDataBaseTest;
 import testResources.TenantProfileUtils;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 
 import static org.junit.Assert.assertEquals;
 import static play.mvc.Http.Status.NO_CONTENT;

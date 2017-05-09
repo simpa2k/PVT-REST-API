@@ -2,7 +2,6 @@ package unit.controllers;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import controllers.SecurityController;
-import controllers.routes;
 import org.junit.Test;
 import org.mockito.Mock;
 import play.Application;
@@ -12,7 +11,7 @@ import play.mvc.Http;
 import play.mvc.Result;
 import play.mvc.Security;
 import play.test.WithApplication;
-import services.users.UsersService;
+import services.UsersService;
 import testResources.mocks.SecurityMock;
 
 import static play.test.Helpers.fakeRequest;

@@ -9,9 +9,9 @@ import play.mvc.Controller;
 import play.mvc.Result;
 import play.mvc.Security;
 import scala.Option;
-import services.interests.InterestsService;
+import services.InterestsService;
 import exceptions.OffsetOutOfRangeException;
-import services.users.UsersService;
+import services.UsersService;
 import utils.ResponseBuilder;
 
 import javax.inject.Inject;

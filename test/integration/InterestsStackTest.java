@@ -7,10 +7,10 @@ import models.user.User;
 import org.junit.Test;
 import play.Logger;
 import play.libs.Json;
-import repositories.interests.InterestsRepository;
-import repositories.users.UsersRepository;
+import repositories.InterestsRepository;
+import repositories.UsersRepository;
 import scala.Option;
-import services.interests.InterestsService;
+import services.InterestsService;
 import testResources.BaseTest;
 
 import java.util.List;

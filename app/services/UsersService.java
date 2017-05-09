@@ -1,21 +1,19 @@
-package services.users;
+package services;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.node.ArrayNode;
 import exceptions.NoEmailFoundException;
 import models.Interest;
 import models.user.Renter;
 import models.user.TenantProfile;
 import models.user.User;
-import repositories.RentalPeriodRepository.RentalPeriodStorage;
-import repositories.accommodation.AccommodationStorage;
-import repositories.facebookData.FacebookDataStorage;
-import repositories.interests.InterestStorage;
-import repositories.tenantProfile.TenantProfileRepository;
-import repositories.tenantProfile.TenantProfileStorage;
-import repositories.users.UserStorage;
+import repositories.RentalPeriodRepository;
+import repositories.AccommodationRepository;
+import repositories.FacebookDataRepository;
+import repositories.InterestsRepository;
+import repositories.TenantProfileRepository;
+import repositories.UsersRepository;
 
 import javax.inject.Inject;
 
@@ -24,22 +22,22 @@ import javax.inject.Inject;
  */
 public class UsersService {
 
-    private UserStorage usersRepository;
-    private AccommodationStorage accommodationRepository;
-    private InterestStorage interestsRepository;
-    private FacebookDataStorage facebookDataRepository;
-    private TenantProfileStorage tenantProfileRepository;
-    private RentalPeriodStorage rentalPeriodRepository;
+    private UsersRepository usersRepository;
+    private AccommodationRepository accommodationRepository;
+    private InterestsRepository interestsRepository;
+    private FacebookDataRepository facebookDataRepository;
+    private TenantProfileRepository tenantProfileRepository;
+    private RentalPeriodRepository rentalPeriodRepository;
 
     private ObjectMapper mapper;
 
     @Inject
-    public UsersService(UserStorage usersRepository,
-                        AccommodationStorage accommodationRepository,
-                        InterestStorage interestsRepository,
-                        FacebookDataStorage facebookDataRepository,
-                        TenantProfileStorage tenantProfileRepository,
-                        RentalPeriodStorage rentalPeriodRepository,
+    public UsersService(UsersRepository usersRepository,
+                        AccommodationRepository accommodationRepository,
+                        InterestsRepository interestsRepository,
+                        FacebookDataRepository facebookDataRepository,
+                        TenantProfileRepository tenantProfileRepository,
+                        RentalPeriodRepository rentalPeriodRepository,
                         ObjectMapper mapper) {
 
         this.usersRepository = usersRepository;

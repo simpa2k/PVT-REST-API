@@ -2,7 +2,7 @@ package controllers;
 
 import models.user.Authorization;
 import play.mvc.Http.Context;
-import repositories.users.UsersRepository;
+import repositories.UsersRepository;
 
 import javax.inject.Inject;
 
