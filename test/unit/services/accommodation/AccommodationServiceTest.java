@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import models.accommodation.Accommodation;
 import models.accommodation.Address;
+import models.user.User;
 import org.junit.Test;
 import org.mockito.Mockito;
 import repositories.AccommodationRepository;
@@ -34,9 +35,11 @@ public class AccommodationServiceTest {
         Mockito.doNothing().when(addressRepository).save(any(Address.class));
         when(mapper.treeToValue(any(JsonNode.class), eq(Accommodation.class))).thenReturn(AccommodationUtils.createAccommodation());
 
-        AccommodationService accommodationService = new AccommodationService(accommodationRepository, addressRepository, mapper);
+        AccommodationService accommodationService = new AccommodationService(accommodationRepository, addressRepository, usersRepository, rentalPeriodRepository, mapper);
 
-        Accommodation accommodation = accommodationService.createAccommodationFromJson(null, AccommodationUtils.createAccommodationJson());
+        User renter = new User("renter@renter.com", "Renter");
+
+        Accommodation accommodation = accommodationService.createAccommodationFromJson(renter, AccommodationUtils.createAccommodationJson());
 
         AccommodationUtils.performStandardAssertions(accommodation);
 

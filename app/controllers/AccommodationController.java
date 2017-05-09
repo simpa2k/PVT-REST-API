@@ -12,6 +12,8 @@ import services.AccommodationService;
 import utils.ResponseBuilder;
 
 import javax.inject.Inject;
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.util.List;
 
 import static play.mvc.Results.ok;
@@ -64,9 +66,11 @@ public class AccommodationController extends Controller{
 		}
 
         try {
-            accommodationService.createAccommodationFromJson(FacebookSecurityController.getUser(), requestBody);
+            accommodationService.createAccommodationFromJson(SecurityController.getUser(), requestBody);
         } catch (JsonProcessingException e) {
+
             return ResponseBuilder.buildBadRequest("Could not parse request body.", ResponseBuilder.MALFORMED_REQUEST_BODY);
+
         }
 
         return noContent();

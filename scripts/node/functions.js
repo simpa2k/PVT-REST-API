@@ -122,6 +122,8 @@ module.exports = {
     localLogin: localLogin,
 	getInterests: getInterests,
     getAccommodation: getAccommodation,
-    getTenantProfile: getTenantProfile
+    getTenantProfile: getTenantProfile,
+    performPostRequest: performPostRequest,
+    performAuthenticatedGetRequest: performAuthenticatedGetRequest
 };
 

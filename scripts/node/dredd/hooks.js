@@ -1,7 +1,7 @@
 let hooks = require('hooks');
 let functions = require('../functions');
 
-let server = "http://localhost:8080";
+let server = "http://localhost:9000";
 let stash = {};
 
 let facebookLogin = "Logga in och skapa hyresgästsprofil > 1. Logga in via facebook > POST mot /facebook/login";
@@ -9,7 +9,7 @@ let facebookLogin = "Logga in och skapa hyresgästsprofil > 1. Logga in via face
 hooks.before(facebookLogin, (transaction) => {
 
     let requestBody = JSON.parse(transaction.request.body);
-    requestBody['facebookAuthToken'] = 'EAAa2D7XPp6oBANiMSPjQExKkBOHFsPGWb4giRh1OSaJC5B1GweZBAgos4zZB8xcEXEZCj6pYk4ITO4oYEadMAEJKSe40JBqxu6KGcRgi9ZCIHbb453O5sSQYmfbZBaZArxU3IBBZATWhkdx0ZAuMlWGS6j5ZCgIvt30vGp5HbCsrcXub781Tng9PTVrQ7ZAI8vdWkZD';
+    requestBody['facebookAuthToken'] = '';
 
     transaction.request.body = JSON.stringify(requestBody);
 
@@ -18,7 +18,7 @@ hooks.before(facebookLogin, (transaction) => {
 hooks.after(facebookLogin, (transaction) => {
 
      stash['authToken'] = JSON.parse(transaction.real.body)['authToken'];
-     stash['facebookAuthToken'] = JSON.parse(transaction.real.body)['authToken'];
+     stash['tenantToken'] = JSON.parse(transaction.real.body)['authToken'];
 
  });
 
@@ -34,21 +34,35 @@ hooks.before("Logga in och skapa hyresgästsprofil > 2. Skapa en hyresgästprofi
 
 });
 
-hooks.before("Logga in och skapa hyresobjekt > 1. Logga in via facebook > POST mot /facebook/login", (transaction) => {
-    transaction.skip = true;
+let facebookLoginAsRenter = 'Logga in och skapa hyresobjekt > 1. Logga in via facebook > POST mot /facebook/login';
+
+hooks.before(facebookLoginAsRenter, (transaction) => {
+
+    let requestBody = JSON.parse(transaction.request.body);
+    requestBody['facebookAuthToken'] = '';
+
+    transaction.request.body = JSON.stringify(requestBody);
+
 });
 
-hooks.before("Logga in och skapa hyresobjekt > 2. Skapa ett hyresobjekt > POST mot /accommodation", (transaction, done) => {
+hooks.after(facebookLoginAsRenter, (transaction) => {
+
+    stash['authToken'] = JSON.parse(transaction.real.body)['authToken'];
+    stash['renterToken'] = JSON.parse(transaction.real.body)['authToken'];
+
+});
+
+hooks.before("Logga in och skapa hyresobjekt > 2. Skapa ett hyresobjekt > POST mot /accommodation", (transaction) => {
 
     // Logging in as another user.
-    functions.localLogin(server, "user1@demo.com", "password", (responseObject) => {
+    /*functions.localLogin(server, "user1@demo.com", "password", (responseObject) => {
 
         transaction.request['headers']['X-AUTH-TOKEN'] = responseObject.authToken;
         stash['authToken'] = responseObject.authToken;
 
         done();
 
-    });
+    });*/
 });
 
 hooks.before("Anmäl intresse för hyresgäster > 2. Skicka valda hyresgäster > POST mot /interests", (transaction) => {
@@ -63,6 +77,6 @@ hooks.before("Anmäl intresse för hyresgäster > 2. Skicka valda hyresgäster >
 hooks.before("Hämta hyresobjekt vars hyresvärd visat intresse för en > 1. Hämta intresseanmälningar > GET mot /interests", (transaction) => {
 
     // Resetting user.
-    stash['authToken'] = stash['facebookAuthToken'];
+    stash['authToken'] = stash['tenant'];
 
 });

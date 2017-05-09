@@ -11,6 +11,7 @@ import play.mvc.Http;
 import play.mvc.Result;
 import play.test.WithApplication;
 import repositories.UsersRepository;
+import scala.Option;
 import testResources.AccommodationUtils;
 import testResources.TenantProfileUtils;
 
@@ -68,7 +69,12 @@ public class FunctionalTest extends WithApplication {
         Result result = route(createProfileRequest);
         assertEquals(NO_CONTENT, result.status());
 
-        Http.RequestBuilder getProfileRequest = fakeRequest(controllers.routes.UsersController.getUser());
+        Option<Integer> maxRent = Option.empty();
+        Option<Integer> maxDeposit = Option.empty();
+        Option<String> start = Option.empty();
+        Option<String> end = Option.empty();
+
+        Http.RequestBuilder getProfileRequest = fakeRequest(controllers.routes.UsersController.getUser(maxRent, maxDeposit, start, end));
         getProfileRequest.header(SecurityController.AUTH_TOKEN_HEADER, authToken);
 
         Result getResult = route(getProfileRequest);

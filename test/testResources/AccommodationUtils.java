@@ -3,6 +3,10 @@ package testResources;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import models.accommodation.Accommodation;
 import models.accommodation.Address;
+import models.user.Renter;
+import models.user.User;
+import org.junit.Before;
+import org.junit.BeforeClass;
 import play.libs.Json;
 
 import static junit.framework.TestCase.assertEquals;
@@ -33,8 +37,10 @@ public class AccommodationUtils {
 
     public static Accommodation createAccommodation() {
 
+        User renter = new User("renter@renter.com", "Renter");
+
         Address address = new Address("Dymlingsgränd", 3, 'A');
-        return new Accommodation(5000, 20, 1, 8000, address, null);
+        return new Accommodation(5000, 20, 1, 8000, address, renter);
     }
 
     public static void performStandardAssertions(Accommodation accommodation) {

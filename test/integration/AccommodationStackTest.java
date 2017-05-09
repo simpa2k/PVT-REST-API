@@ -8,6 +8,8 @@ import models.user.User;
 import org.junit.Test;
 import repositories.AccommodationRepository;
 import repositories.AddressRepository;
+import repositories.RentalPeriodRepository;
+import repositories.UsersRepository;
 import services.AccommodationService;
 import testResources.AccommodationUtils;
 import testResources.BaseTest;
@@ -20,6 +22,31 @@ import static org.junit.Assert.assertNotNull;
  */
 public class AccommodationStackTest extends BaseTest {
 
+    private AccommodationRepository accommodationRepository = new AccommodationRepository();
+    private AddressRepository addressRepository = new AddressRepository();
+    private UsersRepository usersRepository = new UsersRepository();
+    private RentalPeriodRepository rentalPeriodRepository = new RentalPeriodRepository();
+
+    @Test
+    public void savesAccommodationToDatabase() throws JsonProcessingException {
+
+        ObjectMapper mapper = new ObjectMapper();
+
+        AccommodationService accommodationService = new AccommodationService(accommodationRepository, addressRepository, usersRepository, rentalPeriodRepository, mapper);
+
+        User renter = new User("renter@renter.com", "Renter");
+
+        usersRepository.save(renter);
+
+        Accommodation accommodation = accommodationService.createAccommodationFromJson(renter, AccommodationUtils.createAccommodationJson());
+
+        AccommodationUtils.performStandardAssertions(accommodation);
+
+        assertNotNull(accommodationRepository.findById(accommodation.id));
+        assertNotNull(accommodationRepository.findByRenter(renter.id));
+
+    }
+
     @Test
     public void canHandleCreatingSameAccommodationTwice() throws JsonProcessingException {
 
@@ -30,7 +57,7 @@ public class AccommodationStackTest extends BaseTest {
 
         AccommodationRepository accommodationRepository = new AccommodationRepository();
         AccommodationService accommodationService = new AccommodationService(accommodationRepository,
-                new AddressRepository(), new ObjectMapper());
+                new AddressRepository(), usersRepository, rentalPeriodRepository, new ObjectMapper());
 
         Accommodation accommodation = accommodationService.createAccommodationFromJson(renter, accommodationJson);
 

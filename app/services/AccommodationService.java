@@ -4,12 +4,14 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import exceptions.OffsetOutOfRangeException;
+import models.RentalPeriod;
 import models.accommodation.Accommodation;
 import models.accommodation.Address;
 import models.user.User;
-import play.Logger;
 import repositories.AccommodationRepository;
 import repositories.AddressRepository;
+import repositories.RentalPeriodRepository;
+import repositories.UsersRepository;
 import scala.Option;
 
 import javax.inject.Inject;
@@ -22,15 +24,21 @@ public class AccommodationService {
 
     private AccommodationRepository accommodationRepository;
     private AddressRepository addressRepository;
+    private UsersRepository usersRepository;
+    private RentalPeriodRepository rentalPeriodRepository;
 
     private ObjectMapper mapper;
 
     @Inject
     public AccommodationService(AccommodationRepository accommodationRepository,
-                                AddressRepository addressRepository, ObjectMapper mapper) {
+                                AddressRepository addressRepository,
+                                UsersRepository usersRepository,
+                                RentalPeriodRepository rentalPeriodRepository, ObjectMapper mapper) {
 
         this.accommodationRepository = accommodationRepository;
         this.addressRepository = addressRepository;
+        this.usersRepository = usersRepository;
+        this.rentalPeriodRepository = rentalPeriodRepository;
 
         this.mapper = mapper;
 
@@ -55,16 +63,26 @@ public class AccommodationService {
 
     public Accommodation createAccommodationFromJson(User user, JsonNode accommodationJson) throws JsonProcessingException {
 
+        if (user == null) {
+            throw new IllegalArgumentException("User was null. Accommodation must be associated with a user.");
+        }
+
         Accommodation accommodation = mapper.treeToValue(accommodationJson, Accommodation.class);
         Address address = accommodation.address;
+        RentalPeriod rentalPeriod = accommodation.rentalPeriod;
 
         accommodation.renter = user;
         addressRepository.save(address);
+        rentalPeriodRepository.save(rentalPeriod);
 
         Accommodation existing = accommodationRepository.findByRenter(accommodation.renter.id);
         if (existing == null) {
 
             accommodationRepository.save(accommodation);
+
+            user.accommodation = accommodation;
+            usersRepository.save(user);
+
             return accommodation;
 
         }
