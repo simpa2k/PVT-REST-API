@@ -86,6 +86,10 @@ public class UsersController extends Controller {
 
         JsonNode requestBody = request().body().asJson();
 
+        if (requestBody == null || requestBody.size() == 0) {
+            return ResponseBuilder.buildBadRequest("Non-empty request body required.", ResponseBuilder.MALFORMED_REQUEST_BODY);
+        }
+
         try {
             TenantProfile profile = usersService.setProfile(FacebookSecurityController.getUser(), requestBody);
         } catch (JsonProcessingException e) {

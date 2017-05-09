@@ -2,6 +2,7 @@ package testResources;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import models.user.TenantProfile;
 import play.libs.Json;
 
 import static org.junit.Assert.assertEquals;
@@ -10,6 +11,10 @@ import static org.junit.Assert.assertEquals;
  * @author Simon Olofsson
  */
 public class TenantProfileUtils {
+
+    public static TenantProfile createTenantProfile() {
+        return new TenantProfile(5000, 8000, "Hej!");
+    }
 
     public static ObjectNode createTenantProfileJson() {
 
@@ -38,4 +43,5 @@ public class TenantProfileUtils {
         assertEquals("2018-05-01", rentalPeriod.findValue("end").asText());
 
     }
+
 }

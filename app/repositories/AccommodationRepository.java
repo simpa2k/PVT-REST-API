@@ -17,6 +17,10 @@ public class AccommodationRepository {
         return Accommodation.findById(id);
     }
 
+    public Accommodation findByRenter(long renterId) {
+        return Accommodation.findByRenterId(renterId);
+    }
+
     public List<Accommodation> findAccommodation(final Option<Double> rent, final Option<Double> size,
                                                  final Option<Boolean> smokingAllowed, final Option<Boolean> animalsAllowed) {
 
@@ -31,6 +35,10 @@ public class AccommodationRepository {
 
         return Accommodation.filterBy(functions);
 
+    }
+
+    public void update(Accommodation accommodation) {
+        accommodation.update();
     }
 
     public void save(Accommodation accommodation) {

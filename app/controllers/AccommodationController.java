@@ -6,6 +6,7 @@ import exceptions.OffsetOutOfRangeException;
 import models.accommodation.Accommodation;
 import play.mvc.Controller;
 import play.mvc.Result;
+import play.mvc.Security;
 import scala.Option;
 import services.AccommodationService;
 import utils.ResponseBuilder;
@@ -18,6 +19,7 @@ import static play.mvc.Results.ok;
 /**
  * @author Simon Olofsson
  */
+@Security.Authenticated(Security.Authenticator.class)
 public class AccommodationController extends Controller{
 
     private AccommodationService accommodationService;
@@ -57,10 +59,14 @@ public class AccommodationController extends Controller{
 
 	    JsonNode requestBody = request().body().asJson();
 
+	    if (requestBody == null || requestBody.size() == 0) {
+			return ResponseBuilder.buildBadRequest("Non-empty request body required.", ResponseBuilder.MALFORMED_REQUEST_BODY);
+		}
+
         try {
             accommodationService.createAccommodationFromJson(FacebookSecurityController.getUser(), requestBody);
         } catch (JsonProcessingException e) {
-            return ResponseBuilder.buildBadRequest("Could not parse request body", ResponseBuilder.MALFORMED_REQUEST_BODY);
+            return ResponseBuilder.buildBadRequest("Could not parse request body.", ResponseBuilder.MALFORMED_REQUEST_BODY);
         }
 
         return noContent();
