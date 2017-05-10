@@ -36,12 +36,20 @@ let getInterests = function(server, authToken, parameters) {
 	performAuthenticatedGetRequest(server, '/interests', authToken, parameters, console.log);
 };
 
+let chooseTenants = function(server, authToken, tenants, successCallback) {
+    performAuthenticatedPostRequest(server, '/interests', authToken, tenants, successCallback);
+};
+
 /*
  * Accommodation
  */
 
 let getAccommodation = function(server, authToken, parameters) {
     performAuthenticatedGetRequest(server, '/accommodation', authToken, parameters, console.log);
+};
+
+let createAccommodation = function(server, authToken, accommodation, successCallback) {
+    performAuthenticatedPostRequest(server, '/accommodation', authToken, accommodation, successCallback)
 };
 
 /*
@@ -52,9 +60,27 @@ let getTenantProfile = function(server, authToken) {
     performAuthenticatedGetRequest(server, '/users/tenants', authToken, {}, console.log);
 };
 
+let createTenantProfile = function(server, authToken, profile, successCallback) {
+    performAuthenticatedPostRequest(server, '/users/profiles', authToken, profile, successCallback);
+};
+
 /*
  * Utilities
  */
+
+let performAuthenticatedPostRequest = function(server, endpoint, authToken, body, successCallback) {
+
+    let options = {
+        headers: {
+            'Content-Type': 'application/json',
+            'X-AUTH-TOKEN': authToken
+        },
+        body: JSON.stringify(body)
+    };
+
+    performPostRequest(server, endpoint, options, successCallback);
+
+};
 
 let performPostRequest = function(server, endpoint, options, successCallback) {
 
@@ -90,7 +116,7 @@ let performRequest = function(server, endpoint, parameters, options, successCall
 
     }).catch(function(error) {
 
-        console.log(error);
+        console.error(error);
 
     });
 };
@@ -121,8 +147,11 @@ module.exports = {
     facebookLogin: facebookLogin,
     localLogin: localLogin,
 	getInterests: getInterests,
+    chooseTenants: chooseTenants,
     getAccommodation: getAccommodation,
+    createAccommodation: createAccommodation,
     getTenantProfile: getTenantProfile,
+    createTenantProfile: createTenantProfile,
     performPostRequest: performPostRequest,
     performAuthenticatedGetRequest: performAuthenticatedGetRequest
 };

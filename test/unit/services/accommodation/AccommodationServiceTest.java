@@ -10,8 +10,12 @@ import org.junit.Test;
 import org.mockito.Mockito;
 import repositories.AccommodationRepository;
 import repositories.AddressRepository;
+import repositories.RentalPeriodRepository;
+import repositories.UsersRepository;
 import services.AccommodationService;
 import testResources.AccommodationUtils;
+
+import java.text.ParseException;
 
 import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.eq;
@@ -24,10 +28,12 @@ import static org.mockito.Mockito.when;
 public class AccommodationServiceTest {
 
     @Test
-    public void createsAccommodation() throws JsonProcessingException {
+    public void createsAccommodation() throws JsonProcessingException, ParseException {
 
         AccommodationRepository accommodationRepository = mock(AccommodationRepository.class);
         AddressRepository addressRepository = mock(AddressRepository.class);
+        UsersRepository usersRepository = mock(UsersRepository.class);
+        RentalPeriodRepository rentalPeriodRepository = mock(RentalPeriodRepository.class);
 
         ObjectMapper mapper = mock(ObjectMapper.class);
 
@@ -35,7 +41,8 @@ public class AccommodationServiceTest {
         Mockito.doNothing().when(addressRepository).save(any(Address.class));
         when(mapper.treeToValue(any(JsonNode.class), eq(Accommodation.class))).thenReturn(AccommodationUtils.createAccommodation());
 
-        AccommodationService accommodationService = new AccommodationService(accommodationRepository, addressRepository, usersRepository, rentalPeriodRepository, mapper);
+        AccommodationService accommodationService = new AccommodationService(accommodationRepository,
+                addressRepository, usersRepository, rentalPeriodRepository, mapper);
 
         User renter = new User("renter@renter.com", "Renter");
 

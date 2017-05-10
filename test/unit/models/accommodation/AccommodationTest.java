@@ -7,13 +7,15 @@ import models.accommodation.Accommodation;
 import org.junit.Test;
 import testResources.AccommodationUtils;
 
+import java.text.ParseException;
+
 /**
  * @author Simon Olofsson
  */
 public class AccommodationTest {
 
     @Test
-    public void deserializesProperly() throws JsonProcessingException {
+    public void deserializesProperly() throws JsonProcessingException, ParseException {
 
         ObjectNode accommodationJson = AccommodationUtils.createAccommodationJson();
 

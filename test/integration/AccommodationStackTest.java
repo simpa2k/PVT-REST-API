@@ -14,6 +14,8 @@ import services.AccommodationService;
 import testResources.AccommodationUtils;
 import testResources.BaseTest;
 
+import java.text.ParseException;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
@@ -28,7 +30,7 @@ public class AccommodationStackTest extends BaseTest {
     private RentalPeriodRepository rentalPeriodRepository = new RentalPeriodRepository();
 
     @Test
-    public void savesAccommodationToDatabase() throws JsonProcessingException {
+    public void savesAccommodationToDatabase() throws JsonProcessingException, ParseException {
 
         ObjectMapper mapper = new ObjectMapper();
 

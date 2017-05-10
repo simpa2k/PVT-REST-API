@@ -72,11 +72,12 @@ public class AccommodationService {
         RentalPeriod rentalPeriod = accommodation.rentalPeriod;
 
         accommodation.renter = user;
-        addressRepository.save(address);
-        rentalPeriodRepository.save(rentalPeriod);
 
         Accommodation existing = accommodationRepository.findByRenter(accommodation.renter.id);
         if (existing == null) {
+
+            addressRepository.save(address);
+            rentalPeriodRepository.save(rentalPeriod);
 
             accommodationRepository.save(accommodation);
 

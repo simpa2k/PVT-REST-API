@@ -27,64 +27,48 @@ functions.facebookLogin(server, tenantFacebookToken, function(responseObject) {
 
     tenantToken = responseObject.authToken;
 
-    let profileOptions = {
-        headers: {
-            'Content-Type': 'application/json',
-            'X-AUTH-TOKEN': tenantToken
-        },
-        body: {
+    let body = {
 
-            description: "Hej, jag heter Kalle och behöver någonstans att bo.",
+        description: "Hej, jag heter Kalle och behöver någonstans att bo.",
             maxRent: 5000,
             maxDeposit: 8000,
             rentalPeriod: {
-                start: "2017-05-01",
+            start: "2017-05-01",
                 end: "2018-05-01"
-            }
-
         }
+
     };
 
-    printMessage("Posting the following to /users/profiles, as tenant: " + prettyPrint(profileOptions));
+    printMessage("Posting the following to /users/profiles, as tenant: " + prettyPrint(body));
 
-    profileOptions.body = JSON.stringify(profileOptions.body);
-
-    functions.performPostRequest(server, '/users/profiles', profileOptions, function() {
+    functions.createTenantProfile(server, tenantToken, body, function() {
 
         functions.facebookLogin(server, renterFacebookToken, function(responseObject) {
 
             printMessage("Response object after logging in renter via Facebook: " + prettyPrint(responseObject));
             renterToken = responseObject.authToken;
 
-            let accommodationOptions = {
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-AUTH-TOKEN': renterToken
-                },
-                body: {
+            let body = {
 
-                    rent: 5000,
+                rent: 5000,
                     size: 20,
                     rooms: 1,
                     deposit: 8000,
                     address: {
-                        streetName: "Dymlingsgränd",
+                    streetName: "Dymlingsgränd",
                         streetNumber: 3,
                         streetNumberLetter: "A"
-                    },
-                    rentalPeriod: {
-                        start: "2017-05-01",
+                },
+                rentalPeriod: {
+                    start: "2017-05-01",
                         end: "2018-05-01"
-                    }
-
                 }
+
             };
 
-            printMessage("Posting the following to /accommodation, as renter: " + prettyPrint(accommodationOptions));
+            printMessage("Posting the following to /accommodation, as renter: " + prettyPrint(body));
 
-            accommodationOptions.body = JSON.stringify(accommodationOptions.body);
-
-            functions.performPostRequest(server, '/accommodation', accommodationOptions, function() {
+            functions.createAccommodation(server, renterToken, body, function() {
 
                 functions.performAuthenticatedGetRequest(server, '/users', renterToken, {
 
@@ -94,21 +78,13 @@ functions.facebookLogin(server, tenantFacebookToken, function(responseObject) {
 
                     printMessage("Result of getting tenants filtered by max rent: " + prettyPrint(responseObject));
 
-                    let chooseTenantOptions = {
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'X-AUTH-TOKEN': renterToken
-                        },
-                        body: [
-                            responseObject[0].id
-                        ]
-                    };
+                    let body = [
+                        responseObject[0].id
+                    ];
 
-                    printMessage("Posting the following to /accommodation, as renter: " + prettyPrint(chooseTenantOptions));
+                    printMessage("Posting the following to /accommodation, as renter: " + prettyPrint(body));
 
-                    chooseTenantOptions.body = JSON.stringify(chooseTenantOptions.body);
-
-                    functions.performPostRequest(server, '/interests', chooseTenantOptions, function() {
+                    functions.chooseTenants(server, renterToken, body, function() {
 
                         functions.performAuthenticatedGetRequest(server, '/interests', tenantToken, {}, function(responseObject) {
 

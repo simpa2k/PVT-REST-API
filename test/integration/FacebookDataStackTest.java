@@ -1,4 +1,4 @@
-package repositories.facebookData;
+package integration;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -19,7 +19,7 @@ import static org.junit.Assert.assertNull;
 /**
  * @author Simon Olofsson
  */
-public class FacebookDataRepositoryTest extends BaseTest {
+public class FacebookDataStackTest extends BaseTest {
 
     private FacebookDataRepository fbDataRepo = new FacebookDataRepository();
     private ObjectMapper mapper = new ObjectMapper();

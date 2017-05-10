@@ -20,6 +20,8 @@ import services.AccommodationService;
 import testResources.AccommodationUtils;
 import utils.ResponseBuilder;
 
+import java.text.ParseException;
+
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.mock;
@@ -41,7 +43,7 @@ public class AccommodationControllerTest extends WithApplication {
     }
 
     @Test
-    public void returnsOKOnCorrectRequest() throws JsonProcessingException {
+    public void returnsOKOnCorrectRequest() throws JsonProcessingException, ParseException {
 
         Accommodation accommodation = AccommodationUtils.createAccommodation();
         ObjectNode accommodationJson = AccommodationUtils.createAccommodationJson();
@@ -59,7 +61,7 @@ public class AccommodationControllerTest extends WithApplication {
     }
 
     @Test
-    public void returnsBadRequestOnNoRequestBody() throws JsonProcessingException {
+    public void returnsBadRequestOnNoRequestBody() throws JsonProcessingException, ParseException {
 
         Accommodation accommodation = AccommodationUtils.createAccommodation();
 
@@ -78,7 +80,7 @@ public class AccommodationControllerTest extends WithApplication {
     }
 
     @Test
-    public void returnsBadRequestOnEmptyRequestBody() throws JsonProcessingException {
+    public void returnsBadRequestOnEmptyRequestBody() throws JsonProcessingException, ParseException {
 
         Accommodation accommodation = AccommodationUtils.createAccommodation();
         ObjectNode emptyBody = Json.newObject();
@@ -100,7 +102,7 @@ public class AccommodationControllerTest extends WithApplication {
     }
 
     @Test
-    public void returnsBadRequestOnMalformedRequestBody() throws JsonProcessingException {
+    public void returnsBadRequestOnMalformedRequestBody() throws JsonProcessingException, ParseException {
 
         Accommodation accommodation = AccommodationUtils.createAccommodation();
         ObjectNode accommodationJson = AccommodationUtils.createAccommodationJson();
