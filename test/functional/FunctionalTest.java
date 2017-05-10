@@ -6,6 +6,7 @@ import controllers.SecurityController;
 import org.junit.Before;
 import org.junit.Test;
 import play.Configuration;
+import play.Logger;
 import play.libs.Json;
 import play.mvc.Http;
 import play.mvc.Result;

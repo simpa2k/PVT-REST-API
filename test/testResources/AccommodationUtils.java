@@ -9,6 +9,7 @@ import models.user.User;
 import org.apache.commons.lang3.time.DateUtils;
 import org.junit.Before;
 import org.junit.BeforeClass;
+import play.Logger;
 import play.libs.Json;
 
 import java.text.ParseException;
@@ -53,7 +54,11 @@ public class AccommodationUtils {
         Address address = new Address("Dymlingsgränd", 3, 'A');
         RentalPeriod rentalPeriod = new RentalPeriod("2017-05-01", "2018-05-01");
 
-        return new Accommodation(5000, 20, 1, 8000, address, renter);
+        Accommodation accommodation = new Accommodation(5000, 20, 1, 8000, address, renter);
+        accommodation.rentalPeriod = rentalPeriod;
+
+        return accommodation;
+
     }
 
     public static void performStandardAssertions(Accommodation accommodation) throws ParseException {
@@ -73,6 +78,8 @@ public class AccommodationUtils {
 
         Date start = DateUtils.truncate(df.parse("2017-05-01"), Calendar.DAY_OF_MONTH);
         Date end = DateUtils.truncate(df.parse("2018-05-01"), Calendar.DAY_OF_MONTH);
+
+        Logger.debug("" + accommodation.rent);
 
         assertEquals(start, DateUtils.truncate(accommodation.rentalPeriod.start, Calendar.DAY_OF_MONTH));
         assertEquals(end, DateUtils.truncate(accommodation.rentalPeriod.end, Calendar.DAY_OF_MONTH));
