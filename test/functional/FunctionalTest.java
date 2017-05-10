@@ -42,17 +42,22 @@ public class FunctionalTest extends WithApplication {
 
     private String authenticateViaFacebook() {
 
-        ObjectNode loginJson = Json.newObject();
-        loginJson.put("facebookAuthToken", facebookToken);
+        if (facebookToken != null) {
 
-        Http.RequestBuilder facebookLogin = fakeRequest(controllers.routes.FacebookSecurityController.login());
-        facebookLogin.header("Content-Type", "application/json");
-        facebookLogin.bodyJson(loginJson);
+            ObjectNode loginJson = Json.newObject();
+            loginJson.put("facebookAuthToken", facebookToken);
 
-        Result loginResult = route(facebookLogin);
-        JsonNode loginResponse = Json.parse(contentAsString(loginResult));
+            Http.RequestBuilder facebookLogin = fakeRequest(controllers.routes.FacebookSecurityController.login());
+            facebookLogin.header("Content-Type", "application/json");
+            facebookLogin.bodyJson(loginJson);
 
-        return loginResponse.findValue("authToken").asText();
+            Result loginResult = route(facebookLogin);
+            JsonNode loginResponse = Json.parse(contentAsString(loginResult));
+
+            return loginResponse.findValue("authToken").asText();
+
+        }
+        return null;
 
     }
 
@@ -61,30 +66,33 @@ public class FunctionalTest extends WithApplication {
 
         String authToken = authenticateViaFacebook();
 
-        ObjectNode profileJson = TenantProfileUtils.createTenantProfileJson();
+        if (authToken != null) {
 
-        Http.RequestBuilder createProfileRequest = fakeRequest(controllers.routes.UsersController.createProfile());
-        createProfileRequest.header(SecurityController.AUTH_TOKEN_HEADER, authToken);
-        createProfileRequest.bodyJson(profileJson);
+            ObjectNode profileJson = TenantProfileUtils.createTenantProfileJson();
 
-        Result result = route(createProfileRequest);
-        assertEquals(NO_CONTENT, result.status());
+            Http.RequestBuilder createProfileRequest = fakeRequest(controllers.routes.UsersController.createProfile());
+            createProfileRequest.header(SecurityController.AUTH_TOKEN_HEADER, authToken);
+            createProfileRequest.bodyJson(profileJson);
 
-        Option<Integer> maxRent = Option.empty();
-        Option<Integer> maxDeposit = Option.empty();
-        Option<String> start = Option.empty();
-        Option<String> end = Option.empty();
+            Result result = route(createProfileRequest);
+            assertEquals(NO_CONTENT, result.status());
 
-        Http.RequestBuilder getProfileRequest = fakeRequest(controllers.routes.UsersController.getUser(maxRent, maxDeposit, start, end));
-        getProfileRequest.header(SecurityController.AUTH_TOKEN_HEADER, authToken);
+            Option<Integer> maxRent = Option.empty();
+            Option<Integer> maxDeposit = Option.empty();
+            Option<String> start = Option.empty();
+            Option<String> end = Option.empty();
 
-        Result getResult = route(getProfileRequest);
-        JsonNode responseBody = Json.parse(contentAsString(getResult));
+            Http.RequestBuilder getProfileRequest = fakeRequest(controllers.routes.UsersController.getUser(maxRent, maxDeposit, start, end));
+            getProfileRequest.header(SecurityController.AUTH_TOKEN_HEADER, authToken);
 
-        JsonNode profile = responseBody.findValue("tenantProfile");
+            Result getResult = route(getProfileRequest);
+            JsonNode responseBody = Json.parse(contentAsString(getResult));
 
-        TenantProfileUtils.makeStandardAssertionsAgainstJson(profile);
+            JsonNode profile = responseBody.findValue("tenantProfile");
 
+            TenantProfileUtils.makeStandardAssertionsAgainstJson(profile);
+
+        }
     }
 
     @Test
@@ -92,14 +100,17 @@ public class FunctionalTest extends WithApplication {
 
         String authToken = authenticateViaFacebook();
 
-        ObjectNode accommodationJson = AccommodationUtils.createAccommodationJson();
+        if (authToken != null) {
 
-        Http.RequestBuilder createRequest = fakeRequest(controllers.routes.AccommodationController.createAccommodation());
-        createRequest.header(SecurityController.AUTH_TOKEN_HEADER, authToken);
-        createRequest.bodyJson(accommodationJson);
+            ObjectNode accommodationJson = AccommodationUtils.createAccommodationJson();
 
-        Result result = route(createRequest);
-        assertEquals(NO_CONTENT, result.status());
+            Http.RequestBuilder createRequest = fakeRequest(controllers.routes.AccommodationController.createAccommodation());
+            createRequest.header(SecurityController.AUTH_TOKEN_HEADER, authToken);
+            createRequest.bodyJson(accommodationJson);
 
+            Result result = route(createRequest);
+            assertEquals(NO_CONTENT, result.status());
+
+        }
     }
 }
