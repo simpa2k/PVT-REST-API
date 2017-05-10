@@ -1,53 +1,13 @@
 package models.user;
 
-import com.avaje.ebean.Model;
-import models.accommodation.Accommodation;
-import models.accommodation.Address;
-
-import javax.persistence.*;
+import javax.persistence.Entity;
 
 /**
- * @author Simon Olofsson
+ * Created by simpa2k on 2017-05-10.
  */
 @Entity
-@DiscriminatorValue("RENTER")
-public class Renter extends Model {
+public class Renter {
 
-    /*@OneToOne
-    public Accommodation accommodation;
+    String test;
 
-    private static Finder<Long, Renter> find = new Finder<>(Renter.class);
-
-    public Renter() {
-        super();
-    }
-
-    public Renter(String emailAddress, String password, String fullName, String description, int age) {
-        super(emailAddress, password, fullName, description, age);
-    }
-
-    public Accommodation createAccommodation(double rent, double size, double rooms, double deposit,
-                                             boolean smokingAllowed, boolean animalsAllowed,
-                                             boolean tv, boolean broadband, String description, Address address) {
-
-        /*Accommodation accommodation = new Accommodation(rent, size, rooms, deposit,
-                smokingAllowed, animalsAllowed, tv, broadband, description, address, this);
-
-        accommodation.save();
-
-        this.accommodation = accommodation;
-        save();
-
-        return accommodation;*/
-        /*return null;
-
-    }
-
-    public static Renter findByAuthToken(String authToken) {
-        return find.where().eq("auth_token", authToken).findUnique();
-    }
-
-    public static Renter findByEmailAddress(String emailAddress) {
-        return find.where().eq("email_address", emailAddress).findUnique();
-    }*/
 }

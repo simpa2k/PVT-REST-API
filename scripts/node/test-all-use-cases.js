@@ -1,9 +1,9 @@
 let functions = require('./functions');
 
-let server = 'http://localhost:9000';
+let server = 'http://localhost:8080';
 
-let tenantFacebookToken = '';
-let renterFacebookToken = '';
+let tenantFacebookToken = 'EAAa2D7XPp6oBAId1IIQjj2iMoZBxz4yWYriYnxXSZAHssNT8Qpsg2QlDZAzdtuw3qfcfNjH8HvHaDKqALAcXMyOAev1iUTyvgVwOLP3calNZC30TnHMiOBZBOzvOU1Hwmhc5FgmWvlIU1wZBffkWpeZAz5bJkcsyIgZD';
+let renterFacebookToken = 'EAAa2D7XPp6oBAKRKHXPKOJ1Upvm1je5zl7SiMxnnujkYRDxGZB2X8UpTl6dZCDBZApKDKdawdiBvgayezVSM96p6ZCZBYropI7dkZAnSJ71K7WJWP4GVGUWekzHstgIaRQ7NPzVO1uIlo9lRQUlNXwqZCwoy6SvgMPt4rgN7rKS6AZDZD';
 
 let tenantToken = '';
 let renterToken = '';
@@ -43,6 +43,8 @@ functions.facebookLogin(server, tenantFacebookToken, function(responseObject) {
 
     functions.createTenantProfile(server, tenantToken, body, function() {
 
+        printMessage("Logging in tenant via Facebook");
+
         functions.facebookLogin(server, renterFacebookToken, function(responseObject) {
 
             printMessage("Response object after logging in renter via Facebook: " + prettyPrint(responseObject));
@@ -70,9 +72,11 @@ functions.facebookLogin(server, tenantFacebookToken, function(responseObject) {
 
             functions.createAccommodation(server, renterToken, body, function() {
 
+                printMessage("Renter getting tenants whose max rent is greater than or equal to the rent of the accommodation.");
+
                 functions.performAuthenticatedGetRequest(server, '/users', renterToken, {
 
-                    maxRent: 5000
+                    maxRent: 5000,
 
                 }, function(responseObject) {
 
@@ -85,6 +89,8 @@ functions.facebookLogin(server, tenantFacebookToken, function(responseObject) {
                     printMessage("Posting the following to /accommodation, as renter: " + prettyPrint(body));
 
                     functions.chooseTenants(server, renterToken, body, function() {
+
+                        printMessage("Tenant getting renters who has shown interest.");
 
                         functions.performAuthenticatedGetRequest(server, '/interests', tenantToken, {}, function(responseObject) {
 
