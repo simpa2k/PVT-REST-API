@@ -71,4 +71,9 @@ public class AccommodationStackTest extends BaseTest {
         assertEquals(accommodation, accommodation2);
 
     }
+
+    @Test
+    public void canHandleNullRentalPeriod() {
+        // Implement this.
+    }
 }
