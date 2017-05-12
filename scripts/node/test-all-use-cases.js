@@ -75,7 +75,7 @@ functions.facebookLogin(server, tenantFacebookToken, function(responseObject) {
 
                 printMessage("Renter getting tenants whose max rent is greater than or equal to the rent of the accommodation.");
 
-                functions.performAuthenticatedGetRequest(server, '/users', renterToken, {
+                functions.getUsers(server, renterToken, {
 
                     maxRent: 5000,
 
