@@ -56,6 +56,10 @@ let createAccommodation = function(server, authToken, accommodation, successCall
  * Users
  */
 
+let getUsers = function(server, authToken, parameters) {
+    performAuthenticatedGetRequest(server, '/users', authToken, parameters, console.log);
+};
+
 let getTenantProfile = function(server, authToken) {
     performAuthenticatedGetRequest(server, '/users/tenants', authToken, {}, console.log);
 };
