@@ -41,13 +41,15 @@ public class UsersRepository {
     }
 
 
-    public List<User> findUser (final Option<Integer> maxRent, final Option<Integer> maxDeposit,
+    public List<User> findUser (final Option<String> authToken,
+                                final Option<Integer> maxRent, final Option<Integer> maxDeposit,
                                 final Option<String> start , final Option<String> end)
 
 
     {
        List<Function<ExpressionList<User>, ExpressionList<User>>> functions = Arrays.asList(
 
+           exprList -> authToken.isDefined() ? exprList.eq("auth_token", authToken.get()) : exprList,
            exprList ->maxRent.isDefined() ? exprList.le("tenantProfile.maxRent", maxRent.get()) : exprList,
            exprList ->maxDeposit.isDefined() ? exprList.le("tenantProfile.maxDeposit", maxDeposit.get()) : exprList,
            exprList ->{

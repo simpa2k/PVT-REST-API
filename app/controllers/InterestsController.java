@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.node.ArrayNode;
 import models.Interest;
 import models.user.Renter;
 import models.user.User;
+import play.Logger;
 import play.mvc.Controller;
 import play.mvc.Result;
 import play.mvc.Security;

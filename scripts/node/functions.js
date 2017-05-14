@@ -32,8 +32,8 @@ let localLogin = function(server, email, password, successCallback) {
  * Interests
  */
 
-let getInterests = function(server, authToken, parameters) {
-	performAuthenticatedGetRequest(server, '/interests', authToken, parameters, console.log);
+let getInterests = function(server, authToken, parameters, successCallback) {
+	performAuthenticatedGetRequest(server, '/interests', authToken, parameters, successCallback);
 };
 
 let chooseTenants = function(server, authToken, tenants, successCallback) {
@@ -55,6 +55,10 @@ let createAccommodation = function(server, authToken, accommodation, successCall
 /*
  * Users
  */
+
+let getUsers = function(server, authToken, parameters) {
+    performAuthenticatedGetRequest(server, '/users', authToken, parameters, console.log);
+};
 
 let getTenantProfile = function(server, authToken) {
     performAuthenticatedGetRequest(server, '/users/tenants', authToken, {}, console.log);
@@ -150,6 +154,7 @@ module.exports = {
     chooseTenants: chooseTenants,
     getAccommodation: getAccommodation,
     createAccommodation: createAccommodation,
+    getUsers: getUsers,
     getTenantProfile: getTenantProfile,
     createTenantProfile: createTenantProfile,
     performPostRequest: performPostRequest,

@@ -30,10 +30,11 @@ public class UsersController extends Controller {
         this.usersService = usersService;
     }
 
-    public Result getUser(final Option<Integer> maxRent, final Option<Integer> maxDeposit,
+    public Result getUser(final Option<String> authToken,
+                          final Option<Integer> maxRent, final Option<Integer> maxDeposit,
                           final Option<String> start, final Option<String> end){
-        Logger.debug("Jag kom iafall hit");
-       List<User> users = usersService.getSubset(maxRent, maxDeposit, start, end);
+
+       List<User> users = usersService.getSubset(authToken, maxRent, maxDeposit, start, end);
 
         // GET http://localhost:9000/users?maxRent=5000&maxDeposit=8000&start=2017-05-01&end=2018-05-1
 

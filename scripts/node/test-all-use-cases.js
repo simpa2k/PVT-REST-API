@@ -3,8 +3,8 @@ let functions = require('./functions');
 let server = 'http://localhost:8080';
 //let server = 'https://protected-gorge-44302.herokuapp.com';
 
-let tenantFacebookToken = 'EAAa2D7XPp6oBAId1IIQjj2iMoZBxz4yWYriYnxXSZAHssNT8Qpsg2QlDZAzdtuw3qfcfNjH8HvHaDKqALAcXMyOAev1iUTyvgVwOLP3calNZC30TnHMiOBZBOzvOU1Hwmhc5FgmWvlIU1wZBffkWpeZAz5bJkcsyIgZD';
-let renterFacebookToken = 'EAAa2D7XPp6oBAKRKHXPKOJ1Upvm1je5zl7SiMxnnujkYRDxGZB2X8UpTl6dZCDBZApKDKdawdiBvgayezVSM96p6ZCZBYropI7dkZAnSJ71K7WJWP4GVGUWekzHstgIaRQ7NPzVO1uIlo9lRQUlNXwqZCwoy6SvgMPt4rgN7rKS6AZDZD';
+let tenantFacebookToken = '';
+let renterFacebookToken = '';
 
 let tenantToken = '';
 let renterToken = '';
@@ -75,7 +75,8 @@ functions.facebookLogin(server, tenantFacebookToken, function(responseObject) {
 
                 printMessage("Renter getting tenants whose max rent is greater than or equal to the rent of the accommodation.");
 
-                functions.getUsers(server, renterToken, {
+                //functions.getUsers(server, renterToken, {
+                functions.performAuthenticatedGetRequest(server, '/users', renterToken, {
 
                     maxRent: 5000,
 
@@ -93,7 +94,13 @@ functions.facebookLogin(server, tenantFacebookToken, function(responseObject) {
 
                         printMessage("Tenant getting renters who has shown interest.");
 
-                        functions.performAuthenticatedGetRequest(server, '/interests', tenantToken, {}, function(responseObject) {
+                        /*functions.performAuthenticatedGetRequest(server, '/interests', tenantToken, {}, function(responseObject) {
+
+                            printMessage("Result of getting the renters interested in the logged in tenant: " + prettyPrint(responseObject));
+
+                        })*/
+
+                        functions.getInterests(server, tenantToken, {}, function(responseObject) {
 
                             printMessage("Result of getting the renters interested in the logged in tenant: " + prettyPrint(responseObject));
 

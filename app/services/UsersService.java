@@ -134,10 +134,11 @@ public class UsersService {
 
     }
 
-    public List<User> getSubset(final Option<Integer> maxRent, final Option<Integer> maxDeposit,
+    public List<User> getSubset(final Option<String> authToken,
+                                final Option<Integer> maxRent, final Option<Integer> maxDeposit,
                                 final Option<String> start, final Option<String> end)  {
 
-        List<User> users = usersRepository.findUser(maxRent, maxDeposit, start, end);
+        List<User> users = usersRepository.findUser(authToken, maxRent, maxDeposit, start, end);
 
 
 
