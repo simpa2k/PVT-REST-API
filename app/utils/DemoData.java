@@ -54,9 +54,10 @@ public class DemoData {
 
                 admin = new User("admin@demo.com", "password", "Sven Svensson");
                 admin.authorization = Authorization.ADMIN;
+                admin.createToken();
                 admin.save();
 
-                Logger.debug(User.findByEmailAddress("admin@demo.com").fullName);
+                Logger.debug(User.findByEmailAddress("admin@demo.com").getAuthToken());
 
                 Set<User> participants = new HashSet<>();
 

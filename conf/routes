@@ -35,6 +35,6 @@ GET     /swipingsessions/:emailAddress            controllers.SwipingSessionsCon
 POST    /swipingsessions                          controllers.SwipingSessionsController.createSwipingSession(emailAddresses)
 PUT     /swipingsessions                          controllers.SwipingSessionsController.chooseActivities(swipingSessionId: Long, email, activities)
 
-GET     /gather                                   controllers.ActivityGatheringController.gather()
+GET     /gather                                   controllers.ActivityGatheringController.gather2
 
 
