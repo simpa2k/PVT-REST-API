@@ -106,7 +106,7 @@ public class EdgesStackTest extends BaseTest {
         usersRepository.save(tenant);
 
         ObjectNode requestBody = Json.newObject();
-        requestBody.put("tenantId", tenant.id);
+        requestBody.put("user", tenant.id);
         requestBody.put("active", "false");
 
         Edge edge = edgesService.addEdge(renter, requestBody);

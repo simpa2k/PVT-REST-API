@@ -46,15 +46,13 @@ public class EdgesController extends Controller {
 
         try {
 
-            User renter = SecurityController.getUser();
-            edgesService.addEdge(renter, body);
+            User actor = SecurityController.getUser();
+            edgesService.addEdge(actor, body);
 
             return noContent();
 
         } catch (IllegalArgumentException iae) {
             return ResponseBuilder.buildBadRequest(iae.getMessage(), ResponseBuilder.ILLEGAL_ARGUMENT);
-        } catch (ClassCastException cce) {
-            return ResponseBuilder.buildBadRequest("User ids must be passed as an array.", ResponseBuilder.MALFORMED_REQUEST_BODY);
         }
     }
 

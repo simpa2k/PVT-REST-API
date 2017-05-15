@@ -28,17 +28,17 @@ public class EdgesService {
 
     }
 
-    public Edge addEdge(User renter, JsonNode edge) {
+    public Edge addEdge(User actor, JsonNode edge) {
 
-        long tenantId = edge.findValue("tenantId").asLong();
+        long target = edge.findValue("user").asLong();
         String active = edge.findValue("active").textValue();
 
         if (!active.equals("true") && !active.equals("false")) {
             return null;
         }
 
-        User tenant = usersRepository.findById(tenantId);
-        return edgesRepository.create(renter, tenant, Boolean.parseBoolean(active));
+        User targetUser = usersRepository.findById(target);
+        return edgesRepository.create(actor, targetUser, Boolean.parseBoolean(active));
 
     }
 
