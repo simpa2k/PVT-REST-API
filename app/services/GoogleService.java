@@ -1,11 +1,12 @@
 package services;
 
+import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
-import com.fasterxml.jackson.databind.node.JsonNodeCreator;
 import com.fasterxml.jackson.databind.node.JsonNodeFactory;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.fasterxml.jackson.databind.util.RawValue;
 import models.accommodation.Address;
 
 import java.io.BufferedReader;
@@ -16,10 +17,12 @@ import play.Logger;
 import play.libs.Json;
 
 import java.io.InputStreamReader;
-import java.lang.reflect.Array;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
 
 /**
  * Gathers data from API's and saves them to the database.
@@ -39,7 +42,7 @@ public class GoogleService{
 	
 	private final String JSON="json?";
 	private final String LOCATION="location=59.3525362,17.9796305";
-	private final String RADIUS="radius=1000";
+	private final String RADIUS="radius=2000";
 	
 	
 	private String DATA="NODATA";
@@ -52,6 +55,7 @@ public class GoogleService{
 	 */
 	private JsonNode doApiCall(URL url) throws IOException{
 		Logger.debug("in doApiCall");
+		Logger.debug("URLRULRUL: "+url.toString());
 		StringBuilder content=new StringBuilder();
 		BufferedReader bufferedReader=new BufferedReader(new InputStreamReader(url.openStream())); //reads all data from the url to a reader
 		String line;
@@ -61,6 +65,7 @@ public class GoogleService{
 		}
 		bufferedReader.close();
 		
+		Logger.debug("DATADATA "+content.toString());
 		JsonNode data=mapper.readTree(content.toString());
 		
 		return data;
@@ -72,19 +77,26 @@ public class GoogleService{
 	
 	private ArrayNode findAdditionalResults(String nextPageToken){
 		Logger.debug("Gathering Additional DATA");
+		//Logger.debug("NXTPGETOKN: "+nextPageToken);
 		String urlString=PLACES_URL+NEARBY_SEARCH+JSON+"pagetoken="+nextPageToken+"&"+PLACES_KEY;
+		//Logger.debug("URL: "+urlString);
 		JsonNode tempNode=null;
-		
 		ArrayNode test=Json.newArray();
 		
 		tempNode=gatherData(urlString);
-		Logger.debug("ADD all results");
-		test.addAll(tempNode.findValues("results"));
-		if(checkNextPageToken(tempNode)){
-			Logger.debug("Nextpagetoken is present, doing this again");
+		Logger.debug(tempNode.textValue());
+		List<JsonNode>tempList=tempNode.findValues("results");
+		Logger.debug("size: "+tempList.size());
+		for(JsonNode tem:tempList){
+			Logger.debug("adding:"+ tem.get("name")+" to the array");
+			test.add(tem);
+		}
+		
+		if(isNextPageTrue(tempNode)){
 			test.addAll(findAdditionalResults(tempNode.findValue("next_page_token").toString()));
 		}
-		Logger.debug("returing data gathered: "+test.size());
+		
+		Logger.debug("returning data gathered: "+test.size());
 		return test;
 	}
 	
@@ -103,13 +115,17 @@ public class GoogleService{
 		return null;
 	}
 	
-	public ArrayNode gatherNearbyData(){
+	public ObjectNode gatherNearbyData(){
 		Logger.debug("In GATHERNEARBYDATA");
 		ArrayNode data=Json.newArray();
+		ObjectNode d=Json.newObject();
+		ArrayList<String>dataList=new ArrayList<>();
 		for(String type : types){
-			data.addAll(getAllNearbyInterests(type));
+			Logger.debug("Getting all "+type+"-data");
+			ArrayNode temp=d.putArray(type);
+			temp.addAll(getAllNearbyInterests(type));
 		}
-		return data;
+		return d;
 	}
 	
 	private JsonNode api(){
@@ -148,30 +164,85 @@ public class GoogleService{
 	
 	//==================================HELPERMETHODS
 	
-	private ArrayNode getAllNearbyInterests(String type){
-		String urlString = PLACES_URL+NEARBY_SEARCH+JSON+LOCATION+"&"+RADIUS+"&"+"type="+type+"&"+PLACES_KEY;
-		ArrayNode node=Json.newArray();
-		JsonNode dataOfType=gatherData(urlString);
-		node.addAll(dataOfType.findValues("results"));
+	
+	
+	private ObjectNode addToObject(ArrayList<String> list,ObjectNode obj,String type){
+		ObjectNode typeObj=Json.newObject();
+		ArrayList<JsonNode> tList=new ArrayList<>();
 		
-		
-		if(checkNextPageToken(dataOfType)){
-			node.addAll(findAdditionalResults(dataOfType.findValue("next_page_token").toString()));
+		for(String s : list){
+			try{
+				tList.add(typeObj.set(type,mapper.readTree(s)));
+				
+			}catch(IOException e){
+				e.printStackTrace();
+			}
+			
 		}
-		return node;
+		
+		return obj;
 	}
 	
-	private boolean checkNextPageToken(JsonNode data){
-		String npt=null;
+	private ArrayList<String> makeListFromJsonNode(JsonNode node){
+		ArrayList<String> typeData=new ArrayList<>();
+		Iterator<JsonNode> iter=node.findValues("results").iterator();
+		while(iter.hasNext())
+			typeData.add(iter.next().toString());
+		return typeData;
+	}
+	
+	private ArrayNode getAllNearbyInterests(String type){
+		String urlString = PLACES_URL+NEARBY_SEARCH+JSON+LOCATION+"&"+RADIUS+"&"+"type="+type+"&"+PLACES_KEY;
+		Logger.debug("Gathering "+type+"'s");
+		ArrayNode arno=Json.newArray();
+		JsonNode dataOfType=gatherData(urlString);
+		for(JsonNode d:dataOfType.findValues("results")){
+			arno.add(d);
+		}
+		
+		
+		
+		
+		if(isNextPageTrue(dataOfType)){
+			Logger.debug("There is more "+type+"-data");
+			String s=dataOfType.findValue("next_page_token").asText();
+			//Logger.debug(s);
+			arno.addAll(findAdditionalResults(s));
+			
+		}
+		return arno;
+	}
+	
+	private boolean isNextPageTrue(JsonNode data){
+		Logger.debug("IN check isNextPageTrue");
+		String npt;
 		try{
 			npt=data.findValue("next_page_token").toString();
 		}catch(NullPointerException e){
-			npt=null;
+			Logger.debug("no NextPageToken");
+			return false;
 		}
-		return (npt!=null);
+		Logger.debug("NextPageToken Present");
+		return true;
 	}
 	
 	//==================================EXTRAS
+	
+	private String makeString(ArrayList<String> stringList){
+		String total="";
+		for(String s:stringList){
+			total+=s;
+		}
+		return total;
+	}
+	
+	private void printList(ArrayList<String> l){
+		Logger.debug("Print List:");
+		Logger.debug("Size: "+l.size());
+		for(String s : l){
+			Logger.debug(s);
+		}
+	}
 	
 	public String getDATA(){
 		return this.DATA;
