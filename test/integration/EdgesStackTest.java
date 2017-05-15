@@ -1,6 +1,7 @@
 package integration;
 
 import com.fasterxml.jackson.databind.node.ArrayNode;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import exceptions.OffsetOutOfRangeException;
 import models.Edge;
 import models.user.User;
@@ -90,6 +91,29 @@ public class EdgesStackTest extends BaseTest {
         assertFalse(interests.isEmpty());
         Logger.debug(interests.toString());
 
+
+    }
+
+    @Test
+    public void possibleToCreateInactiveEdge() {
+
+        User renter = new User("renter@renter.com", "Renter");
+        User tenant = new User("tenant@tenant.com", "Tenant");
+
+        UsersRepository usersRepository = new UsersRepository();
+
+        usersRepository.save(renter);
+        usersRepository.save(tenant);
+
+        ObjectNode requestBody = Json.newObject();
+        requestBody.put("tenantId", tenant.id);
+        requestBody.put("active", "false");
+
+        Edge edge = edgesService.addEdge(renter, requestBody);
+
+        assertEquals(renter, edge.renter);
+        assertEquals(tenant, edge.tenant);
+        assertEquals(false, edge.active);
 
     }
 

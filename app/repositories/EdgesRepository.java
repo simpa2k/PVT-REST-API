@@ -15,12 +15,16 @@ import java.util.function.Function;
 public class EdgesRepository {
 
     public Edge create(User renter, User tenant) {
+        return create(renter, tenant, true);
+    }
+
+    public Edge create(User renter, User tenant, boolean active) {
 
         Edge edge = Edge.findByRenterAndTenant(renter.id, tenant.id);
 
         if (edge == null) {
 
-            edge = new Edge(renter, tenant);
+            edge = new Edge(renter, tenant, active);
             save(edge);
 
         }

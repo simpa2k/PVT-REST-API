@@ -45,6 +45,14 @@ public class Edge extends Model {
 
     }
 
+    public Edge(User renter, User tenant, boolean active) {
+
+        this.renter = renter;
+        this.tenant = tenant;
+        this.active = active;
+
+    }
+
     public static List<Edge> filterBy(List<Function<ExpressionList<Edge>, ExpressionList<Edge>>> functions) {
 
         ExpressionList<Edge> expressionList = find.where();

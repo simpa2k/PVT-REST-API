@@ -1,7 +1,6 @@
 package controllers;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.node.ArrayNode;
 import models.Edge;
 import models.user.User;
 import play.mvc.Controller;
@@ -21,11 +20,11 @@ import java.util.List;
 @Security.Authenticated(Secured.class)
 public class EdgesController extends Controller {
 
-    private EdgesService interestsService;
+    private EdgesService edgesService;
 
     @Inject
-    public EdgesController(EdgesService interestsService) {
-        this.interestsService = interestsService;
+    public EdgesController(EdgesService edgesService) {
+        this.edgesService = edgesService;
     }
 
     public Result get(Option<Integer> count, Option<Integer> offset,
@@ -33,7 +32,7 @@ public class EdgesController extends Controller {
 
         try {
 
-            List<Edge> interests = interestsService.getSubset(count, offset, tenantId, renterId, mutual);
+            List<Edge> interests = edgesService.getSubset(count, offset, tenantId, renterId, mutual);
             return ResponseBuilder.buildOKList(interests);
 
         } catch(OffsetOutOfRangeException e) {
@@ -48,7 +47,7 @@ public class EdgesController extends Controller {
         try {
 
             User renter = SecurityController.getUser();
-            interestsService.addEdges(renter, (ArrayNode) body);
+            edgesService.addEdge(renter, body);
 
             return noContent();
 
@@ -71,7 +70,7 @@ public class EdgesController extends Controller {
                 return ResponseBuilder.buildBadRequest("Attribute 'active' must be set to either 'true' or 'false'.", ResponseBuilder.ILLEGAL_ARGUMENT);
             }
 
-            Edge interest = interestsService.setMutual(renterId, tenantId, Boolean.parseBoolean(mutual));
+            Edge interest = edgesService.setMutual(renterId, tenantId, Boolean.parseBoolean(mutual));
 
             return ResponseBuilder.buildOKObject(interest);
 
@@ -86,7 +85,7 @@ public class EdgesController extends Controller {
             return ResponseBuilder.buildUnauthorizedRequest("Owner of token and owner of tenant id do not match. A user may only withdraw own interests.");
         }
 
-        interestsService.withdrawInterest(tenantId, accommodationId);
+        edgesService.withdrawInterest(tenantId, accommodationId);
 
         return noContent();
 

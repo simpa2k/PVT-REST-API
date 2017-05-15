@@ -1,5 +1,6 @@
 package services;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import models.Edge;
 import models.user.User;
@@ -24,6 +25,20 @@ public class EdgesService {
 
         this.edgesRepository = edgesRepository;
         this.usersRepository = usersRepository;
+
+    }
+
+    public Edge addEdge(User renter, JsonNode edge) {
+
+        long tenantId = edge.findValue("tenantId").asLong();
+        String active = edge.findValue("active").textValue();
+
+        if (!active.equals("true") && !active.equals("false")) {
+            return null;
+        }
+
+        User tenant = usersRepository.findById(tenantId);
+        return edgesRepository.create(renter, tenant, Boolean.parseBoolean(active));
 
     }
 
