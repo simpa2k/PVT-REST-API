@@ -14,7 +14,7 @@ import java.util.function.Function;
  */
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = {"renter_id", "tenant_id"}))
 @Entity
-public class Interest extends Model {
+public class Edge extends Model {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,22 +34,22 @@ public class Interest extends Model {
     @JsonProperty("tenantId")
     public User tenant;
 
-    public boolean mutual = true;
+    public boolean active = true;
 
-    private static Finder<Long, Interest> find = new Finder<>(Interest.class);
+    private static Finder<Long, Edge> find = new Finder<>(Edge.class);
 
-    public Interest(User renter, User tenant) {
+    public Edge(User renter, User tenant) {
 
         this.renter = renter;
         this.tenant = tenant;
 
     }
 
-    public static List<Interest> filterBy(List<Function<ExpressionList<Interest>, ExpressionList<Interest>>> functions) {
+    public static List<Edge> filterBy(List<Function<ExpressionList<Edge>, ExpressionList<Edge>>> functions) {
 
-        ExpressionList<Interest> expressionList = find.where();
+        ExpressionList<Edge> expressionList = find.where();
 
-        for (Function<ExpressionList<Interest>, ExpressionList<Interest>> function : functions) {
+        for (Function<ExpressionList<Edge>, ExpressionList<Edge>> function : functions) {
             expressionList = function.apply(expressionList);
         }
 
@@ -57,11 +57,11 @@ public class Interest extends Model {
 
     }
 
-    public static List<Interest> findAll() {
+    public static List<Edge> findAll() {
         return find.all();
     }
 
-    public static Interest findByRenterAndTenant(long renterId, long tenantId) {
+    public static Edge findByRenterAndTenant(long renterId, long tenantId) {
         return find.where().eq("renter_id", renterId).eq("tenant_id", tenantId).findUnique();
     }
 }

@@ -6,15 +6,12 @@ package utils;
 
 import models.*;
 import models.accommodation.Accommodation;
-import models.accommodation.Address;
-import models.RentalPeriod;
 import models.user.*;
 import play.Environment;
 import play.Logger;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
-import java.text.ParseException;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -29,7 +26,7 @@ public class DemoData {
     private Accommodation renter1Accommodation;
 
     //private Tenant tenant1;
-    private Interest interest1;
+    private Edge interest1;
 
     public SwipingSession session;
     public Activity modernaMuseet;

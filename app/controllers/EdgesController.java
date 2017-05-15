@@ -2,17 +2,14 @@ package controllers;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ArrayNode;
-import models.Interest;
-import models.user.Renter;
+import models.Edge;
 import models.user.User;
-import play.Logger;
 import play.mvc.Controller;
 import play.mvc.Result;
 import play.mvc.Security;
 import scala.Option;
-import services.InterestsService;
+import services.EdgesService;
 import exceptions.OffsetOutOfRangeException;
-import services.UsersService;
 import utils.ResponseBuilder;
 
 import javax.inject.Inject;
@@ -22,12 +19,12 @@ import java.util.List;
  * @author Simon Olofsson
  */
 @Security.Authenticated(Secured.class)
-public class InterestsController extends Controller {
+public class EdgesController extends Controller {
 
-    private InterestsService interestsService;
+    private EdgesService interestsService;
 
     @Inject
-    public InterestsController(InterestsService interestsService) {
+    public EdgesController(EdgesService interestsService) {
         this.interestsService = interestsService;
     }
 
@@ -36,7 +33,7 @@ public class InterestsController extends Controller {
 
         try {
 
-            List<Interest> interests = interestsService.getSubset(count, offset, tenantId, renterId, mutual);
+            List<Edge> interests = interestsService.getSubset(count, offset, tenantId, renterId, mutual);
             return ResponseBuilder.buildOKList(interests);
 
         } catch(OffsetOutOfRangeException e) {
@@ -51,7 +48,7 @@ public class InterestsController extends Controller {
         try {
 
             User renter = SecurityController.getUser();
-            interestsService.addInterests(renter, (ArrayNode) body);
+            interestsService.addEdges(renter, (ArrayNode) body);
 
             return noContent();
 
@@ -68,13 +65,13 @@ public class InterestsController extends Controller {
 
         try {
 
-            String mutual = body.findValue("mutual").textValue();
+            String mutual = body.findValue("active").textValue();
 
             if (!mutual.equals("true") && !mutual.equals("false")) {
-                return ResponseBuilder.buildBadRequest("Attribute 'mutual' must be set to either 'true' or 'false'.", ResponseBuilder.ILLEGAL_ARGUMENT);
+                return ResponseBuilder.buildBadRequest("Attribute 'active' must be set to either 'true' or 'false'.", ResponseBuilder.ILLEGAL_ARGUMENT);
             }
 
-            Interest interest = interestsService.setMutual(renterId, tenantId, Boolean.parseBoolean(mutual));
+            Edge interest = interestsService.setMutual(renterId, tenantId, Boolean.parseBoolean(mutual));
 
             return ResponseBuilder.buildOKObject(interest);
 

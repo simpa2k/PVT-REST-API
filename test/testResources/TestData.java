@@ -5,7 +5,7 @@
 package testResources;
 
 import models.Activity;
-import models.Interest;
+import models.Edge;
 import models.accommodation.Accommodation;
 import models.user.*;
 import models.SwipingSession;
@@ -29,7 +29,7 @@ public class TestData {
     private Accommodation renter1Accommodation;
 
     //private Tenant tenant1;
-    private Interest interest1;
+    private Edge interest1;
 
     private SwipingSession session;
     private Activity modernaMuseet;
@@ -142,7 +142,7 @@ public class TestData {
         return tenant1;
     }*/
 
-    public Interest getInterest1() {
+    public Edge getInterest1() {
         return interest1;
     }
 

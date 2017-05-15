@@ -11,7 +11,7 @@ import play.libs.Json;
 import repositories.RentalPeriodRepository;
 import repositories.AccommodationRepository;
 import repositories.FacebookDataRepository;
-import repositories.InterestsRepository;
+import repositories.EdgesRepository;
 import repositories.TenantProfileRepository;
 import repositories.UsersRepository;
 import services.UsersService;
@@ -34,7 +34,7 @@ public class UsersServiceTest extends BaseTest {
 
         UsersRepository usersRepository = mock(UsersRepository.class);
         AccommodationRepository accommodationRepository = mock(AccommodationRepository.class);
-        InterestsRepository interestsRepository = mock(InterestsRepository.class);
+        EdgesRepository interestsRepository = mock(EdgesRepository.class);
         FacebookDataRepository facebookDataRepository = mock(FacebookDataRepository.class);
         TenantProfileRepository tenantProfileRepository = mock(TenantProfileRepository.class);
         RentalPeriodRepository rentalPeriodRepository = mock(RentalPeriodRepository.class);

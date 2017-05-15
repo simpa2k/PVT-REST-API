@@ -1,8 +1,8 @@
 package testResources.mocks;
 
-import models.Interest;
+import models.Edge;
 import models.user.User;
-import repositories.InterestsRepository;
+import repositories.EdgesRepository;
 import scala.Option;
 
 import java.util.List;
@@ -10,30 +10,30 @@ import java.util.List;
 /**
  * @author Simon Olofsson
  */
-public class MockInterestRepository extends InterestsRepository {
+public class MockInterestRepository extends EdgesRepository {
 
     @Override
-    public Interest create(User renter, User tenant) {
+    public Edge create(User renter, User tenant) {
         return null;
     }
 
     @Override
-    public List<Interest> findInterests(Option<Long> tenantId, Option<Long> accommodationId, Option<Boolean> mutual) {
+    public List<Edge> findEdges(Option<Long> tenantId, Option<Long> accommodationId, Option<Boolean> active) {
         return null;
     }
 
     @Override
-    public Interest findInterest(long tenantId, long accommodationId) {
+    public Edge findEdge(long tenantId, long accommodationId) {
         return null;
     }
 
     @Override
-    public void save(Interest interest) {
+    public void save(Edge edge) {
 
     }
 
     @Override
-    public void delete(Interest interest) {
+    public void delete(Edge edge) {
 
     }
 }

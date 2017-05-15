@@ -9,7 +9,7 @@ import org.junit.Test;
 import repositories.RentalPeriodRepository;
 import repositories.AccommodationRepository;
 import repositories.FacebookDataRepository;
-import repositories.InterestsRepository;
+import repositories.EdgesRepository;
 import repositories.TenantProfileRepository;
 import repositories.UsersRepository;
 import services.UsersService;
@@ -28,7 +28,7 @@ public class UserStackTest extends BaseTest {
 
     UsersService usersService = new UsersService(new UsersRepository(),
             new AccommodationRepository(),
-            new InterestsRepository(),
+            new EdgesRepository(),
             new FacebookDataRepository(),
             new TenantProfileRepository(),
             new RentalPeriodRepository(),

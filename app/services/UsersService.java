@@ -4,10 +4,6 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import exceptions.NoEmailFoundException;
-import exceptions.OffsetOutOfRangeException;
-import models.Interest;
-import models.accommodation.Accommodation;
-import models.user.Renter;
 import models.user.TenantProfile;
 import models.user.User;
 
@@ -15,12 +11,11 @@ import scala.Option;
 import repositories.RentalPeriodRepository;
 import repositories.AccommodationRepository;
 import repositories.FacebookDataRepository;
-import repositories.InterestsRepository;
+import repositories.EdgesRepository;
 import repositories.TenantProfileRepository;
 import repositories.UsersRepository;
 
 import javax.inject.Inject;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -30,7 +25,7 @@ public class UsersService {
 
     private UsersRepository usersRepository;
     private AccommodationRepository accommodationRepository;
-    private InterestsRepository interestsRepository;
+    private EdgesRepository interestsRepository;
     private FacebookDataRepository facebookDataRepository;
     private TenantProfileRepository tenantProfileRepository;
     private RentalPeriodRepository rentalPeriodRepository;
@@ -40,7 +35,7 @@ public class UsersService {
     @Inject
     public UsersService(UsersRepository usersRepository,
                         AccommodationRepository accommodationRepository,
-                        InterestsRepository interestsRepository,
+                        EdgesRepository interestsRepository,
                         FacebookDataRepository facebookDataRepository,
                         TenantProfileRepository tenantProfileRepository,
                         RentalPeriodRepository rentalPeriodRepository,

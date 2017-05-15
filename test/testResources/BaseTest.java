@@ -1,6 +1,6 @@
 package testResources;
 
-import models.Interest;
+import models.Edge;
 import models.accommodation.Accommodation;
 import models.user.Renter;
 import models.user.User;
@@ -32,7 +32,7 @@ public class BaseTest extends WithApplication {
     protected String tenant1Email;
     protected String tenant1Password;
 
-    protected Interest interest1;
+    protected Edge interest1;
 
     protected Accommodation renter1Accommodation;
 

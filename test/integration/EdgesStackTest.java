@@ -1,17 +1,16 @@
 package integration;
 
 import com.fasterxml.jackson.databind.node.ArrayNode;
-import com.fasterxml.jackson.databind.node.ObjectNode;
 import exceptions.OffsetOutOfRangeException;
-import models.Interest;
+import models.Edge;
 import models.user.User;
 import org.junit.Test;
 import play.Logger;
 import play.libs.Json;
-import repositories.InterestsRepository;
+import repositories.EdgesRepository;
 import repositories.UsersRepository;
 import scala.Option;
-import services.InterestsService;
+import services.EdgesService;
 import testResources.BaseTest;
 
 import java.util.List;
@@ -23,13 +22,13 @@ import static org.junit.Assert.assertTrue;
 /**
  * @author Simon Olofsson
  */
-public class InterestsStackTest extends BaseTest {
+public class EdgesStackTest extends BaseTest {
 
-    InterestsRepository interestsRepository = new InterestsRepository();
-    InterestsService interestsService = new InterestsService(interestsRepository, new UsersRepository());
+    private EdgesRepository edgesRepository = new EdgesRepository();
+    private EdgesService edgesService = new EdgesService(edgesRepository, new UsersRepository());
 
     @Test
-    public void getInterestsFromDatabase() throws OffsetOutOfRangeException {
+    public void getEdgesFromDatabase() throws OffsetOutOfRangeException {
 
         User renter = new User("renter@renter.com", "Renter");
         User tenant = new User("tenant@tenant.com", "Tenant");
@@ -41,28 +40,28 @@ public class InterestsStackTest extends BaseTest {
         usersRepository.save(tenant);
         usersRepository.save(tenant2);
 
-        Interest interest = new Interest(renter, tenant);
-        Interest interest2 = new Interest(renter, tenant2);
+        Edge edge = new Edge(renter, tenant);
+        Edge edge2 = new Edge(renter, tenant2);
 
-        interestsRepository.save(interest);
-        interestsRepository.save(interest2);
+        edgesRepository.save(edge);
+        edgesRepository.save(edge2);
 
         Option<Integer> count = Option.empty();
         Option<Integer> offset = Option.empty();
         Option<Long> tenantId = Option.apply(tenant.id);
         Option<Long> renterId = Option.empty();
-        Option<Boolean> mutual = Option.empty();
+        Option<Boolean> active = Option.empty();
 
-        List<Interest> interests = interestsService.getSubset(count, offset, tenantId, renterId, mutual);
+        List<Edge> edges = edgesService.getSubset(count, offset, tenantId, renterId, active);
 
-        assertEquals(1, interests.size());
-        assertEquals(interest, interests.get(0));
-        assertFalse(interests.contains(interest2));
+        assertEquals(1, edges.size());
+        assertEquals(edge, edges.get(0));
+        assertFalse(edges.contains(edge2));
 
     }
 
     @Test
-    public void addInterests() throws OffsetOutOfRangeException {
+    public void addEdges() throws OffsetOutOfRangeException {
 
         User renter = new User("renter@renter.com", "Renter");
         User tenant = new User("tenant@tenant.com", "Tenant");
@@ -78,7 +77,7 @@ public class InterestsStackTest extends BaseTest {
         tenantIds.add(tenant.id);
         tenantIds.add(tenant2.id);
 
-        interestsService.addInterests(renter, tenantIds);
+        edgesService.addEdges(renter, tenantIds);
 
         Option<Integer> count = Option.empty();
         Option<Integer> offset = Option.empty();
@@ -86,7 +85,7 @@ public class InterestsStackTest extends BaseTest {
         Option<Long> renterId = Option.empty();
         Option<Boolean> mutual = Option.empty();
 
-        List<Interest> interests = interestsService.getSubset(count, offset, tenantId, renterId, mutual);
+        List<Edge> interests = edgesService.getSubset(count, offset, tenantId, renterId, mutual);
 
         assertFalse(interests.isEmpty());
         Logger.debug(interests.toString());
@@ -95,7 +94,7 @@ public class InterestsStackTest extends BaseTest {
     }
 
     @Test
-    public void canFilterOnMutualInterest() throws OffsetOutOfRangeException {
+    public void canFilterOnInactiveEdges() throws OffsetOutOfRangeException {
 
         User renter = new User("renter@renter.com", "Renter");
         User tenant = new User("tenant@tenant.com", "Tenant");
@@ -108,7 +107,7 @@ public class InterestsStackTest extends BaseTest {
         ArrayNode tenantIds = Json.newArray();
         tenantIds.add(tenant.id);
 
-        interestsService.addInterests(renter, tenantIds);
+        edgesService.addEdges(renter, tenantIds);
 
         Option<Integer> count = Option.empty();
         Option<Integer> offset = Option.empty();
@@ -116,14 +115,14 @@ public class InterestsStackTest extends BaseTest {
         Option<Long> renterId = Option.apply(renter.id);
         Option<Boolean> mutual = Option.empty();
 
-        List<Interest> interests = interestsService.getSubset(count, offset, tenantId, renterId, mutual);
+        List<Edge> interests = edgesService.getSubset(count, offset, tenantId, renterId, mutual);
 
         assertFalse(interests.isEmpty());
-        assertTrue(interests.get(0).mutual);
+        assertTrue(interests.get(0).active);
 
-        interestsService.setMutual(renter.id, tenant.id, false);
+        edgesService.setMutual(renter.id, tenant.id, false);
 
-        interests = interestsService.getSubset(count, offset, tenantId, renterId, mutual);
+        interests = edgesService.getSubset(count, offset, tenantId, renterId, mutual);
 
         assertTrue(interests.isEmpty());
 

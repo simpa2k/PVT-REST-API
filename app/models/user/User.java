@@ -3,9 +3,8 @@ package models.user;
 import com.avaje.ebean.ExpressionList;
 import com.avaje.ebean.Model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonUnwrapped;
-import models.Interest;
+import models.Edge;
 import models.accommodation.Accommodation;
 import models.accommodation.Address;
 import play.data.validation.Constraints;
@@ -77,7 +76,7 @@ public class User extends Model {
 
     @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "renter")
-    public Set<Interest> interests;
+    public Set<Edge> interests;
 
     @OneToOne
     @JsonUnwrapped
@@ -127,13 +126,13 @@ public class User extends Model {
 
     }
 
-    public Interest addInterest(User tenant) {
+    public Edge addInterest(User tenant) {
 
-        if (Interest.findByRenterAndTenant(id, tenant.id) != null) {
+        if (Edge.findByRenterAndTenant(id, tenant.id) != null) {
             throw new IllegalArgumentException("You may not add an interest that has already been added.");
         }
 
-        Interest interest = new Interest(this, tenant);
+        Edge interest = new Edge(this, tenant);
         interest.save();
 
         interests.add(interest);
@@ -144,7 +143,7 @@ public class User extends Model {
 
     }
 
-    public void addInterest(Interest interest) {
+    public void addInterest(Edge interest) {
         interests.add(interest);
     }
 

@@ -27,12 +27,12 @@ public class InterestsControllerTest extends BaseTest {
      * Utility methods.
      */
 
-    /*private Result makeAuthenticatedRequest(Option<Integer> count, Option<Integer> offset, Option<Long> tenantId, Option<Long> accommodationId, Option<Boolean> mutual) {
+    /*private Result makeAuthenticatedRequest(Option<Integer> count, Option<Integer> offset, Option<Long> tenantId, Option<Long> accommodationId, Option<Boolean> active) {
 
         //String authToken = renter1.createToken();
         String authToken = usersService.getToken(renter1);
 
-        Http.RequestBuilder fakeRequest = fakeRequest(controllers.routes.InterestsController.get(count, offset, tenantId, accommodationId, mutual));
+        Http.RequestBuilder fakeRequest = fakeRequest(controllers.routes.EdgesController.get(count, offset, tenantId, accommodationId, active));
         fakeRequest.header(SecurityController.AUTH_TOKEN_HEADER, authToken);
 
         return route(fakeRequest);
@@ -62,7 +62,7 @@ public class InterestsControllerTest extends BaseTest {
         objectNode.put("tenantId", tenantId);
         objectNode.put("accommodationId", accommodationId);
 
-        Http.RequestBuilder fakeRequest = fakeRequest(controllers.routes.InterestsController.create());
+        Http.RequestBuilder fakeRequest = fakeRequest(controllers.routes.EdgesController.create());
         fakeRequest.bodyJson(objectNode);
         fakeRequest.header(SecurityController.AUTH_TOKEN_HEADER, authToken);
 
@@ -88,7 +88,7 @@ public class InterestsControllerTest extends BaseTest {
     /*@Test
     public void returns401OnUnauthorizedGetRequest() {
 
-        Result result = route(fakeRequest(controllers.routes.InterestsController.get(count, offset, tenantId, accommodationId, mutual)));
+        Result result = route(fakeRequest(controllers.routes.EdgesController.get(count, offset, tenantId, accommodationId, active)));
         assertEquals(UNAUTHORIZED, result.status());
 
     }
@@ -96,7 +96,7 @@ public class InterestsControllerTest extends BaseTest {
     @Test
     public void returns200OnAuthorizedGetRequest() {
 
-        Result result = makeAuthenticatedRequest(count, offset, tenantId, accommodationId, mutual);
+        Result result = makeAuthenticatedRequest(count, offset, tenantId, accommodationId, active);
         assertEquals(OK, result.status());
 
     }
@@ -104,7 +104,7 @@ public class InterestsControllerTest extends BaseTest {
     @Test
     public void returnsAllInterestsForRenter() {
 
-        Result result = makeAuthenticatedRequest(count, offset, tenantId, accommodationId, mutual);
+        Result result = makeAuthenticatedRequest(count, offset, tenantId, accommodationId, active);
         JsonNode responseBody = Json.parse(contentAsString(result));
 
         assertTrue(responseBody.size() > 0);
@@ -131,8 +131,8 @@ public class InterestsControllerTest extends BaseTest {
                 fail("NumberFormatException when parsing accommodationId");
             }
 
-            assertNotNull(interest.findValue("mutual"));
-            assertTrue(interest.findValue("mutual").asText().equals("true") || interest.findValue("mutual").asText().equals("false"));
+            assertNotNull(interest.findValue("active"));
+            assertTrue(interest.findValue("active").asText().equals("true") || interest.findValue("active").asText().equals("false"));
 
         }
     }
@@ -148,12 +148,12 @@ public class InterestsControllerTest extends BaseTest {
         Option<Integer> offset = Option.apply(0);
         Option<Long> tenantId = Option.apply(tenant1.id);
         Option<Long> accommodationId = Option.empty();
-        Option<Boolean> mutual = Option.empty();
+        Option<Boolean> active = Option.empty();
 
         //String authToken = tenant1.createToken();
         String authToken = usersService.getToken(tenant1);
 
-        Http.RequestBuilder fakeRequest = fakeRequest(controllers.routes.InterestsController.get(count, offset, tenantId, accommodationId, mutual));
+        Http.RequestBuilder fakeRequest = fakeRequest(controllers.routes.EdgesController.get(count, offset, tenantId, accommodationId, active));
         fakeRequest.header(SecurityController.AUTH_TOKEN_HEADER, authToken);
 
         Result result = route(fakeRequest);
@@ -170,12 +170,12 @@ public class InterestsControllerTest extends BaseTest {
         Option<Integer> offset = Option.apply(5);
         Option<Long> tenantId = Option.apply(tenant1.id);
         Option<Long> accommodationId = Option.empty();
-        Option<Boolean> mutual = Option.empty();
+        Option<Boolean> active = Option.empty();
 
         //String authToken = tenant1.createToken();
         String authToken = usersService.getToken(tenant1);
 
-        Http.RequestBuilder fakeRequest = fakeRequest(controllers.routes.InterestsController.get(count, offset, tenantId, accommodationId, mutual));
+        Http.RequestBuilder fakeRequest = fakeRequest(controllers.routes.EdgesController.get(count, offset, tenantId, accommodationId, active));
         fakeRequest.header(SecurityController.AUTH_TOKEN_HEADER, authToken);
 
         Result result = route(fakeRequest);
@@ -212,7 +212,7 @@ public class InterestsControllerTest extends BaseTest {
         String authToken = usersService.getToken(tenant2);
 
         Result result = makePostRequest(authToken, tenant2.id, renter1Accommodation.id);
-        assertNotNull(Interest.findByTenantAndAccommodation(tenant2.id, renter1Accommodation.id));
+        assertNotNull(Edge.findByTenantAndAccommodation(tenant2.id, renter1Accommodation.id));
 
     }
 
@@ -245,9 +245,9 @@ public class InterestsControllerTest extends BaseTest {
         ObjectMapper mapper = new ObjectMapper();
         ObjectNode bodyJson = mapper.createObjectNode();
 
-        bodyJson.put("mutual", "true");
+        bodyJson.put("active", "true");
 
-        Http.RequestBuilder fakeRequest = fakeRequest(controllers.routes.InterestsController.setMutual(interest1.tenant.id, interest1.accommodation.id));
+        Http.RequestBuilder fakeRequest = fakeRequest(controllers.routes.EdgesController.setMutual(interest1.tenant.id, interest1.accommodation.id));
         fakeRequest.header(SecurityController.AUTH_TOKEN_HEADER, authToken);
         fakeRequest.bodyJson(bodyJson);
 
@@ -256,7 +256,7 @@ public class InterestsControllerTest extends BaseTest {
 
         JsonNode responseJson = Json.parse(contentAsString(result));
 
-        assertEquals("true", responseJson.findValue("mutual").asText());
+        assertEquals("true", responseJson.findValue("active").asText());
         assertEquals(5L, responseJson.findValue("tenantId").asLong());
         assertEquals(1L, responseJson.findValue("accommodationId").asLong());
 
@@ -318,13 +318,13 @@ public class InterestsControllerTest extends BaseTest {
         //String authToken = tenant.createToken();
         String authToken = usersService.getToken(tenant);
 
-        Http.RequestBuilder fakeRequest = fakeRequest(controllers.routes.InterestsController.withdrawInterest(tenant.id, accommodation.id));
+        Http.RequestBuilder fakeRequest = fakeRequest(controllers.routes.EdgesController.withdrawInterest(tenant.id, accommodation.id));
         fakeRequest.header(SecurityController.AUTH_TOKEN_HEADER, authToken);
 
         Result result = route(fakeRequest);
 
         assertEquals(NO_CONTENT, result.status());
-        assertNull(Interest.findByTenantAndAccommodation(tenant.id, accommodation.id));
+        assertNull(Edge.findByTenantAndAccommodation(tenant.id, accommodation.id));
 
     }
 
@@ -342,7 +342,7 @@ public class InterestsControllerTest extends BaseTest {
         //String authToken = tenant.createToken();
         String authToken = usersService.getToken(tenant);
 
-        Http.RequestBuilder fakeRequest = fakeRequest(controllers.routes.InterestsController.withdrawInterest(tenant.id, accommodation.id));
+        Http.RequestBuilder fakeRequest = fakeRequest(controllers.routes.EdgesController.withdrawInterest(tenant.id, accommodation.id));
         fakeRequest.header(SecurityController.AUTH_TOKEN_HEADER, authToken);
 
         route(fakeRequest);
