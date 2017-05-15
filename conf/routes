@@ -21,9 +21,9 @@ POST    /facebook/login                           controllers.FacebookSecurityCo
 GET     /users                                    controllers.UsersController.getUser(authToken: Option[java.lang.String], maxRent: Option[java.lang.Integer], maxDeposit: Option[java.lang.Integer], start: Option[java.lang.String], end: Option[java.lang.String])
 POST    /users/profiles                           controllers.UsersController.createProfile
 
-GET     /interests                                controllers.InterestsController.get(count: Option[java.lang.Integer], offset: Option[java.lang.Integer], tenantId: Option[java.lang.Long], accommodationId: Option[java.lang.Long])
+GET     /interests                                controllers.InterestsController.get(count: Option[java.lang.Integer], offset: Option[java.lang.Integer], tenantId: Option[java.lang.Long], renterId: Option[java.lang.Long], mutual: Option[java.lang.Boolean])
 POST    /interests                                controllers.InterestsController.create
-PUT     /interests                                controllers.InterestsController.setMutual(tenantId: Long, accommodationId: Long)
+PUT     /interests                                controllers.InterestsController.setMutual(renterId: Long, tenantId: Long)
 DELETE  /interests                                controllers.InterestsController.withdrawInterest(tenantId: Long, accommodationId: Long)
 
 GET     /accommodation                            controllers.AccommodationController.get(count: Option[java.lang.Integer], offset: Option[java.lang.Integer], rent: Option[java.lang.Double], size: Option[java.lang.Double], smokingAllowed: Option[java.lang.Boolean], animalsAllowed: Option[java.lang.Boolean])

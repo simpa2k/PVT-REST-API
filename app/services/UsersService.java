@@ -55,27 +55,6 @@ public class UsersService {
 
     }
 
-    public Interest setMutualInterest(Renter renter, long tenantId, boolean mutual) {
-
-        //Interest interest = interestsRepository.findInterest(tenantId, renter.accommodation.id);
-        //interest.mutual = mutual;
-
-        //interestsRepository.save(interest);
-
-        //return interest;
-        return null;
-
-    }
-
-    public void withdrawInterest(long tenantId, long accommodationId) {
-
-        Interest interest = interestsRepository.findInterest(tenantId, accommodationId);
-
-        if (interest != null) {
-            interestsRepository.delete(interest);
-        }
-    }
-
     public User createFromFacebookData(JsonNode facebookData) throws NoEmailFoundException {
 
         if  (facebookData.findValue("email") == null) {

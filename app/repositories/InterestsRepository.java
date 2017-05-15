@@ -31,12 +31,13 @@ public class InterestsRepository {
 
     }
 
-    public List<Interest> findInterests(Option<Long> tenantId, Option<Long> accommodationId) {
+    public List<Interest> findInterests(Option<Long> tenantId, Option<Long> renterId, Option<Boolean> mutual) {
 
         List<Function<ExpressionList<Interest>, ExpressionList<Interest>>> functions = Arrays.asList(
 
                 exprList -> tenantId.isDefined() ? exprList.eq("tenant_id", tenantId.get()) : exprList,
-                exprList -> accommodationId.isDefined() ? exprList.eq("interest_accommodation_id", accommodationId.get()) : exprList
+                exprList -> renterId.isDefined() ? exprList.eq("renter_id", renterId.get()) : exprList,
+                exprList -> mutual.isDefined() ? exprList.eq("mutual", mutual.get()) : exprList
 
         );
 

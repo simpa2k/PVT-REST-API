@@ -3,8 +3,8 @@ let functions = require('./functions');
 let server = 'http://localhost:8080';
 //let server = 'https://protected-gorge-44302.herokuapp.com';
 
-let tenantFacebookToken = '';
-let renterFacebookToken = '';
+let tenantFacebookToken = 'EAAa2D7XPp6oBAId1IIQjj2iMoZBxz4yWYriYnxXSZAHssNT8Qpsg2QlDZAzdtuw3qfcfNjH8HvHaDKqALAcXMyOAev1iUTyvgVwOLP3calNZC30TnHMiOBZBOzvOU1Hwmhc5FgmWvlIU1wZBffkWpeZAz5bJkcsyIgZD';
+let renterFacebookToken = 'EAAa2D7XPp6oBAKRKHXPKOJ1Upvm1je5zl7SiMxnnujkYRDxGZB2X8UpTl6dZCDBZApKDKdawdiBvgayezVSM96p6ZCZBYropI7dkZAnSJ71K7WJWP4GVGUWekzHstgIaRQ7NPzVO1uIlo9lRQUlNXwqZCwoy6SvgMPt4rgN7rKS6AZDZD';
 
 let tenantToken = '';
 let renterToken = '';
@@ -92,7 +92,7 @@ functions.facebookLogin(server, tenantFacebookToken, function(responseObject) {
 
                     functions.chooseTenants(server, renterToken, body, function() {
 
-                        printMessage("Tenant getting renters who has shown interest.");
+                        printMessage("Tenant getting renters who have shown interest.");
 
                         /*functions.performAuthenticatedGetRequest(server, '/interests', tenantToken, {}, function(responseObject) {
 

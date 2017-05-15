@@ -18,7 +18,7 @@ public class MockInterestRepository extends InterestsRepository {
     }
 
     @Override
-    public List<Interest> findInterests(Option<Long> tenantId, Option<Long> accommodationId) {
+    public List<Interest> findInterests(Option<Long> tenantId, Option<Long> accommodationId, Option<Boolean> mutual) {
         return null;
     }
 

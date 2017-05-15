@@ -34,6 +34,8 @@ public class Interest extends Model {
     @JsonProperty("tenantId")
     public User tenant;
 
+    public boolean mutual = true;
+
     private static Finder<Long, Interest> find = new Finder<>(Interest.class);
 
     public Interest(User renter, User tenant) {
@@ -59,7 +61,7 @@ public class Interest extends Model {
         return find.all();
     }
 
-    public static Interest findByRenterAndTenant(Long renterId, Long tenantId) {
+    public static Interest findByRenterAndTenant(long renterId, long tenantId) {
         return find.where().eq("renter_id", renterId).eq("tenant_id", tenantId).findUnique();
     }
 }

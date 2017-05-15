@@ -25,22 +25,18 @@ import java.util.List;
 public class InterestsController extends Controller {
 
     private InterestsService interestsService;
-    private UsersService usersService;
 
     @Inject
-    public InterestsController(InterestsService interestsService, UsersService usersService) {
-
+    public InterestsController(InterestsService interestsService) {
         this.interestsService = interestsService;
-        this.usersService = usersService;
-
     }
 
     public Result get(Option<Integer> count, Option<Integer> offset,
-                      Option<Long> tenantId, Option<Long> accommodationId) {
+                      Option<Long> tenantId, Option<Long> renterId, Option<Boolean> mutual) {
 
         try {
 
-            List<Interest> interests = interestsService.getSubset(count, offset, tenantId, accommodationId);
+            List<Interest> interests = interestsService.getSubset(count, offset, tenantId, renterId, mutual);
             return ResponseBuilder.buildOKList(interests);
 
         } catch(OffsetOutOfRangeException e) {
@@ -66,20 +62,19 @@ public class InterestsController extends Controller {
         }
     }
 
-    public Result setMutual(long tenantId, long accommodationId) {
+    public Result setMutual(long renterId, long tenantId) {
 
         JsonNode body = request().body().asJson();
 
         try {
 
-            Renter renter = (Renter) ctx().args.get("user");
             String mutual = body.findValue("mutual").textValue();
 
             if (!mutual.equals("true") && !mutual.equals("false")) {
                 return ResponseBuilder.buildBadRequest("Attribute 'mutual' must be set to either 'true' or 'false'.", ResponseBuilder.ILLEGAL_ARGUMENT);
             }
 
-            Interest interest = usersService.setMutualInterest(renter, tenantId, Boolean.parseBoolean(mutual));
+            Interest interest = interestsService.setMutual(renterId, tenantId, Boolean.parseBoolean(mutual));
 
             return ResponseBuilder.buildOKObject(interest);
 
@@ -94,7 +89,7 @@ public class InterestsController extends Controller {
             return ResponseBuilder.buildUnauthorizedRequest("Owner of token and owner of tenant id do not match. A user may only withdraw own interests.");
         }
 
-        usersService.withdrawInterest(tenantId, accommodationId);
+        interestsService.withdrawInterest(tenantId, accommodationId);
 
         return noContent();
 

@@ -77,12 +77,13 @@ public class FunctionalTest extends WithApplication {
             Result result = route(createProfileRequest);
             assertEquals(NO_CONTENT, result.status());
 
+            Option<String> authTokenOption = Option.empty();
             Option<Integer> maxRent = Option.empty();
             Option<Integer> maxDeposit = Option.empty();
             Option<String> start = Option.empty();
             Option<String> end = Option.empty();
 
-            Http.RequestBuilder getProfileRequest = fakeRequest(controllers.routes.UsersController.getUser(maxRent, maxDeposit, start, end));
+            Http.RequestBuilder getProfileRequest = fakeRequest(controllers.routes.UsersController.getUser(authTokenOption, maxRent, maxDeposit, start, end));
             getProfileRequest.header(SecurityController.AUTH_TOKEN_HEADER, authToken);
 
             Result getResult = route(getProfileRequest);

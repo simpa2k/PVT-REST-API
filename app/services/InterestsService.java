@@ -42,11 +42,34 @@ public class InterestsService {
         });
     }
 
+    public Interest setMutual(long renterId, long tenantId, boolean mutual) {
+
+        Interest interest = interestsRepository.findInterest(renterId, tenantId);
+        interest.mutual = mutual;
+
+        interestsRepository.save(interest);
+
+        return interest;
+
+    }
+
+    public void withdrawInterest(long renterId, long tenantId) {
+
+        Interest interest = interestsRepository.findInterest(renterId, tenantId);
+
+        if (interest != null) {
+            interestsRepository.delete(interest);
+        }
+    }
 
     public List<Interest> getSubset(Option<Integer> count, Option<Integer> offset,
-                                    Option<Long> tenantId, Option<Long> renterId) throws OffsetOutOfRangeException {
+                                    Option<Long> tenantId, Option<Long> renterId, Option<Boolean> mutual) throws OffsetOutOfRangeException {
 
-        List<Interest> interests = interestsRepository.findInterests(tenantId, renterId);
+        if (!mutual.isDefined()) { // Setting a default value to true.
+            mutual = Option.apply(true);
+        }
+
+        List<Interest> interests = interestsRepository.findInterests(tenantId, renterId, mutual);
 
         int evaluatedOffset = offset.isDefined() ? offset.get() : 0;
         int evaluatedCount = count.isDefined() && ((count.get() + evaluatedOffset) < interests.size()) ? count.get() : interests.size();

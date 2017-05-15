@@ -10,7 +10,7 @@ import static play.test.Helpers.*;
 
 public class ActivityGatheringControllerTest extends BaseTest {
 
-    @Test
+    /*@Test
     public void testUnauthorizedRequestOnNoCredentials() {
 
         Http.RequestBuilder fakeRequest = fakeRequest(controllers.routes.ActivityGatheringController.gather());
@@ -44,5 +44,5 @@ public class ActivityGatheringControllerTest extends BaseTest {
         Result result = route(fakeRequest);
         assertEquals(OK, result.status());
 
-    }
+    }*/
 }

@@ -38,4 +38,8 @@ public class ActivityGatheringController extends Controller {
         return ok().sendJson(n);
 
     }
+
+    public Result nearby() {
+        return ok();
+    }
 }
