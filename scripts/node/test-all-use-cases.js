@@ -88,9 +88,10 @@ functions.facebookLogin(server, tenantFacebookToken, function(responseObject) {
                         responseObject[0].id
                     ];
 
-                    printMessage("Posting the following to /accommodation, as renter: " + prettyPrint(body));
+                    printMessage("Posting the following to /interests, as renter: " + prettyPrint(body));
 
-                    functions.chooseTenants(server, renterToken, body, function() {
+                    //functions.chooseTenants(server, renterToken, body, function() {
+                    functions.showDisinterest(server, renterToken, responseObject[0].id, function() {
 
                         printMessage("Tenant getting renters who have shown interest.");
 
@@ -103,6 +104,17 @@ functions.facebookLogin(server, tenantFacebookToken, function(responseObject) {
                         functions.getInterests(server, tenantToken, {}, function(responseObject) {
 
                             printMessage("Result of getting the renters interested in the logged in tenant: " + prettyPrint(responseObject));
+
+                            functions.showDisinterest(server, tenantToken, 5, function(responseObject) {
+
+                                printMessage("Result of showing disinterest towards renter: " + prettyPrint(responseObject));
+
+                                functions.getInterests(server, tenantToken, {}, function(responseObject) {
+
+                                    printMessage("Result of getting the renters interested in the logged in tenant after showing disinterest: " + prettyPrint(responseObject));
+
+                                })
+                            })
 
                         })
 

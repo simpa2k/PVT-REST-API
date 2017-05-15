@@ -3,6 +3,7 @@ package repositories;
 import com.avaje.ebean.ExpressionList;
 import models.Edge;
 import models.user.User;
+import play.Logger;
 import scala.Option;
 
 import java.util.Arrays;

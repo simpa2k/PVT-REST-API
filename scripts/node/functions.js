@@ -32,8 +32,27 @@ let localLogin = function(server, email, password, successCallback) {
  * Interests
  */
 
-let getInterests = function(server, authToken, parameters, successCallback) {
-	performAuthenticatedGetRequest(server, '/interests', authToken, parameters, successCallback);
+const getInterests = function(server, authToken, parameters, successCallback) {
+    performAuthenticatedGetRequest(server, '/interests', authToken, parameters, successCallback);
+};
+
+const showInterest = function(server, authToken, tenantId, successCallback) {
+    addEdge(server, authToken, tenantId, true, successCallback);
+};
+
+const showDisinterest = function(server, authToken, userId, successCallback) {
+    addEdge(server, authToken, userId, false, successCallback);
+};
+
+const addEdge = function(server, authToken, userId, active, successCallback) {
+
+    let body = {
+        user: userId,
+        active: active
+    };
+
+    performAuthenticatedPostRequest(server, '/interests', authToken, body, successCallback);
+
 };
 
 let chooseTenants = function(server, authToken, tenants, successCallback) {
@@ -151,6 +170,8 @@ module.exports = {
     facebookLogin: facebookLogin,
     localLogin: localLogin,
 	getInterests: getInterests,
+    showInterest: showInterest,
+    showDisinterest: showDisinterest,
     chooseTenants: chooseTenants,
     getAccommodation: getAccommodation,
     createAccommodation: createAccommodation,

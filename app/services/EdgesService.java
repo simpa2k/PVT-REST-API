@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import models.Edge;
 import models.user.User;
+import play.Logger;
 import repositories.EdgesRepository;
 import repositories.UsersRepository;
 import scala.Option;
@@ -31,7 +32,7 @@ public class EdgesService {
     public Edge addEdge(User actor, JsonNode edge) {
 
         long target = edge.findValue("user").asLong();
-        String active = edge.findValue("active").textValue();
+        String active = edge.findValue("active").asText();
 
         if (!active.equals("true") && !active.equals("false")) {
             return null;
