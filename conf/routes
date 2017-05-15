@@ -36,5 +36,5 @@ POST    /swipingsessions                          controllers.SwipingSessionsCon
 PUT     /swipingsessions                          controllers.SwipingSessionsController.chooseActivities(swipingSessionId: Long, email, activities)
 
 GET     /gather                                   controllers.ActivityGatheringController.gather2
-
+GET     /nearby                                   controllers.ActivityGatheringController.nearby
 
