@@ -37,7 +37,7 @@ public class ActivityGatheringController extends Controller {
 	public Result trafikLab(){
 
         TrafikLabService trafikLabService = new TrafikLabService();
-        JsonNode tr = trafikLabService.fixa();
+        JsonNode tr = trafikLabService.getDistanceToCentralen(GoogleService.getCoordinates(new Address("Vegagatan", 5, 'C', "Norrtälje")));
 
         return ok().sendJson(tr);
     }

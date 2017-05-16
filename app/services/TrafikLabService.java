@@ -20,6 +20,12 @@ public class TrafikLabService {
     private final double destCoordLat = 59.3048662;
     private final double destCoordLong = 18.0930015;
     private final String destCoordName = "Lumaparksvägen";
+    private Address tCentralen = new Address("Vasagatan", 20, 'T', "Stockholm");
+
+
+    public TrafikLabService(){
+        tCentralen = GoogleService.getCoordinates(tCentralen);
+    }
 
 
     // http://api.sl.se/api2/TravelplannerV2/trip.Json?
@@ -34,26 +40,38 @@ public class TrafikLabService {
     // destCoordLat=18.0930015&destCoordLong=59.3048662&destCoordName=Lumaparksvagen3
 
 
+    /**
+     * The method takes two addresses and returns the time taken for the travel as well as the distance in meters to the closest station.
+     * @param address1 - Origin address. Starting point.
+     * @param address2 - The point of travel. Endpoint.
+     * @return - JsonNode containing distance (to startpoint) and duration (total).
+     */
     public JsonNode getTrafiklab(Address address1, Address address2){
 
         String query = "originCoordLat=" + address1.latitude + "&originCoordLong=" + address1.longitude + "&originCoordName=" + address1.streetName + "5&destCoordLat=" + address2.latitude + "&destCoordLong=" + address2.longitude +"&destCoordName=" + address2.streetName;
      //   String query="query="+address.streetName+"+"+address.streetNumber+"+"+address.area;
         String urlString=TRAFIKLAB_TRIP+TRAFIKLAB_KEY+query;
-        Logger.debug(urlString);
         JsonNode node;
 
         node=GoogleService.gatherData(urlString);
         Logger.debug(node.toString());
         JsonNode a = node.findValue("dist");
         JsonNode b = node.findValue("dur");
-
         //return node.findValue("dist");
         return Json.newObject().put("distance", node.findValue("dist").asInt()).put("duration", node.findValue("dur").asInt());
 
     }
 
-    public JsonNode fixa(){
+    /**
+     * Gets the travel duration from the startingpoint to TCentralen, as well as the distance in meters to the closest station.
+     * @param address - Origin address. Starting point.
+     * @return - JsonNode containing distance (to starting point) and duration (total).
+     */
+    public JsonNode getDistanceToCentralen(Address address){
+        return getTrafiklab(address, tCentralen);
+    }
 
+    public JsonNode fixa(){
         Address a = new Address(originCoordName, originCoordLat, originCoordLong);
         Address b = new Address(destCoordName, destCoordLat, destCoordLong);
         return getTrafiklab(a, b);

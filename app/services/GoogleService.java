@@ -21,15 +21,15 @@ import java.util.concurrent.TimeUnit;
 public class GoogleService{
 //	private ObjectMapper mapper=new ObjectMapper();
 	private Map<String, String> nextPageTokens=new HashMap<>();
-	private final String PLACES_URL="https://maps.googleapis.com/maps/api/place/";
+	private final static String PLACES_URL="https://maps.googleapis.com/maps/api/place/";
 	private final String GEOCODE_URL="https://maps.googleapis.com/maps/api/geocode/";
-	private final String PLACES_KEY="key=AIzaSyDSNr7q3oRHvttkSfK85MYQnN3DSoRg_tg";
+	private final static String PLACES_KEY="key=AIzaSyDSNr7q3oRHvttkSfK85MYQnN3DSoRg_tg";
 	private final String NEARBY_SEARCH="nearbysearch/";
-	private final String TEXT_SEARCH="textsearch/";
+	private final static String TEXT_SEARCH="textsearch/";
 	
 	private final String[] types={"gym", "grocery_or_supermarket", "convenience_store", "subway_station", "bar", "restaurant"};
 	
-	private final String JSON="json?";
+	private final static String JSON="json?";
 	private final String LOCATION="location=";
 	private final String RADIUS="radius=2000";
 	
@@ -43,14 +43,15 @@ public class GoogleService{
 	 * @param address - Must contain streetname, number and area
 	 * @return - the address passed in with it's coordinates added.
 	 */
-	public Address getCoordinates(Address address){
+	public static Address getCoordinates(Address address){
 		
 		String query="query="+address.streetName+"+"+address.streetNumber+"+"+address.area;
 		String urlString=PLACES_URL+TEXT_SEARCH+JSON+query+"&"+PLACES_KEY;
 		JsonNode node;
+
+		Logger.debug(urlString);
 		
 		node=gatherData(urlString);
-		Logger.debug(node.toString());
 		address.latitude=node.findValue("lat").asDouble();
 		address.longitude=node.findValue("lng").asDouble();
 		Logger.debug(address.longitude+" "+address.latitude);
