@@ -61,6 +61,9 @@ public class FacebookData extends Model {
    @JsonIgnore
    public User user;
 
+   @Lob
+   public byte[] image;
+
    private static Finder<Long, FacebookData> find = new Finder<>(FacebookData.class);
 
    public FacebookData() {};

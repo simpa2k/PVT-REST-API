@@ -19,6 +19,7 @@ POST    /facebook/login                           controllers.FacebookSecurityCo
 #PUT     /users/createRenter                       controllers.UsersController.create
 
 GET     /users                                    controllers.UsersController.getUser(authToken: Option[java.lang.String], maxRent: Option[java.lang.Integer], maxDeposit: Option[java.lang.Integer], start: Option[java.lang.String], end: Option[java.lang.String])
+GET     /users/images                             controllers.UsersController.getUserImage
 POST    /users/profiles                           controllers.UsersController.createProfile
 
 GET     /interests                                controllers.EdgesController.get(count: Option[java.lang.Integer], offset: Option[java.lang.Integer], tenantId: Option[java.lang.Long], renterId: Option[java.lang.Long], mutual: Option[java.lang.Boolean])
