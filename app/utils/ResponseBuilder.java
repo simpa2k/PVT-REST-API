@@ -60,6 +60,17 @@ public class ResponseBuilder {
 
     }
 
+    public static Result buildNotFound(String message) {
+
+        ObjectNode responseBody = mapper.createObjectNode();
+
+        ObjectNode error = responseBody.putObject("error");
+        error.put("message", message);
+
+        return notFound(responseBody);
+
+    }
+
     private String getMalformedListMessage(String listContent) {
         return "The list of " + listContent.toLowerCase() + " is malformed, make sure it uses correct json array syntax.";
     }

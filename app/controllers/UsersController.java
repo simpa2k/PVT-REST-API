@@ -2,6 +2,7 @@ package controllers;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
+import models.user.FacebookData;
 import models.user.TenantProfile;
 import models.user.User;
 import play.Logger;
@@ -13,6 +14,7 @@ import services.UsersService;
 import utils.ResponseBuilder;
 
 import javax.inject.Inject;
+import java.io.ByteArrayInputStream;
 import java.util.Date;
 import java.util.List;
 
@@ -44,6 +46,25 @@ public class UsersController extends Controller {
 
         return ResponseBuilder.buildOKList(users);
 
+
+    }
+
+    public Result getUserImage() {
+
+        User user = SecurityController.getUser();
+        FacebookData fbData = user.facebookData;
+
+        if (fbData == null) {
+            return ResponseBuilder.buildNotFound("Could not retrieve image. User has no facebook data");
+        }
+
+        byte[] image = fbData.image;
+
+        if (image.length == 0) {
+            return ResponseBuilder.buildNotFound("User has no image.");
+        }
+
+        return ok(new ByteArrayInputStream(image)).as("image/jpeg");
 
     }
     

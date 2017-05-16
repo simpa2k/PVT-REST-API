@@ -3,6 +3,7 @@ package services;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import models.user.FacebookData;
+import play.Logger;
 import play.libs.ws.WSClient;
 import play.libs.ws.WSRequest;
 import play.libs.ws.WSResponse;
@@ -64,31 +65,45 @@ public class FacebookService {
                 .setQueryParameter("access_token", facebookToken)
                 .setQueryParameter("fields", fields);
 
-        return dataRequest.get().thenApply(userData -> {
+        return dataRequest.get().thenCompose(userData -> {
 
-            try {
+            String id = userData.asJson().findValue("id").asText();
 
-                buildFaceBookData(userData.asJson());
+            WSRequest imageRequest = ws.url("https://graph.facebook.com/" + id + "/picture");
 
-            } catch (IOException e) {
-                return null;
-            }
+            return imageRequest.get().thenApply(imageData -> {
 
-            return userData;
+                byte[] image = imageData.asByteArray();
+
+                try {
+
+                    buildFaceBookData(userData.asJson(), image);
+
+                } catch (IOException e) {
+                    return null;
+                }
+
+                return userData;
+
+            });
 
         });
     }
 
-    private void buildFaceBookData(JsonNode data) throws JsonProcessingException, IOException {
+    private void buildFaceBookData(JsonNode data, byte[] image) throws JsonProcessingException, IOException {
 
         String id = data.findValue("id").textValue();
 
         FacebookData fbData = facebookDataRepository.findByFacebookUserId(id);
 
         if (fbData == null) {
-            facebookDataRepository.create(data);
+            fbData = facebookDataRepository.create(data);
         } else {
-            facebookDataRepository.update(fbData, data);
+            fbData = facebookDataRepository.update(fbData, data);
         }
+
+        fbData.image = image;
+        facebookDataRepository.save(fbData);
+
     }
 }
