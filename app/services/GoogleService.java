@@ -21,6 +21,7 @@ import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.*;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Gathers data from API's and saves them to the database.
@@ -45,8 +46,23 @@ public class GoogleService{
 	
 	private String DATA="NODATA";
 	
+	//=====================================GENERIC METHODS
+	public Address getCoordinates(Address address){
+		
+		String query="query="+address.streetName+"+"+address.streetNumber+"+"+address.area;
+		String urlString=PLACES_URL+TEXT_SEARCH+JSON+query+"&"+PLACES_KEY;
+		JsonNode node;
+		
+		node=gatherData(urlString);
+		Logger.debug(node.toString());
+		address.latitude=node.findValue("lat").asDouble();
+		address.longitude=node.findValue("lng").asDouble();
+		Logger.debug(address.longitude+" "+address.latitude);
+		return address;
+	}
+	
 	/**
-	 *
+	 * - Gathers data from a @url and returns a jsonNode with that data
 	 * @param url - The API-URL to gather data from
 	 * @return - the data gathered from the api
 	 */
@@ -54,9 +70,93 @@ public class GoogleService{
 		return Json.mapper().readTree(url);
 	}
 	
+	/**
+	 * - Gathers data from a @urlString and returns a jsonNode with that data
+	 * @param urlString - String that must represent a rul
+	 * @return - JsonNode with the data from the url
+	 */
+	private JsonNode gatherData(String urlString){
+		//Logger.debug("in gatherData");
+		try{
+			return doApiCall(new URL(urlString));
+		}catch(MalformedURLException e){
+			e.printStackTrace();
+		}catch(IOException e){
+			e.printStackTrace();
+		}
+		return null;
+	}
 	
+	public ObjectNode gatherNearbyData(){
+		Logger.debug("In GATHERNEARBYDATA");
+		ObjectNode d=Json.newObject();
+		
+		for(String type : types){
+			Logger.debug("Getting all "+type+"-data");
+			ArrayNode temp=d.putArray(type);
+			ArrayNode dd=getAllNearbyInterests(type);
+			for(JsonNode jn : dd.get(0)){
+				temp.add(jn);
+			}
+		}
+		int i=0;
+		do{
+			Logger.debug("in do/while i="+i);
+			String npt=null;
+			String type=types[i];
+			while(npt==null){
+				npt=nextPageTokens.remove(type);
+				if(npt==null&&i<5){
+					Logger.debug("npt is null, loop nr:"+i+", type is "+type);
+					i++;
+					type=types[i];
+				}else if(i==5)break;
+			}
+			Logger.debug("npt is not null, type is "+type);
+			//Logger.debug(PLACES_URL+NEARBY_SEARCH+JSON+"pagetoken="+npt+"&"+PLACES_KEY);
+			JsonNode temp=null;
+			try{
+				while(temp==null&&npt!=null){
+					Logger.debug("waiting for 500ms.");
+					TimeUnit.MILLISECONDS.sleep(500);
+					Logger.debug("temp is null");
+					temp=gatherData(PLACES_URL+NEARBY_SEARCH+JSON+"pagetoken="+npt+"&"+PLACES_KEY);
+				}
+			}catch(NullPointerException|InterruptedException e){Logger.error("THROW");}
+			Logger.debug("Temp is not null!");
+			//Logger.debug(temp.toString());
+			for(JsonNode nodde:temp.findValues("results")){
+				Logger.debug("adding results: "+nodde.toString());
+				
+				d.withArray(type).add(nodde);
+			}
+			if(isNextPageTrue(temp)){
+				String s=temp.findValue("next_page_token").textValue();
+				nextPageTokens.put(type,s);
+			}
+			if(i<types.length-1)i++;
+			else i=0;
+		}while(!nextPageTokens.isEmpty());
+		return d;
+	}
 	
+	private JsonNode api(){
+		String urlString=PLACES_URL+NEARBY_SEARCH+JSON+LOCATION+"&"+RADIUS+"&"+PLACES_KEY;
+		Logger.debug("The apiurl is: "+urlString);
+		gatherData(urlString);
+		return null;
+	}
 	
+	/**
+	 * Executes gathering of data.
+	 */
+	public JsonNode gather(){
+		Logger.debug("STARTING API DATA GATHERING");
+		JsonNode data=api();
+		Logger.debug(data.findValue("name").toString());
+		return data;
+	}
+	//==================================ADDITIONALDATAMETHODS
 	
 	private ArrayNode findAdditionalResults(String nextPageToken){
 		Logger.debug("Gathering Additional DATA");
@@ -83,112 +183,6 @@ public class GoogleService{
 		return test;
 	}
 	
-	
-	
-	
-	private JsonNode gatherData(String s){
-		//Logger.debug("in gatherData");
-		try{
-			return doApiCall(new URL(s));
-		}catch(MalformedURLException e){
-			e.printStackTrace();
-		}catch(IOException e){
-			e.printStackTrace();
-		}
-		return null;
-	}
-	
-	public ObjectNode gatherNearbyData(){
-		Logger.debug("In GATHERNEARBYDATA");
-		ObjectNode d=Json.newObject();
-		Map<String, String> nextPageTokens=new HashMap<>();
-		
-		for(String type : types){
-			Logger.debug("Getting all "+type+"-data");
-			ArrayNode temp=d.putArray(type);
-			ArrayNode dd=getAllNearbyInterests(type);
-			for(JsonNode jn : dd.get(0)){
-				temp.add(jn);
-			}
-		}
-		int i=0;
-		do{
-			Logger.debug("in do/while i="+i);
-			String type=types[i];
-			String npt=nextPageTokens.remove(type);
-			JsonNode temp = gatherData(PLACES_URL+NEARBY_SEARCH+JSON+"pagetoken="+npt+"&"+PLACES_KEY);
-			for(JsonNode nodde:temp.findValue("results")){
-				Logger.debug("adding results: "+nodde.toString());
-				
-				d.withArray(type).add(nodde);
-			}
-			if(isNextPageTrue(temp)){
-				String s=temp.findValue("next_page_token").toString();
-				nextPageTokens.put(type,s);
-			}
-			if(i<types.length-1)i++;
-			else i=0;
-		}while(!nextPageTokens.isEmpty());
-		return d;
-	}
-	
-	private JsonNode api(){
-		String urlString=PLACES_URL+NEARBY_SEARCH+JSON+LOCATION+"&"+RADIUS+"&"+PLACES_KEY;
-		Logger.debug("The apiurl is: "+urlString);
-		gatherData(urlString);
-		return null;
-	}
-	
-	
-	
-	/**
-	 * Executes gathering of data.
-	 */
-	public JsonNode gather(){
-		Logger.debug("STARTING API DATA GATHERING");
-		JsonNode data=api();
-		Logger.debug(data.findValue("name").toString());
-		return data;
-	}
-	
-	
-	public Address getCoordinates(Address address){
-		
-		String query="query="+address.streetName+"+"+address.streetNumber+"+"+address.area;
-		String urlString=PLACES_URL+TEXT_SEARCH+JSON+query+"&"+PLACES_KEY;
-		JsonNode node;
-		
-		node=gatherData(urlString);
-		Logger.debug(node.toString());
-		address.latitude=node.findValue("lat").asDouble();
-		address.longitude=node.findValue("lng").asDouble();
-		Logger.debug(address.longitude+" "+address.latitude);
-		return address;
-	}
-	
-	//==================================HELPERMETHODS
-	
-	
-	
-	private ObjectNode addToObject(ArrayList<String> list,ObjectNode obj,String type){
-		ObjectNode typeObj=Json.newObject();
-		ArrayList<JsonNode> tList=new ArrayList<>();
-		
-		for(String s : list){
-				tList.add(typeObj.set(type,Json.parse(s)));
-		}
-		
-		return obj;
-	}
-	
-	private ArrayList<String> makeListFromJsonNode(JsonNode node){
-		ArrayList<String> typeData=new ArrayList<>();
-		Iterator<JsonNode> iter=node.findValues("results").iterator();
-		while(iter.hasNext())
-			typeData.add(iter.next().toString());
-		return typeData;
-	}
-	
 	private ArrayNode getAllNearbyInterests(String type){
 		String urlString = PLACES_URL+NEARBY_SEARCH+JSON+LOCATION+"&"+RADIUS+"&"+"type="+type+"&"+PLACES_KEY;
 		Logger.debug("Gathering "+type+"'s");
@@ -199,12 +193,13 @@ public class GoogleService{
 			arno.add(d);
 		}
 		if(isNextPageTrue(dataOfType)){
-			Logger.debug("NextPageToken of: "+type+" added to list.");
-			nextPageTokens.put(type,dataOfType.findValue("next_page_token").toString());
+			Logger.debug("NextPageToken of "+type+" added to list.");
+			nextPageTokens.put(type,dataOfType.findValue("next_page_token").textValue());
 		}
 		
 		return arno;
 	}
+	//==================================HELPERMETHODS
 	
 	private boolean isNextPageTrue(JsonNode data){
 		String npt;
@@ -219,6 +214,25 @@ public class GoogleService{
 	}
 	
 	//==================================EXTRAS
+	
+	private ArrayList<String> makeListFromJsonNode(JsonNode node){
+		ArrayList<String> typeData=new ArrayList<>();
+		Iterator<JsonNode> iter=node.findValues("results").iterator();
+		while(iter.hasNext())
+			typeData.add(iter.next().toString());
+		return typeData;
+	}
+	
+	private ObjectNode addToObject(ArrayList<String> list,ObjectNode obj,String type){
+		ObjectNode typeObj=Json.newObject();
+		ArrayList<JsonNode> tList=new ArrayList<>();
+		
+		for(String s : list){
+			tList.add(typeObj.set(type,Json.parse(s)));
+		}
+		
+		return obj;
+	}
 	
 	private String makeString(ArrayList<String> stringList){
 		String total="";
@@ -248,9 +262,6 @@ public class GoogleService{
 		Logger.debug("number of bars:                   "+nearbyInterests.findValue("bar").findValue("results").size());
 		Logger.debug("number of restaurants:            "+nearbyInterests.findValue("restaurant").findValue("results").size());
 	}
-	
-	
-	
 	
 	//=================================DEPRECATED
 	@Deprecated
