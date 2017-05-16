@@ -68,8 +68,7 @@ public class UsersController extends Controller {
 
     }
     
-    /*private Result createTenant(JsonNode body){
-	    int maxRent=body.findValue("maxRent").asInt();
+    /*  int maxRent=body.findValue("maxRent").asInt();
 	    int numberOfTenants=body.findValue("numberOfTenants").asInt();
 	    int age=body.findValue("age").asInt();
 	    String description=body.findValue("description").asText();
@@ -77,6 +76,7 @@ public class UsersController extends Controller {
 	    String password=body.findValue("password").asText();
 	    String fullName=body.findValue("fullName").asText();
 	    double income=body.findValue("income").asDouble();
+	  private Result createTenant(JsonNode body){
 	    String occupation=body.findValue("occupation").asText();
 	    double deposit=body.findValue("deposit").asDouble();
 	    Tenant t=new Tenant(email, password, fullName, description, age, numberOfTenants, maxRent, income, occupation, deposit);

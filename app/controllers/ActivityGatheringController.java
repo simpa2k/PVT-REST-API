@@ -37,10 +37,7 @@ public class ActivityGatheringController extends Controller {
 		
 		GoogleService gatherer = new GoogleService();
 		ObjectNode n=gatherer.gatherNearbyData();
-		int i=0;
-		List<JsonNode> pp=n.findValues("restaurant");
 		
-		Logger.debug("there are :"+pp.size()+" restaurants");
 		return ok().sendJson(n);
 	}
     
