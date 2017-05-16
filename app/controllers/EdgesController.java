@@ -44,8 +44,8 @@ public class EdgesController extends Controller {
     public Result create() {
 
         JsonNode body = request().body().asJson();
-
-        try {
+	    Logger.debug(body.toString());
+	    try {
 
             User actor = SecurityController.getUser();
             edgesService.addEdge(actor, body);

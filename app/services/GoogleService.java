@@ -1,5 +1,6 @@
 package services;
 
+import akka.dispatch.Foreach;
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -19,17 +20,14 @@ import play.libs.Json;
 import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.ListIterator;
+import java.util.*;
 
 /**
  * Gathers data from API's and saves them to the database.
  */
 public class GoogleService{
-	private ObjectMapper mapper=new ObjectMapper();
-	
+//	private ObjectMapper mapper=new ObjectMapper();
+	private Map<String, String> nextPageTokens=new HashMap<>();
 	private final String PLACES_URL="https://maps.googleapis.com/maps/api/place/";
 	private final String GEOCODE_URL="https://maps.googleapis.com/maps/api/geocode/";
 	private final String PLACES_KEY="key=AIzaSyDSNr7q3oRHvttkSfK85MYQnN3DSoRg_tg";
@@ -42,7 +40,7 @@ public class GoogleService{
 	
 	private final String JSON="json?";
 	private final String LOCATION="location=59.3525362,17.9796305";
-	private final String RADIUS="radius=2000";
+	private final String RADIUS="radius=1000";
 	
 	
 	private String DATA="NODATA";
@@ -50,25 +48,10 @@ public class GoogleService{
 	/**
 	 *
 	 * @param url - The API-URL to gather data from
-	 * @return data - The data gathered from the API-call.
-	 * @throws IOException
+	 * @return - the data gathered from the api
 	 */
 	private JsonNode doApiCall(URL url) throws IOException{
-		Logger.debug("in doApiCall");
-		Logger.debug("URLRULRUL: "+url.toString());
-		StringBuilder content=new StringBuilder();
-		BufferedReader bufferedReader=new BufferedReader(new InputStreamReader(url.openStream())); //reads all data from the url to a reader
-		String line;
-		while((line=bufferedReader.readLine())!=null) //appending every line of data that the reader has gathered to a string.
-		{
-			content.append(line);
-		}
-		bufferedReader.close();
-		
-		Logger.debug("DATADATA "+content.toString());
-		JsonNode data=mapper.readTree(content.toString());
-		
-		return data;
+		return Json.mapper().readTree(url);
 	}
 	
 	
@@ -84,7 +67,7 @@ public class GoogleService{
 		ArrayNode test=Json.newArray();
 		
 		tempNode=gatherData(urlString);
-		Logger.debug(tempNode.textValue());
+		Logger.debug(tempNode.toString());
 		List<JsonNode>tempList=tempNode.findValues("results");
 		Logger.debug("size: "+tempList.size());
 		for(JsonNode tem:tempList){
@@ -104,7 +87,7 @@ public class GoogleService{
 	
 	
 	private JsonNode gatherData(String s){
-		Logger.debug("in gatherData");
+		//Logger.debug("in gatherData");
 		try{
 			return doApiCall(new URL(s));
 		}catch(MalformedURLException e){
@@ -117,14 +100,35 @@ public class GoogleService{
 	
 	public ObjectNode gatherNearbyData(){
 		Logger.debug("In GATHERNEARBYDATA");
-		ArrayNode data=Json.newArray();
 		ObjectNode d=Json.newObject();
-		ArrayList<String>dataList=new ArrayList<>();
+		Map<String, String> nextPageTokens=new HashMap<>();
+		
 		for(String type : types){
 			Logger.debug("Getting all "+type+"-data");
 			ArrayNode temp=d.putArray(type);
-			temp.addAll(getAllNearbyInterests(type));
+			ArrayNode dd=getAllNearbyInterests(type);
+			for(JsonNode jn : dd.get(0)){
+				temp.add(jn);
+			}
 		}
+		int i=0;
+		do{
+			Logger.debug("in do/while i="+i);
+			String type=types[i];
+			String npt=nextPageTokens.remove(type);
+			JsonNode temp = gatherData(PLACES_URL+NEARBY_SEARCH+JSON+"pagetoken="+npt+"&"+PLACES_KEY);
+			for(JsonNode nodde:temp.findValue("results")){
+				Logger.debug("adding results: "+nodde.toString());
+				
+				d.withArray(type).add(nodde);
+			}
+			if(isNextPageTrue(temp)){
+				String s=temp.findValue("next_page_token").toString();
+				nextPageTokens.put(type,s);
+			}
+			if(i<types.length-1)i++;
+			else i=0;
+		}while(!nextPageTokens.isEmpty());
 		return d;
 	}
 	
@@ -171,13 +175,7 @@ public class GoogleService{
 		ArrayList<JsonNode> tList=new ArrayList<>();
 		
 		for(String s : list){
-			try{
-				tList.add(typeObj.set(type,mapper.readTree(s)));
-				
-			}catch(IOException e){
-				e.printStackTrace();
-			}
-			
+				tList.add(typeObj.set(type,Json.parse(s)));
 		}
 		
 		return obj;
@@ -195,31 +193,25 @@ public class GoogleService{
 		String urlString = PLACES_URL+NEARBY_SEARCH+JSON+LOCATION+"&"+RADIUS+"&"+"type="+type+"&"+PLACES_KEY;
 		Logger.debug("Gathering "+type+"'s");
 		ArrayNode arno=Json.newArray();
+		
 		JsonNode dataOfType=gatherData(urlString);
 		for(JsonNode d:dataOfType.findValues("results")){
 			arno.add(d);
 		}
-		
-		
-		
-		
 		if(isNextPageTrue(dataOfType)){
-			Logger.debug("There is more "+type+"-data");
-			String s=dataOfType.findValue("next_page_token").asText();
-			//Logger.debug(s);
-			arno.addAll(findAdditionalResults(s));
-			
+			Logger.debug("NextPageToken of: "+type+" added to list.");
+			nextPageTokens.put(type,dataOfType.findValue("next_page_token").toString());
 		}
+		
 		return arno;
 	}
 	
 	private boolean isNextPageTrue(JsonNode data){
-		Logger.debug("IN check isNextPageTrue");
 		String npt;
 		try{
 			npt=data.findValue("next_page_token").toString();
 		}catch(NullPointerException e){
-			Logger.debug("no NextPageToken");
+			Logger.debug("NextPageToken not present");
 			return false;
 		}
 		Logger.debug("NextPageToken Present");
@@ -236,11 +228,11 @@ public class GoogleService{
 		return total;
 	}
 	
-	private void printList(ArrayList<String> l){
+	private void printList(ArrayNode l){
 		Logger.debug("Print List:");
 		Logger.debug("Size: "+l.size());
-		for(String s : l){
-			Logger.debug(s);
+		for(JsonNode n : l){
+			Logger.debug(n.toString());
 		}
 	}
 	
@@ -258,6 +250,9 @@ public class GoogleService{
 	}
 	
 	
+	
+	
+	//=================================DEPRECATED
 	@Deprecated
 	private ArrayNode doApiCalll(URL url) throws IOException{
 		Logger.debug("in doApiCalll");
@@ -275,8 +270,6 @@ public class GoogleService{
 		Logger.debug("DATANODEADADA:"+data.toString());
 		return data;
 	}
-	
-	
 	
 	@Deprecated
 	private ArrayNode gatherDataa(String s){

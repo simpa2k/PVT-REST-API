@@ -8,6 +8,7 @@ import models.RentalPeriod;
 import models.accommodation.Accommodation;
 import models.accommodation.Address;
 import models.user.User;
+import play.Logger;
 import repositories.AccommodationRepository;
 import repositories.AddressRepository;
 import repositories.RentalPeriodRepository;
@@ -62,27 +63,37 @@ public class AccommodationService {
     }
 
     public Accommodation createAccommodationFromJson(User user, JsonNode accommodationJson) throws JsonProcessingException {
+	    Logger.info("In createAccommodationFromJson");
 
         if (user == null) {
             throw new IllegalArgumentException("User was null. Accommodation must be associated with a user.");
         }
-
+	    
+        
+        
+        
         Accommodation accommodation = mapper.treeToValue(accommodationJson, Accommodation.class);
+        Logger.debug("accommodation created");
         Address address = accommodation.address;
+	    Logger.debug("address read");
         RentalPeriod rentalPeriod = accommodation.rentalPeriod;
-
+	    Logger.debug("rentalPeriod read");
         accommodation.renter = user;
+        Logger.debug("Renter SET to: "+user.getEmailAddress());
 
         Accommodation existing = accommodationRepository.findByRenter(accommodation.renter.id);
         if (existing == null) {
-
+        	Logger.debug("No earlier accommodation");
             addressRepository.save(address);
+            Logger.debug("saved Address");
             rentalPeriodRepository.save(rentalPeriod);
-
-            accommodationRepository.save(accommodation);
-
-            user.accommodation = accommodation;
+	        Logger.debug("saved rentalPeriod");
+	        accommodationRepository.save(accommodation);
+	        Logger.debug("saved Accommodation");
+	        user.accommodation = accommodation;
+	        Logger.debug("set Accommodation for user: "+user.fullName);
             usersRepository.save(user);
+            Logger.debug("saved User");
 
             return accommodation;
 
