@@ -62,7 +62,7 @@ public class GoogleService{
 	 * @param url - The API-URL to gather data from
 	 * @return - the data gathered from the api
 	 */
-	private JsonNode doApiCall(URL url) throws IOException{
+	private static JsonNode doApiCall(URL url) throws IOException{
 		return Json.mapper().readTree(url);
 	}
 	
@@ -71,7 +71,7 @@ public class GoogleService{
 	 * @param urlString - String that must represent a rul
 	 * @return - JsonNode with the data from the url
 	 */
-	private JsonNode gatherData(String urlString){
+	public static JsonNode gatherData(String urlString){
 		//Logger.debug("in gatherData");
 		try{
 			return doApiCall(new URL(urlString));

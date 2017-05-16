@@ -10,6 +10,7 @@ import play.mvc.Controller;
 import play.mvc.Result;
 import play.mvc.Security;
 import services.GoogleService;
+import services.TrafikLabService;
 import utils.ActivityGatherer;
 
 import java.io.IOException;
@@ -32,14 +33,14 @@ public class ActivityGatheringController extends Controller {
         return ok().sendJson(n);
 
     }
-	
-	public Result nearby() {
-		
-		GoogleService gatherer = new GoogleService();
-		ObjectNode n=gatherer.gatherNearbyData();
-		
-		return ok().sendJson(n);
-	}
+
+	public Result trafikLab(){
+
+        TrafikLabService trafikLabService = new TrafikLabService();
+        JsonNode tr = trafikLabService.fixa();
+
+        return ok().sendJson(tr);
+    }
     
     
     public Result gather2() throws IOException{
