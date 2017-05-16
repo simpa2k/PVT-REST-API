@@ -23,7 +23,7 @@ public class GoogleService{
 	private Map<String, String> nextPageTokens=new HashMap<>();
 	private final static String PLACES_URL="https://maps.googleapis.com/maps/api/place/";
 	private final String GEOCODE_URL="https://maps.googleapis.com/maps/api/geocode/";
-	private final static String PLACES_KEY="key=AIzaSyDSNr7q3oRHvttkSfK85MYQnN3DSoRg_tg";
+	private final String PLACES_KEY;
 	private final String NEARBY_SEARCH="nearbysearch/";
 	private final static String TEXT_SEARCH="textsearch/";
 	
@@ -31,10 +31,11 @@ public class GoogleService{
 	
 	private final static String JSON="json?";
 	private final String LOCATION="location=";
-	private final String RADIUS="radius=2000";
+	private final String RADIUS="radius=1000";
 	
-	
-	private String DATA="NODATA";
+	public GoogleService(String apiKey){
+		this.PLACES_KEY="key="+apiKey;
+	}
 	
 	//=====================================GENERIC METHODS
 	
@@ -43,10 +44,9 @@ public class GoogleService{
 	 * @param address - Must contain streetname, number and area
 	 * @return - the address passed in with it's coordinates added.
 	 */
-	public static Address getCoordinates(Address address){
-		
+	public static Address getCoordinates(Address address, String key){
 		String query="query="+address.streetName+"+"+address.streetNumber+"+"+address.area;
-		String urlString=PLACES_URL+TEXT_SEARCH+JSON+query+"&"+PLACES_KEY;
+		String urlString=PLACES_URL+TEXT_SEARCH+JSON+query+"&key="+key;
 		JsonNode node;
 
 		Logger.debug(urlString);
@@ -189,43 +189,12 @@ public class GoogleService{
 	
 	//==================================EXTRAS
 	
-	private ArrayList<String> makeListFromJsonNode(JsonNode node){
-		ArrayList<String> typeData=new ArrayList<>();
-		Iterator<JsonNode> iter=node.findValues("results").iterator();
-		while(iter.hasNext())
-			typeData.add(iter.next().toString());
-		return typeData;
-	}
-	
-	private ObjectNode addToObject(ArrayList<String> list,ObjectNode obj,String type){
-		ObjectNode typeObj=Json.newObject();
-		ArrayList<JsonNode> tList=new ArrayList<>();
-		
-		for(String s : list){
-			tList.add(typeObj.set(type,Json.parse(s)));
-		}
-		
-		return obj;
-	}
-	
-	private String makeString(ArrayList<String> stringList){
-		String total="";
-		for(String s:stringList){
-			total+=s;
-		}
-		return total;
-	}
-	
 	private void printList(ArrayNode l){
 		Logger.debug("Print List:");
 		Logger.debug("Size: "+l.size());
 		for(JsonNode n : l){
 			Logger.debug(n.toString());
 		}
-	}
-	
-	public String getDATA(){
-		return this.DATA;
 	}
 	
 	private void logInterests(ObjectNode nearbyInterests){

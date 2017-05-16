@@ -12,7 +12,7 @@ public class TrafikLabService {
 
 
     private final String TRAFIKLAB_TRIP="http://api.sl.se/api2/TravelplannerV2/trip.Json?";
-
+    
     private final String TRAFIKLAB_KEY="key=cd8b0846848440649bda73e42406dc61&";
     private final double originCoordLat = 59.7605294;
     private final double originCoordLong = 18.7123039;
@@ -23,8 +23,8 @@ public class TrafikLabService {
     private Address tCentralen = new Address("Vasagatan", 20, 'T', "Stockholm");
 
 
-    public TrafikLabService(){
-        tCentralen = GoogleService.getCoordinates(tCentralen);
+    public TrafikLabService(String apiKey){
+        tCentralen = GoogleService.getCoordinates(tCentralen,apiKey);
     }
 
 
