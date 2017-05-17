@@ -33,10 +33,10 @@ public class UsersController extends Controller {
         this.usersService = usersService;
     }
 
-    public Result getUser(final Option<String> authToken,
-                          final Option<Integer> maxRent, final Option<Integer> maxDeposit,
-                          final Option<String> start, final Option<String> end){
+    public Result getUsers(final Option<Integer> maxRent, final Option<Integer> maxDeposit,
+                           final Option<String> start, final Option<String> end){
 
+       String authToken = SecurityController.getUser().getAuthToken();
        List<User> users = usersService.getSubset(authToken, maxRent, maxDeposit, start, end);
 
         // GET http://localhost:9000/users?maxRent=5000&maxDeposit=8000&start=2017-05-01&end=2018-05-1
@@ -47,6 +47,13 @@ public class UsersController extends Controller {
 
         return ResponseBuilder.buildOKList(users);
 
+
+    }
+
+    public Result getUser() {
+
+        User user = SecurityController.getUser();
+        return ResponseBuilder.buildOKObject(user);
 
     }
 
@@ -69,7 +76,7 @@ public class UsersController extends Controller {
         return ok(new ByteArrayInputStream(encodedBytes)).as("image/jpeg");
 
     }
-    
+
     /*  int maxRent=body.findValue("maxRent").asInt();
 	    int numberOfTenants=body.findValue("numberOfTenants").asInt();
 	    int age=body.findValue("age").asInt();
