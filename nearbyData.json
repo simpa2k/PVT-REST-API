@@ -1,2036 +1,896 @@
 {
-  "gym": [
-    {
-      "geometry": {
-        "location": {
-          "lat": 59.3594585,
-          "lng": 17.9798353
+  "TripList": {
+    "noNamespaceSchemaLocation": "hafasRestTrip.xsd",
+    "Trip": [
+      {
+        "dur": "88",
+        "chg": "1",
+        "co2": "1.40",
+        "LegList": {
+          "Leg": [
+            {
+              "idx": "0",
+              "name": "Walk",
+              "type": "WALK",
+              "dist": "699",
+              "Origin": {
+                "name": "Vegagatan5",
+                "type": "ADR",
+                "lon": "18.710444",
+                "lat": "59.760414",
+                "time": "14:51",
+                "date": "2017-05-16"
+              },
+              "Destination": {
+                "name": "Norrtälje busstation",
+                "type": "ST",
+                "id": "400160056",
+                "lon": "18.699711",
+                "lat": "59.759811",
+                "time": "15:02",
+                "date": "2017-05-16"
+              },
+              "GeometryRef": {
+                "ref": "type%3DWALK%26startx%3D18710444%26starty%3D59760414%26endx%3D18699711%26endy%3D59759811%26dt%3D2017-05-16T14%3A51%26h%3De945516af96defa0ec86303083d329e2%26lang%3Dsv%26format%3Djson%26"
+              }
+            },
+            {
+              "idx": "1",
+              "name": "blåbuss 676",
+              "type": "BUS",
+              "dir": "Stockholm",
+              "line": "676",
+              "Origin": {
+                "name": "Norrtälje busstation",
+                "type": "ST",
+                "id": "400160056",
+                "lon": "18.699711",
+                "lat": "59.759811",
+                "routeIdx": "0",
+                "time": "15:03",
+                "date": "2017-05-16",
+                "track": "F"
+              },
+              "Destination": {
+                "name": "Danderyds sjukhus",
+                "type": "ST",
+                "id": "400160010",
+                "lon": "18.042348",
+                "lat": "59.389824",
+                "routeIdx": "10",
+                "time": "15:57",
+                "date": "2017-05-16",
+                "track": "C"
+              },
+              "JourneyDetailRef": {
+                "ref": "ref%3D68199%2F67810%2F375180%2F164863%2F74%3Fdate%3D2017-05-16%26station_evaId%3D400160056%26station_type%3Ddep%26lang%3Dsv%26format%3Djson%26"
+              },
+              "GeometryRef": {
+                "ref": "ref%3D68199%2F67810%2F375180%2F164863%2F74%26startIdx%3D0%26endIdx%3D10%26lang%3Dsv%26format%3Djson%26"
+              }
+            },
+            {
+              "idx": "2",
+              "name": "Walk",
+              "type": "WALK",
+              "hide": "true",
+              "dist": "105",
+              "Origin": {
+                "name": "Danderyds sjukhus",
+                "type": "ST",
+                "id": "400160010",
+                "lon": "18.042348",
+                "lat": "59.389824",
+                "time": "15:58",
+                "date": "2017-05-16"
+              },
+              "Destination": {
+                "name": "Danderyds sjukhus",
+                "type": "ST",
+                "id": "400102252",
+                "lon": "18.041836",
+                "lat": "59.390732",
+                "time": "16:01",
+                "date": "2017-05-16"
+              },
+              "GeometryRef": {
+                "ref": "type%3DWALKLINK%26startx%3D18042348%26starty%3D59389824%26endx%3D18041836%26endy%3D59390732%26dt%3D2017-05-16T15%3A58%26h%3Dbffd899fd9403abcd03772301e83b528%26lang%3Dsv%26format%3Djson%26"
+              }
+            },
+            {
+              "idx": "3",
+              "name": "tunnelbanans röda linje 14",
+              "type": "METRO",
+              "dir": "Fruängen",
+              "line": "14",
+              "Origin": {
+                "name": "Danderyds sjukhus",
+                "type": "ST",
+                "id": "400102252",
+                "lon": "18.041836",
+                "lat": "59.390732",
+                "routeIdx": "1",
+                "time": "16:01",
+                "date": "2017-05-16",
+                "track": "2"
+              },
+              "Destination": {
+                "name": "T-Centralen",
+                "type": "ST",
+                "id": "400102052",
+                "lon": "18.061432",
+                "lat": "59.331340",
+                "routeIdx": "7",
+                "time": "16:15",
+                "date": "2017-05-16",
+                "track": "2"
+              },
+              "JourneyDetailRef": {
+                "ref": "ref%3D441171%2F154168%2F972846%2F339375%2F74%3Fdate%3D2017-05-16%26station_evaId%3D400102252%26station_type%3Ddep%26lang%3Dsv%26format%3Djson%26"
+              },
+              "GeometryRef": {
+                "ref": "ref%3D441171%2F154168%2F972846%2F339375%2F74%26startIdx%3D1%26endIdx%3D7%26lang%3Dsv%26format%3Djson%26"
+              }
+            },
+            {
+              "idx": "4",
+              "name": "Walk",
+              "type": "WALK",
+              "dist": "168",
+              "Origin": {
+                "name": "T-Centralen",
+                "type": "ST",
+                "id": "400102052",
+                "lon": "18.061432",
+                "lat": "59.331340",
+                "time": "16:16",
+                "date": "2017-05-16"
+              },
+              "Destination": {
+                "name": "Vasagatan",
+                "type": "ADR",
+                "lon": "18.059634",
+                "lat": "59.330630",
+                "time": "16:19",
+                "date": "2017-05-16"
+              },
+              "GeometryRef": {
+                "ref": "type%3DWALK%26startx%3D18061432%26starty%3D59331340%26endx%3D18059634%26endy%3D59330630%26dt%3D2017-05-16T16%3A16%26h%3D45fbd41fcd647cb31e25a77622ebf897%26lang%3Dsv%26format%3Djson%26"
+              }
+            }
+          ]
         },
-        "viewport": {
-          "northeast": {
-            "lat": 59.3607599302915,
-            "lng": 17.9810748802915
+        "PriceInfo": {
+          "TariffZones": {
+            "$": "SL"
           },
-          "southwest": {
-            "lat": 59.35806196970849,
-            "lng": 17.9783769197085
+          "TariffRemark": {
+            "$": "SL"
           }
         }
       },
-      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/generic_business-71.png",
-      "id": "c19112252511cd8bd3aedb5d841763197ea53561",
-      "name": "Actic Stockholm - Solna",
-      "opening_hours": {
-        "open_now": true,
-        "weekday_text": []
-      },
-      "photos": [
-        {
-          "height": 668,
-          "html_attributions": [
-            "<a href=\"https://maps.google.com/maps/contrib/105243387167454537119/photos\">Actic Stockholm - Solna</a>"
-          ],
-          "photo_reference": "CmRYAAAA0ZDd-a1nB-E6GJXDPG6agctjUGK_OjleS9_BToGvOPK2IRob-cJ6vWtpbZJo264-rM6WQH_-tGE-QjJkTZ57NyXRl-Fh5Gru43SMCiajpbHSV-TWIlgSrG4QuHQBYveQEhAhQ5lT9kmLmG8ejoYqgMJXGhSEJhr_H3s86x91oeFbKTbtpyHSoQ",
-          "width": 1000
-        }
-      ],
-      "place_id": "ChIJD27ajuidX0YRdNd1oPS2fB4",
-      "rating": 2.3,
-      "reference": "CmRRAAAAgmER8bXqR-QP51KYOZLIwA76Y4-3uTUROLSLtAMesk8KektzjRgHFrrTM90hhXtOzQ9JZi3A0boUdVxtHiZgQMo5i5fEp7bqBCUcKfu3pe-XIU1vazH5c-SrbFEpWKs2EhCbv_rSMNRXqod2F-ETk1JbGhSLTM22pBal1xiWTFMNNKNLQN796A",
-      "scope": "GOOGLE",
-      "types": [
-        "gym",
-        "spa",
-        "health",
-        "point_of_interest",
-        "establishment"
-      ],
-      "vicinity": "Svetsarvägen 9B, Solna"
-    },
-    {
-      "geometry": {
-        "location": {
-          "lat": 59.360885,
-          "lng": 17.980825
+      {
+        "dur": "88",
+        "chg": "1",
+        "co2": "1.40",
+        "LegList": {
+          "Leg": [
+            {
+              "idx": "0",
+              "name": "Walk",
+              "type": "WALK",
+              "dist": "699",
+              "Origin": {
+                "name": "Vegagatan5",
+                "type": "ADR",
+                "lon": "18.710444",
+                "lat": "59.760414",
+                "time": "15:06",
+                "date": "2017-05-16"
+              },
+              "Destination": {
+                "name": "Norrtälje busstation",
+                "type": "ST",
+                "id": "400160056",
+                "lon": "18.699711",
+                "lat": "59.759811",
+                "time": "15:17",
+                "date": "2017-05-16"
+              },
+              "GeometryRef": {
+                "ref": "type%3DWALK%26startx%3D18710444%26starty%3D59760414%26endx%3D18699711%26endy%3D59759811%26dt%3D2017-05-16T15%3A06%26h%3De945516af96defa0ec86303083d329e2%26lang%3Dsv%26format%3Djson%26"
+              }
+            },
+            {
+              "idx": "1",
+              "name": "blåbuss 676",
+              "type": "BUS",
+              "dir": "Stockholm",
+              "line": "676",
+              "Origin": {
+                "name": "Norrtälje busstation",
+                "type": "ST",
+                "id": "400160056",
+                "lon": "18.699711",
+                "lat": "59.759811",
+                "routeIdx": "0",
+                "time": "15:18",
+                "date": "2017-05-16",
+                "track": "F"
+              },
+              "Destination": {
+                "name": "Danderyds sjukhus",
+                "type": "ST",
+                "id": "400160010",
+                "lon": "18.042348",
+                "lat": "59.389824",
+                "routeIdx": "10",
+                "time": "16:12",
+                "date": "2017-05-16",
+                "track": "C"
+              },
+              "JourneyDetailRef": {
+                "ref": "ref%3D297756%2F144329%2F583924%2F192717%2F74%3Fdate%3D2017-05-16%26station_evaId%3D400160056%26station_type%3Ddep%26lang%3Dsv%26format%3Djson%26"
+              },
+              "GeometryRef": {
+                "ref": "ref%3D297756%2F144329%2F583924%2F192717%2F74%26startIdx%3D0%26endIdx%3D10%26lang%3Dsv%26format%3Djson%26"
+              }
+            },
+            {
+              "idx": "2",
+              "name": "Walk",
+              "type": "WALK",
+              "hide": "true",
+              "dist": "105",
+              "Origin": {
+                "name": "Danderyds sjukhus",
+                "type": "ST",
+                "id": "400160010",
+                "lon": "18.042348",
+                "lat": "59.389824",
+                "time": "16:13",
+                "date": "2017-05-16"
+              },
+              "Destination": {
+                "name": "Danderyds sjukhus",
+                "type": "ST",
+                "id": "400102252",
+                "lon": "18.041836",
+                "lat": "59.390732",
+                "time": "16:16",
+                "date": "2017-05-16"
+              },
+              "GeometryRef": {
+                "ref": "type%3DWALKLINK%26startx%3D18042348%26starty%3D59389824%26endx%3D18041836%26endy%3D59390732%26dt%3D2017-05-16T16%3A13%26h%3Dbffd899fd9403abcd03772301e83b528%26lang%3Dsv%26format%3Djson%26"
+              }
+            },
+            {
+              "idx": "3",
+              "name": "tunnelbanans röda linje 14",
+              "type": "METRO",
+              "dir": "Fruängen",
+              "line": "14",
+              "Origin": {
+                "name": "Danderyds sjukhus",
+                "type": "ST",
+                "id": "400102252",
+                "lon": "18.041836",
+                "lat": "59.390732",
+                "routeIdx": "1",
+                "time": "16:16",
+                "date": "2017-05-16",
+                "track": "2"
+              },
+              "Destination": {
+                "name": "T-Centralen",
+                "type": "ST",
+                "id": "400102052",
+                "lon": "18.061432",
+                "lat": "59.331340",
+                "routeIdx": "7",
+                "time": "16:30",
+                "date": "2017-05-16",
+                "track": "2"
+              },
+              "JourneyDetailRef": {
+                "ref": "ref%3D618336%2F213223%2F127042%2F142603%2F74%3Fdate%3D2017-05-16%26station_evaId%3D400102252%26station_type%3Ddep%26lang%3Dsv%26format%3Djson%26"
+              },
+              "GeometryRef": {
+                "ref": "ref%3D618336%2F213223%2F127042%2F142603%2F74%26startIdx%3D1%26endIdx%3D7%26lang%3Dsv%26format%3Djson%26"
+              }
+            },
+            {
+              "idx": "4",
+              "name": "Walk",
+              "type": "WALK",
+              "dist": "168",
+              "Origin": {
+                "name": "T-Centralen",
+                "type": "ST",
+                "id": "400102052",
+                "lon": "18.061432",
+                "lat": "59.331340",
+                "time": "16:31",
+                "date": "2017-05-16"
+              },
+              "Destination": {
+                "name": "Vasagatan",
+                "type": "ADR",
+                "lon": "18.059634",
+                "lat": "59.330630",
+                "time": "16:34",
+                "date": "2017-05-16"
+              },
+              "GeometryRef": {
+                "ref": "type%3DWALK%26startx%3D18061432%26starty%3D59331340%26endx%3D18059634%26endy%3D59330630%26dt%3D2017-05-16T16%3A31%26h%3D45fbd41fcd647cb31e25a77622ebf897%26lang%3Dsv%26format%3Djson%26"
+              }
+            }
+          ]
         },
-        "viewport": {
-          "northeast": {
-            "lat": 59.36193488029151,
-            "lng": 17.9820356302915
+        "PriceInfo": {
+          "TariffZones": {
+            "$": "SL"
           },
-          "southwest": {
-            "lat": 59.35923691970849,
-            "lng": 17.9793376697085
+          "TariffRemark": {
+            "$": "SL"
           }
         }
       },
-      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/generic_business-71.png",
-      "id": "629ed10e2502e214a4e137b23d4f7a84c31076a2",
-      "name": "Westninefitness",
-      "opening_hours": {
-        "open_now": true,
-        "weekday_text": []
-      },
-      "photos": [
-        {
-          "height": 1741,
-          "html_attributions": [
-            "<a href=\"https://maps.google.com/maps/contrib/112522135413755976048/photos\">erling akesson</a>"
-          ],
-          "photo_reference": "CmRYAAAA8kPQJF5fbFN0fdtGGzUCW0BG28Vy8QOGxiZ0m5gzb_YkLBioIracrvJFYbaZH9VtJ56yPt8snsvGz9XmAaIsFI7hlbg5T-s3BAFfsiPXWMjMsC0nQn5K627FNB1EF6uOEhAlZLx7qU3VmGHzcXalB463GhTTpt0HMczoPPWG2gO0FlJ2Q-6FOA",
-          "width": 3086
+      {
+        "dur": "101",
+        "chg": "2",
+        "co2": "1.40",
+        "LegList": {
+          "Leg": [
+            {
+              "idx": "0",
+              "name": "Walk",
+              "type": "WALK",
+              "dist": "163",
+              "Origin": {
+                "name": "Vegagatan5",
+                "type": "ADR",
+                "lon": "18.710444",
+                "lat": "59.760414",
+                "time": "15:08",
+                "date": "2017-05-16"
+              },
+              "Destination": {
+                "name": "Brännässkolan",
+                "type": "ST",
+                "id": "400165006",
+                "lon": "18.708674",
+                "lat": "59.759955",
+                "time": "15:11",
+                "date": "2017-05-16"
+              },
+              "GeometryRef": {
+                "ref": "type%3DWALK%26startx%3D18710444%26starty%3D59760414%26endx%3D18708674%26endy%3D59759955%26dt%3D2017-05-16T15%3A08%26h%3D2978cb909414e19fdb88d59a6ccfb38d%26lang%3Dsv%26format%3Djson%26"
+              }
+            },
+            {
+              "idx": "1",
+              "name": "Buss 656",
+              "type": "BUS",
+              "dir": "Campus Roslagen",
+              "line": "656",
+              "Origin": {
+                "name": "Brännässkolan",
+                "type": "ST",
+                "id": "400165006",
+                "lon": "18.708674",
+                "lat": "59.759955",
+                "routeIdx": "8",
+                "time": "15:13",
+                "date": "2017-05-16"
+              },
+              "Destination": {
+                "name": "Norrtälje busstation",
+                "type": "ST",
+                "id": "400169952",
+                "lon": "18.699846",
+                "lat": "59.759407",
+                "routeIdx": "10",
+                "time": "15:16",
+                "date": "2017-05-16",
+                "track": "L"
+              },
+              "JourneyDetailRef": {
+                "ref": "ref%3D63633%2F65413%2F987630%2F472605%2F74%3Fdate%3D2017-05-16%26station_evaId%3D400165006%26station_type%3Ddep%26lang%3Dsv%26format%3Djson%26"
+              },
+              "GeometryRef": {
+                "ref": "ref%3D63633%2F65413%2F987630%2F472605%2F74%26startIdx%3D8%26endIdx%3D10%26lang%3Dsv%26format%3Djson%26"
+              }
+            },
+            {
+              "idx": "2",
+              "name": "Walk",
+              "type": "WALK",
+              "hide": "true",
+              "dist": "46",
+              "Origin": {
+                "name": "Norrtälje busstation",
+                "type": "ST",
+                "id": "400169952",
+                "lon": "18.699846",
+                "lat": "59.759407",
+                "time": "15:17",
+                "date": "2017-05-16"
+              },
+              "Destination": {
+                "name": "Norrtälje busstation",
+                "type": "ST",
+                "id": "400160056",
+                "lon": "18.699711",
+                "lat": "59.759811",
+                "time": "15:20",
+                "date": "2017-05-16"
+              },
+              "GeometryRef": {
+                "ref": "type%3DWALKLINK%26startx%3D18699846%26starty%3D59759407%26endx%3D18699711%26endy%3D59759811%26dt%3D2017-05-16T15%3A17%26h%3De9e7b844952a41ce30122042e49b283d%26lang%3Dsv%26format%3Djson%26"
+              }
+            },
+            {
+              "idx": "3",
+              "name": "blåbuss 676",
+              "type": "BUS",
+              "dir": "Stockholm",
+              "line": "676",
+              "Origin": {
+                "name": "Norrtälje busstation",
+                "type": "ST",
+                "id": "400160056",
+                "lon": "18.699711",
+                "lat": "59.759811",
+                "routeIdx": "0",
+                "time": "15:33",
+                "date": "2017-05-16",
+                "track": "F"
+              },
+              "Destination": {
+                "name": "Danderyds sjukhus",
+                "type": "ST",
+                "id": "400160010",
+                "lon": "18.042348",
+                "lat": "59.389824",
+                "routeIdx": "10",
+                "time": "16:27",
+                "date": "2017-05-16",
+                "track": "C"
+              },
+              "JourneyDetailRef": {
+                "ref": "ref%3D78201%2F71147%2F350598%2F149232%2F74%3Fdate%3D2017-05-16%26station_evaId%3D400160056%26station_type%3Ddep%26lang%3Dsv%26format%3Djson%26"
+              },
+              "GeometryRef": {
+                "ref": "ref%3D78201%2F71147%2F350598%2F149232%2F74%26startIdx%3D0%26endIdx%3D10%26lang%3Dsv%26format%3Djson%26"
+              }
+            },
+            {
+              "idx": "4",
+              "name": "Walk",
+              "type": "WALK",
+              "hide": "true",
+              "dist": "105",
+              "Origin": {
+                "name": "Danderyds sjukhus",
+                "type": "ST",
+                "id": "400160010",
+                "lon": "18.042348",
+                "lat": "59.389824",
+                "time": "16:28",
+                "date": "2017-05-16"
+              },
+              "Destination": {
+                "name": "Danderyds sjukhus",
+                "type": "ST",
+                "id": "400102252",
+                "lon": "18.041836",
+                "lat": "59.390732",
+                "time": "16:31",
+                "date": "2017-05-16"
+              },
+              "GeometryRef": {
+                "ref": "type%3DWALKLINK%26startx%3D18042348%26starty%3D59389824%26endx%3D18041836%26endy%3D59390732%26dt%3D2017-05-16T16%3A28%26h%3Dbffd899fd9403abcd03772301e83b528%26lang%3Dsv%26format%3Djson%26"
+              }
+            },
+            {
+              "idx": "5",
+              "name": "tunnelbanans röda linje 14",
+              "type": "METRO",
+              "dir": "Fruängen",
+              "line": "14",
+              "Origin": {
+                "name": "Danderyds sjukhus",
+                "type": "ST",
+                "id": "400102252",
+                "lon": "18.041836",
+                "lat": "59.390732",
+                "routeIdx": "1",
+                "time": "16:31",
+                "date": "2017-05-16",
+                "track": "2"
+              },
+              "Destination": {
+                "name": "T-Centralen",
+                "type": "ST",
+                "id": "400102052",
+                "lon": "18.061432",
+                "lat": "59.331340",
+                "routeIdx": "7",
+                "time": "16:45",
+                "date": "2017-05-16",
+                "track": "2"
+              },
+              "JourneyDetailRef": {
+                "ref": "ref%3D291267%2F104200%2F913030%2F359441%2F74%3Fdate%3D2017-05-16%26station_evaId%3D400102252%26station_type%3Ddep%26lang%3Dsv%26format%3Djson%26"
+              },
+              "GeometryRef": {
+                "ref": "ref%3D291267%2F104200%2F913030%2F359441%2F74%26startIdx%3D1%26endIdx%3D7%26lang%3Dsv%26format%3Djson%26"
+              }
+            },
+            {
+              "idx": "6",
+              "name": "Walk",
+              "type": "WALK",
+              "dist": "168",
+              "Origin": {
+                "name": "T-Centralen",
+                "type": "ST",
+                "id": "400102052",
+                "lon": "18.061432",
+                "lat": "59.331340",
+                "time": "16:46",
+                "date": "2017-05-16"
+              },
+              "Destination": {
+                "name": "Vasagatan",
+                "type": "ADR",
+                "lon": "18.059634",
+                "lat": "59.330630",
+                "time": "16:49",
+                "date": "2017-05-16"
+              },
+              "GeometryRef": {
+                "ref": "type%3DWALK%26startx%3D18061432%26starty%3D59331340%26endx%3D18059634%26endy%3D59330630%26dt%3D2017-05-16T16%3A46%26h%3D45fbd41fcd647cb31e25a77622ebf897%26lang%3Dsv%26format%3Djson%26"
+              }
+            }
+          ]
         }
-      ],
-      "place_id": "ChIJA3FotcGdX0YR5zGdVbGQYjo",
-      "reference": "CmRRAAAAENOCpRaDI2YKz877KOeosmoII-ZlyrjD7NXh7hBqG9r8Sty-OQH7e1_MCORq6YWp4VCrohXOJVM35G4Ndv-BzUXliTGwFbjG3-2O8_L9fi-vhYBFTeco9cfID-CGysBoEhDdgrzHd75f2upyzNTr7bCZGhSB_dl2Ir6YpVQ2diym3Q49ql3mmQ",
-      "scope": "GOOGLE",
-      "types": [
-        "gym",
-        "health",
-        "point_of_interest",
-        "establishment"
-      ],
-      "vicinity": "Englundavägen 7, Solna"
-    },
-    {
-      "geometry": {
-        "location": {
-          "lat": 59.3498172,
-          "lng": 17.9857992
+      },
+      {
+        "dur": "88",
+        "chg": "1",
+        "co2": "1.40",
+        "LegList": {
+          "Leg": [
+            {
+              "idx": "0",
+              "name": "Walk",
+              "type": "WALK",
+              "dist": "699",
+              "Origin": {
+                "name": "Vegagatan5",
+                "type": "ADR",
+                "lon": "18.710444",
+                "lat": "59.760414",
+                "time": "15:21",
+                "date": "2017-05-16"
+              },
+              "Destination": {
+                "name": "Norrtälje busstation",
+                "type": "ST",
+                "id": "400160056",
+                "lon": "18.699711",
+                "lat": "59.759811",
+                "time": "15:32",
+                "date": "2017-05-16"
+              },
+              "GeometryRef": {
+                "ref": "type%3DWALK%26startx%3D18710444%26starty%3D59760414%26endx%3D18699711%26endy%3D59759811%26dt%3D2017-05-16T15%3A21%26h%3De945516af96defa0ec86303083d329e2%26lang%3Dsv%26format%3Djson%26"
+              }
+            },
+            {
+              "idx": "1",
+              "name": "blåbuss 676",
+              "type": "BUS",
+              "dir": "Stockholm",
+              "line": "676",
+              "Origin": {
+                "name": "Norrtälje busstation",
+                "type": "ST",
+                "id": "400160056",
+                "lon": "18.699711",
+                "lat": "59.759811",
+                "routeIdx": "0",
+                "time": "15:33",
+                "date": "2017-05-16",
+                "track": "F"
+              },
+              "Destination": {
+                "name": "Danderyds sjukhus",
+                "type": "ST",
+                "id": "400160010",
+                "lon": "18.042348",
+                "lat": "59.389824",
+                "routeIdx": "10",
+                "time": "16:27",
+                "date": "2017-05-16",
+                "track": "C"
+              },
+              "JourneyDetailRef": {
+                "ref": "ref%3D392598%2F175946%2F965014%2F351641%2F74%3Fdate%3D2017-05-16%26station_evaId%3D400160056%26station_type%3Ddep%26lang%3Dsv%26format%3Djson%26"
+              },
+              "GeometryRef": {
+                "ref": "ref%3D392598%2F175946%2F965014%2F351641%2F74%26startIdx%3D0%26endIdx%3D10%26lang%3Dsv%26format%3Djson%26"
+              }
+            },
+            {
+              "idx": "2",
+              "name": "Walk",
+              "type": "WALK",
+              "hide": "true",
+              "dist": "105",
+              "Origin": {
+                "name": "Danderyds sjukhus",
+                "type": "ST",
+                "id": "400160010",
+                "lon": "18.042348",
+                "lat": "59.389824",
+                "time": "16:28",
+                "date": "2017-05-16"
+              },
+              "Destination": {
+                "name": "Danderyds sjukhus",
+                "type": "ST",
+                "id": "400102252",
+                "lon": "18.041836",
+                "lat": "59.390732",
+                "time": "16:31",
+                "date": "2017-05-16"
+              },
+              "GeometryRef": {
+                "ref": "type%3DWALKLINK%26startx%3D18042348%26starty%3D59389824%26endx%3D18041836%26endy%3D59390732%26dt%3D2017-05-16T16%3A28%26h%3Dbffd899fd9403abcd03772301e83b528%26lang%3Dsv%26format%3Djson%26"
+              }
+            },
+            {
+              "idx": "3",
+              "name": "tunnelbanans röda linje 14",
+              "type": "METRO",
+              "dir": "Fruängen",
+              "line": "14",
+              "Origin": {
+                "name": "Danderyds sjukhus",
+                "type": "ST",
+                "id": "400102252",
+                "lon": "18.041836",
+                "lat": "59.390732",
+                "routeIdx": "1",
+                "time": "16:31",
+                "date": "2017-05-16",
+                "track": "2"
+              },
+              "Destination": {
+                "name": "T-Centralen",
+                "type": "ST",
+                "id": "400102052",
+                "lon": "18.061432",
+                "lat": "59.331340",
+                "routeIdx": "7",
+                "time": "16:45",
+                "date": "2017-05-16",
+                "track": "2"
+              },
+              "JourneyDetailRef": {
+                "ref": "ref%3D833493%2F284942%2F95096%2F230298%2F74%3Fdate%3D2017-05-16%26station_evaId%3D400102252%26station_type%3Ddep%26lang%3Dsv%26format%3Djson%26"
+              },
+              "GeometryRef": {
+                "ref": "ref%3D833493%2F284942%2F95096%2F230298%2F74%26startIdx%3D1%26endIdx%3D7%26lang%3Dsv%26format%3Djson%26"
+              }
+            },
+            {
+              "idx": "4",
+              "name": "Walk",
+              "type": "WALK",
+              "dist": "168",
+              "Origin": {
+                "name": "T-Centralen",
+                "type": "ST",
+                "id": "400102052",
+                "lon": "18.061432",
+                "lat": "59.331340",
+                "time": "16:46",
+                "date": "2017-05-16"
+              },
+              "Destination": {
+                "name": "Vasagatan",
+                "type": "ADR",
+                "lon": "18.059634",
+                "lat": "59.330630",
+                "time": "16:49",
+                "date": "2017-05-16"
+              },
+              "GeometryRef": {
+                "ref": "type%3DWALK%26startx%3D18061432%26starty%3D59331340%26endx%3D18059634%26endy%3D59330630%26dt%3D2017-05-16T16%3A46%26h%3D45fbd41fcd647cb31e25a77622ebf897%26lang%3Dsv%26format%3Djson%26"
+              }
+            }
+          ]
         },
-        "viewport": {
-          "northeast": {
-            "lat": 59.3509990302915,
-            "lng": 17.9869733802915
+        "PriceInfo": {
+          "TariffZones": {
+            "$": "SL"
           },
-          "southwest": {
-            "lat": 59.34830106970849,
-            "lng": 17.9842754197085
+          "TariffRemark": {
+            "$": "SL"
           }
         }
       },
-      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/generic_business-71.png",
-      "id": "30144fb285ad94eb9da8f7befeadf69d486dd003",
-      "name": "Fitness 24seven AB",
-      "opening_hours": {
-        "open_now": true,
-        "weekday_text": []
-      },
-      "photos": [
-        {
-          "height": 2610,
-          "html_attributions": [
-            "<a href=\"https://maps.google.com/maps/contrib/113225572909793031707/photos\">Andreas Eriksson</a>"
-          ],
-          "photo_reference": "CmRYAAAA7ThBv2dYZ00sOtBieON3R86CcwSeyWQKMWtA0-MKTxJVt8_z0rHVcakqqkJlkTSqFPY5DknldbUaUImy_0it_Rqm5cB0FNLpfCWwo9ZCeL--MuyMLEhWzIaQctxUIS2zEhBFqLX0r7i7ObXMzE3MGoEgGhRKjsJNlJYGwPZPaG-SkOu-rwjUaw",
-          "width": 4640
-        }
-      ],
-      "place_id": "ChIJX1JAh_KdX0YR4w6nShG7KsU",
-      "rating": 5,
-      "reference": "CmRSAAAAHSO9PN3ZCS8jLX8S8XCQwGGZDRhBIO9qGcZouDMbIzj9uKSyb-3Sq3LT4NrMnUGRC-hA1bQHHTvFbpG2-rw7WiYPhcGtWqBU9Dz1icohM2XE2fwVlSPUqfrbioSEsvzaEhDGc8ouLupK44Y-euE7RVaMGhSd9tw5rY_RSEj0eoZnPiHkOfaa-g",
-      "scope": "GOOGLE",
-      "types": [
-        "gym",
-        "health",
-        "point_of_interest",
-        "establishment"
-      ],
-      "vicinity": "Storgatan 70, Solna"
-    },
-    {
-      "geometry": {
-        "location": {
-          "lat": 59.3556878,
-          "lng": 17.9748399
+      {
+        "dur": "88",
+        "chg": "1",
+        "co2": "1.40",
+        "LegList": {
+          "Leg": [
+            {
+              "idx": "0",
+              "name": "Walk",
+              "type": "WALK",
+              "dist": "699",
+              "Origin": {
+                "name": "Vegagatan5",
+                "type": "ADR",
+                "lon": "18.710444",
+                "lat": "59.760414",
+                "time": "15:36",
+                "date": "2017-05-16"
+              },
+              "Destination": {
+                "name": "Norrtälje busstation",
+                "type": "ST",
+                "id": "400160056",
+                "lon": "18.699711",
+                "lat": "59.759811",
+                "time": "15:47",
+                "date": "2017-05-16"
+              },
+              "GeometryRef": {
+                "ref": "type%3DWALK%26startx%3D18710444%26starty%3D59760414%26endx%3D18699711%26endy%3D59759811%26dt%3D2017-05-16T15%3A36%26h%3De945516af96defa0ec86303083d329e2%26lang%3Dsv%26format%3Djson%26"
+              }
+            },
+            {
+              "idx": "1",
+              "name": "blåbuss 676",
+              "type": "BUS",
+              "dir": "Stockholm",
+              "line": "676",
+              "Origin": {
+                "name": "Norrtälje busstation",
+                "type": "ST",
+                "id": "400160056",
+                "lon": "18.699711",
+                "lat": "59.759811",
+                "routeIdx": "0",
+                "time": "15:48",
+                "date": "2017-05-16",
+                "track": "F"
+              },
+              "Destination": {
+                "name": "Danderyds sjukhus",
+                "type": "ST",
+                "id": "400160010",
+                "lon": "18.042348",
+                "lat": "59.389824",
+                "routeIdx": "10",
+                "time": "16:42",
+                "date": "2017-05-16",
+                "track": "C"
+              },
+              "JourneyDetailRef": {
+                "ref": "ref%3D771111%2F302103%2F363224%2F75427%2F74%3Fdate%3D2017-05-16%26station_evaId%3D400160056%26station_type%3Ddep%26lang%3Dsv%26format%3Djson%26"
+              },
+              "GeometryRef": {
+                "ref": "ref%3D771111%2F302103%2F363224%2F75427%2F74%26startIdx%3D0%26endIdx%3D10%26lang%3Dsv%26format%3Djson%26"
+              }
+            },
+            {
+              "idx": "2",
+              "name": "Walk",
+              "type": "WALK",
+              "hide": "true",
+              "dist": "105",
+              "Origin": {
+                "name": "Danderyds sjukhus",
+                "type": "ST",
+                "id": "400160010",
+                "lon": "18.042348",
+                "lat": "59.389824",
+                "time": "16:43",
+                "date": "2017-05-16"
+              },
+              "Destination": {
+                "name": "Danderyds sjukhus",
+                "type": "ST",
+                "id": "400102252",
+                "lon": "18.041836",
+                "lat": "59.390732",
+                "time": "16:46",
+                "date": "2017-05-16"
+              },
+              "GeometryRef": {
+                "ref": "type%3DWALKLINK%26startx%3D18042348%26starty%3D59389824%26endx%3D18041836%26endy%3D59390732%26dt%3D2017-05-16T16%3A43%26h%3Dbffd899fd9403abcd03772301e83b528%26lang%3Dsv%26format%3Djson%26"
+              }
+            },
+            {
+              "idx": "3",
+              "name": "tunnelbanans röda linje 14",
+              "type": "METRO",
+              "dir": "Fruängen",
+              "line": "14",
+              "Origin": {
+                "name": "Danderyds sjukhus",
+                "type": "ST",
+                "id": "400102252",
+                "lon": "18.041836",
+                "lat": "59.390732",
+                "routeIdx": "1",
+                "time": "16:46",
+                "date": "2017-05-16",
+                "track": "2"
+              },
+              "Destination": {
+                "name": "T-Centralen",
+                "type": "ST",
+                "id": "400102052",
+                "lon": "18.061432",
+                "lat": "59.331340",
+                "routeIdx": "7",
+                "time": "17:00",
+                "date": "2017-05-16",
+                "track": "2"
+              },
+              "JourneyDetailRef": {
+                "ref": "ref%3D288801%2F103378%2F876198%2F341850%2F74%3Fdate%3D2017-05-16%26station_evaId%3D400102252%26station_type%3Ddep%26lang%3Dsv%26format%3Djson%26"
+              },
+              "GeometryRef": {
+                "ref": "ref%3D288801%2F103378%2F876198%2F341850%2F74%26startIdx%3D1%26endIdx%3D7%26lang%3Dsv%26format%3Djson%26"
+              }
+            },
+            {
+              "idx": "4",
+              "name": "Walk",
+              "type": "WALK",
+              "dist": "168",
+              "Origin": {
+                "name": "T-Centralen",
+                "type": "ST",
+                "id": "400102052",
+                "lon": "18.061432",
+                "lat": "59.331340",
+                "time": "17:01",
+                "date": "2017-05-16"
+              },
+              "Destination": {
+                "name": "Vasagatan",
+                "type": "ADR",
+                "lon": "18.059634",
+                "lat": "59.330630",
+                "time": "17:04",
+                "date": "2017-05-16"
+              },
+              "GeometryRef": {
+                "ref": "type%3DWALK%26startx%3D18061432%26starty%3D59331340%26endx%3D18059634%26endy%3D59330630%26dt%3D2017-05-16T17%3A01%26h%3D45fbd41fcd647cb31e25a77622ebf897%26lang%3Dsv%26format%3Djson%26"
+              }
+            }
+          ]
         },
-        "viewport": {
-          "northeast": {
-            "lat": 59.3569374302915,
-            "lng": 17.9765672802915
+        "PriceInfo": {
+          "TariffZones": {
+            "$": "SL"
           },
-          "southwest": {
-            "lat": 59.35423946970849,
-            "lng": 17.9738693197085
+          "TariffRemark": {
+            "$": "SL"
           }
         }
-      },
-      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/school-71.png",
-      "id": "4cf14bdc5d4a5178387d06f53eaba0ee915135ed",
-      "name": "Gymnastikförbundet Öst",
-      "opening_hours": {
-        "open_now": true,
-        "weekday_text": []
-      },
-      "photos": [
-        {
-          "height": 800,
-          "html_attributions": [
-            "<a href=\"https://maps.google.com/maps/contrib/109093379295424334413/photos\">Kristian Gunnarsson</a>"
-          ],
-          "photo_reference": "CmRYAAAAwBOhLEJG7Z3VSpviYbqyFb7lbl8UuoWoQ3GVccGLZHSxcMpzmyNkfU2AapVGw6OaNS9s9neGmEKN8HBIpatYwb7X7aAafys00ZWYOXrTxHf1wDPdcq8_2CJekyUQkGiPEhCXpySNwPRvg8sckYyd54vNGhQpdWcWOHlA132DqzbUuTPwwdWefw",
-          "width": 1200
-        }
-      ],
-      "place_id": "ChIJoS_I9OidX0YRx7_etehWVS4",
-      "reference": "CmRRAAAAzlJwSASDHfgOve3bh5THww_2Vo6YY7o8X9_7-vzjHe9FW859RQ907TtWdW3KSyO6qK1IotLRvmMEHtR8S0W9mEwCCxK809KVuUaFCsXhkigTaRvhq_28GfyCwYA1qco5EhCOCwvCBZ73mR8DJWITQvIJGhTSJOX0Pw-3AXn75Uh55Pb4SRPuSQ",
-      "scope": "GOOGLE",
-      "types": [
-        "gym",
-        "health",
-        "point_of_interest",
-        "establishment"
-      ],
-      "vicinity": "Vretenvägen 4, Solna"
-    },
-    {
-      "geometry": {
-        "location": {
-          "lat": 59.34988310000001,
-          "lng": 17.9858759
-        },
-        "viewport": {
-          "northeast": {
-            "lat": 59.3510311802915,
-            "lng": 17.9870147802915
-          },
-          "southwest": {
-            "lat": 59.34833321970849,
-            "lng": 17.9843168197085
-          }
-        }
-      },
-      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/generic_business-71.png",
-      "id": "5e0ca90695008396cf95c19a7047881b60a4d406",
-      "name": "Fitness24Seven",
-      "opening_hours": {
-        "open_now": true,
-        "weekday_text": []
-      },
-      "photos": [
-        {
-          "height": 500,
-          "html_attributions": [
-            "<a href=\"https://maps.google.com/maps/contrib/107383598892534196101/photos\">Fitness24Seven</a>"
-          ],
-          "photo_reference": "CmRYAAAAnHzxTrq6SPH1uWwxCFenc6MHUFQfni9oZI-X17hFYdEXqPeVMptfOFFAM6evDT7K1hlGlAz6ULkuAk2L_RLxczIdAPUrDX5ELbgWrXwVi4JUT3PwYwVLgVQYQIlkCzpxEhB5n-LTd0LMbmMn258OFSRfGhQxyFbCFkmS0_PrxRmcX3ZUMF_ijA",
-          "width": 500
-        }
-      ],
-      "place_id": "ChIJh5bCfvKdX0YRFAImETKNlRw",
-      "reference": "CmRRAAAA7YrSekg9c31Jk7gRLpoCIQPggFZfE0xCp25wGGvh8e3SC39hHHUrwC5GAtQxAeWs7GdkjR57jLc8OpDDpTGRuITETiLfafkMa6d2AYpRb79SfZ5eTX-hWhwuUN2B2UoEEhAbyS_cWfcvM-6HN14p9zSRGhS-CCPGo2EQ7dsZsevIYJGpZAxBOw",
-      "scope": "GOOGLE",
-      "types": [
-        "gym",
-        "health",
-        "point_of_interest",
-        "establishment"
-      ],
-      "vicinity": "Storgatan 70, Solna"
-    },
-    {
-      "geometry": {
-        "location": {
-          "lat": 59.3558944,
-          "lng": 17.9738213
-        },
-        "viewport": {
-          "northeast": {
-            "lat": 59.35723693029151,
-            "lng": 17.9750571802915
-          },
-          "southwest": {
-            "lat": 59.35453896970849,
-            "lng": 17.9723592197085
-          }
-        }
-      },
-      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/generic_business-71.png",
-      "id": "9c79c80a4b354c6161ed9659a70571b5d2a24b3d",
-      "name": "Fitness24Seven",
-      "opening_hours": {
-        "open_now": true,
-        "weekday_text": []
-      },
-      "photos": [
-        {
-          "height": 1080,
-          "html_attributions": [
-            "<a href=\"https://maps.google.com/maps/contrib/108072361284317210839/photos\">Fitness24Seven</a>"
-          ],
-          "photo_reference": "CmRYAAAAEg8miWOtx9igZ40q9ccAEkh47cPHDsVS4PW_I3pyNmj2DyEOzYxNVufJepXhfAf-QY2wjF3DpHzXFZ4duz-M_m-fvdUl1PqFqqQLv7TAJ2_-GAAOWS0IEsdoYPTk1ro6EhAi6-JunHMgK4u2NZHSFYoZGhSDiBZhZh5FISdI7g2lRsz_7_4V4Q",
-          "width": 1920
-        }
-      ],
-      "place_id": "ChIJ3X3KhOWdX0YRFOvlmhDt5N8",
-      "rating": 4,
-      "reference": "CmRSAAAAo6UKu34qEjrYza-Xwb2VBm7nK0vFGfWjq4iIbZbFtdEigaQzbJpkaiMkd4Qc5jLVirMdgYXnKzZAEhvdvESi0hHluinmXDyoY93Ufv2UgB00UFGb8sfRUsm5FeFtueOZEhBGJuJznAOvbnh_BHAnUejgGhR-RQrPV_5WOUobxR_GTPKX5RhizQ",
-      "scope": "GOOGLE",
-      "types": [
-        "gym",
-        "health",
-        "point_of_interest",
-        "establishment"
-      ],
-      "vicinity": "Torggatan 8, Solna"
-    },
-    {
-      "geometry": {
-        "location": {
-          "lat": 59.35597480000001,
-          "lng": 17.9738031
-        },
-        "viewport": {
-          "northeast": {
-            "lat": 59.35731733029151,
-            "lng": 17.9750392302915
-          },
-          "southwest": {
-            "lat": 59.35461936970849,
-            "lng": 17.9723412697085
-          }
-        }
-      },
-      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/generic_business-71.png",
-      "id": "51f7fb6638be8cc5b615fbe0445ace83d403438b",
-      "name": "Fitness 24seven AB",
-      "opening_hours": {
-        "open_now": true,
-        "weekday_text": []
-      },
-      "place_id": "ChIJAYnSk-WdX0YRLItTYznIOUA",
-      "rating": 3,
-      "reference": "CmRRAAAAeNTF4PfZrJmBxH1vrBWMuutuzzTfWve-eEEGKPndwybFdnfY3OPygRiumIvvcrRQZ2hfM0S__6bWG4tsA9jFB0lQf4t-6FkEMrDlgwNEK3vB10uhni9diIc-n-cG6e-NEhDP3ehVxguSyx8JGkvs8D9fGhSlzoVv-uLtWkMc6lWhHEc4_R1Sng",
-      "scope": "GOOGLE",
-      "types": [
-        "gym",
-        "health",
-        "point_of_interest",
-        "establishment"
-      ],
-      "vicinity": "Torggatan 8, Solna"
-    },
-    {
-      "geometry": {
-        "location": {
-          "lat": 59.35594,
-          "lng": 17.9887122
-        },
-        "viewport": {
-          "northeast": {
-            "lat": 59.3573063802915,
-            "lng": 17.9903014802915
-          },
-          "southwest": {
-            "lat": 59.35460841970849,
-            "lng": 17.98760351970849
-          }
-        }
-      },
-      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/generic_business-71.png",
-      "id": "fd44046a6b0a607726375e8ee3ae610031ce421a",
-      "name": "Forca Fighting mma klubb",
-      "opening_hours": {
-        "open_now": false,
-        "weekday_text": []
-      },
-      "place_id": "ChIJsXtZi-udX0YRNsRNBJ6xqPM",
-      "rating": 5,
-      "reference": "CmRSAAAA0i9olOLHJXl8XV_fFXNGetcOzh3bZE_5VGppTvW9m1yjYgRwrhTGKh7_zB2y23zi_PYamTrhkKysA0270Mr847DMIdg9N91qxNvL0wFTJrXUzOEs8J8bFpHaZZnrX0uSEhAFwkWFuKQg4DtWAstOpejmGhSohfgnBX4R57Xfz-CJ1cVEeHEGWA",
-      "scope": "GOOGLE",
-      "types": [
-        "gym",
-        "health",
-        "point_of_interest",
-        "establishment"
-      ],
-      "vicinity": "Ankdammsgatan 23, Solna"
-    },
-    {
-      "geometry": {
-        "location": {
-          "lat": 59.35643049999999,
-          "lng": 17.9886056
-        },
-        "viewport": {
-          "northeast": {
-            "lat": 59.35779268029151,
-            "lng": 17.9901870302915
-          },
-          "southwest": {
-            "lat": 59.3550947197085,
-            "lng": 17.9874890697085
-          }
-        }
-      },
-      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/generic_business-71.png",
-      "id": "950cfe7f997631646e4848ba26a16f3819aec7df",
-      "name": "SOLNA SHOTOKAN KARATEKLUBB",
-      "opening_hours": {
-        "open_now": false,
-        "weekday_text": []
-      },
-      "place_id": "ChIJM_dV7eudX0YRY14O6763EkU",
-      "reference": "CmRRAAAA3OOMuzhlIk7-eJrfOSJ_EdsvuRYs0jZKSaVyG_6o-VGY5-Hcj_F84Xy034_dAW92sLyeNgoaZ9U_ysGZZ6o6NS_9Bz0rfBnsFtd6jon0U9mwCzCN6MEna8AH_grtRjB3EhAN9QGFnCWCnYbHSAoEObMdGhTU3RMZ6x3bnh1X_S1mZWc7F7F9LA",
-      "scope": "GOOGLE",
-      "types": [
-        "gym",
-        "health",
-        "point_of_interest",
-        "establishment"
-      ],
-      "vicinity": "Ankdammsgatan 23, Solna"
-    },
-    {
-      "geometry": {
-        "location": {
-          "lat": 59.3586912,
-          "lng": 17.9820979
-        },
-        "viewport": {
-          "northeast": {
-            "lat": 59.36020563029151,
-            "lng": 17.9831688302915
-          },
-          "southwest": {
-            "lat": 59.3575076697085,
-            "lng": 17.98047086970849
-          }
-        }
-      },
-      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/generic_business-71.png",
-      "id": "4cacaddf78c83237abffd717256e1dbd08a71818",
-      "name": "Actic",
-      "place_id": "ChIJe1KLa0svXEYRg0Xo9kla958",
-      "rating": 5,
-      "reference": "CmRSAAAAnzq4tl_ez-UPVAn1vrtS-E4GKYHM5I5Hd9QDcjfA4WifziIZrwFt1o56RTqjm4fWIvInaM9puUofOaMtnLQ0CW437_sS8qHcwrRXUq9EZE_Iy8OxhfLjG2FrFgi7Og0UEhAgRn7mOtdydNBv0d7vvYc5GhSZPsRqHPv0yjWz8iSSyEHSTXfoWQ",
-      "scope": "GOOGLE",
-      "types": [
-        "gym",
-        "health",
-        "point_of_interest",
-        "establishment"
-      ],
-      "vicinity": "Smidesvägen 12, Solna"
-    },
-    {
-      "geometry": {
-        "location": {
-          "lat": 59.359481,
-          "lng": 17.9798829
-        },
-        "viewport": {
-          "northeast": {
-            "lat": 59.36077168029151,
-            "lng": 17.9810978302915
-          },
-          "southwest": {
-            "lat": 59.35807371970849,
-            "lng": 17.9783998697085
-          }
-        }
-      },
-      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/generic_business-71.png",
-      "id": "57871fdec8257a78e9edbe05b92e67399b6832bb",
-      "name": "Itrim",
-      "opening_hours": {
-        "open_now": true,
-        "weekday_text": []
-      },
-      "photos": [
-        {
-          "height": 500,
-          "html_attributions": [
-            "<a href=\"https://maps.google.com/maps/contrib/102764776276495991916/photos\">Itrim</a>"
-          ],
-          "photo_reference": "CmRYAAAA8Ijj8-3wF-6hJk2_fu86qUVih7a1iX7c30u0Pcv2NYIwMQmHnIdCaRRGImWAGp7e23L2HdrPQFoSLxz9HT4yg6hhKN3vtM7SBbl9DB8NxnypJDc8qbpwK-wd4GIZsHH9EhADFkdVQtpsA53U_7D_T-XmGhQspMnMlWcUGM8k2J2-_WEnMtChiw",
-          "width": 500
-        }
-      ],
-      "place_id": "ChIJoS_I9OidX0YRpyGybOA-goA",
-      "rating": 1,
-      "reference": "CmRSAAAAD6cl7TFQsC896tH2OihzG8yH80kyrtqKt7PwWkh34WPkBpKMzRr2jbIo4j5LjLxjxl8r4QmQoZ1EJxJqxhdbZbDxW6tL30RUo-x9ufyYuoeWmyowhyRFILgZAAdFy3-sEhDP3WMxdBV7CGM1lER8QA6kGhSNxTkq9Md51AuzWBfsaPOcqj8kcQ",
-      "scope": "GOOGLE",
-      "types": [
-        "gym",
-        "health",
-        "point_of_interest",
-        "establishment"
-      ],
-      "vicinity": "Svetsarvägen 13, Solna"
-    },
-    {
-      "geometry": {
-        "location": {
-          "lat": 59.359142,
-          "lng": 17.968224
-        },
-        "viewport": {
-          "northeast": {
-            "lat": 59.3604603302915,
-            "lng": 17.9694810302915
-          },
-          "southwest": {
-            "lat": 59.3577623697085,
-            "lng": 17.9667830697085
-          }
-        }
-      },
-      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/generic_business-71.png",
-      "id": "c9cfdd4fcafbe1e7a010909e0022c2751fa0e908",
-      "name": "World Class Sundbyberg",
-      "opening_hours": {
-        "open_now": true,
-        "weekday_text": []
-      },
-      "photos": [
-        {
-          "height": 250,
-          "html_attributions": [
-            "<a href=\"https://maps.google.com/maps/contrib/115792876627140292592/photos\">World Class Sundbyberg</a>"
-          ],
-          "photo_reference": "CmRYAAAApSxqIE6LUS-bu_YfkqLytWB5NjrMiNKWzdKU0nyJo6AKUb1iSIGK6OYJA6v9cTXE2SUnjA2K5SPyH3Wn75YCVdmDMhD05-Kqs6VAjwBLnmZmd-2vYmKO13yJXgFzR26zEhAbNQJF1q8FtrVg5BRX3eLcGhSsCBZazcvzEcRRiA0mfENgnHh3pQ",
-          "width": 250
-        }
-      ],
-      "place_id": "ChIJ_9OJruadX0YRd0-EXu8f3NE",
-      "reference": "CmRSAAAAxH24iaWynpyt1TLsclgv_xC8GJnzFfo9frSMDx4I359oWE8dw_8edFqhPH6VvDwSzplHpmTqy8B15djTwcFDliFEOaugkTkW64jZ7Gqd7EkVO-TkGazro8Mkr4IK8UxhEhAd82-IWaoPI3RXAXhnLoi7GhS53buRMCbp1iSCF1WpvMyTY77IpQ",
-      "scope": "GOOGLE",
-      "types": [
-        "gym",
-        "health",
-        "point_of_interest",
-        "establishment"
-      ],
-      "vicinity": "Humblegatan 22, Sundbyberg"
-    },
-    {
-      "geometry": {
-        "location": {
-          "lat": 59.3537924,
-          "lng": 17.9968858
-        },
-        "viewport": {
-          "northeast": {
-            "lat": 59.3551662802915,
-            "lng": 17.9983362302915
-          },
-          "southwest": {
-            "lat": 59.35246831970849,
-            "lng": 17.9956382697085
-          }
-        }
-      },
-      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/generic_business-71.png",
-      "id": "ec836368ce66743f724ffc53e8e815e38a0d3dc2",
-      "name": "Fitness24Seven",
-      "opening_hours": {
-        "open_now": true,
-        "weekday_text": []
-      },
-      "photos": [
-        {
-          "height": 3024,
-          "html_attributions": [
-            "<a href=\"https://maps.google.com/maps/contrib/112089011399638150248/photos\">André Costa</a>"
-          ],
-          "photo_reference": "CmRYAAAACCao0-B1e9QQVZ3rJbwNKyle1IMHBkorBV7IJOJXLPm4orA5B8FSsQRT_zW0r66rZrI43YamLZ3uNO2MnqCUWj84RhdtPiPJ3dR1QENI_9LZ7mTj4NjT-m4f9RlqyOQYEhDrWI4ijZUa6dCxzkrmmfqRGhTgL7j5vritcwMvuQxF5_tYtlhKTA",
-          "width": 4032
-        }
-      ],
-      "place_id": "ChIJIV0CaJOdX0YRmcx4Sqg5V4I",
-      "reference": "CmRSAAAA-Zo0vAUP9SIvhUE1lzqffyOxeaqpoeK6xBdduYUuocw8aXT7itwQJENPGqbH26BBQNR_RhPUwaRQ5xioPd4Vfscj-jlumm_hmNs2Eeun9S9n3nPyokGLE7frcpdM9VjFEhDQItqZo_lXNU7iYO9CfYOpGhSGBUkB7oGUfCNCSiWfQAP4kAulZQ",
-      "scope": "GOOGLE",
-      "types": [
-        "gym",
-        "health",
-        "point_of_interest",
-        "establishment"
-      ],
-      "vicinity": "Huvudstagatan 4, Solna"
-    },
-    {
-      "geometry": {
-        "location": {
-          "lat": 59.35745350000001,
-          "lng": 17.9925063
-        },
-        "viewport": {
-          "northeast": {
-            "lat": 59.3588147302915,
-            "lng": 17.9936601302915
-          },
-          "southwest": {
-            "lat": 59.35611676970849,
-            "lng": 17.9909621697085
-          }
-        }
-      },
-      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/generic_business-71.png",
-      "id": "02c08a7f2382e0d203935eb3fb67e3b2c1fd7799",
-      "name": "Inclined Labs AB",
-      "place_id": "ChIJzzUTBuudX0YRqyS7XyQfZtU",
-      "reference": "CmRSAAAAeRMyeC4ExmYU7BNS_oZkBBeh2N_-MnPCmzIPeKGK7jNxMXcAs_9EIFmjy7u_vxx5TrKrzB75ropA5vfQZp__079kNVbn7gH0_6xeL_hHh-eH_AguigXrMa99bUQXP9AkEhDBpn0NHOCDYmZwhP3fGy0XGhTocVj6osRjwMTAD1aApL22JiuKDQ",
-      "scope": "GOOGLE",
-      "types": [
-        "gym",
-        "health",
-        "point_of_interest",
-        "establishment"
-      ],
-      "vicinity": "Nybodagatan 16, Solna"
-    },
-    {
-      "geometry": {
-        "location": {
-          "lat": 59.36015699999999,
-          "lng": 17.972423
-        },
-        "viewport": {
-          "northeast": {
-            "lat": 59.36144048029151,
-            "lng": 17.9736586302915
-          },
-          "southwest": {
-            "lat": 59.3587425197085,
-            "lng": 17.9709606697085
-          }
-        }
-      },
-      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/generic_business-71.png",
-      "id": "8283672df21e7dbb107368106ead2a3aeb98ed72",
-      "name": "Puls & Träning",
-      "opening_hours": {
-        "open_now": true,
-        "weekday_text": []
-      },
-      "place_id": "ChIJi76J8OadX0YRFD1zbbJmBOY",
-      "reference": "CmRSAAAAEqjpN2inD62vWCrFd7SeH9T5YpV1JWdKmgJ59GtBvT6SYOZ1AWX72iMiosdvLX-ZM-kraXpkS27ezai99_yBRmHEJDRb-rpZEbgDwNZSDGKnVosQcIqTxupmtgzQScIIEhB3k89N3amg7aW3GXB6wae3GhSW5wvJMsS1AmlcDN4vW5Ig3HlVWQ",
-      "scope": "GOOGLE",
-      "types": [
-        "gym",
-        "health",
-        "point_of_interest",
-        "establishment"
-      ],
-      "vicinity": "Landsvägen 50, Sundbyberg"
-    }
-  ],
-  "grocery_or_supermarket": [
-    {
-      "geometry": {
-        "location": {
-          "lat": 59.3511248,
-          "lng": 17.9659577
-        },
-        "viewport": {
-          "northeast": {
-            "lat": 59.3524737802915,
-            "lng": 17.9673066802915
-          },
-          "southwest": {
-            "lat": 59.34977581970849,
-            "lng": 17.9646087197085
-          }
-        }
-      },
-      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/post_office-71.png",
-      "id": "01c7033404748234d809c7efd6aa4f6755fd92df",
-      "name": "Postombud på City Gross Bromma",
-      "opening_hours": {
-        "open_now": true,
-        "weekday_text": []
-      },
-      "photos": [
-        {
-          "height": 2003,
-          "html_attributions": [
-            "<a href=\"https://maps.google.com/maps/contrib/111910759606368254350/photos\">飯塚誠</a>"
-          ],
-          "photo_reference": "CmRYAAAAAHO9BFZRkr5mgiPIOW7OIkJLN6WAuN8Rec5Yow31EMCAYt8o0lgO9GAWJKaTX4RWNki5GlDZpujW0bMWZhfDe2g_VZTp-UDyEZnLY_49d-n37iEbV1_w5A0tKF_ylXLlEhCtv2kxyfwSSsEKzwnwCaG7GhSLSaW6ed5mZ52IzOVz5PPePwx0QQ",
-          "width": 2785
-        }
-      ],
-      "place_id": "ChIJJZAS8_qdX0YRNW7Vf0YDG34",
-      "rating": 3.9,
-      "reference": "CmRRAAAAr-gSP0eK31JlclCd0Y9ODMEMQNRqrfIvr07dKtYEcTKnFSCLO9RgfloyiqXorJ-xi3cNvjmfMhjjnR0DqS-WYvAwsXOlaES4lpt-vxifdM2d6-PYo6vs3OeuaOvyHsOzEhBAZdNG5UA1qvJOn3-_BafDGhS1IL5cQR8PB_dPI4dzxfEhtQvdYg",
-      "scope": "GOOGLE",
-      "types": [
-        "post_office",
-        "shopping_mall",
-        "grocery_or_supermarket",
-        "food",
-        "finance",
-        "store",
-        "point_of_interest",
-        "establishment"
-      ],
-      "vicinity": "Bryggerivägen 10, Bromma"
-    },
-    {
-      "geometry": {
-        "location": {
-          "lat": 59.3585295,
-          "lng": 17.9806792
-        },
-        "viewport": {
-          "northeast": {
-            "lat": 59.35993433029151,
-            "lng": 17.9821502302915
-          },
-          "southwest": {
-            "lat": 59.3572363697085,
-            "lng": 17.9794522697085
-          }
-        }
-      },
-      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/shopping-71.png",
-      "id": "17e76c2270d109053ee7f44c16ad3ea211641d6e",
-      "name": "ICA Maxi Stormarknad Solna",
-      "opening_hours": {
-        "open_now": true,
-        "weekday_text": []
-      },
-      "photos": [
-        {
-          "height": 3024,
-          "html_attributions": [
-            "<a href=\"https://maps.google.com/maps/contrib/104511208322318880536/photos\">Claes Mogren</a>"
-          ],
-          "photo_reference": "CmRYAAAALUpYvqgZ3WOtKZQLs55mGKqSNGpie76naafwILXWaMUIZqSQSMn17v_DkMeJYkKwxeSRB6WKXNlfL3SVJ0uA690WSdcWDMgNeqY_SpeZvBpbtyDWd5pm9HXgHK6jGnScEhAlq6qdgZQNyAaBTJquZxdqGhTejbCNLCZRiD19s02lt0-Z1QF5XA",
-          "width": 4032
-        }
-      ],
-      "place_id": "ChIJj2UVkuidX0YRTYMsbQEsCPI",
-      "rating": 4.1,
-      "reference": "CmRSAAAA7YPq3qye8UuSey83F4cMGwa61AtnNyfJIUn2_71G6OjAfG1DNcRgNQ763cAJmDdnf-DEa1Ac0uXU0qHrvCeB6pJQpaPEUf2CpbtLwrg1GON_SveCD1Sj8WPyblM4fA4xEhD-LybM5Fol0AHXfpxZcn9OGhRBgKFUQJ3-xV_ZTlsBlzt6-I6Xnw",
-      "scope": "GOOGLE",
-      "types": [
-        "grocery_or_supermarket",
-        "food",
-        "store",
-        "point_of_interest",
-        "establishment"
-      ],
-      "vicinity": "Svetsarvägen 18, Solna"
-    },
-    {
-      "geometry": {
-        "location": {
-          "lat": 59.3577732,
-          "lng": 17.9864511
-        },
-        "viewport": {
-          "northeast": {
-            "lat": 59.35934833029151,
-            "lng": 17.9881723302915
-          },
-          "southwest": {
-            "lat": 59.3566503697085,
-            "lng": 17.9854743697085
-          }
-        }
-      },
-      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/shopping-71.png",
-      "id": "1f69af511cd2e77b8dcbc24343a76ed58a575e61",
-      "name": "Lidl",
-      "opening_hours": {
-        "open_now": true,
-        "weekday_text": []
-      },
-      "photos": [
-        {
-          "height": 2204,
-          "html_attributions": [
-            "<a href=\"https://maps.google.com/maps/contrib/106775251548621923887/photos\">Alex Arhipov</a>"
-          ],
-          "photo_reference": "CmRYAAAAEu8DiNlA1VLAxzS0l7ZyrAChnIXMF7YrgQhPC1Ze6yZCw4Kvha26CIbzo4kQzKzwfTcNpCsR_leqS-duUSuhLboIQ2hnbBCIAJnJg2DCHmf2SuZbul14mrfltWfdcUlwEhB2WzQqJCRoiE7As20op9wiGhQP_HMnIx3rMFnfC-BA_KwsG1cIMA",
-          "width": 3920
-        }
-      ],
-      "place_id": "ChIJB5pFYemdX0YRJZpFE1Hm1f0",
-      "rating": 3.8,
-      "reference": "CmRSAAAA_P5nBC3TQuQkJHSpkvJZvnCI5sAheTdEJa69BeuBauGX6k-K3Z42-RD89ciZIzK-PsR7XeL3q0pYfWFQhGu7Oe5usbFND9clkipbcf4JhvG8zZjv_IzxvsiuESy4PpsWEhA-FeOgjl817P4EmssGUYPVGhT1sAIzGUL6OAyRT_Irnj6Zo6I5Bw",
-      "scope": "GOOGLE",
-      "types": [
-        "grocery_or_supermarket",
-        "food",
-        "store",
-        "point_of_interest",
-        "establishment"
-      ],
-      "vicinity": "Ankdammsgatan 35, Solna"
-    },
-    {
-      "geometry": {
-        "location": {
-          "lat": 59.349711,
-          "lng": 17.9867866
-        },
-        "viewport": {
-          "northeast": {
-            "lat": 59.35102208029151,
-            "lng": 17.9885076802915
-          },
-          "southwest": {
-            "lat": 59.34832411970849,
-            "lng": 17.9858097197085
-          }
-        }
-      },
-      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/shopping-71.png",
-      "id": "27ba25b5f39c69f17f998d2acc5eddd02fb7ac98",
-      "name": "Hemköp Huvudsta",
-      "opening_hours": {
-        "open_now": true,
-        "weekday_text": []
-      },
-      "photos": [
-        {
-          "height": 2610,
-          "html_attributions": [
-            "<a href=\"https://maps.google.com/maps/contrib/113225572909793031707/photos\">Andreas Eriksson</a>"
-          ],
-          "photo_reference": "CmRYAAAA54w75HjZf90ycRhyY0Q5fOriuDZaiPkc37fl0CUN8yC0hdSkFEN6UNzq6T-ljjJ0nhT0yEvNAdDeDjTM8fzQQ8YsvbhcC3321oKtIwCZP0zoK7UnARKLmRFxXe6lfu58EhC7-1YuLoW2NpIyskUAjC2NGhQ1bqRIJ--OLse4Sk9qnmotv9UIFA",
-          "width": 4640
-        }
-      ],
-      "place_id": "ChIJlRGknPKdX0YRytiLS6Zwin0",
-      "rating": 3.6,
-      "reference": "CmRRAAAAg1wlz75ogW8X2zJpGPR7O_gfMMUC2AuG5Tbw2XU4AOxjUYM7Ix1vzpucLiLkoXjtu5D-r9YwlxNrT_9IK3QOAC3wZmA9dFOC8YrcAzjBdWCnwWgBRlOxwP0f--ocOSNLEhCHy2MjPpZeLBf7dgsY06L1GhRdBQn_FhNTPuDg_FWiCGEF5pU-jw",
-      "scope": "GOOGLE",
-      "types": [
-        "grocery_or_supermarket",
-        "food",
-        "store",
-        "point_of_interest",
-        "establishment"
-      ],
-      "vicinity": "Huvudsta Centrum, Storgatan 62-64, Solna"
-    },
-    {
-      "geometry": {
-        "location": {
-          "lat": 59.350733,
-          "lng": 17.9679844
-        },
-        "viewport": {
-          "northeast": {
-            "lat": 59.35175923029151,
-            "lng": 17.9698225802915
-          },
-          "southwest": {
-            "lat": 59.34906126970849,
-            "lng": 17.9671246197085
-          }
-        }
-      },
-      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/shopping-71.png",
-      "id": "363de42aad33ceadd754d50eab57f1b9cc964571",
-      "name": "ÖoB",
-      "opening_hours": {
-        "open_now": true,
-        "weekday_text": []
-      },
-      "photos": [
-        {
-          "height": 2448,
-          "html_attributions": [
-            "<a href=\"https://maps.google.com/maps/contrib/102318289943305211092/photos\">Karl Marklund</a>"
-          ],
-          "photo_reference": "CmRYAAAAoT8JQcFyaeuBVti023MNt3hACV-b3UbbPlv_D1SqTvcgOwMTPIDdh9tOs3BLMTVcokIjrttw0dfS0O5-rIa7nnN2nVg7PowQRn6Jb12SE3q2adnwcJ1K1mGHhxMe6-kfEhAlLSKf8yEjdM4H8oEu_5QXGhSDJXg2A8E3X7akcIlDSKLJ0odEHA",
-          "width": 3264
-        }
-      ],
-      "place_id": "ChIJ93Mk8_qdX0YRhXC2NKIGPlw",
-      "rating": 3.6,
-      "reference": "CmRRAAAApW7iCm28oEUWPkcjfxzwaA3LLFp1jWlfyN-SVxiYG_LgL31NgpDKQdoujS5cQG60sT4wnjYuShfIe3l_CnS41VQxJ5rUDZ3yvlyRadHPs7RenY43iFBaskGeSeWhToT9EhBMKDqaRgz3H0EuMt1upY20GhRRUN7hTKE741tN035_WUFnX1HzZA",
-      "scope": "GOOGLE",
-      "types": [
-        "department_store",
-        "grocery_or_supermarket",
-        "food",
-        "home_goods_store",
-        "store",
-        "point_of_interest",
-        "establishment"
-      ],
-      "vicinity": "Bryggerivägen 10, Bromma"
-    },
-    {
-      "geometry": {
-        "location": {
-          "lat": 59.3499941,
-          "lng": 17.9666022
-        },
-        "viewport": {
-          "northeast": {
-            "lat": 59.3510685302915,
-            "lng": 17.9684472802915
-          },
-          "southwest": {
-            "lat": 59.34837056970849,
-            "lng": 17.9657493197085
-          }
-        }
-      },
-      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/shopping-71.png",
-      "id": "2dc1e01a2972bddc89b3a929a5a40c92a449e5d8",
-      "name": "Mathem.se",
-      "photos": [
-        {
-          "height": 3264,
-          "html_attributions": [
-            "<a href=\"https://maps.google.com/maps/contrib/102318289943305211092/photos\">Karl Marklund</a>"
-          ],
-          "photo_reference": "CmRYAAAAxlIlSRiZGthi1CqwuQqctKv-bFJrQg7ZC4AJH14kPQC09tGGaDxxk8m3lL-nuuGBUTz-23YIxcL8P7phiwhJzNQrXrxE3IrPX9Ib3BDnzWQhHUZn65dd8-QsroS9jrNeEhBSxWCguSht_kWQuduEM3vLGhTQWULPopLcu2MdsoYJ9yB_GYsveQ",
-          "width": 2448
-        }
-      ],
-      "place_id": "ChIJ-VTG-PqdX0YRaHqhGBlFPPY",
-      "rating": 4,
-      "reference": "CmRSAAAASiKIwmFSw1QJn3wsrnHe6g61CWK_UGls2Bc6cYY2kfy1LST-da71fJlKqij2OtwvhKoYLawFK1jZToqJhmfJxUByQ_Oad4Oc7Xw9QGpZa3oDIwoMWvhEcfF1qApCcRTbEhAETyId-MpswHQT6orE7AdCGhSBW2jMVeLJCY0eBBfFEBhejIM4vw",
-      "scope": "GOOGLE",
-      "types": [
-        "grocery_or_supermarket",
-        "food",
-        "store",
-        "point_of_interest",
-        "establishment"
-      ],
-      "vicinity": "Bryggerivägen 12C, Bromma"
-    },
-    {
-      "geometry": {
-        "location": {
-          "lat": 59.3511248,
-          "lng": 17.9659577
-        },
-        "viewport": {
-          "northeast": {
-            "lat": 59.3524737802915,
-            "lng": 17.9673066802915
-          },
-          "southwest": {
-            "lat": 59.34977581970849,
-            "lng": 17.9646087197085
-          }
-        }
-      },
-      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/shopping-71.png",
-      "id": "0ae6c2abf8b8ac187c107665f49a6cb110d44309",
-      "name": "City Gross Bromma",
-      "opening_hours": {
-        "open_now": true,
-        "weekday_text": []
-      },
-      "photos": [
-        {
-          "height": 2448,
-          "html_attributions": [
-            "<a href=\"https://maps.google.com/maps/contrib/110242297737716154471/photos\">Mely Mel</a>"
-          ],
-          "photo_reference": "CmRYAAAAAQWaNk81Jausic8CdPNMbRvmQWqKHIj-gDr4oek_wJjURgG6oowHZsxVkae6ht9fzRy9IVHoVcBTJtlmMga7vApxAl_zIQ3V8oQNOT8tYzsGGiCeeI_28g07-j_LIocBEhDnixlMxhL6uPhuDKEoo4w-GhRC72L5QQzgQuvNpeg8wpU8INWD-A",
-          "width": 3264
-        }
-      ],
-      "place_id": "ChIJvbEl8_qdX0YRvDHgdczyaqE",
-      "rating": 4.1,
-      "reference": "CmRSAAAApypExCympsjFnbBA9ORtfoOa4OHFgZngbtUH_I2TYMp3_1joSItLDj2l2iIy3pJ4o7jVARnmehX3ga37RC2RClhG8U3rDYSysS6yGwl6p9oqbItXfGJ3mJREc0ut_h6VEhA6nbx0d8ZDgPO_vWhQy9BTGhQeQbWS0t6cKkjVxVEurBIe8_ZYIg",
-      "scope": "GOOGLE",
-      "types": [
-        "grocery_or_supermarket",
-        "food",
-        "store",
-        "point_of_interest",
-        "establishment"
-      ],
-      "vicinity": "Bryggerivägen 10, Bromma"
-    },
-    {
-      "geometry": {
-        "location": {
-          "lat": 59.36070239999999,
-          "lng": 17.9776239
-        },
-        "viewport": {
-          "northeast": {
-            "lat": 59.3620462802915,
-            "lng": 17.9789580802915
-          },
-          "southwest": {
-            "lat": 59.3593483197085,
-            "lng": 17.9762601197085
-          }
-        }
-      },
-      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/shopping-71.png",
-      "id": "10fa849460251e0c0c4eeace8b0e663b72b390ca",
-      "name": "Smiling Faces AB",
-      "opening_hours": {
-        "open_now": true,
-        "weekday_text": []
-      },
-      "photos": [
-        {
-          "height": 2976,
-          "html_attributions": [
-            "<a href=\"https://maps.google.com/maps/contrib/103368308470432883268/photos\">Jorge Armas</a>"
-          ],
-          "photo_reference": "CmRYAAAAqvVfPhD0P1T8ZzYL57ABKrVPVjYgfvydR1VCFIN7dlYtG5VR4LV6UjrV2h45rkQPpb39t8XF-AzeQHqI4w5Ecx6XBSpHF_9OAgogm_WU2NAVtXqIusUPVG1nTbrks05AEhCnoQgq3XizzVNkdsWyn8giGhS06ObSK5YBYCDzrV064FXyGbUSmQ",
-          "width": 3968
-        }
-      ],
-      "place_id": "ChIJAfwgzuedX0YRpen8Dk2jsHs",
-      "reference": "CmRRAAAAfdu4wpl3C3LMGrp8mXaKKjzKbAdxR1VLT_Hp4096rntbEzoT3kMPaRANkeoAYkKZNbZ2xUS4619Sw4TepSbCrFOAIBgDt2_ULNmBwT2vBV71fn48CDmA3d8SgcC0xycPEhC2YG_w7dU7L4xq1RXOhNndGhSCGeK7SZlNBSJfu0PoDo4JaJRhvg",
-      "scope": "GOOGLE",
-      "types": [
-        "grocery_or_supermarket",
-        "food",
-        "store",
-        "point_of_interest",
-        "establishment"
-      ],
-      "vicinity": "Svetsarvägen 2, Solna"
-    }
-  ],
-  "convenience_store": [
-    {
-      "geometry": {
-        "location": {
-          "lat": 59.354627,
-          "lng": 17.9734642
-        },
-        "viewport": {
-          "northeast": {
-            "lat": 59.35605458029151,
-            "lng": 17.9747970302915
-          },
-          "southwest": {
-            "lat": 59.3533566197085,
-            "lng": 17.9720990697085
-          }
-        }
-      },
-      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/shopping-71.png",
-      "id": "67b692a1b76f3fec20776d01346fcaa766f7eeec",
-      "name": "Pressbyrån",
-      "opening_hours": {
-        "open_now": true,
-        "weekday_text": []
-      },
-      "place_id": "ChIJv_XylOWdX0YRV-iA1wCwcb4",
-      "rating": 4,
-      "reference": "CmRSAAAA4x7yUsraMgJ-H7-1pHUpEPiyc8Pi6BOE8mgCAEDLTQhVhD9kHruuc8PaZT-vkR1w44xRaaNVkvug_x_ojYXhVHB1opJfFF_KHhXmu40EEvyRaE7CmCfi0qeyE5n4wSSLEhDAQKsXeQFfz0Rukq-cvcXNGhRSVS0A4jL9XDpwSxoAsfps0wRrLQ",
-      "scope": "GOOGLE",
-      "types": [
-        "convenience_store",
-        "book_store",
-        "restaurant",
-        "food",
-        "store",
-        "point_of_interest",
-        "establishment"
-      ],
-      "vicinity": "Korta gatan 7, Solna"
-    },
-    {
-      "geometry": {
-        "location": {
-          "lat": 59.3609818,
-          "lng": 17.9746024
-        },
-        "viewport": {
-          "northeast": {
-            "lat": 59.3623800302915,
-            "lng": 17.9760108802915
-          },
-          "southwest": {
-            "lat": 59.3596820697085,
-            "lng": 17.9733129197085
-          }
-        }
-      },
-      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/shopping-71.png",
-      "id": "d85525914afaedc6124b1e8a857c876b1a6b6975",
-      "name": "Hemmakväll",
-      "opening_hours": {
-        "open_now": true,
-        "weekday_text": []
-      },
-      "place_id": "ChIJKSyXq-edX0YRnKZlwpbmrjw",
-      "rating": 4.1,
-      "reference": "CmRRAAAApt2gMyO-J_kPWwW6YQoYFSdzy_y4LPL7ikD_9S8jLvEA2-EWwa2qXJj6GjwYDQB5Za3h3oLzk1QtmifgWDMXCpAu1g4IivfF1Xk0rKAsDDR3BzgGo-_4doR-8NWuIKI7EhAQFqfetSRb_3NyjYMo4oT4GhTqMu7QHLGmwVzR9p1ZHakQsUmJXw",
-      "scope": "GOOGLE",
-      "types": [
-        "convenience_store",
-        "food",
-        "store",
-        "point_of_interest",
-        "establishment"
-      ],
-      "vicinity": "Sturegatan 1, Sundbyberg"
-    }
-  ],
-  "subway_station": [
-    {
-      "geometry": {
-        "location": {
-          "lat": 59.35434249999999,
-          "lng": 17.9735417
-        },
-        "viewport": {
-          "northeast": {
-            "lat": 59.35561189999999,
-            "lng": 17.9767256
-          },
-          "southwest": {
-            "lat": 59.35053430000001,
-            "lng": 17.9724804
-          }
-        }
-      },
-      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/generic_business-71.png",
-      "id": "99c0a950c066fe57cad54846d950d82da440bd0f",
-      "name": "Solna strand",
-      "photos": [
-        {
-          "height": 3036,
-          "html_attributions": [
-            "<a href=\"https://maps.google.com/maps/contrib/100705890708823647819/photos\">Alexander Williamson</a>"
-          ],
-          "photo_reference": "CmRYAAAApXKIV0n7D2nDycTKPt8KrL1bA5uOVo7QT7DJuoIjTaJEhKz5NBO4nanD0ZUoGnKLWIW_futWDYZy0jbnGK4Cryt-5UQNzTnqeCSDSQpRF_XzAdP3ATpUOorqa5QUNbvdEhA7z2wPuKWEqh5juPSN3T7jGhSucisouDWOg5A5mHYxAHiMHQ3Jng",
-          "width": 4048
-        }
-      ],
-      "place_id": "ChIJewhyfeWdX0YRVivJ0yL7mh8",
-      "rating": 4.2,
-      "reference": "CmRRAAAAUnYRM0vVPBgi299CXODgLKwSAISFEiZCxvuCCVakpJPNk1sUolcVqpXwuzI7CiUVQgkY7EgeKBddcZBFNiht75VB7t-LSAY5KbGBNzuJvWyQV8esdgx-lwwxZFcoo2hpEhDKwKe4LzZ61AziKF2YNL7kGhQErosgXG7ccTtajIE_eV07ai_otw",
-      "scope": "GOOGLE",
-      "types": [
-        "transit_station",
-        "subway_station",
-        "bus_station",
-        "point_of_interest",
-        "establishment"
-      ],
-      "vicinity": "Sweden"
-    },
-    {
-      "geometry": {
-        "location": {
-          "lat": 59.3495465,
-          "lng": 17.9856954
-        },
-        "viewport": {
-          "northeast": {
-            "lat": 59.35089548029151,
-            "lng": 17.9870443802915
-          },
-          "southwest": {
-            "lat": 59.34819751970849,
-            "lng": 17.9843464197085
-          }
-        }
-      },
-      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/generic_business-71.png",
-      "id": "f782eeda007ccd15d7461aed817177daa3f23572",
-      "name": "Huvudsta",
-      "photos": [
-        {
-          "height": 2336,
-          "html_attributions": [
-            "<a href=\"https://maps.google.com/maps/contrib/109587220103002134582/photos\">Chris huang</a>"
-          ],
-          "photo_reference": "CmRXAAAAEd80RCcymUNmm69o1QoCXcQTL_OnLIIDwowHjLOT0cvW6A7T_XNSLjdlg-iULH0de0SzpG_dH_KOZsbU20EzCOl9fOe5CPngjF8npScV5pKT7XxbPkYw-VvWJpyGuISpEhCG9fao0htPcIDUXoTYsCW0GhRNSLYkSYsA-s3eC6F0bzZufSSrBw",
-          "width": 4160
-        }
-      ],
-      "place_id": "ChIJNc3xfPKdX0YRmC6Bjf4j3b0",
-      "rating": 3.8,
-      "reference": "CmRSAAAA5TOTb2-tiqcHHHuFjp9ezxjztqyqh1Vgvwma2rg-Vu5kovYgifH0fdpBPA_daDuWzrO03MxSJxe3Sf5jlVdLpHVAlPgFzuMP-JiUlj0csVxXqpjbJzoSZfY_lSeCKzovEhAMHIDysqKg0sQqSTP_lQ-1GhR8gO9mIGGUIsJCnHDx7XnV6SSEIw",
-      "scope": "GOOGLE",
-      "types": [
-        "subway_station",
-        "transit_station",
-        "point_of_interest",
-        "establishment"
-      ],
-      "vicinity": "Sweden"
-    }
-  ],
-  "bar": [
-    {
-      "geometry": {
-        "location": {
-          "lat": 59.35965520000001,
-          "lng": 17.979507
-        },
-        "viewport": {
-          "northeast": {
-            "lat": 59.36095648029151,
-            "lng": 17.9807462802915
-          },
-          "southwest": {
-            "lat": 59.35825851970849,
-            "lng": 17.9780483197085
-          }
-        }
-      },
-      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/restaurant-71.png",
-      "id": "ecce94673fe9735181a6d4f9b6aa8022bc819a50",
-      "name": "Alfredos Solna",
-      "opening_hours": {
-        "open_now": true,
-        "weekday_text": []
-      },
-      "place_id": "ChIJD27ajuidX0YRwpqIj2Vt4D4",
-      "rating": 3.5,
-      "reference": "CmRRAAAAivkRYQIlGNgH2DJzaoxh5t7Z4J5uoElBBSSdBBQa8YrbysR8Gn3Q4SYbGPHFeCpGA1KPffEtxfBu_SfNxGUmgnq04X2hzScJTZPZzCsZY_uiQMGrUmcSbspIMaLKql98EhBWwveoGtHzWL82tohRMmjoGhSeVBqkfZnwNVjWPMDmBgPGHRvLkA",
-      "scope": "GOOGLE",
-      "types": [
-        "restaurant",
-        "bar",
-        "food",
-        "point_of_interest",
-        "establishment"
-      ],
-      "vicinity": "Svetsarvägen 9, Solna"
-    }
-  ],
-  "restaurant": [
-    {
-      "geometry": {
-        "location": {
-          "lat": 59.3498172,
-          "lng": 17.9857992
-        },
-        "viewport": {
-          "northeast": {
-            "lat": 59.3509990302915,
-            "lng": 17.9869733802915
-          },
-          "southwest": {
-            "lat": 59.34830106970849,
-            "lng": 17.9842754197085
-          }
-        }
-      },
-      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/restaurant-71.png",
-      "id": "8ea3c2f7d258a544aa82932af391367b5e2ef428",
-      "name": "Cave de Roi",
-      "opening_hours": {
-        "open_now": true,
-        "weekday_text": []
-      },
-      "photos": [
-        {
-          "height": 2988,
-          "html_attributions": [
-            "<a href=\"https://maps.google.com/maps/contrib/118076643934594541959/photos\">Shahla Mombini</a>"
-          ],
-          "photo_reference": "CmRYAAAAV3Z2ZHHqaTl4C8Dbacw46L5TLFSGXKZu1OWNJC6VfcirHUuIIeoRDxs249K0Q1XRQbvJnYoyzF5sEEJ9lIywMQpauBuLdYOOe2cQr8t-_2ZZuGNEwRkfbUtkDOToq0EeEhBPZU5qKrw4Rbd9UWCgnmMbGhQfUDumnuJvpJMBkIjL0hr-iqVmgQ",
-          "width": 5312
-        }
-      ],
-      "place_id": "ChIJ5wnThvKdX0YRJjDAUHazEiQ",
-      "rating": 2.6,
-      "reference": "CmRRAAAAUjmy6zGLeJSYh8fZGnB6AIrdg11aHxTR55Z5bnt-nx2s7VwRUxxPae2os8zSR0G2zZ8oRluesQywLnza7sH0deAZSku5e4Zm4gPM__O7-YhWngVeX_dmJlpsJIPtRbCSEhBW5zzK5rYOH-XxMVNzhZ2qGhRjGKBjA9EGsVhvwnsq_W2IhWkrSg",
-      "scope": "GOOGLE",
-      "types": [
-        "restaurant",
-        "food",
-        "point_of_interest",
-        "establishment"
-      ],
-      "vicinity": "Storgatan 70, Solna"
-    },
-    {
-      "geometry": {
-        "location": {
-          "lat": 59.3589391,
-          "lng": 17.9887256
-        },
-        "viewport": {
-          "northeast": {
-            "lat": 59.35989293029151,
-            "lng": 17.98940335
-          },
-          "southwest": {
-            "lat": 59.3571949697085,
-            "lng": 17.98669234999999
-          }
-        }
-      },
-      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/generic_business-71.png",
-      "id": "f02fd01ced919ce7a064025e62688fc9e2589fd4",
-      "name": "Sporthallen i Solna AB",
-      "photos": [
-        {
-          "height": 1836,
-          "html_attributions": [
-            "<a href=\"https://maps.google.com/maps/contrib/115900380438247747296/photos\">Murat Asal</a>"
-          ],
-          "photo_reference": "CmRYAAAAOjSngNheYmMpa49OwYc0XGRvMN--TCnXyYbuRj6ZdIyV98zrtn3kHux-xEbk7PYinXBWVVjfQ31j_x-7BQ0kRtz4gTY4Tfkcg9L_CM-GvvYSjxBKiDCNaOA1QVrLf5S8EhAoiw4P3XgXobEqSJ-eAei6GhRg8d67Gtef3t1DM1eX6PGJcMtEIQ",
-          "width": 3264
-        }
-      ],
-      "place_id": "ChIJ65ppfemdX0YRmbFhldnSX48",
-      "rating": 3.8,
-      "reference": "CmRSAAAAQDP46m5Dlw0-zZ0QXidEhWaJIgYbxpNBK0nKGWje0dWWB9VIHyqqcmLhDTZFChPL4eDotZaJPcvejp5uDo09XUFYMBCYWhtozihVcXP4HDYKer4_f2mGkwB59KxpGWq_EhAgUCtTnS6AOdy795j0-QvrGhTGtY_eBYwRmTt2w_QpDbgRoc6NnQ",
-      "scope": "GOOGLE",
-      "types": [
-        "restaurant",
-        "food",
-        "point_of_interest",
-        "establishment"
-      ],
-      "vicinity": "Ankdammsgatan 46, Solna"
-    },
-    {
-      "geometry": {
-        "location": {
-          "lat": 59.35355569999999,
-          "lng": 17.9715498
-        },
-        "viewport": {
-          "northeast": {
-            "lat": 59.35478063029151,
-            "lng": 17.9730781802915
-          },
-          "southwest": {
-            "lat": 59.35208266970849,
-            "lng": 17.9703802197085
-          }
-        }
-      },
-      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/restaurant-71.png",
-      "id": "865333926ba05e4ede3a858619fb26ff9d2eb75c",
-      "name": "Solna Strands Kantin AB",
-      "photos": [
-        {
-          "height": 2988,
-          "html_attributions": [
-            "<a href=\"https://maps.google.com/maps/contrib/104184930983136729362/photos\">Pavel Maira</a>"
-          ],
-          "photo_reference": "CmRYAAAAGRwmcpm3S0FyWR6FuUihG6eeqlOOof1du8W2bkdhylJGPIJNbkYnUf6xsAUqUeAPhrtDKRHhzxH0uWPqL8dcqdaA2cl9Cz8ewJ4zjH7ro4jR2ypcFYcDLpdgVGNOWDeAEhDpJwEWut5_CQtmr3VflG0jGhScgssIDZEnY5h10Rh2KXu4WZlXnA",
-          "width": 5312
-        }
-      ],
-      "place_id": "ChIJFUiwcuWdX0YRjferJTP5_dQ",
-      "rating": 3.8,
-      "reference": "CmRSAAAAkzxsm-ydwlGwxZj4PnRbT8EOGTijR-E-sNN6JPPqXH0QAaZGKaT1soz1PAYl19QmgmS8kf-Y7aljfRr26zjoGur6HA-7rVmjDojrb2J_bOjNgEulpszjFvdxOxnwi6NwEhBUGqMzfw0q0Do1MLmp4M9nGhT0g19hLun9QKK-GWcdbWkRQxwwEA",
-      "scope": "GOOGLE",
-      "types": [
-        "restaurant",
-        "food",
-        "point_of_interest",
-        "establishment"
-      ],
-      "vicinity": "Solna strandväg 98, Solna"
-    },
-    {
-      "geometry": {
-        "location": {
-          "lat": 59.3553659,
-          "lng": 17.9747379
-        },
-        "viewport": {
-          "northeast": {
-            "lat": 59.3566330302915,
-            "lng": 17.9763647802915
-          },
-          "southwest": {
-            "lat": 59.35393506970849,
-            "lng": 17.9736668197085
-          }
-        }
-      },
-      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/restaurant-71.png",
-      "id": "368f2e0a801f3e35dd0cbdc73720ffcecd6787e8",
-      "name": "Restaurang Smultronet",
-      "opening_hours": {
-        "open_now": true,
-        "weekday_text": []
-      },
-      "place_id": "ChIJyZZOieWdX0YRhWUgCzn3cms",
-      "rating": 3.3,
-      "reference": "CmRRAAAAxQYuk9IOj2f3LcRAcotrAJyiCzaK7JfSyeqXB7i4eP9sl704oZ7hHUt-LiJf5RB9WxqRlP8zc3YASfnYeKR-KD1EeH-kHJlbq5NN4dXWJe_nv8FJ3C_X3HkR3Rx42RAzEhCcrwH7KUbwmuE92o7rOqoOGhRpmAr0y7mLqLOz0X4pIjU0otfOZQ",
-      "scope": "GOOGLE",
-      "types": [
-        "restaurant",
-        "food",
-        "point_of_interest",
-        "establishment"
-      ],
-      "vicinity": "Vretenvägen 6, Solna"
-    },
-    {
-      "geometry": {
-        "location": {
-          "lat": 59.35479909999999,
-          "lng": 17.9772213
-        },
-        "viewport": {
-          "northeast": {
-            "lat": 59.3561394802915,
-            "lng": 17.9781975802915
-          },
-          "southwest": {
-            "lat": 59.35344151970849,
-            "lng": 17.9754996197085
-          }
-        }
-      },
-      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/restaurant-71.png",
-      "id": "b0a129a0239c006d4c71dcbb93587cef3ec1a143",
-      "name": "Sabis Solna Gate",
-      "place_id": "ChIJATvyc--dX0YRCX0-cJaiuAM",
-      "rating": 3.3,
-      "reference": "CmRRAAAAbT70PvxjHzZAwnwoitMrYwDXwqwtVPlTWirZRZdaAd_yDnVfDM8l2DS9lv5uOxUzmclu8bgGC1qDGRSEkKEPwhSHXoDhuMo1wCj8Lz_EPghFLGSapBV5RoeO7WtZQv7AEhDAhFIx0_1f92dhQcwnxJKHGhQEWr8V-R2kpNU-C1zU5Cq26np1wQ",
-      "scope": "GOOGLE",
-      "types": [
-        "restaurant",
-        "food",
-        "point_of_interest",
-        "establishment"
-      ],
-      "vicinity": "Hemvärnsgatan 9, Solna"
-    },
-    {
-      "geometry": {
-        "location": {
-          "lat": 59.3568429,
-          "lng": 17.9767756
-        },
-        "viewport": {
-          "northeast": {
-            "lat": 59.35830488029151,
-            "lng": 17.97786678029151
-          },
-          "southwest": {
-            "lat": 59.35560691970849,
-            "lng": 17.9751688197085
-          }
-        }
-      },
-      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/restaurant-71.png",
-      "id": "73e37e466a6e2648b8c17fa1eb6482229cf83550",
-      "name": "Restaurang S",
-      "opening_hours": {
-        "open_now": true,
-        "weekday_text": []
-      },
-      "photos": [
-        {
-          "height": 3096,
-          "html_attributions": [
-            "<a href=\"https://maps.google.com/maps/contrib/108825801446920839715/photos\">Péter Sarkady</a>"
-          ],
-          "photo_reference": "CmRYAAAA3ZH486KZ_Rh6YMgeanLF9-zJ29LdiwsDsksRY_dBQ8FzRIure39vJMWs1RvMis0NMDDQ0IVD_jOVkblxsMtm8dXie5E7uZEDqcj3j1VWBlJ34Ni_JWqW3nbQ4Wd43aNnEhCBRLXC1HnFAdTTIFBFITRRGhQtXF3TXxWAEmmBprzLmcTVp2_2zg",
-          "width": 4128
-        }
-      ],
-      "place_id": "ChIJKSEhUe-dX0YR6fnJ4Hbmlxo",
-      "rating": 4.4,
-      "reference": "CmRRAAAAkPlw_K8AVZOCKfMHSUWvjSD2xVZ0jQXNifqBS_ULPeDg6BLACKNmawXbO2ArJ9eGsGLXVQ_cmBFKa_uJRh0QCdVLCi-fVyzZU2YSrwFdgN4z4SzFvTvcdOp_gitiMahAEhDPfKdHjLv2px2fHbOAjRKDGhS8ES80l-x62soFTcpCFYzdkPYQbw",
-      "scope": "GOOGLE",
-      "types": [
-        "restaurant",
-        "food",
-        "point_of_interest",
-        "establishment"
-      ],
-      "vicinity": "Röntgenvägen 2, Solna"
-    },
-    {
-      "geometry": {
-        "location": {
-          "lat": 59.349691,
-          "lng": 17.9860485
-        },
-        "viewport": {
-          "northeast": {
-            "lat": 59.3508939302915,
-            "lng": 17.9872691802915
-          },
-          "southwest": {
-            "lat": 59.34819596970848,
-            "lng": 17.9845712197085
-          }
-        }
-      },
-      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/restaurant-71.png",
-      "id": "7af7cbfef93c152c3faa91b255a03b5d5e3d62a6",
-      "name": "Restaurang & Pizzeria Lejon",
-      "opening_hours": {
-        "open_now": true,
-        "weekday_text": []
-      },
-      "photos": [
-        {
-          "height": 2988,
-          "html_attributions": [
-            "<a href=\"https://maps.google.com/maps/contrib/107789877684536700811/photos\">Tolga Baran</a>"
-          ],
-          "photo_reference": "CmRYAAAAo2smzlB8e3ICUDLTSK52GyyD0q4hv7Axi03T3xpvX6E84rScyZAlVpYnswyANWHNP8SBmyt8uhOVHhVqqm_QzMRwsPztiqK-gPlLeIa2I0JbaDX6SK3KXoVWQvFGxGFuEhBIAJSvcPy16Z_JvUqOcjNBGhQ6RlXUDAYQM2I2wtcp2lknFQafRA",
-          "width": 5312
-        }
-      ],
-      "place_id": "ChIJj1kLfvKdX0YREPJHgtbjFrk",
-      "rating": 3.5,
-      "reference": "CmRSAAAAfO5h1o8JKg8IgoSnHiB2snXPfXYPy8Xc1b43btm67SNwVAmu_Jk2wNDkXwPHX_XeGHAgfKbChSg1GXdDGF6I05RnJYkNIKXob1WsH7ZZPNq3w7RU0vddL9GspqnbksG2EhDJeSNI72j-Z4iku16Z_4jfGhQ1SLtsYdSAZMQJa7mOtpYaIWPTtA",
-      "scope": "GOOGLE",
-      "types": [
-        "restaurant",
-        "food",
-        "point_of_interest",
-        "establishment"
-      ],
-      "vicinity": "Storgatan 68, Solna"
-    },
-    {
-      "geometry": {
-        "location": {
-          "lat": 59.3534766,
-          "lng": 17.9757085
-        },
-        "viewport": {
-          "northeast": {
-            "lat": 59.3548921802915,
-            "lng": 17.9768402802915
-          },
-          "southwest": {
-            "lat": 59.35219421970849,
-            "lng": 17.9741423197085
-          }
-        }
-      },
-      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/restaurant-71.png",
-      "id": "b5d7a8f38659d237c4eadd569ec96bbdcb320e85",
-      "name": "Trankil Mat & Möte",
-      "opening_hours": {
-        "open_now": true,
-        "weekday_text": []
-      },
-      "photos": [
-        {
-          "height": 4160,
-          "html_attributions": [
-            "<a href=\"https://maps.google.com/maps/contrib/113081536842977625087/photos\">Peo Engström</a>"
-          ],
-          "photo_reference": "CmRYAAAAOX2ByXdO5Flm_oBQ30DaVCKcwdnpLIzNoejHSoAzkAd6Kh28DmogImM9X6kZvzJ4JFIpMJMh8cRXJfDAJBK42xmw2uF6xZpNyVBIKo63tGZ-AObirjUCmHkFtnodphjSEhBkMJtYDDgaggWpvS7K8YuOGhSmBH9YB8xdSZB38b6ydtpEbKq3NA",
-          "width": 2340
-        }
-      ],
-      "place_id": "ChIJrw5Ylu-dX0YRf4F1LD3NoRA",
-      "rating": 3.9,
-      "reference": "CmRRAAAA4wa1uGumqld8iQSd955xoXGJ4uArICNSXIdli8_7cjYAhxhXg9etlGe8jyd8NzaI_PGuPfQVw13NL5xzsB91CCbkc7QXr5t5lJg_nln4UlkeV6ItD1C5uc8Ybq0Mp4qJEhBDHSpJciGJhR7glsOvNTt_GhSvbJgCOiAt4JewRIidkECVYKuq8A",
-      "scope": "GOOGLE",
-      "types": [
-        "meal_takeaway",
-        "restaurant",
-        "food",
-        "point_of_interest",
-        "establishment"
-      ],
-      "vicinity": "Hemvärnsgatan 15, Solna"
-    },
-    {
-      "geometry": {
-        "location": {
-          "lat": 59.3571433,
-          "lng": 17.9747668
-        },
-        "viewport": {
-          "northeast": {
-            "lat": 59.35852283029151,
-            "lng": 17.9762975302915
-          },
-          "southwest": {
-            "lat": 59.35582486970851,
-            "lng": 17.97359956970849
-          }
-        }
-      },
-      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/restaurant-71.png",
-      "id": "c9fbe8de7a9e6775ec72ae64dad241e0e056ccac",
-      "name": "Pizzeria Cara Mia",
-      "photos": [
-        {
-          "height": 3480,
-          "html_attributions": [
-            "<a href=\"https://maps.google.com/maps/contrib/115509061824973297732/photos\">Richard Åkerblad</a>"
-          ],
-          "photo_reference": "CmRYAAAA8rKvLkwauL9uLXTGia4MbMcQsP7ez4jeNmBHWOH6Ctu1PfD0IFg-N9wr_ZNLvaXKoixEhGTnF_BxUrdIuX8VDpnTgzEt-khkK40aFX1M-z-9k7IY8Ul6Wd33EaGydpv8EhDQ7hPyiJUQACZGSsbwHvrlGhS2l6A_rR31iSqCqYN9-Ij_ay6zeA",
-          "width": 4640
-        }
-      ],
-      "place_id": "ChIJbyvO5OWdX0YRlrW83Zth3hA",
-      "rating": 3.9,
-      "reference": "CmRRAAAAVUlBhkEtkM3zqgHJOAI3hOlAhMjvYWyqirzSeWHLoBzun_kL6JWUVJYzZPPcmNdxOau68yWI3QX1AuaI8EGeXel7fnMpR6yWRa04fB8wGUOfs7d4Y5pN5JYBoCgoaYPVEhCF0Hf_PwaQFXKlfHA9CMylGhRf8rIoAo4U_jQv629iUVpNsbskaA",
-      "scope": "GOOGLE",
-      "types": [
-        "restaurant",
-        "food",
-        "point_of_interest",
-        "establishment"
-      ],
-      "vicinity": "Landsvägen 13, Sundbyberg"
-    },
-    {
-      "geometry": {
-        "location": {
-          "lat": 59.354627,
-          "lng": 17.9734642
-        },
-        "viewport": {
-          "northeast": {
-            "lat": 59.35605458029151,
-            "lng": 17.9747970302915
-          },
-          "southwest": {
-            "lat": 59.3533566197085,
-            "lng": 17.9720990697085
-          }
-        }
-      },
-      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/shopping-71.png",
-      "id": "67b692a1b76f3fec20776d01346fcaa766f7eeec",
-      "name": "Pressbyrån",
-      "opening_hours": {
-        "open_now": true,
-        "weekday_text": []
-      },
-      "place_id": "ChIJv_XylOWdX0YRV-iA1wCwcb4",
-      "rating": 4,
-      "reference": "CmRSAAAApvDOrKGewHXwIw-t-lanO3i2qFRDezqbw5nAv0LVU4T06cPF0s_2JrtyJz7G_gZsoowLPB5ulJqYWIMQdS3q3_W1Y3m5woDl7-8mLsY8-efxYkwAAXUPo3bEuFqg7KCsEhAMbPGctcu2esY2fq7jhrRSGhQgAPBpEv_fEbsvn0PuG_4MLRquag",
-      "scope": "GOOGLE",
-      "types": [
-        "convenience_store",
-        "book_store",
-        "restaurant",
-        "food",
-        "store",
-        "point_of_interest",
-        "establishment"
-      ],
-      "vicinity": "Korta gatan 7, Solna"
-    },
-    {
-      "geometry": {
-        "location": {
-          "lat": 59.357642,
-          "lng": 17.9746933
-        },
-        "viewport": {
-          "northeast": {
-            "lat": 59.3589988302915,
-            "lng": 17.9761805302915
-          },
-          "southwest": {
-            "lat": 59.35630086970849,
-            "lng": 17.9734825697085
-          }
-        }
-      },
-      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/restaurant-71.png",
-      "id": "43a0aaa211f9ced40bd8f4b9fb3b0eee62746aca",
-      "name": "Johan på hörnet AB",
-      "opening_hours": {
-        "open_now": true,
-        "weekday_text": []
-      },
-      "photos": [
-        {
-          "height": 3120,
-          "html_attributions": [
-            "<a href=\"https://maps.google.com/maps/contrib/116768646013381867842/photos\">Hubert K</a>"
-          ],
-          "photo_reference": "CmRYAAAAbkrSOmuQLWyCzgTOV8WXHyj12i6zK6a3rQdN7fD5kkpsR50wL9FOpTTe0wD-z-m6UgwShwaOiAJjIGyEfgt6APVhjB_FxIJVrQO8aE5NFe-dAuBTpcejVcpJdrMF8EBEEhCPFVuUvGy331YKVVaf9k2GGhQ7p1l2_VMxlmYu0m_ODvEE-NPDQg",
-          "width": 4160
-        }
-      ],
-      "place_id": "ChIJ8blzCuadX0YRbzYRCr_3Ff0",
-      "rating": 4.7,
-      "reference": "CmRSAAAAzM0CFei8hT8TjqUa1e8XFGU4IyX8NREIAPEwDFd44dnbdZYjpacMW2Hh_4Cj7DO-VfmXnaaWeIUnsgIDi5nA5FaYwBRyMHsRGPFmWLaotN7vMMAvMfsVqxxQNEnYcxmDEhBj0KEe8LRHvczleL0szbaIGhQa_p_4iokcRHsSkjbZMfBwIvqmIg",
-      "scope": "GOOGLE",
-      "types": [
-        "restaurant",
-        "food",
-        "point_of_interest",
-        "establishment"
-      ],
-      "vicinity": "Landsvägen 15B, Sundbyberg"
-    },
-    {
-      "geometry": {
-        "location": {
-          "lat": 59.35678849999999,
-          "lng": 17.9706802
-        },
-        "viewport": {
-          "northeast": {
-            "lat": 59.35814438029151,
-            "lng": 17.9721607302915
-          },
-          "southwest": {
-            "lat": 59.35544641970849,
-            "lng": 17.9694627697085
-          }
-        }
-      },
-      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/restaurant-71.png",
-      "id": "ee75ea800875a0dd6687bb1340712a4925873eba",
-      "name": "Restaurang Chili",
-      "opening_hours": {
-        "open_now": true,
-        "weekday_text": []
-      },
-      "photos": [
-        {
-          "height": 4128,
-          "html_attributions": [
-            "<a href=\"https://maps.google.com/maps/contrib/115998388923431000270/photos\">Elisa Alanen</a>"
-          ],
-          "photo_reference": "CmRYAAAARsOOv49D6Fa-35XEBQVuT9NZ-xuTHHoBqia_qrpAzZtk0qU7rofVP9G1yOI94jTsSLHtVfuD-KO7dpkfVuZ4jyZrKZLf2Ucy35dUpz85x49vryd42ak7ZILDqr3WsvMfEhC1WDvkHKPtEqPzzOInZZnOGhR4jBuNToPOr2ZFek0nSa1wTtlhXA",
-          "width": 3096
-        }
-      ],
-      "place_id": "ChIJI-leNeSdX0YRNtP5LB8uS_s",
-      "rating": 3.5,
-      "reference": "CmRSAAAA9zKmcb2hROKlaXIqvJv4qG8u9hO2fztebxGPF4lmctNPQC_DM9aEHA-TeKoxQyktOsr09sRzC7wjOiURKstU0SjVXKghWUHHE_x7Xi7cNXlP1LleYcerLfrl32kdZN0IEhA_49ENfnmD4m9grNZX_v84GhSbOMpFvgJiUio37UEQLGR8TY5R5A",
-      "scope": "GOOGLE",
-      "types": [
-        "restaurant",
-        "food",
-        "point_of_interest",
-        "establishment"
-      ],
-      "vicinity": "Albygatan 119, Sundbyberg"
-    },
-    {
-      "geometry": {
-        "location": {
-          "lat": 59.3556921,
-          "lng": 17.9887299
-        },
-        "viewport": {
-          "northeast": {
-            "lat": 59.35696448029151,
-            "lng": 17.99029293029151
-          },
-          "southwest": {
-            "lat": 59.3542665197085,
-            "lng": 17.9875949697085
-          }
-        }
-      },
-      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/restaurant-71.png",
-      "id": "dc4cb78eea4cb5d3163b1142a9e97a5d7a404f2c",
-      "name": "Hongthai",
-      "opening_hours": {
-        "open_now": true,
-        "weekday_text": []
-      },
-      "photos": [
-        {
-          "height": 2160,
-          "html_attributions": [
-            "<a href=\"https://maps.google.com/maps/contrib/115393346378695735157/photos\">Anders Larsson</a>"
-          ],
-          "photo_reference": "CmRYAAAATm65pm_QDiAA4DMxnnEr3B7nnNwHof_Jhjr_cliT3Pt49d0XPlEhCHS_U1YYSByhgVgsJKnQj77kMcX4IgG-XpEMewpTV8ubvm7vL5T1R4fHjlUI5viqcMwvhTU1cF92EhDEsXJuwHlZJqFmS7mAc8y2GhSKoyKYIQGrN29DCket-HexriTWiw",
-          "width": 3840
-        }
-      ],
-      "place_id": "ChIJCxwCiuudX0YR0T7K65M2IEc",
-      "rating": 3.8,
-      "reference": "CmRRAAAA6yiQpa19zqF3pU4dpE6vN3XU2lo_kkfeyY9FLKjOANL0er7_wIP-UuA4JfxDSuMAQ0pNNupgRAWTvKW_gSG56AfzPJocaYgMQt79oL8XhkqyBw9KvtX--MgTagu0UZTCEhBsMg2zNWde9ntoSooRn8CBGhSa6jYe1iiyegoRYb-ms3PvpSPCuQ",
-      "scope": "GOOGLE",
-      "types": [
-        "restaurant",
-        "food",
-        "point_of_interest",
-        "establishment"
-      ],
-      "vicinity": "Ankdammsgatan 19, Solna"
-    },
-    {
-      "geometry": {
-        "location": {
-          "lat": 59.35342779999999,
-          "lng": 17.9755641
-        },
-        "viewport": {
-          "northeast": {
-            "lat": 59.3548336302915,
-            "lng": 17.9767277302915
-          },
-          "southwest": {
-            "lat": 59.35213566970849,
-            "lng": 17.9740297697085
-          }
-        }
-      },
-      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/restaurant-71.png",
-      "id": "7c1cd9435de03f7bb5f426a08e46b620d7b9075c",
-      "name": "Trankil Mat & Möte",
-      "opening_hours": {
-        "open_now": true,
-        "weekday_text": []
-      },
-      "place_id": "ChIJIaQclO-dX0YRZusnrtaH-tQ",
-      "reference": "CmRSAAAAuqsumPJh0hSM7IL5GHY-b2Gm1VqXnBqrCNyry_eL37vef7wfCe7dencTJ0RAr31Dtdl6mvWKzEOJvXTdjdNO1PSQuFZdq718lkMv8oFph6LLESXG8KmUvyt2CT4hRnjhEhAQMKZpvNbKYhZhoBLRvo9MGhSk_d-BjUE5SRwtiPkecEcE4Kzpsg",
-      "scope": "GOOGLE",
-      "types": [
-        "restaurant",
-        "food",
-        "point_of_interest",
-        "establishment"
-      ],
-      "vicinity": "Hemvärnsgatan 15, Solna"
-    },
-    {
-      "geometry": {
-        "location": {
-          "lat": 59.3549889,
-          "lng": 17.9739747
-        },
-        "viewport": {
-          "northeast": {
-            "lat": 59.3564016802915,
-            "lng": 17.9752180302915
-          },
-          "southwest": {
-            "lat": 59.35370371970849,
-            "lng": 17.97252006970849
-          }
-        }
-      },
-      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/restaurant-71.png",
-      "id": "04641c4203b79a48b29744a982df4cdc793562d0",
-      "name": "Reload Superfoodbar",
-      "opening_hours": {
-        "open_now": true,
-        "weekday_text": []
-      },
-      "photos": [
-        {
-          "height": 3024,
-          "html_attributions": [
-            "<a href=\"https://maps.google.com/maps/contrib/106609906860637468938/photos\">Erik Björkén</a>"
-          ],
-          "photo_reference": "CmRYAAAAAR1YUnZfpe2ZQYBXeNuqO9CpJYJOkUVoFxjfR-RG0ieUy3PFOGv6kv00m0LAQkBF3T0-qr3pXi3Iy9lN1XBb8IBqnC0uC-KjMSvySoifvseYBjI8yBkfRzcztfuD1CPuEhDBkXXPkVTEHXF4UnGhlIKmGhRC56ly_dIrn6jjKE4c9RxVqmRz4g",
-          "width": 4032
-        }
-      ],
-      "place_id": "ChIJG52ag-WdX0YRkS7EIIqEnl4",
-      "reference": "CmRRAAAAxNsDBQtKIwelAkHKu-cscgVHgqyb2926luhUiPrpucZiAgnsehTZ_kFuzPQn-ZDddWlQe9iwLhXzROObx2ECHQdMEsAYTLT2CTy44dyMmr_wt2tiZC8SP1muWxNfcTy-EhBl7FemKgshX5iOvdHzB8gHGhSFZ9qYRRS5iQXsROTD8Mp0rlcZOA",
-      "scope": "GOOGLE",
-      "types": [
-        "restaurant",
-        "food",
-        "point_of_interest",
-        "establishment"
-      ],
-      "vicinity": "Torggatan 2, Solna"
-    },
-    {
-      "geometry": {
-        "location": {
-          "lat": 59.3554688,
-          "lng": 17.9742127
-        },
-        "viewport": {
-          "northeast": {
-            "lat": 59.3566650302915,
-            "lng": 17.9760801302915
-          },
-          "southwest": {
-            "lat": 59.3539670697085,
-            "lng": 17.97338216970849
-          }
-        }
-      },
-      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/restaurant-71.png",
-      "id": "46e8ea62a8172e726fed11631987977375bded58",
-      "name": "Akiyama Sushi Bar",
-      "opening_hours": {
-        "open_now": true,
-        "weekday_text": []
-      },
-      "place_id": "ChIJpSmMheWdX0YRg-ZCzNvKXpU",
-      "reference": "CmRSAAAARmsRWI3yBS-0_l0_3LEpU_g2FuGx5H89JubmkW576F2UuGs10AOjvzm68WjS15dGaYwV8ov6Hggle0W5tnL8gNXz0ErikwII6igR-dkuClrM5wcJ_2XN1xrYtyqJOGhLEhBlnLPXHLt_mqaOOrOEsa1dGhT9Gx8p7D7o-lQfPAh_lYtCSiUTwA",
-      "scope": "GOOGLE",
-      "types": [
-        "restaurant",
-        "food",
-        "point_of_interest",
-        "establishment"
-      ],
-      "vicinity": "Vretenvägen 10, Solna"
-    },
-    {
-      "geometry": {
-        "location": {
-          "lat": 59.3571975,
-          "lng": 17.9704631
-        },
-        "viewport": {
-          "northeast": {
-            "lat": 59.35849363029151,
-            "lng": 17.9718414802915
-          },
-          "southwest": {
-            "lat": 59.35579566970849,
-            "lng": 17.9691435197085
-          }
-        }
-      },
-      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/restaurant-71.png",
-      "id": "10ff094acf4e2d3f0cf30bd4bf28ae5237fa2bf8",
-      "name": "Curry Corner AB",
-      "opening_hours": {
-        "open_now": true,
-        "weekday_text": []
-      },
-      "photos": [
-        {
-          "height": 2268,
-          "html_attributions": [
-            "<a href=\"https://maps.google.com/maps/contrib/110020677653983448904/photos\">Niklas Pivic</a>"
-          ],
-          "photo_reference": "CmRYAAAAGVGN_ChivNC4KeMpYhEYVgW5F2WoQxqKjMOU17Id5Cf7JWjcGLpC-Q1yX_yKbLR06VyaLBg1593PM7IdBi4J9RTmJdGqQuu6ZddjFx2ATZybf8s4OWkTMRPb3_xW4yEYEhCbh_ZxtUZjQJwsE6CW9o6DGhSznlFkCSR8doNp8_dqTvF9NSa1sQ",
-          "width": 4000
-        }
-      ],
-      "place_id": "ChIJNXOrNuSdX0YRdIjBksExPPw",
-      "rating": 3.1,
-      "reference": "CmRSAAAAkMFVvg71bbcUWlYjUnjokEPFDei2x1KirFmyQKDdSaPM9vSKPA3nJzeQNYbMuflzfwOQApvJe4g-OswIrWMk_xlgX-4JDKcKcxcloFudN4xyAQQrMuR1BKRWnL3yVom7EhDmgKn84qMk8kHxGVBzNtDyGhSTxKkO4s9sz0IsJeP2wkEM3ocBnw",
-      "scope": "GOOGLE",
-      "types": [
-        "restaurant",
-        "food",
-        "point_of_interest",
-        "establishment"
-      ],
-      "vicinity": "Trädgårdsgatan 18, Sundbyberg"
-    },
-    {
-      "geometry": {
-        "location": {
-          "lat": 59.3537019,
-          "lng": 17.9711754
-        },
-        "viewport": {
-          "northeast": {
-            "lat": 59.3550508802915,
-            "lng": 17.9725243802915
-          },
-          "southwest": {
-            "lat": 59.35235291970849,
-            "lng": 17.9698264197085
-          }
-        }
-      },
-      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/restaurant-71.png",
-      "id": "8460e1244603f361b43928bb9c82c37ee3516596",
-      "name": "Modis Restauranger AB",
-      "place_id": "ChIJAQAAQOWdX0YRjlUceSVNgX4",
-      "reference": "CmRRAAAAogsJVjAJ-qs1TEE25HNc1uKGnOzDGY6LSPw9f3o40O-dIvQZe9uSu1fz_j4cNKjxnbUJ5x0J3_M8W32dczwpdmBAEkV8HZYg-l5MqArxMztv3Zhc6HwoQvaFWg9BOpS1EhAC5iJgCuxuM69HG9bRV3B_GhTc0N33CPoV1uFE-Jr5UWcIirdynQ",
-      "scope": "GOOGLE",
-      "types": [
-        "restaurant",
-        "food",
-        "point_of_interest",
-        "establishment"
-      ],
-      "vicinity": "Solna"
-    },
-    {
-      "geometry": {
-        "location": {
-          "lat": 59.3558165,
-          "lng": 17.9714655
-        },
-        "viewport": {
-          "northeast": {
-            "lat": 59.3571570802915,
-            "lng": 17.97270853029151
-          },
-          "southwest": {
-            "lat": 59.35445911970849,
-            "lng": 17.9700105697085
-          }
-        }
-      },
-      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/restaurant-71.png",
-      "id": "d4bb92d73db90cad6c421f11def2a2cface4c274",
-      "name": "Fattoush Solna",
-      "opening_hours": {
-        "open_now": true,
-        "weekday_text": []
-      },
-      "photos": [
-        {
-          "height": 3120,
-          "html_attributions": [
-            "<a href=\"https://maps.google.com/maps/contrib/109668826424586623724/photos\">Gabriel Josefson</a>"
-          ],
-          "photo_reference": "CmRYAAAAErNZFjzTECihzx2XGH89e1_jnMWCrLDFchGUraCZfaQTGiUtF7jFSk1ps4P5ul9FVIgN096h-MrpeR9jirWfpKRh48luI50qE7yp1-_q4xN4Mc-EFnNsC6xc7iBN-TKlEhBfZOyCDY9ZTU8gNPA756AFGhRvRD6yL4mUZ-_aBQESLZd4807OHg",
-          "width": 4160
-        }
-      ],
-      "place_id": "ChIJbRZfpeWdX0YRqhD5Nal9a90",
-      "rating": 3.8,
-      "reference": "CmRSAAAArJNoE3fuM8fwJI75XN1MPiubeIr4AnGO6YUihUl9hFb0prZnrR06l_dXCmf4mbXVb_71fBUAL_2Ll1xp0enPUvPSqu5iIJG2L-3ueQwRjLbFZS6g30PDBpPf7f_AImcIEhAhKgzeZLwJqhSAxrUAPRdZGhTckr5_s6QK3Ws0iqDrlUD3ERYH1Q",
-      "scope": "GOOGLE",
-      "types": [
-        "restaurant",
-        "food",
-        "point_of_interest",
-        "establishment"
-      ],
-      "vicinity": "Solna strandväg 3, Solna"
-    },
-    {
-      "geometry": {
-        "location": {
-          "lat": 59.35598759999999,
-          "lng": 17.9707878
-        },
-        "viewport": {
-          "northeast": {
-            "lat": 59.3573492302915,
-            "lng": 17.9723213802915
-          },
-          "southwest": {
-            "lat": 59.35465126970848,
-            "lng": 17.9696234197085
-          }
-        }
-      },
-      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/restaurant-71.png",
-      "id": "309fcf089c9f7ced181db2268f4cb78f60e07475",
-      "name": "Café Strand | Brödleverantören AB",
-      "opening_hours": {
-        "open_now": true,
-        "weekday_text": []
-      },
-      "place_id": "ChIJuc1qsuWdX0YR0RINCQqZzxw",
-      "rating": 4.3,
-      "reference": "CmRRAAAA4TiedfcHQBe-jegY7ldFHFpyl6rjH_KZZRknwsqx9G5fNonhX87IXW4R9oYNSUIm6yCe3JAmREu_vT4g2kraq1Zn1MFO2sDyXpa46mYgMs0YcvkySkRP6ycc31FWeorKEhBU_NVR6vqw1edy1xbLUOPfGhQi3OPgJBbBajVRpucQjihENyaJKQ",
-      "scope": "GOOGLE",
-      "types": [
-        "bakery",
-        "cafe",
-        "restaurant",
-        "food",
-        "store",
-        "point_of_interest",
-        "establishment"
-      ],
-      "vicinity": "Solna strandväg 2, Solna"
-    }
-  ]
+      }
+    ]
+  }
 }
