@@ -15,6 +15,7 @@ import utils.ResponseBuilder;
 
 import javax.inject.Inject;
 import java.io.ByteArrayInputStream;
+import java.util.Base64;
 import java.util.Date;
 import java.util.List;
 
@@ -64,7 +65,8 @@ public class UsersController extends Controller {
             return ResponseBuilder.buildNotFound("User has no image.");
         }
 
-        return ok(new ByteArrayInputStream(image)).as("image/jpeg");
+        byte[] encodedBytes = Base64.getEncoder().encode(image);
+        return ok(new ByteArrayInputStream(encodedBytes)).as("image/jpeg");
 
     }
     
