@@ -1,7 +1,7 @@
 let functions = require('./functions');
 
-let server = 'http://localhost:8080';
-//let server = 'https://protected-gorge-44302.herokuapp.com';
+//let server = 'http://localhost:8080';
+let server = 'https://protected-gorge-44302.herokuapp.com';
 
 let tenantFacebookToken = '';
 let renterFacebookToken = '';
