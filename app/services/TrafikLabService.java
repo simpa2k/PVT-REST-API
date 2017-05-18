@@ -34,7 +34,7 @@ public class TrafikLabService {
     // destCoordLat=59.3048662&destCoordLong=18.0930015&destCoordName=Lumaparksvägen3
 
 
-   // http://api.sl.se/api2/TravelplannerV2/trip.Json?
+    // http://api.sl.se/api2/TravelplannerV2/trip.Json?
     // key=cd8b0846848440649bda73e42406dc61&originCoordLat=18.7123039&
     // originCoordLong=59.7605294&originCoordName=Vegagatan&
     // destCoordLat=18.0930015&destCoordLong=59.3048662&destCoordName=Lumaparksvagen3
@@ -52,8 +52,8 @@ public class TrafikLabService {
      //   String query="query="+address.streetName+"+"+address.streetNumber+"+"+address.area;
         String urlString=TRAFIKLAB_TRIP+TRAFIKLAB_KEY+query;
         JsonNode node;
-
         node=GoogleService.gatherData(urlString);
+        Logger.debug(urlString);
         Logger.debug(node.toString());
         JsonNode a = node.findValue("dist");
         JsonNode b = node.findValue("dur");
@@ -68,6 +68,7 @@ public class TrafikLabService {
      * @return - JsonNode containing distance (to starting point) and duration (total).
      */
     public JsonNode getDistanceToCentralen(Address address){
+        Logger.debug("in GetdistfromCent: "+address.streetName+", cent: "+tCentralen.streetName);
         return getTrafiklab(address, tCentralen);
     }
 

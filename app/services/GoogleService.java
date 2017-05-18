@@ -38,7 +38,18 @@ public class GoogleService{
 	}
 	
 	//=====================================GENERIC METHODS
-	
+	public static String makeQuery(Address a){
+		String query="query=";
+		if(a!=null){
+			if(a.streetName!=null)query+=a.streetName;
+			if(a.streetName!=null&&a.streetNumber!=-1)query+="+";
+			if(a.streetNumber!=-1)query+=a.streetNumber;
+			if(a.streetNumber!=-1&&a.area!=null)query+="+";
+			if(a.area!=null)query+=a.area;
+		}else return "NullAddress";
+		return query+"+stockholm";
+	}
+
 	/**
 	 * Finds the Coordinates, from Google Places of a particular address
 	 * @param address - Must contain streetname, number and area
@@ -188,7 +199,7 @@ public class GoogleService{
 	}
 	
 	//==================================EXTRAS
-	
+
 	private void printList(ArrayNode l){
 		Logger.debug("Print List:");
 		Logger.debug("Size: "+l.size());
@@ -196,7 +207,7 @@ public class GoogleService{
 			Logger.debug(n.toString());
 		}
 	}
-	
+
 	private void logInterests(ObjectNode nearbyInterests){
 		Logger.debug("number of gyms:                   "+nearbyInterests.findValue("gym").findValue("results").size());
 		Logger.debug("number of grocery_or_supermarkets:"+nearbyInterests.findValue("grocery_or_supermarket").findValue("results").size());

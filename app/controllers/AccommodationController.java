@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import exceptions.OffsetOutOfRangeException;
 import models.accommodation.Accommodation;
+import play.Logger;
 import play.mvc.Controller;
 import play.mvc.Result;
 import play.mvc.Security;
@@ -61,7 +62,7 @@ public class AccommodationController extends Controller{
 
 	    JsonNode requestBody = request().body().asJson();
 
-	    if (requestBody == null || requestBody.size() == 0) {
+		if (requestBody == null || requestBody.size() == 0) {
 			return ResponseBuilder.buildBadRequest("Non-empty request body required.", ResponseBuilder.MALFORMED_REQUEST_BODY);
 		}
 

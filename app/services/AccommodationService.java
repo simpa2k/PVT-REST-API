@@ -7,6 +7,7 @@ import exceptions.OffsetOutOfRangeException;
 import models.RentalPeriod;
 import models.accommodation.Accommodation;
 import models.accommodation.Address;
+import models.accommodation.AddressDescription;
 import models.user.User;
 import play.Logger;
 import repositories.AccommodationRepository;
@@ -27,6 +28,7 @@ public class AccommodationService {
     private AddressRepository addressRepository;
     private UsersRepository usersRepository;
     private RentalPeriodRepository rentalPeriodRepository;
+    private TrafikLabService tls;
 
     private ObjectMapper mapper;
 
@@ -42,6 +44,7 @@ public class AccommodationService {
         this.rentalPeriodRepository = rentalPeriodRepository;
 
         this.mapper = mapper;
+        this.tls=new TrafikLabService();
 
     }
 
@@ -74,8 +77,24 @@ public class AccommodationService {
         
         Accommodation accommodation = mapper.treeToValue(accommodationJson, Accommodation.class);
         Logger.debug("accommodation created");
+
         Address address = accommodation.address;
-	    Logger.debug("address read");
+
+
+        address = GoogleService.getCoordinates(address);
+
+        Logger.debug(address.streetName+", coords: "+address.latitude+", "+address.longitude);
+
+        JsonNode jsonNodeTest = tls.getDistanceToCentralen(address);
+
+        address.addressDescription = new AddressDescription();
+    //    address.addressDescription.initialize();
+        address.addressDescription.addToList("centralen",jsonNodeTest.findValue("duration").asInt());
+        address.addressDescription.addToList("tunnelbana",jsonNodeTest.findValue("distance").asInt());
+   //     Logger.debug(address.addressDescription.cityDistance.duration+"");
+       // Logger.debug("HÄR ÄR JAG");
+
+        Logger.debug("address read");
         RentalPeriod rentalPeriod = accommodation.rentalPeriod;
 	    Logger.debug("rentalPeriod read");
         accommodation.renter = user;
@@ -84,7 +103,9 @@ public class AccommodationService {
         Accommodation existing = accommodationRepository.findByRenter(accommodation.renter.id);
         if (existing == null) {
         	Logger.debug("No earlier accommodation");
+            printAddress(address);
             addressRepository.save(address);
+
             Logger.debug("saved Address");
             rentalPeriodRepository.save(rentalPeriod);
 	        Logger.debug("saved rentalPeriod");
@@ -101,5 +122,13 @@ public class AccommodationService {
 
         return existing;
 
+    }
+    private void printAddress(Address a){
+        Logger.debug("===============");
+        Logger.debug(a.streetName);
+        Logger.debug(a.streetNumber+"");
+        Logger.debug(a.latitude+"");
+        Logger.debug(a.longitude+"");
+        Logger.debug(a.area);
     }
 }
