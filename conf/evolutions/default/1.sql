@@ -48,6 +48,17 @@ create table address (
   constraint pk_address primary key (id)
 );
 
+create table address_description (
+  id                            bigint auto_increment not null,
+  constraint pk_address_description primary key (id)
+);
+
+create table city_distance (
+  id                            bigint auto_increment not null,
+  duration                      integer,
+  constraint pk_city_distance primary key (id)
+);
+
 create table edge (
   id                            bigint auto_increment not null,
   renter_id                     bigint,
@@ -246,6 +257,10 @@ drop table if exists activity_choice;
 drop table if exists activity_choice_activity;
 
 drop table if exists address;
+
+drop table if exists address_description;
+
+drop table if exists city_distance;
 
 drop table if exists edge;
 

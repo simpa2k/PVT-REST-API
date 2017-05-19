@@ -2,10 +2,7 @@ package models.accommodation;
 
 import com.avaje.ebean.Model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
  * @author Simon Olofsson
@@ -18,10 +15,12 @@ public class Address extends Model {
     public long id;
 
     public String streetName;
-    public int streetNumber;
+    public int streetNumber=-1;
     public char streetNumberLetter;
 
     public String area;
+    /*@OneToOne
+    public AddressDescription addressDescription;*/
 
     public double longitude;
     public double latitude;
@@ -38,6 +37,7 @@ public class Address extends Model {
 
     }
 
+
     public Address(String streetName, int streetNumber, char streetNumberLetter, String area) {
 
         this.streetName = streetName;
@@ -51,6 +51,8 @@ public class Address extends Model {
         this.streetName = streetName;
         this.streetNumber = streetNumber;
         this.area = area;
+        //this.addressDescription = new AddressDescription();
+
 
 
     }
@@ -71,6 +73,8 @@ public class Address extends Model {
         this.latitude = latitude;
 
     }
+
+
 
     public static Address findById(long id) {
         return find.byId(id);

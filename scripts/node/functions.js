@@ -116,10 +116,21 @@ let performPostRequest = function(server, endpoint, options, successCallback) {
 
 let performAuthenticatedGetRequest = function(server, endpoint, authToken, parameters, successCallback) {
 
-    let options = {
+    /*let options = {
         method: 'GET',
         headers: {"X-AUTH-TOKEN": authToken}
+    };*/
+    let options = {
+        headers: {'X-AUTH-TOKEN': authToken}
     };
+
+    performGetRequest(server, endpoint, parameters, options, successCallback);
+
+};
+
+let performGetRequest = function(server, endpoint, parameters, options, successCallback) {
+
+    options.method = 'GET';
 
     performRequest(server, endpoint, parameters, options, successCallback);
 
@@ -179,6 +190,8 @@ module.exports = {
     getTenantProfile: getTenantProfile,
     createTenantProfile: createTenantProfile,
     performPostRequest: performPostRequest,
-    performAuthenticatedGetRequest: performAuthenticatedGetRequest
+    performGetRequest: performGetRequest,
+    performAuthenticatedGetRequest: performAuthenticatedGetRequest,
+    performRequest: performRequest
 };
 
