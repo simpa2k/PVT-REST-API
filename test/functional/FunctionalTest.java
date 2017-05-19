@@ -3,6 +3,7 @@ package functional;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import controllers.SecurityController;
+import models.user.User;
 import org.junit.Before;
 import org.junit.Test;
 import play.Configuration;
@@ -107,5 +108,24 @@ public class FunctionalTest extends WithApplication {
             assertEquals(NO_CONTENT, result.status());
 
         }
+    }
+
+    @Test
+    public void testGenerateData() {
+
+        User user = new User("renter@renter.com", "Renter");
+        String authToken = user.createToken();
+        usersRepository.save(user);
+
+
+        ObjectNode accommodation = Json.newObject();
+        accommodation.put("renterId", user.id);
+
+        ObjectNode address = accommodation.putObject("address");
+
+        address.put("streetName", "Test");
+
+
+
     }
 }

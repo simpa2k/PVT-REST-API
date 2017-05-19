@@ -2,13 +2,13 @@ const fs = require('fs');
 const functions = require('../functions.js');
 
 const host = 'https://graph.facebook.com';
-const appId = '1889028451313578';
-const appToken = '1889028451313578|cvP0ATqahRfFI9NAH7315jkFxjo';
-const clientSecret = 'ea970da4d16e8d744d0c770e250d2a2d';
+const appId = '';
+const appToken = '';
+const clientSecret = '';
 
 let users = [];
 
-const numUsers = 2;
+const numUsers = 10;
 let usersToGo = numUsers;
 
 const createAndExtend = function(callback) {

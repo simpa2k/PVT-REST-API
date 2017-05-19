@@ -4,6 +4,19 @@ const functions = require('../functions.js');
 //let host = 'https://protected-gorge-44302.herokuapp.com';
 let host = 'http://localhost:9000';
 
+/*
+ Christel
+ Henrik
+ Håkan
+ Iris
+ Niklas
+ Pat
+ Simon O
+ Simon S
+ Tobias
+ Viktor
+ */
+
 const readUsers = function(callback) {
 
     fs.readFile('./users.json', 'utf8', (err, data) => {
