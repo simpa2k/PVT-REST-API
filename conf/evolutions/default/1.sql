@@ -43,8 +43,10 @@ create table address (
   street_number                 integer,
   street_number_letter          varchar(255),
   area                          varchar(255),
+  address_description_id        bigint,
   longitude                     double,
   latitude                      double,
+  constraint uq_address_address_description_id unique (address_description_id),
   constraint pk_address primary key (id)
 );
 
@@ -57,6 +59,15 @@ create table city_distance (
   id                            bigint auto_increment not null,
   duration                      integer,
   constraint pk_city_distance primary key (id)
+);
+
+create table distance (
+  id                            bigint auto_increment not null,
+  address_description_id        bigint not null,
+  distance_name                 varchar(255) not null,
+  meters                        integer,
+  duration                      integer,
+  constraint pk_distance primary key (id)
 );
 
 create table edge (
@@ -167,6 +178,11 @@ create index ix_activity_choice_activity_activity_choice on activity_choice_acti
 alter table activity_choice_activity add constraint fk_activity_choice_activity_activity foreign key (activity_id) references activity (id) on delete restrict on update restrict;
 create index ix_activity_choice_activity_activity on activity_choice_activity (activity_id);
 
+alter table address add constraint fk_address_address_description_id foreign key (address_description_id) references address_description (id) on delete restrict on update restrict;
+
+alter table distance add constraint fk_distance_address_description_id foreign key (address_description_id) references address_description (id) on delete restrict on update restrict;
+create index ix_distance_address_description_id on distance (address_description_id);
+
 alter table edge add constraint fk_edge_renter_id foreign key (renter_id) references users (id) on delete restrict on update restrict;
 create index ix_edge_renter_id on edge (renter_id);
 
@@ -219,6 +235,11 @@ drop index ix_activity_choice_activity_activity_choice on activity_choice_activi
 alter table activity_choice_activity drop foreign key fk_activity_choice_activity_activity;
 drop index ix_activity_choice_activity_activity on activity_choice_activity;
 
+alter table address drop foreign key fk_address_address_description_id;
+
+alter table distance drop foreign key fk_distance_address_description_id;
+drop index ix_distance_address_description_id on distance;
+
 alter table edge drop foreign key fk_edge_renter_id;
 drop index ix_edge_renter_id on edge;
 
@@ -261,6 +282,8 @@ drop table if exists address;
 drop table if exists address_description;
 
 drop table if exists city_distance;
+
+drop table if exists distance;
 
 drop table if exists edge;
 

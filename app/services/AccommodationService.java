@@ -8,7 +8,9 @@ import models.RentalPeriod;
 import models.accommodation.Accommodation;
 import models.accommodation.Address;
 import models.accommodation.AddressDescription;
+import models.accommodation.Distance;
 import models.user.User;
+import play.Configuration;
 import play.Logger;
 import repositories.AccommodationRepository;
 import repositories.AddressRepository;
@@ -29,6 +31,8 @@ public class AccommodationService {
     private UsersRepository usersRepository;
     private RentalPeriodRepository rentalPeriodRepository;
     private TrafikLabService tls;
+    private GoogleService gServ;
+	private String gApiKey;
 
     private ObjectMapper mapper;
 
@@ -36,15 +40,17 @@ public class AccommodationService {
     public AccommodationService(AccommodationRepository accommodationRepository,
                                 AddressRepository addressRepository,
                                 UsersRepository usersRepository,
-                                RentalPeriodRepository rentalPeriodRepository, ObjectMapper mapper) {
+                                RentalPeriodRepository rentalPeriodRepository, ObjectMapper mapper, Configuration configuration) {
 
         this.accommodationRepository = accommodationRepository;
         this.addressRepository = addressRepository;
         this.usersRepository = usersRepository;
         this.rentalPeriodRepository = rentalPeriodRepository;
 
+        this.gApiKey=configuration.getString("googleAPIKey");
+        this.gServ=new GoogleService(gApiKey);
         this.mapper = mapper;
-        //this.tls=new TrafikLabService();
+        this.tls=new TrafikLabService(gApiKey);
 
     }
 
@@ -72,35 +78,50 @@ public class AccommodationService {
             throw new IllegalArgumentException("User was null. Accommodation must be associated with a user.");
         }
 	    
-        
-        
-        
         Accommodation accommodation = mapper.treeToValue(accommodationJson, Accommodation.class);
         Logger.debug("accommodation created");
 
         Address address = accommodation.address;
-
-
-        //address = GoogleService.getCoordinates(address);
-
+	    address = GoogleService.getCoordinates(address,gApiKey);
         Logger.debug(address.streetName+", coords: "+address.latitude+", "+address.longitude);
 
-        //JsonNode jsonNodeTest = tls.getDistanceToCentralen(address);
+        JsonNode jn=gServ.findNearestStation(address);
+        Logger.debug(jn.toString());
 
-        //address.addressDescription = new AddressDescription();
+        JsonNode jsonNodeTest = tls.getDistanceToCentralen(address);
+
+        AddressDescription addressDescription = new AddressDescription();
+
+        addressDescription.distances.add(new Distance("Centralen", null, jsonNodeTest.findValue("duration").asInt()));
+        addressDescription.distances.add(new Distance("Tunnelbana", jsonNodeTest.findValue("distance").asInt(), null));
+
+        addressDescription.save();
+
+        address.addressDescription = addressDescription;
+
     //    address.addressDescription.initialize();
-        //address.addressDescription.addToList("centralen",jsonNodeTest.findValue("duration").asInt());
-        //address.addressDescription.addToList("tunnelbana",jsonNodeTest.findValue("distance").asInt());
+        /*address.addressDescription.addToList("centralen",jsonNodeTest.findValue("duration").asInt());
+        address.addressDescription.addToList("tunnelbana",jsonNodeTest.findValue("distance").asInt());*/
    //     Logger.debug(address.addressDescription.cityDistance.duration+"");
        // Logger.debug("HÄR ÄR JAG");
 
-        Logger.debug("address read");
         RentalPeriod rentalPeriod = accommodation.rentalPeriod;
-	    Logger.debug("rentalPeriod read");
+        Logger.debug("rentalPeriod: "+rentalPeriod.start);
         accommodation.renter = user;
-        Logger.debug("Renter SET to: "+user.getEmailAddress());
 
-        Accommodation existing = accommodationRepository.findByRenter(accommodation.renter.id);
+        Logger.debug("tets");
+        String sName=address.streetName;
+        int sNumber=address.streetNumber;
+        char sLetter=address.streetNumberLetter;
+        Logger.debug(sLetter+"");
+        Address inList=getInList(sName,sNumber,sLetter);
+	    Logger.debug("2");
+	    if(inList!=null){
+	    	Logger.debug("address already in db");
+	    	address=inList;
+	    	accommodation.address=inList;
+	    }
+	    Accommodation existing = accommodationRepository.findByRenter(accommodation.renter.id);
         if (existing == null) {
         	Logger.debug("No earlier accommodation");
             printAddress(address);
@@ -122,6 +143,18 @@ public class AccommodationService {
 
         return existing;
 
+    }
+
+    private Address getInList(String s, int n, char c){
+    	Logger.debug("getInList");
+    	Address a;
+	    if(c==0)
+		    a=Address.findByStreet(s, n);
+	    else{
+		    a=Address.findByStreet(s, n, c);
+	    }
+
+    	return a;
     }
     private void printAddress(Address a){
         Logger.debug("===============");

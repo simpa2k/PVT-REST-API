@@ -38,17 +38,6 @@ public class GoogleService{
 	}
 	
 	//=====================================GENERIC METHODS
-	public static String makeQuery(Address a){
-		String query="query=";
-		if(a!=null){
-			if(a.streetName!=null)query+=a.streetName;
-			if(a.streetName!=null&&a.streetNumber!=-1)query+="+";
-			if(a.streetNumber!=-1)query+=a.streetNumber;
-			if(a.streetNumber!=-1&&a.area!=null)query+="+";
-			if(a.area!=null)query+=a.area;
-		}else return "NullAddress";
-		return query+"+stockholm";
-	}
 
 	/**
 	 * Finds the Coordinates, from Google Places of a particular address
@@ -56,7 +45,7 @@ public class GoogleService{
 	 * @return - the address passed in with it's coordinates added.
 	 */
 	public static Address getCoordinates(Address address, String key){
-		String query="query="+address.streetName+"+"+address.streetNumber+"+"+address.area;
+		String query=makeQuery(address);
 		String urlString=PLACES_URL+TEXT_SEARCH+JSON+query+"&key="+key;
 		JsonNode node;
 
@@ -123,7 +112,25 @@ public class GoogleService{
 	public JsonNode gather(){
 		return gatherData(PLACES_URL+TEXT_SEARCH+JSON+LOCATION+"&"+PLACES_KEY);
 	}
+	
+	public JsonNode findNearestStation(Address a){
+		String query=makeQuery(a);
+		ArrayNode an=getAllNearbyInterests(types[3],a);
+		
+		return an.get(0);
+	}
 	//==================================ADDITIONALDATAMETHODS
+	public static String makeQuery(Address a){
+		String query="query=";
+		if(a!=null){
+			if(a.streetName!=null)query+=a.streetName;
+			if(a.streetName!=null&&a.streetNumber!=-1)query+="+";
+			if(a.streetNumber!=-1)query+=a.streetNumber;
+			if(a.streetNumber!=-1&&a.area!=null)query+="+";
+			if(a.area!=null)query+=a.area;
+		}else return "NullAddress";
+		return query+"+stockholm";
+	}
 	
 	/**
 	 * Finds the next page data from from the first nextPageToken, if there is any

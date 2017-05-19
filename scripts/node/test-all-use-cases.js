@@ -1,10 +1,10 @@
 let functions = require('./functions');
 
-//let server = 'http://localhost:8080';
-let server = 'https://protected-gorge-44302.herokuapp.com';
+let server = 'http://localhost:8080';
+//let server = 'https://protected-gorge-44302.herokuapp.com';
 
-let tenantFacebookToken = '';
-let renterFacebookToken = '';
+let tenantFacebookToken = 'EAAa2D7XPp6oBAKRKHXPKOJ1Upvm1je5zl7SiMxnnujkYRDxGZB2X8UpTl6dZCDBZApKDKdawdiBvgayezVSM96p6ZCZBYropI7dkZAnSJ71K7WJWP4GVGUWekzHstgIaRQ7NPzVO1uIlo9lRQUlNXwqZCwoy6SvgMPt4rgN7rKS6AZDZD';
+let renterFacebookToken = 'EAAa2D7XPp6oBAId1IIQjj2iMoZBxz4yWYriYnxXSZAHssNT8Qpsg2QlDZAzdtuw3qfcfNjH8HvHaDKqALAcXMyOAev1iUTyvgVwOLP3calNZC30TnHMiOBZBOzvOU1Hwmhc5FgmWvlIU1wZBffkWpeZAz5bJkcsyIgZD';
 
 let tenantToken = '';
 let renterToken = '';
@@ -54,13 +54,13 @@ functions.facebookLogin(server, tenantFacebookToken, function(responseObject) {
             let body = {
 
                 rent: 5000,
-                    size: 20,
-                    rooms: 1,
-                    deposit: 8000,
-                    address: {
-                    streetName: "Dymlingsgränd",
-                        streetNumber: 3,
-                        streetNumberLetter: "A"
+                size: 20,
+                rooms: 1,
+                deposit: 8000,
+                address: {
+                    streetName: "Tranebergsvägen",
+                    streetNumber: 96,
+                    streetNumberLetter: ""
                 },
                 rentalPeriod: {
                     start: "2017-05-01",

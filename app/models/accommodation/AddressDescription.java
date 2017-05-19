@@ -10,7 +10,9 @@ import services.GoogleService;
 import services.TrafikLabService;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -22,9 +24,13 @@ public class AddressDescription extends Model {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JsonIgnore
     public long id;
 
-    private Map<String, Integer> distanceByTypes = new HashMap<>();
+    //private Map<String, Integer> distanceByTypes = new HashMap<>();
+
+    @OneToMany(cascade = CascadeType.ALL)
+    public List<Distance> distances = new ArrayList<>();
 
     //@JsonIgnore
     // @OneToOne
@@ -32,7 +38,7 @@ public class AddressDescription extends Model {
 
     //  @OneToOne
     //  public CityDistance cityDistance;
-    public void addToList(String type, int distance) {
+    /*public void addToList(String type, int distance) {
         distanceByTypes.put(type, distance);
-    }
+    }*/
 }
