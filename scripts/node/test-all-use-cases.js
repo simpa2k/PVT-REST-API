@@ -97,7 +97,7 @@ functions.facebookLogin(server, tenantFacebookToken, function(responseObject) {
 
                             printMessage("Result of getting the renters interested in the logged in tenant: " + prettyPrint(responseObject));
 
-                            functions.showDisinterest(server, tenantToken, 5, function(responseObject) {
+                            /*functions.showDisinterest(server, tenantToken, 5, function(responseObject) {
 
                                 printMessage("Result of showing disinterest towards renter: " + prettyPrint(responseObject));
 
@@ -106,7 +106,7 @@ functions.facebookLogin(server, tenantFacebookToken, function(responseObject) {
                                     printMessage("Result of getting the renters interested in the logged in tenant after showing disinterest: " + prettyPrint(responseObject));
 
                                 })
-                            })
+                            })*/
 
                         })
 
