@@ -1,896 +1,105 @@
 {
-  "TripList": {
-    "noNamespaceSchemaLocation": "hafasRestTrip.xsd",
-    "Trip": [
-      {
-        "dur": "88",
-        "chg": "1",
-        "co2": "1.40",
-        "LegList": {
-          "Leg": [
-            {
-              "idx": "0",
-              "name": "Walk",
-              "type": "WALK",
-              "dist": "699",
-              "Origin": {
-                "name": "Vegagatan5",
-                "type": "ADR",
-                "lon": "18.710444",
-                "lat": "59.760414",
-                "time": "14:51",
-                "date": "2017-05-16"
-              },
-              "Destination": {
-                "name": "Norrtälje busstation",
-                "type": "ST",
-                "id": "400160056",
-                "lon": "18.699711",
-                "lat": "59.759811",
-                "time": "15:02",
-                "date": "2017-05-16"
-              },
-              "GeometryRef": {
-                "ref": "type%3DWALK%26startx%3D18710444%26starty%3D59760414%26endx%3D18699711%26endy%3D59759811%26dt%3D2017-05-16T14%3A51%26h%3De945516af96defa0ec86303083d329e2%26lang%3Dsv%26format%3Djson%26"
-              }
-            },
-            {
-              "idx": "1",
-              "name": "blåbuss 676",
-              "type": "BUS",
-              "dir": "Stockholm",
-              "line": "676",
-              "Origin": {
-                "name": "Norrtälje busstation",
-                "type": "ST",
-                "id": "400160056",
-                "lon": "18.699711",
-                "lat": "59.759811",
-                "routeIdx": "0",
-                "time": "15:03",
-                "date": "2017-05-16",
-                "track": "F"
-              },
-              "Destination": {
-                "name": "Danderyds sjukhus",
-                "type": "ST",
-                "id": "400160010",
-                "lon": "18.042348",
-                "lat": "59.389824",
-                "routeIdx": "10",
-                "time": "15:57",
-                "date": "2017-05-16",
-                "track": "C"
-              },
-              "JourneyDetailRef": {
-                "ref": "ref%3D68199%2F67810%2F375180%2F164863%2F74%3Fdate%3D2017-05-16%26station_evaId%3D400160056%26station_type%3Ddep%26lang%3Dsv%26format%3Djson%26"
-              },
-              "GeometryRef": {
-                "ref": "ref%3D68199%2F67810%2F375180%2F164863%2F74%26startIdx%3D0%26endIdx%3D10%26lang%3Dsv%26format%3Djson%26"
-              }
-            },
-            {
-              "idx": "2",
-              "name": "Walk",
-              "type": "WALK",
-              "hide": "true",
-              "dist": "105",
-              "Origin": {
-                "name": "Danderyds sjukhus",
-                "type": "ST",
-                "id": "400160010",
-                "lon": "18.042348",
-                "lat": "59.389824",
-                "time": "15:58",
-                "date": "2017-05-16"
-              },
-              "Destination": {
-                "name": "Danderyds sjukhus",
-                "type": "ST",
-                "id": "400102252",
-                "lon": "18.041836",
-                "lat": "59.390732",
-                "time": "16:01",
-                "date": "2017-05-16"
-              },
-              "GeometryRef": {
-                "ref": "type%3DWALKLINK%26startx%3D18042348%26starty%3D59389824%26endx%3D18041836%26endy%3D59390732%26dt%3D2017-05-16T15%3A58%26h%3Dbffd899fd9403abcd03772301e83b528%26lang%3Dsv%26format%3Djson%26"
-              }
-            },
-            {
-              "idx": "3",
-              "name": "tunnelbanans röda linje 14",
-              "type": "METRO",
-              "dir": "Fruängen",
-              "line": "14",
-              "Origin": {
-                "name": "Danderyds sjukhus",
-                "type": "ST",
-                "id": "400102252",
-                "lon": "18.041836",
-                "lat": "59.390732",
-                "routeIdx": "1",
-                "time": "16:01",
-                "date": "2017-05-16",
-                "track": "2"
-              },
-              "Destination": {
-                "name": "T-Centralen",
-                "type": "ST",
-                "id": "400102052",
-                "lon": "18.061432",
-                "lat": "59.331340",
-                "routeIdx": "7",
-                "time": "16:15",
-                "date": "2017-05-16",
-                "track": "2"
-              },
-              "JourneyDetailRef": {
-                "ref": "ref%3D441171%2F154168%2F972846%2F339375%2F74%3Fdate%3D2017-05-16%26station_evaId%3D400102252%26station_type%3Ddep%26lang%3Dsv%26format%3Djson%26"
-              },
-              "GeometryRef": {
-                "ref": "ref%3D441171%2F154168%2F972846%2F339375%2F74%26startIdx%3D1%26endIdx%3D7%26lang%3Dsv%26format%3Djson%26"
-              }
-            },
-            {
-              "idx": "4",
-              "name": "Walk",
-              "type": "WALK",
-              "dist": "168",
-              "Origin": {
-                "name": "T-Centralen",
-                "type": "ST",
-                "id": "400102052",
-                "lon": "18.061432",
-                "lat": "59.331340",
-                "time": "16:16",
-                "date": "2017-05-16"
-              },
-              "Destination": {
-                "name": "Vasagatan",
-                "type": "ADR",
-                "lon": "18.059634",
-                "lat": "59.330630",
-                "time": "16:19",
-                "date": "2017-05-16"
-              },
-              "GeometryRef": {
-                "ref": "type%3DWALK%26startx%3D18061432%26starty%3D59331340%26endx%3D18059634%26endy%3D59330630%26dt%3D2017-05-16T16%3A16%26h%3D45fbd41fcd647cb31e25a77622ebf897%26lang%3Dsv%26format%3Djson%26"
-              }
-            }
-          ]
-        },
-        "PriceInfo": {
-          "TariffZones": {
-            "$": "SL"
-          },
-          "TariffRemark": {
-            "$": "SL"
-          }
-        }
-      },
-      {
-        "dur": "88",
-        "chg": "1",
-        "co2": "1.40",
-        "LegList": {
-          "Leg": [
-            {
-              "idx": "0",
-              "name": "Walk",
-              "type": "WALK",
-              "dist": "699",
-              "Origin": {
-                "name": "Vegagatan5",
-                "type": "ADR",
-                "lon": "18.710444",
-                "lat": "59.760414",
-                "time": "15:06",
-                "date": "2017-05-16"
-              },
-              "Destination": {
-                "name": "Norrtälje busstation",
-                "type": "ST",
-                "id": "400160056",
-                "lon": "18.699711",
-                "lat": "59.759811",
-                "time": "15:17",
-                "date": "2017-05-16"
-              },
-              "GeometryRef": {
-                "ref": "type%3DWALK%26startx%3D18710444%26starty%3D59760414%26endx%3D18699711%26endy%3D59759811%26dt%3D2017-05-16T15%3A06%26h%3De945516af96defa0ec86303083d329e2%26lang%3Dsv%26format%3Djson%26"
-              }
-            },
-            {
-              "idx": "1",
-              "name": "blåbuss 676",
-              "type": "BUS",
-              "dir": "Stockholm",
-              "line": "676",
-              "Origin": {
-                "name": "Norrtälje busstation",
-                "type": "ST",
-                "id": "400160056",
-                "lon": "18.699711",
-                "lat": "59.759811",
-                "routeIdx": "0",
-                "time": "15:18",
-                "date": "2017-05-16",
-                "track": "F"
-              },
-              "Destination": {
-                "name": "Danderyds sjukhus",
-                "type": "ST",
-                "id": "400160010",
-                "lon": "18.042348",
-                "lat": "59.389824",
-                "routeIdx": "10",
-                "time": "16:12",
-                "date": "2017-05-16",
-                "track": "C"
-              },
-              "JourneyDetailRef": {
-                "ref": "ref%3D297756%2F144329%2F583924%2F192717%2F74%3Fdate%3D2017-05-16%26station_evaId%3D400160056%26station_type%3Ddep%26lang%3Dsv%26format%3Djson%26"
-              },
-              "GeometryRef": {
-                "ref": "ref%3D297756%2F144329%2F583924%2F192717%2F74%26startIdx%3D0%26endIdx%3D10%26lang%3Dsv%26format%3Djson%26"
-              }
-            },
-            {
-              "idx": "2",
-              "name": "Walk",
-              "type": "WALK",
-              "hide": "true",
-              "dist": "105",
-              "Origin": {
-                "name": "Danderyds sjukhus",
-                "type": "ST",
-                "id": "400160010",
-                "lon": "18.042348",
-                "lat": "59.389824",
-                "time": "16:13",
-                "date": "2017-05-16"
-              },
-              "Destination": {
-                "name": "Danderyds sjukhus",
-                "type": "ST",
-                "id": "400102252",
-                "lon": "18.041836",
-                "lat": "59.390732",
-                "time": "16:16",
-                "date": "2017-05-16"
-              },
-              "GeometryRef": {
-                "ref": "type%3DWALKLINK%26startx%3D18042348%26starty%3D59389824%26endx%3D18041836%26endy%3D59390732%26dt%3D2017-05-16T16%3A13%26h%3Dbffd899fd9403abcd03772301e83b528%26lang%3Dsv%26format%3Djson%26"
-              }
-            },
-            {
-              "idx": "3",
-              "name": "tunnelbanans röda linje 14",
-              "type": "METRO",
-              "dir": "Fruängen",
-              "line": "14",
-              "Origin": {
-                "name": "Danderyds sjukhus",
-                "type": "ST",
-                "id": "400102252",
-                "lon": "18.041836",
-                "lat": "59.390732",
-                "routeIdx": "1",
-                "time": "16:16",
-                "date": "2017-05-16",
-                "track": "2"
-              },
-              "Destination": {
-                "name": "T-Centralen",
-                "type": "ST",
-                "id": "400102052",
-                "lon": "18.061432",
-                "lat": "59.331340",
-                "routeIdx": "7",
-                "time": "16:30",
-                "date": "2017-05-16",
-                "track": "2"
-              },
-              "JourneyDetailRef": {
-                "ref": "ref%3D618336%2F213223%2F127042%2F142603%2F74%3Fdate%3D2017-05-16%26station_evaId%3D400102252%26station_type%3Ddep%26lang%3Dsv%26format%3Djson%26"
-              },
-              "GeometryRef": {
-                "ref": "ref%3D618336%2F213223%2F127042%2F142603%2F74%26startIdx%3D1%26endIdx%3D7%26lang%3Dsv%26format%3Djson%26"
-              }
-            },
-            {
-              "idx": "4",
-              "name": "Walk",
-              "type": "WALK",
-              "dist": "168",
-              "Origin": {
-                "name": "T-Centralen",
-                "type": "ST",
-                "id": "400102052",
-                "lon": "18.061432",
-                "lat": "59.331340",
-                "time": "16:31",
-                "date": "2017-05-16"
-              },
-              "Destination": {
-                "name": "Vasagatan",
-                "type": "ADR",
-                "lon": "18.059634",
-                "lat": "59.330630",
-                "time": "16:34",
-                "date": "2017-05-16"
-              },
-              "GeometryRef": {
-                "ref": "type%3DWALK%26startx%3D18061432%26starty%3D59331340%26endx%3D18059634%26endy%3D59330630%26dt%3D2017-05-16T16%3A31%26h%3D45fbd41fcd647cb31e25a77622ebf897%26lang%3Dsv%26format%3Djson%26"
-              }
-            }
-          ]
-        },
-        "PriceInfo": {
-          "TariffZones": {
-            "$": "SL"
-          },
-          "TariffRemark": {
-            "$": "SL"
-          }
-        }
-      },
-      {
-        "dur": "101",
-        "chg": "2",
-        "co2": "1.40",
-        "LegList": {
-          "Leg": [
-            {
-              "idx": "0",
-              "name": "Walk",
-              "type": "WALK",
-              "dist": "163",
-              "Origin": {
-                "name": "Vegagatan5",
-                "type": "ADR",
-                "lon": "18.710444",
-                "lat": "59.760414",
-                "time": "15:08",
-                "date": "2017-05-16"
-              },
-              "Destination": {
-                "name": "Brännässkolan",
-                "type": "ST",
-                "id": "400165006",
-                "lon": "18.708674",
-                "lat": "59.759955",
-                "time": "15:11",
-                "date": "2017-05-16"
-              },
-              "GeometryRef": {
-                "ref": "type%3DWALK%26startx%3D18710444%26starty%3D59760414%26endx%3D18708674%26endy%3D59759955%26dt%3D2017-05-16T15%3A08%26h%3D2978cb909414e19fdb88d59a6ccfb38d%26lang%3Dsv%26format%3Djson%26"
-              }
-            },
-            {
-              "idx": "1",
-              "name": "Buss 656",
-              "type": "BUS",
-              "dir": "Campus Roslagen",
-              "line": "656",
-              "Origin": {
-                "name": "Brännässkolan",
-                "type": "ST",
-                "id": "400165006",
-                "lon": "18.708674",
-                "lat": "59.759955",
-                "routeIdx": "8",
-                "time": "15:13",
-                "date": "2017-05-16"
-              },
-              "Destination": {
-                "name": "Norrtälje busstation",
-                "type": "ST",
-                "id": "400169952",
-                "lon": "18.699846",
-                "lat": "59.759407",
-                "routeIdx": "10",
-                "time": "15:16",
-                "date": "2017-05-16",
-                "track": "L"
-              },
-              "JourneyDetailRef": {
-                "ref": "ref%3D63633%2F65413%2F987630%2F472605%2F74%3Fdate%3D2017-05-16%26station_evaId%3D400165006%26station_type%3Ddep%26lang%3Dsv%26format%3Djson%26"
-              },
-              "GeometryRef": {
-                "ref": "ref%3D63633%2F65413%2F987630%2F472605%2F74%26startIdx%3D8%26endIdx%3D10%26lang%3Dsv%26format%3Djson%26"
-              }
-            },
-            {
-              "idx": "2",
-              "name": "Walk",
-              "type": "WALK",
-              "hide": "true",
-              "dist": "46",
-              "Origin": {
-                "name": "Norrtälje busstation",
-                "type": "ST",
-                "id": "400169952",
-                "lon": "18.699846",
-                "lat": "59.759407",
-                "time": "15:17",
-                "date": "2017-05-16"
-              },
-              "Destination": {
-                "name": "Norrtälje busstation",
-                "type": "ST",
-                "id": "400160056",
-                "lon": "18.699711",
-                "lat": "59.759811",
-                "time": "15:20",
-                "date": "2017-05-16"
-              },
-              "GeometryRef": {
-                "ref": "type%3DWALKLINK%26startx%3D18699846%26starty%3D59759407%26endx%3D18699711%26endy%3D59759811%26dt%3D2017-05-16T15%3A17%26h%3De9e7b844952a41ce30122042e49b283d%26lang%3Dsv%26format%3Djson%26"
-              }
-            },
-            {
-              "idx": "3",
-              "name": "blåbuss 676",
-              "type": "BUS",
-              "dir": "Stockholm",
-              "line": "676",
-              "Origin": {
-                "name": "Norrtälje busstation",
-                "type": "ST",
-                "id": "400160056",
-                "lon": "18.699711",
-                "lat": "59.759811",
-                "routeIdx": "0",
-                "time": "15:33",
-                "date": "2017-05-16",
-                "track": "F"
-              },
-              "Destination": {
-                "name": "Danderyds sjukhus",
-                "type": "ST",
-                "id": "400160010",
-                "lon": "18.042348",
-                "lat": "59.389824",
-                "routeIdx": "10",
-                "time": "16:27",
-                "date": "2017-05-16",
-                "track": "C"
-              },
-              "JourneyDetailRef": {
-                "ref": "ref%3D78201%2F71147%2F350598%2F149232%2F74%3Fdate%3D2017-05-16%26station_evaId%3D400160056%26station_type%3Ddep%26lang%3Dsv%26format%3Djson%26"
-              },
-              "GeometryRef": {
-                "ref": "ref%3D78201%2F71147%2F350598%2F149232%2F74%26startIdx%3D0%26endIdx%3D10%26lang%3Dsv%26format%3Djson%26"
-              }
-            },
-            {
-              "idx": "4",
-              "name": "Walk",
-              "type": "WALK",
-              "hide": "true",
-              "dist": "105",
-              "Origin": {
-                "name": "Danderyds sjukhus",
-                "type": "ST",
-                "id": "400160010",
-                "lon": "18.042348",
-                "lat": "59.389824",
-                "time": "16:28",
-                "date": "2017-05-16"
-              },
-              "Destination": {
-                "name": "Danderyds sjukhus",
-                "type": "ST",
-                "id": "400102252",
-                "lon": "18.041836",
-                "lat": "59.390732",
-                "time": "16:31",
-                "date": "2017-05-16"
-              },
-              "GeometryRef": {
-                "ref": "type%3DWALKLINK%26startx%3D18042348%26starty%3D59389824%26endx%3D18041836%26endy%3D59390732%26dt%3D2017-05-16T16%3A28%26h%3Dbffd899fd9403abcd03772301e83b528%26lang%3Dsv%26format%3Djson%26"
-              }
-            },
-            {
-              "idx": "5",
-              "name": "tunnelbanans röda linje 14",
-              "type": "METRO",
-              "dir": "Fruängen",
-              "line": "14",
-              "Origin": {
-                "name": "Danderyds sjukhus",
-                "type": "ST",
-                "id": "400102252",
-                "lon": "18.041836",
-                "lat": "59.390732",
-                "routeIdx": "1",
-                "time": "16:31",
-                "date": "2017-05-16",
-                "track": "2"
-              },
-              "Destination": {
-                "name": "T-Centralen",
-                "type": "ST",
-                "id": "400102052",
-                "lon": "18.061432",
-                "lat": "59.331340",
-                "routeIdx": "7",
-                "time": "16:45",
-                "date": "2017-05-16",
-                "track": "2"
-              },
-              "JourneyDetailRef": {
-                "ref": "ref%3D291267%2F104200%2F913030%2F359441%2F74%3Fdate%3D2017-05-16%26station_evaId%3D400102252%26station_type%3Ddep%26lang%3Dsv%26format%3Djson%26"
-              },
-              "GeometryRef": {
-                "ref": "ref%3D291267%2F104200%2F913030%2F359441%2F74%26startIdx%3D1%26endIdx%3D7%26lang%3Dsv%26format%3Djson%26"
-              }
-            },
-            {
-              "idx": "6",
-              "name": "Walk",
-              "type": "WALK",
-              "dist": "168",
-              "Origin": {
-                "name": "T-Centralen",
-                "type": "ST",
-                "id": "400102052",
-                "lon": "18.061432",
-                "lat": "59.331340",
-                "time": "16:46",
-                "date": "2017-05-16"
-              },
-              "Destination": {
-                "name": "Vasagatan",
-                "type": "ADR",
-                "lon": "18.059634",
-                "lat": "59.330630",
-                "time": "16:49",
-                "date": "2017-05-16"
-              },
-              "GeometryRef": {
-                "ref": "type%3DWALK%26startx%3D18061432%26starty%3D59331340%26endx%3D18059634%26endy%3D59330630%26dt%3D2017-05-16T16%3A46%26h%3D45fbd41fcd647cb31e25a77622ebf897%26lang%3Dsv%26format%3Djson%26"
-              }
-            }
-          ]
-        }
-      },
-      {
-        "dur": "88",
-        "chg": "1",
-        "co2": "1.40",
-        "LegList": {
-          "Leg": [
-            {
-              "idx": "0",
-              "name": "Walk",
-              "type": "WALK",
-              "dist": "699",
-              "Origin": {
-                "name": "Vegagatan5",
-                "type": "ADR",
-                "lon": "18.710444",
-                "lat": "59.760414",
-                "time": "15:21",
-                "date": "2017-05-16"
-              },
-              "Destination": {
-                "name": "Norrtälje busstation",
-                "type": "ST",
-                "id": "400160056",
-                "lon": "18.699711",
-                "lat": "59.759811",
-                "time": "15:32",
-                "date": "2017-05-16"
-              },
-              "GeometryRef": {
-                "ref": "type%3DWALK%26startx%3D18710444%26starty%3D59760414%26endx%3D18699711%26endy%3D59759811%26dt%3D2017-05-16T15%3A21%26h%3De945516af96defa0ec86303083d329e2%26lang%3Dsv%26format%3Djson%26"
-              }
-            },
-            {
-              "idx": "1",
-              "name": "blåbuss 676",
-              "type": "BUS",
-              "dir": "Stockholm",
-              "line": "676",
-              "Origin": {
-                "name": "Norrtälje busstation",
-                "type": "ST",
-                "id": "400160056",
-                "lon": "18.699711",
-                "lat": "59.759811",
-                "routeIdx": "0",
-                "time": "15:33",
-                "date": "2017-05-16",
-                "track": "F"
-              },
-              "Destination": {
-                "name": "Danderyds sjukhus",
-                "type": "ST",
-                "id": "400160010",
-                "lon": "18.042348",
-                "lat": "59.389824",
-                "routeIdx": "10",
-                "time": "16:27",
-                "date": "2017-05-16",
-                "track": "C"
-              },
-              "JourneyDetailRef": {
-                "ref": "ref%3D392598%2F175946%2F965014%2F351641%2F74%3Fdate%3D2017-05-16%26station_evaId%3D400160056%26station_type%3Ddep%26lang%3Dsv%26format%3Djson%26"
-              },
-              "GeometryRef": {
-                "ref": "ref%3D392598%2F175946%2F965014%2F351641%2F74%26startIdx%3D0%26endIdx%3D10%26lang%3Dsv%26format%3Djson%26"
-              }
-            },
-            {
-              "idx": "2",
-              "name": "Walk",
-              "type": "WALK",
-              "hide": "true",
-              "dist": "105",
-              "Origin": {
-                "name": "Danderyds sjukhus",
-                "type": "ST",
-                "id": "400160010",
-                "lon": "18.042348",
-                "lat": "59.389824",
-                "time": "16:28",
-                "date": "2017-05-16"
-              },
-              "Destination": {
-                "name": "Danderyds sjukhus",
-                "type": "ST",
-                "id": "400102252",
-                "lon": "18.041836",
-                "lat": "59.390732",
-                "time": "16:31",
-                "date": "2017-05-16"
-              },
-              "GeometryRef": {
-                "ref": "type%3DWALKLINK%26startx%3D18042348%26starty%3D59389824%26endx%3D18041836%26endy%3D59390732%26dt%3D2017-05-16T16%3A28%26h%3Dbffd899fd9403abcd03772301e83b528%26lang%3Dsv%26format%3Djson%26"
-              }
-            },
-            {
-              "idx": "3",
-              "name": "tunnelbanans röda linje 14",
-              "type": "METRO",
-              "dir": "Fruängen",
-              "line": "14",
-              "Origin": {
-                "name": "Danderyds sjukhus",
-                "type": "ST",
-                "id": "400102252",
-                "lon": "18.041836",
-                "lat": "59.390732",
-                "routeIdx": "1",
-                "time": "16:31",
-                "date": "2017-05-16",
-                "track": "2"
-              },
-              "Destination": {
-                "name": "T-Centralen",
-                "type": "ST",
-                "id": "400102052",
-                "lon": "18.061432",
-                "lat": "59.331340",
-                "routeIdx": "7",
-                "time": "16:45",
-                "date": "2017-05-16",
-                "track": "2"
-              },
-              "JourneyDetailRef": {
-                "ref": "ref%3D833493%2F284942%2F95096%2F230298%2F74%3Fdate%3D2017-05-16%26station_evaId%3D400102252%26station_type%3Ddep%26lang%3Dsv%26format%3Djson%26"
-              },
-              "GeometryRef": {
-                "ref": "ref%3D833493%2F284942%2F95096%2F230298%2F74%26startIdx%3D1%26endIdx%3D7%26lang%3Dsv%26format%3Djson%26"
-              }
-            },
-            {
-              "idx": "4",
-              "name": "Walk",
-              "type": "WALK",
-              "dist": "168",
-              "Origin": {
-                "name": "T-Centralen",
-                "type": "ST",
-                "id": "400102052",
-                "lon": "18.061432",
-                "lat": "59.331340",
-                "time": "16:46",
-                "date": "2017-05-16"
-              },
-              "Destination": {
-                "name": "Vasagatan",
-                "type": "ADR",
-                "lon": "18.059634",
-                "lat": "59.330630",
-                "time": "16:49",
-                "date": "2017-05-16"
-              },
-              "GeometryRef": {
-                "ref": "type%3DWALK%26startx%3D18061432%26starty%3D59331340%26endx%3D18059634%26endy%3D59330630%26dt%3D2017-05-16T16%3A46%26h%3D45fbd41fcd647cb31e25a77622ebf897%26lang%3Dsv%26format%3Djson%26"
-              }
-            }
-          ]
-        },
-        "PriceInfo": {
-          "TariffZones": {
-            "$": "SL"
-          },
-          "TariffRemark": {
-            "$": "SL"
-          }
-        }
-      },
-      {
-        "dur": "88",
-        "chg": "1",
-        "co2": "1.40",
-        "LegList": {
-          "Leg": [
-            {
-              "idx": "0",
-              "name": "Walk",
-              "type": "WALK",
-              "dist": "699",
-              "Origin": {
-                "name": "Vegagatan5",
-                "type": "ADR",
-                "lon": "18.710444",
-                "lat": "59.760414",
-                "time": "15:36",
-                "date": "2017-05-16"
-              },
-              "Destination": {
-                "name": "Norrtälje busstation",
-                "type": "ST",
-                "id": "400160056",
-                "lon": "18.699711",
-                "lat": "59.759811",
-                "time": "15:47",
-                "date": "2017-05-16"
-              },
-              "GeometryRef": {
-                "ref": "type%3DWALK%26startx%3D18710444%26starty%3D59760414%26endx%3D18699711%26endy%3D59759811%26dt%3D2017-05-16T15%3A36%26h%3De945516af96defa0ec86303083d329e2%26lang%3Dsv%26format%3Djson%26"
-              }
-            },
-            {
-              "idx": "1",
-              "name": "blåbuss 676",
-              "type": "BUS",
-              "dir": "Stockholm",
-              "line": "676",
-              "Origin": {
-                "name": "Norrtälje busstation",
-                "type": "ST",
-                "id": "400160056",
-                "lon": "18.699711",
-                "lat": "59.759811",
-                "routeIdx": "0",
-                "time": "15:48",
-                "date": "2017-05-16",
-                "track": "F"
-              },
-              "Destination": {
-                "name": "Danderyds sjukhus",
-                "type": "ST",
-                "id": "400160010",
-                "lon": "18.042348",
-                "lat": "59.389824",
-                "routeIdx": "10",
-                "time": "16:42",
-                "date": "2017-05-16",
-                "track": "C"
-              },
-              "JourneyDetailRef": {
-                "ref": "ref%3D771111%2F302103%2F363224%2F75427%2F74%3Fdate%3D2017-05-16%26station_evaId%3D400160056%26station_type%3Ddep%26lang%3Dsv%26format%3Djson%26"
-              },
-              "GeometryRef": {
-                "ref": "ref%3D771111%2F302103%2F363224%2F75427%2F74%26startIdx%3D0%26endIdx%3D10%26lang%3Dsv%26format%3Djson%26"
-              }
-            },
-            {
-              "idx": "2",
-              "name": "Walk",
-              "type": "WALK",
-              "hide": "true",
-              "dist": "105",
-              "Origin": {
-                "name": "Danderyds sjukhus",
-                "type": "ST",
-                "id": "400160010",
-                "lon": "18.042348",
-                "lat": "59.389824",
-                "time": "16:43",
-                "date": "2017-05-16"
-              },
-              "Destination": {
-                "name": "Danderyds sjukhus",
-                "type": "ST",
-                "id": "400102252",
-                "lon": "18.041836",
-                "lat": "59.390732",
-                "time": "16:46",
-                "date": "2017-05-16"
-              },
-              "GeometryRef": {
-                "ref": "type%3DWALKLINK%26startx%3D18042348%26starty%3D59389824%26endx%3D18041836%26endy%3D59390732%26dt%3D2017-05-16T16%3A43%26h%3Dbffd899fd9403abcd03772301e83b528%26lang%3Dsv%26format%3Djson%26"
-              }
-            },
-            {
-              "idx": "3",
-              "name": "tunnelbanans röda linje 14",
-              "type": "METRO",
-              "dir": "Fruängen",
-              "line": "14",
-              "Origin": {
-                "name": "Danderyds sjukhus",
-                "type": "ST",
-                "id": "400102252",
-                "lon": "18.041836",
-                "lat": "59.390732",
-                "routeIdx": "1",
-                "time": "16:46",
-                "date": "2017-05-16",
-                "track": "2"
-              },
-              "Destination": {
-                "name": "T-Centralen",
-                "type": "ST",
-                "id": "400102052",
-                "lon": "18.061432",
-                "lat": "59.331340",
-                "routeIdx": "7",
-                "time": "17:00",
-                "date": "2017-05-16",
-                "track": "2"
-              },
-              "JourneyDetailRef": {
-                "ref": "ref%3D288801%2F103378%2F876198%2F341850%2F74%3Fdate%3D2017-05-16%26station_evaId%3D400102252%26station_type%3Ddep%26lang%3Dsv%26format%3Djson%26"
-              },
-              "GeometryRef": {
-                "ref": "ref%3D288801%2F103378%2F876198%2F341850%2F74%26startIdx%3D1%26endIdx%3D7%26lang%3Dsv%26format%3Djson%26"
-              }
-            },
-            {
-              "idx": "4",
-              "name": "Walk",
-              "type": "WALK",
-              "dist": "168",
-              "Origin": {
-                "name": "T-Centralen",
-                "type": "ST",
-                "id": "400102052",
-                "lon": "18.061432",
-                "lat": "59.331340",
-                "time": "17:01",
-                "date": "2017-05-16"
-              },
-              "Destination": {
-                "name": "Vasagatan",
-                "type": "ADR",
-                "lon": "18.059634",
-                "lat": "59.330630",
-                "time": "17:04",
-                "date": "2017-05-16"
-              },
-              "GeometryRef": {
-                "ref": "type%3DWALK%26startx%3D18061432%26starty%3D59331340%26endx%3D18059634%26endy%3D59330630%26dt%3D2017-05-16T17%3A01%26h%3D45fbd41fcd647cb31e25a77622ebf897%26lang%3Dsv%26format%3Djson%26"
-              }
-            }
-          ]
-        },
-        "PriceInfo": {
-          "TariffZones": {
-            "$": "SL"
-          },
-          "TariffRemark": {
-            "$": "SL"
-          }
-        }
-      }
-    ]
+  "rent": 5000,
+  "size": 20,
+  "rooms": 1,
+  "deposit": 8000,
+  "address": {
+    "streetName": "Dymlingsgränd",
+    "streetNumber": 3,
+    "streetNumberLetter": "A",
+    "area": "Hägerstensåsen",
+    "longitude": 0,
+    "latitude": 0
+  },
+  "rentalPeriod": {
+    "start": "2017-02-23",
+    "end": "2018-02-30"
   }
 }
+[
+  {
+    "geometry": {
+      "location": {
+        "lat": 59.2955713,
+        "lng": 17.9791519
+      },
+      "viewport": {
+        "northeast": {
+          "lat": 59.29692028029151,
+          "lng": 17.9805008802915
+        },
+        "southwest": {
+          "lat": 59.2942223197085,
+          "lng": 17.9778029197085
+        }
+      }
+    },
+    "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/generic_business-71.png",
+    "id": "a886bc83ace1f4355a9152bc505138e042a9d5b0",
+    "name": "Hägerstensåsen",
+    "photos": [
+      {
+        "height": 2988,
+        "html_attributions": [
+          "<a href=\"https://maps.google.com/maps/contrib/102180001938137985154/photos\">Tobias Lundgren</a>"
+        ],
+        "photo_reference": "CmRYAAAApZzVVBqhfy8KdXo4QL4hN21zCBC3SdPUUIU1GqQ4H5mIEezbx3TIk9LwJ9JP7AupN-pW8Io_m3h2QLwixdQKVh6KkWUXaxL4qk9LI86Hmbnt6YZJ_duEJWJy5mHENpOmEhCMQnno2bTYc5jYJAm0Od0-GhQpSXipy7Iog8Wod6o2Bqgyf2HOmg",
+        "width": 5312
+      }
+    ],
+    "place_id": "ChIJLSNA7FZ2X0YRQ2LedD6x0x8",
+    "rating": 4,
+    "reference": "CmRRAAAA7t4YzNctBz9S7-IQLMdjg0vxot7pSVNnehRxRBEF5qeUkABZt7IZXkyWaadV34MBwvSCKFlxHxh0A1FzXZlg4Ewb1fzrHpHENAE1wZiy1yHRj8LSw5ttvsy-GrEs889PEhCGfxIr_5Z__t1XB2vh_JAvGhR4OZbaZVWF34NePYrvb9eM_Dp_iw",
+    "scope": "GOOGLE",
+    "types": [
+      "subway_station",
+      "transit_station",
+      "point_of_interest",
+      "establishment"
+    ],
+    "vicinity": "Sweden"
+  },
+  {
+    "geometry": {
+      "location": {
+        "lat": 59.29832139999999,
+        "lng": 17.9972352
+      },
+      "viewport": {
+        "northeast": {
+          "lat": 59.2996703802915,
+          "lng": 17.9985841802915
+        },
+        "southwest": {
+          "lat": 59.29697241970849,
+          "lng": 17.9958862197085
+        }
+      }
+    },
+    "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/generic_business-71.png",
+    "id": "c7b3e8a93e23c98da249f75070046276b8159fd4",
+    "name": "Telefonplan T-bana",
+    "photos": [
+      {
+        "height": 3888,
+        "html_attributions": [
+          "<a href=\"https://maps.google.com/maps/contrib/100705890708823647819/photos\">Alexander Williamson</a>"
+        ],
+        "photo_reference": "CmRYAAAAKBUqm80KfCLW5OBxRr9Xmf-xfG33UiND6wMIj_WnrvcXMvumRm5krHmYwFeCBpNSqSppty12oJg4adDJuxlZ4K3WgsYWO17gLtENfrM88tV4KyG7iy2h7kYR3CXDD-70EhB6jbikW4PmfyhwaTCLQ6C2GhTJFMq_xaVjzMUV8xO-QNQJb261zw",
+        "width": 2592
+      }
+    ],
+    "place_id": "ChIJueLJGK13X0YRlzyNL021aVo",
+    "rating": 3.7,
+    "reference": "CmRRAAAAzXQPEnX0_PJpxxZA3hGAaModYT1Kvv0dvYvoYqouQJMJ3KB8VX3ZyLzA773ik2uM8Sro3Solj2gUPc3S769-Na3BFLKHIBG5hMNkcUfzrNC72-RPtTfwETLHcIfeDUgKEhDxJRXh8nbBjxikNgloDcayGhTa43LNXL06gsLC-zrN0uH2fQfyNA",
+    "scope": "GOOGLE",
+    "types": [
+      "transit_station",
+      "subway_station",
+      "bus_station",
+      "point_of_interest",
+      "establishment"
+    ],
+    "vicinity": "Sweden"
+  }
+]

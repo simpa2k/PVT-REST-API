@@ -68,6 +68,7 @@ public class AccommodationController extends Controller{
 
         try {
             accommodationService.createAccommodationFromJson(SecurityController.getUser(), requestBody);
+            
         } catch (JsonProcessingException e) {
 
             return ResponseBuilder.buildBadRequest("Could not parse request body.", ResponseBuilder.MALFORMED_REQUEST_BODY);

@@ -46,20 +46,14 @@ public class TrafikLabService {
      * @param address2 - The point of travel. Endpoint.
      * @return - JsonNode containing distance (to startpoint) and duration (total).
      */
-    public JsonNode getTrafiklab(Address address1, Address address2){
+    public JsonNode getPath(Address address1, Address address2){
 
         String query = "originCoordLat=" + address1.latitude + "&originCoordLong=" + address1.longitude + "&originCoordName=" + address1.streetName + "5&destCoordLat=" + address2.latitude + "&destCoordLong=" + address2.longitude +"&destCoordName=" + address2.streetName;
-     //   String query="query="+address.streetName+"+"+address.streetNumber+"+"+address.area;
         String urlString=TRAFIKLAB_TRIP+TRAFIKLAB_KEY+query;
         JsonNode node;
         node=GoogleService.gatherData(urlString);
         Logger.debug(urlString);
-        Logger.debug(node.toString());
-        JsonNode a = node.findValue("dist");
-        JsonNode b = node.findValue("dur");
-        //return node.findValue("dist");
         return Json.newObject().put("distance", node.findValue("dist").asInt()).put("duration", node.findValue("dur").asInt());
-
     }
 
     /**
@@ -69,17 +63,18 @@ public class TrafikLabService {
      */
     public JsonNode getDistanceToCentralen(Address address){
         Logger.debug("in GetdistfromCent: "+address.streetName+", cent: "+tCentralen.streetName);
-        return getTrafiklab(address, tCentralen);
+        return getPath(address, tCentralen);
     }
 
     public JsonNode fixa(){
         Address a = new Address(originCoordName, originCoordLat, originCoordLong);
         Address b = new Address(destCoordName, destCoordLat, destCoordLong);
-        return getTrafiklab(a, b);
+        return getPath(a, b);
 
     }
-
-
+    
+    
+    
 
 
 

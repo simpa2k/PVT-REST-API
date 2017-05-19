@@ -1,6 +1,7 @@
 package models.accommodation;
 
 import com.avaje.ebean.Model;
+import play.Logger;
 
 import javax.persistence.*;
 
@@ -21,11 +22,15 @@ public class Address extends Model {
     public String area;
     @OneToOne
     public AddressDescription addressDescription;
+    
+    public Stations closestStation;
 
     public double longitude;
     public double latitude;
 
     private static Finder<Long, Address> find = new Finder<>(Address.class);
+    
+    //===============================================================CONSTRUCTORS
 
     public Address(String streetName, int streetNumber, String area, double longitude, double latitude) {
 
@@ -36,7 +41,6 @@ public class Address extends Model {
         this.latitude = latitude;
 
     }
-
 
     public Address(String streetName, int streetNumber, char streetNumberLetter, String area) {
 
@@ -73,10 +77,23 @@ public class Address extends Model {
         this.latitude = latitude;
 
     }
-
-
-
+	
+    //================================================================FINDERS
+    
     public static Address findById(long id) {
         return find.byId(id);
     }
+	
+	public static Address findByCoords(double latitude, double longitude){
+    	return find.where().eq("latitude",latitude).and().eq("longitude",longitude).findUnique();
+	}
+	
+	public static Address findByStreet(String streetName,int streetNumber, char streetNumberLetter){
+		Logger.debug("findByStreet char: "+streetName+", "+streetNumber+", "+streetNumberLetter);
+		return find.where().eq("streetName",streetName).and().eq("streetNumber",streetNumber).and().eq("streetNumberLetter",streetNumberLetter).findUnique();
+	}
+	public static Address findByStreet(String streetName,int streetNumber){
+		Logger.debug("findByStreet no char: "+streetName+", "+streetNumber);
+		return find.where().eq("streetName",streetName).and().eq("streetNumber",streetNumber).findUnique();
+	}
 }
