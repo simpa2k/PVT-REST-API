@@ -2,13 +2,13 @@ const fs = require('fs');
 const functions = require('../functions.js');
 
 const host = 'https://graph.facebook.com';
-const appId = '';
-const appToken = '';
-const clientSecret = '';
+const appId = '1889028451313578';
+const appToken = '1889028451313578|cvP0ATqahRfFI9NAH7315jkFxjo';
+const clientSecret = 'ea970da4d16e8d744d0c770e250d2a2d';
 
 let users = [];
 
-const numUsers = 3;
+const numUsers = 2;
 let usersToGo = numUsers;
 
 const createAndExtend = function(callback) {
@@ -50,7 +50,17 @@ const makeFacebookCall = function() {
 
         console.log("Got the following after creating user and extending access token: " + JSON.stringify(responseObject, null, 4));
 
-        users.push(responseObject);
+        const user = {
+
+            facebookToken: responseObject.access_token,
+            accommodation: null,
+            tenantProfile: null
+
+        };
+
+        console.log('Pushing the following to the array of users: ' + JSON.stringify(user, null, 4));
+
+        users.push(user);
 
         if (--usersToGo === 0) {
             writeFile();

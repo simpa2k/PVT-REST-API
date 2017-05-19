@@ -48,11 +48,22 @@ create table address (
   constraint pk_address primary key (id)
 );
 
+create table address_description (
+  id                            bigint auto_increment not null,
+  constraint pk_address_description primary key (id)
+);
+
+create table city_distance (
+  id                            bigint auto_increment not null,
+  duration                      integer,
+  constraint pk_city_distance primary key (id)
+);
+
 create table edge (
   id                            bigint auto_increment not null,
   renter_id                     bigint,
   tenant_id                     bigint,
-  active                        boolean,
+  active                        tinyint(1) default 0,
   constraint uq_edge_renter_id_tenant_id unique (renter_id,tenant_id),
   constraint pk_edge primary key (id)
 );
@@ -68,7 +79,7 @@ create table facebook_data (
   locale                        varchar(10),
   timezone                      integer,
   user_id                       bigint,
-  image                         blob,
+  image                         longblob,
   constraint uq_facebook_data_facebook_user_id unique (facebook_user_id),
   constraint uq_facebook_data_email unique (email),
   constraint uq_facebook_data_user_id unique (user_id),
@@ -188,54 +199,54 @@ alter table users add constraint fk_users_tenant_profile_id foreign key (tenant_
 
 # --- !Downs
 
-alter table accommodation drop constraint if exists fk_accommodation_renter_id;
+alter table accommodation drop foreign key fk_accommodation_renter_id;
 
-alter table accommodation drop constraint if exists fk_accommodation_address_id;
-drop index if exists ix_accommodation_address_id;
+alter table accommodation drop foreign key fk_accommodation_address_id;
+drop index ix_accommodation_address_id on accommodation;
 
-alter table accommodation drop constraint if exists fk_accommodation_rental_period_id;
-drop index if exists ix_accommodation_rental_period_id;
+alter table accommodation drop foreign key fk_accommodation_rental_period_id;
+drop index ix_accommodation_rental_period_id on accommodation;
 
-alter table activity_choice drop constraint if exists fk_activity_choice_user_id;
-drop index if exists ix_activity_choice_user_id;
+alter table activity_choice drop foreign key fk_activity_choice_user_id;
+drop index ix_activity_choice_user_id on activity_choice;
 
-alter table activity_choice drop constraint if exists fk_activity_choice_swiping_session_id;
-drop index if exists ix_activity_choice_swiping_session_id;
+alter table activity_choice drop foreign key fk_activity_choice_swiping_session_id;
+drop index ix_activity_choice_swiping_session_id on activity_choice;
 
-alter table activity_choice_activity drop constraint if exists fk_activity_choice_activity_activity_choice;
-drop index if exists ix_activity_choice_activity_activity_choice;
+alter table activity_choice_activity drop foreign key fk_activity_choice_activity_activity_choice;
+drop index ix_activity_choice_activity_activity_choice on activity_choice_activity;
 
-alter table activity_choice_activity drop constraint if exists fk_activity_choice_activity_activity;
-drop index if exists ix_activity_choice_activity_activity;
+alter table activity_choice_activity drop foreign key fk_activity_choice_activity_activity;
+drop index ix_activity_choice_activity_activity on activity_choice_activity;
 
-alter table edge drop constraint if exists fk_edge_renter_id;
-drop index if exists ix_edge_renter_id;
+alter table edge drop foreign key fk_edge_renter_id;
+drop index ix_edge_renter_id on edge;
 
-alter table edge drop constraint if exists fk_edge_tenant_id;
-drop index if exists ix_edge_tenant_id;
+alter table edge drop foreign key fk_edge_tenant_id;
+drop index ix_edge_tenant_id on edge;
 
-alter table facebook_data drop constraint if exists fk_facebook_data_user_id;
+alter table facebook_data drop foreign key fk_facebook_data_user_id;
 
-alter table swiping_session_users drop constraint if exists fk_swiping_session_users_swiping_session;
-drop index if exists ix_swiping_session_users_swiping_session;
+alter table swiping_session_users drop foreign key fk_swiping_session_users_swiping_session;
+drop index ix_swiping_session_users_swiping_session on swiping_session_users;
 
-alter table swiping_session_users drop constraint if exists fk_swiping_session_users_users;
-drop index if exists ix_swiping_session_users_users;
+alter table swiping_session_users drop foreign key fk_swiping_session_users_users;
+drop index ix_swiping_session_users_users on swiping_session_users;
 
-alter table swiping_session_activity drop constraint if exists fk_swiping_session_activity_swiping_session;
-drop index if exists ix_swiping_session_activity_swiping_session;
+alter table swiping_session_activity drop foreign key fk_swiping_session_activity_swiping_session;
+drop index ix_swiping_session_activity_swiping_session on swiping_session_activity;
 
-alter table swiping_session_activity drop constraint if exists fk_swiping_session_activity_activity;
-drop index if exists ix_swiping_session_activity_activity;
+alter table swiping_session_activity drop foreign key fk_swiping_session_activity_activity;
+drop index ix_swiping_session_activity_activity on swiping_session_activity;
 
-alter table tenant_profile drop constraint if exists fk_tenant_profile_rental_period_id;
-drop index if exists ix_tenant_profile_rental_period_id;
+alter table tenant_profile drop foreign key fk_tenant_profile_rental_period_id;
+drop index ix_tenant_profile_rental_period_id on tenant_profile;
 
-alter table users drop constraint if exists fk_users_facebook_data_id;
+alter table users drop foreign key fk_users_facebook_data_id;
 
-alter table users drop constraint if exists fk_users_accommodation_id;
+alter table users drop foreign key fk_users_accommodation_id;
 
-alter table users drop constraint if exists fk_users_tenant_profile_id;
+alter table users drop foreign key fk_users_tenant_profile_id;
 
 drop table if exists accommodation;
 
@@ -246,6 +257,10 @@ drop table if exists activity_choice;
 drop table if exists activity_choice_activity;
 
 drop table if exists address;
+
+drop table if exists address_description;
+
+drop table if exists city_distance;
 
 drop table if exists edge;
 

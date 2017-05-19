@@ -44,7 +44,7 @@ public class AccommodationService {
         this.rentalPeriodRepository = rentalPeriodRepository;
 
         this.mapper = mapper;
-        this.tls=new TrafikLabService();
+        //this.tls=new TrafikLabService();
 
     }
 
@@ -81,16 +81,16 @@ public class AccommodationService {
         Address address = accommodation.address;
 
 
-        address = GoogleService.getCoordinates(address);
+        //address = GoogleService.getCoordinates(address);
 
         Logger.debug(address.streetName+", coords: "+address.latitude+", "+address.longitude);
 
-        JsonNode jsonNodeTest = tls.getDistanceToCentralen(address);
+        //JsonNode jsonNodeTest = tls.getDistanceToCentralen(address);
 
-        address.addressDescription = new AddressDescription();
+        //address.addressDescription = new AddressDescription();
     //    address.addressDescription.initialize();
-        address.addressDescription.addToList("centralen",jsonNodeTest.findValue("duration").asInt());
-        address.addressDescription.addToList("tunnelbana",jsonNodeTest.findValue("distance").asInt());
+        //address.addressDescription.addToList("centralen",jsonNodeTest.findValue("duration").asInt());
+        //address.addressDescription.addToList("tunnelbana",jsonNodeTest.findValue("distance").asInt());
    //     Logger.debug(address.addressDescription.cityDistance.duration+"");
        // Logger.debug("HÄR ÄR JAG");
 

@@ -19,8 +19,8 @@ public class Address extends Model {
     public char streetNumberLetter;
 
     public String area;
-    @OneToOne
-    public AddressDescription addressDescription;
+    /*@OneToOne
+    public AddressDescription addressDescription;*/
 
     public double longitude;
     public double latitude;
@@ -51,7 +51,7 @@ public class Address extends Model {
         this.streetName = streetName;
         this.streetNumber = streetNumber;
         this.area = area;
-        this.addressDescription = new AddressDescription();
+        //this.addressDescription = new AddressDescription();
 
 
 
