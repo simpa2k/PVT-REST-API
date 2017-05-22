@@ -127,6 +127,9 @@ public class GoogleService {
 	public static String makeQuery(Address a){
 		String query="query=";
 		if(a!=null){
+
+			a.streetName = a.streetName.replaceAll(" ", "+");
+
 			if(a.streetName!=null)query+=a.streetName;
 			if(a.streetName!=null&&a.streetNumber!=-1)query+="+";
 			if(a.streetNumber!=-1)query+=a.streetNumber;

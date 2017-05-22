@@ -1,8 +1,8 @@
 const fs = require('fs');
 const functions = require('../functions.js');
 
-//let host = 'https://protected-gorge-44302.herokuapp.com';
-let host = 'http://localhost:9000';
+let host = 'https://protected-gorge-44302.herokuapp.com';
+//let host = 'http://localhost:8080';
 
 /*
  Christel
@@ -68,11 +68,11 @@ const run = function() {
 
                 createAccommodation(user, authToken);
 
-            } else if (user.tenantProfile !== null) {
+            } /*else if (user.tenantProfile !== null) {
 
                 createTenantProfile(user, authToken);
 
-            }
+            }*/
         });
     });
 };
