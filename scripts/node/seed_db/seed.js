@@ -68,11 +68,13 @@ const run = function() {
 
                 createAccommodation(user, authToken);
 
-            } /*else if (user.tenantProfile !== null) {
+            }
+
+            if (user.tenantProfile !== null) {
 
                 createTenantProfile(user, authToken);
 
-            }*/
+            }
         });
     });
 };
