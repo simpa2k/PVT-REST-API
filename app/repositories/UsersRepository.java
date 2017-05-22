@@ -52,7 +52,7 @@ public class UsersRepository {
            exprList -> exprList.ne("auth_token", authToken),
            exprList ->maxRent.isDefined() ? exprList.le("tenantProfile.maxRent", maxRent.get()) : exprList,
            exprList ->maxDeposit.isDefined() ? exprList.le("tenantProfile.maxDeposit", maxDeposit.get()) : exprList,
-           exprList -> minSize.isDefined() ? exprList.ge("tenantProfile.minSize", minSize.get()) : exprList,
+           exprList -> minSize.isDefined() ? exprList.le("tenantProfile.minSize", minSize.get()) : exprList,
            exprList ->{
 
                if(start.isDefined()){
