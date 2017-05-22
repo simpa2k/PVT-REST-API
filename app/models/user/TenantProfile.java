@@ -19,6 +19,7 @@ public class TenantProfile extends Model {
 
     public int maxRent;
     public int maxDeposit;
+    public double minSize;
     public String description;
 
     @ManyToOne

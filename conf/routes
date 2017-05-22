@@ -18,7 +18,7 @@ POST    /facebook/login                           controllers.FacebookSecurityCo
 
 #PUT     /users/createRenter                       controllers.UsersController.create
 
-GET     /users                                    controllers.UsersController.getUsers(maxRent: Option[java.lang.Integer], maxDeposit: Option[java.lang.Integer], start: Option[java.lang.String], end: Option[java.lang.String])
+GET     /users                                    controllers.UsersController.getUsers(maxRent: Option[java.lang.Integer], maxDeposit: Option[java.lang.Integer], minSize: Option[java.lang.Double], start: Option[java.lang.String], end: Option[java.lang.String])
 GET     /users/me                                 controllers.UsersController.getUser
 GET     /users/images                             controllers.UsersController.getUserImage
 POST    /users/profiles                           controllers.UsersController.createProfile

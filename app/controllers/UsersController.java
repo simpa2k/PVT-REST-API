@@ -33,11 +33,11 @@ public class UsersController extends Controller {
         this.usersService = usersService;
     }
 
-    public Result getUsers(final Option<Integer> maxRent, final Option<Integer> maxDeposit,
+    public Result getUsers(final Option<Integer> maxRent, final Option<Integer> maxDeposit, final Option<Double> minSize,
                            final Option<String> start, final Option<String> end){
 
        String authToken = SecurityController.getUser().getAuthToken();
-       List<User> users = usersService.getSubset(authToken, maxRent, maxDeposit, start, end);
+       List<User> users = usersService.getSubset(authToken, maxRent, maxDeposit, minSize, start, end);
 
         // GET http://localhost:9000/users?maxRent=5000&maxDeposit=8000&start=2017-05-01&end=2018-05-1
 

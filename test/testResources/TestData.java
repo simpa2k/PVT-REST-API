@@ -21,6 +21,7 @@ import java.util.Set;
 public class TestData {
 
     private final UsersService usersService;
+    private final Configuration config;
     private User user1;
     private User user2;
     private User admin;
@@ -43,6 +44,7 @@ public class TestData {
     public TestData(Configuration config, UsersService usersService) {
 
         this.usersService = usersService;
+        this.config = config;
 
         if (User.findByEmailAddressAndPassword("user1@demo.com", "password") == null) {
 
@@ -168,5 +170,9 @@ public class TestData {
 
     public String getAppId() {
         return appId;
+    }
+
+    public Configuration getConfig() {
+        return config;
     }
 }

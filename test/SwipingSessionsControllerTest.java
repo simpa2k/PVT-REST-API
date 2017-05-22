@@ -31,7 +31,7 @@ public class SwipingSessionsControllerTest extends BaseTest {
      * Utility methods.
      */
 
-    private Result makeAuthenticatedGetRequest(String authToken, String emailAddresses) {
+    /*private Result makeAuthenticatedGetRequest(String authToken, String emailAddresses) {
 
         Http.RequestBuilder fakeRequest = fakeRequest(controllers.routes.SwipingSessionsController.getSwipingSessionWithExactParticipants(emailAddresses));
         fakeRequest.header(SecurityController.AUTH_TOKEN_HEADER, authToken);
@@ -112,13 +112,13 @@ public class SwipingSessionsControllerTest extends BaseTest {
 
     private Result makePutRequestWithCorrectEmail(long swipingSessionId, String activities) {
         return makePutRequest(swipingSessionId, user1Email, activities);
-    }
+    }*/
 
     /*
      * Test GET.
      */
 
-    @Test
+    /*@Test
     public void getSwipingSession() {
 
         String authToken = usersService.getToken(user1);
@@ -164,7 +164,7 @@ public class SwipingSessionsControllerTest extends BaseTest {
         Result result = route(fakeRequest(controllers.routes.SwipingSessionsController.getSwipingSessionWithExactParticipants(buildListOfValidEmailAddresses())));
         assertEquals(UNAUTHORIZED, result.status());
 
-    }
+    }*/
 
     /*@Test
     public void getSwipingSessionOnNonExistentInitializer() {
@@ -198,7 +198,7 @@ public class SwipingSessionsControllerTest extends BaseTest {
 
     }*/
 
-    @Test
+    /*@Test
     public void getSwipingSessionOnNonExistentEmailAddress() {
         // Implement this.
     }
@@ -224,13 +224,13 @@ public class SwipingSessionsControllerTest extends BaseTest {
         /*Result result = makeGetRequest(user2Email, user1Email);
         assertEquals(NOT_FOUND, result.status());*/
         
-    }
+    //}
 
     /*
      * Test POST.
      */
 
-    @Test
+    /*@Test
     public void testInitiateSwipingSessionWhenNotLoggedIn() {
 
         Result result = route(fakeRequest(controllers.routes.SwipingSessionsController.createSwipingSession(buildListOfValidEmailAddresses())));
@@ -303,13 +303,13 @@ public class SwipingSessionsControllerTest extends BaseTest {
     @Test
     public void testCannotInitiateSwipingSessionWithOneself() {
         // Implement this.
-    }
+    }*/
 
     /*
      * Test PUT.
      */
 
-    @Test
+    /*@Test
     public void testChooseActivitiesWhenNotLoggedIn() {
 
         Result result = route(fakeRequest(controllers.routes.SwipingSessionsController.chooseActivities(2, "email@email.com", "[]")));
@@ -476,5 +476,5 @@ public class SwipingSessionsControllerTest extends BaseTest {
         assertEquals(SwipingSessionsController.NO_SUCH_ENTITY, putJson.findValue("type").asText());
         assertNotNull(putJson.findValue("error"));
 
-    }
+    }*/
 }

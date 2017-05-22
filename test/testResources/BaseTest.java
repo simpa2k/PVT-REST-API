@@ -5,6 +5,7 @@ import models.accommodation.Accommodation;
 import models.user.Renter;
 import models.user.User;
 import org.junit.Before;
+import play.Configuration;
 import play.test.WithApplication;
 import services.UsersService;
 
@@ -40,6 +41,7 @@ public class BaseTest extends WithApplication {
     protected String appToken;
     protected String appName;
     protected String appId;
+    protected Configuration config;
 
     @Before
     public void setupClass() {
@@ -47,6 +49,7 @@ public class BaseTest extends WithApplication {
         TestData testData = app.injector().instanceOf(TestData.class);
 
         usersService = testData.getUsersService();
+        config = testData.getConfig();
 
         user1 = testData.getUser1();
         user1Email = user1.getEmailAddress();

@@ -34,7 +34,12 @@ public class AccommodationStackTest extends BaseTest {
 
         ObjectMapper mapper = new ObjectMapper();
 
-        AccommodationService accommodationService = new AccommodationService(accommodationRepository, addressRepository, usersRepository, rentalPeriodRepository, mapper);
+        AccommodationService accommodationService = new AccommodationService(accommodationRepository,
+                addressRepository,
+                usersRepository,
+                rentalPeriodRepository,
+                mapper,
+                config);
 
         User renter = new User("renter@renter.com", "Renter");
 
@@ -59,7 +64,7 @@ public class AccommodationStackTest extends BaseTest {
 
         AccommodationRepository accommodationRepository = new AccommodationRepository();
         AccommodationService accommodationService = new AccommodationService(accommodationRepository,
-                new AddressRepository(), usersRepository, rentalPeriodRepository, new ObjectMapper());
+                new AddressRepository(), usersRepository, rentalPeriodRepository, new ObjectMapper(), config);
 
         Accommodation accommodation = accommodationService.createAccommodationFromJson(renter, accommodationJson);
 

@@ -130,6 +130,7 @@ create table tenant_profile (
   id                            bigint auto_increment not null,
   max_rent                      integer,
   max_deposit                   integer,
+  min_size                      double,
   description                   varchar(255),
   rental_period_id              bigint,
   constraint pk_tenant_profile primary key (id)

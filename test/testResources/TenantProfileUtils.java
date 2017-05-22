@@ -22,6 +22,7 @@ public class TenantProfileUtils {
 
         profileJson.put("maxRent", 5000);
         profileJson.put("maxDeposit", 8000);
+        profileJson.put("minSize", 20);
         profileJson.put("description", "Hej!");
 
         ObjectNode rentalPeriodJson = profileJson.putObject("rentalPeriod");
@@ -36,6 +37,7 @@ public class TenantProfileUtils {
 
         assertEquals(5000, profile.findValue("maxRent").asInt());
         assertEquals(8000, profile.findValue("maxDeposit").asInt());
+        assertEquals(20, profile.findValue("minSize").asInt());
         assertEquals("Hej!", profile.findValue("description").asText());
 
         JsonNode rentalPeriod = profile.findValue("rentalPeriod");

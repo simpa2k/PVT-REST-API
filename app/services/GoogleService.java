@@ -7,9 +7,11 @@ import models.accommodation.Address;
 
 import java.io.IOException;
 
+import play.Configuration;
 import play.Logger;
 import play.libs.Json;
 
+import javax.inject.Inject;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.*;
@@ -18,7 +20,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * Gathers data from API's and saves them to the database.
  */
-public class GoogleService{
+public class GoogleService {
 //	private ObjectMapper mapper=new ObjectMapper();
 	private Map<String, String> nextPageTokens=new HashMap<>();
 	private final static String PLACES_URL="https://maps.googleapis.com/maps/api/place/";
@@ -32,9 +34,11 @@ public class GoogleService{
 	private final static String JSON="json?";
 	private final String LOCATION="location=";
 	private final String RADIUS="radius=1000";
-	
+
 	public GoogleService(String apiKey){
+
 		this.PLACES_KEY="key="+apiKey;
+
 	}
 	
 	//=====================================GENERIC METHODS
