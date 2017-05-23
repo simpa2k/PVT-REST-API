@@ -50,8 +50,8 @@ public class UsersRepository {
        List<Function<ExpressionList<User>, ExpressionList<User>>> functions = Arrays.asList(
 
            exprList -> exprList.ne("auth_token", authToken),
-           exprList ->maxRent.isDefined() ? exprList.le("tenantProfile.maxRent", maxRent.get()) : exprList,
-           exprList ->maxDeposit.isDefined() ? exprList.le("tenantProfile.maxDeposit", maxDeposit.get()) : exprList,
+           exprList ->maxRent.isDefined() ? exprList.ge("tenantProfile.maxRent", maxRent.get()) : exprList,
+           exprList ->maxDeposit.isDefined() ? exprList.ge("tenantProfile.maxDeposit", maxDeposit.get()) : exprList,
            exprList -> minSize.isDefined() ? exprList.le("tenantProfile.minSize", minSize.get()) : exprList,
            exprList ->{
 
