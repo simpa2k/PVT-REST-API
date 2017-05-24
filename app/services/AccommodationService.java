@@ -95,6 +95,8 @@ public class AccommodationService {
         addressDescription.distances.add(new Distance("Centralen", null, jsonNodeTest.findValue("duration").asInt()));
         addressDescription.distances.add(new Distance("Tunnelbana", jsonNodeTest.findValue("distance").asInt(), null));
 
+
+
         addressDescription.save();
 
         address.addressDescription = addressDescription;
