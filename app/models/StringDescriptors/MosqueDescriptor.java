@@ -7,7 +7,7 @@ import java.util.Random;
 /**
  * Created by Henke on 2017-05-23.
  */
-public class MosqueDescriptor implements StringDescriptor{
+public class MosqueDescriptor {
 
 
     public String mosqueDescription;
@@ -29,6 +29,10 @@ public class MosqueDescriptor implements StringDescriptor{
     public String chooseRandomDescriptionString(){
         Random random = new Random();
         return descriptionArray[random.nextInt(3)];
+    }
+
+    public String toString(){
+        return mosqueDescription;
     }
 
 }

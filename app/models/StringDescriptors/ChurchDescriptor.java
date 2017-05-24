@@ -7,7 +7,7 @@ import java.util.Random;
 /**
  * Created by Henke on 2017-05-23.
  */
-public class ChurchDescriptor implements StringDescriptor {
+public class ChurchDescriptor {
 
     public String churchDescription;
     public String[] descriptionArray = {"%s ligger i närheten av denna bostad", "I detta område ligger den ståtliga  %s", "Nära till %s om man blir sugen på en liten gudstjänst"};

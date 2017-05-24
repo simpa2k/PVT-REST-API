@@ -7,7 +7,7 @@ import java.util.Random;
 /**
  * Created by Henke on 2017-05-23.
  */
-public class PetStoreDescriptor implements StringDescriptor {
+public class PetStoreDescriptor  {
 
     public String petStoreDescription;
     public String[] descriptionArray = {"Ett litet härligt djur för att liva upp lägenheten hittar du på %s som ligger nära denna lya.", "Är du en katt eller hundmänniska? Splear ingen roll, båda finns på %s", "Kaske en papegoja vore ett härligt komplement till din nya ptentiella lägenhet, du hittar den på %s."};

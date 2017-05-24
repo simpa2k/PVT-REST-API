@@ -7,7 +7,7 @@ import java.util.Random;
 /**
  * Created by Henke on 2017-05-23.
  */
-public class ParkingDescriptor implements StringDescriptor {
+public class ParkingDescriptor  {
 
     public String parkingDescription;
     public String[] descriptionArray = {"I närheten av din lägenhet finns parkeringsplatsen %s", "Sluta oroa dig för perkering, %s tillhandahåller lösningen", "Smidigt nog finns det tillgång till parkering i angräsning till bostaden vid %s."};

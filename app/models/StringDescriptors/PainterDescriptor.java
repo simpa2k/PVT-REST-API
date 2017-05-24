@@ -7,7 +7,7 @@ import java.util.Random;
 /**
  * Created by Henke on 2017-05-23.
  */
-public class PainterDescriptor implements StringDescriptor {
+public class PainterDescriptor {
 
     public String painterDescription;
     public String[] descriptionArray = {"Babylon brinner! Bygg upp det igen och köp färg från %s som ligger nära belägen till denna bostad", "Behöver du också måla om din träskföjt? %s finns i närheten.", "Det ligger en %s i området om du blir sugen på att måla." };

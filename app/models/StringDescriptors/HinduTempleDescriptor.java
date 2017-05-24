@@ -7,7 +7,7 @@ import java.util.Random;
 /**
  * Created by Henke on 2017-05-23.
  */
-public class HinduTempleDescriptor implements StringDescriptor {
+public class HinduTempleDescriptor {
 
     public String hinduTempleDescription;
     public String[] descriptionArray = {"Ett stenkast från %s templet hittar du denna panglya", "Du är konstant en kort promenad från %s. en plats för kontemplation och lugn", "Ta en titt förbi ditt lokala hindutempel. Nära dig ligger nämligen %s"};

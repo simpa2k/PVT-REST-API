@@ -7,7 +7,7 @@ import java.util.Random;
 /**
  * Created by Henke on 2017-05-23.
  */
-public class HardwareStoreDescriptor implements StringDescriptor {
+public class HardwareStoreDescriptor {
 
     public String hardwareStoreDescription;
     public String[] descriptionArray = {"Ingenting spelar någon roll för du bor nära %s", "Gillar du att snickra och sådant? Då passar detta boende bra för dig. Nära till %s", "Mera bågfil? %s ligger precis runt hörnet."};

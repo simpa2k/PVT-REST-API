@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import exceptions.OffsetOutOfRangeException;
 import models.RentalPeriod;
+import models.StringDescriptors.StringDescriptor;
 import models.accommodation.Accommodation;
 import models.accommodation.Address;
 import models.accommodation.AddressDescription;
@@ -33,6 +34,7 @@ public class AccommodationService {
     private TrafikLabService tls;
     private GoogleService gServ;
 	private String gApiKey;
+	//private Configuration configuration;
 
     private ObjectMapper mapper;
 
@@ -46,11 +48,12 @@ public class AccommodationService {
         this.addressRepository = addressRepository;
         this.usersRepository = usersRepository;
         this.rentalPeriodRepository = rentalPeriodRepository;
-
+        //this.configuration = configuration;
         this.gApiKey=configuration.getString("googleAPIKey");
         this.gServ=new GoogleService(gApiKey);
         this.mapper = mapper;
         this.tls=new TrafikLabService(gApiKey);
+
 
     }
 
@@ -95,7 +98,7 @@ public class AccommodationService {
         addressDescription.distances.add(new Distance("Centralen", null, jsonNodeTest.findValue("duration").asInt()));
         addressDescription.distances.add(new Distance("Tunnelbana", jsonNodeTest.findValue("distance").asInt(), null));
 
-
+        //StringDescriptor stringDescriptor = new StringDescriptor(configuration, address);
 
         addressDescription.save();
 

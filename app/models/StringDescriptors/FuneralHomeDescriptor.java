@@ -7,7 +7,7 @@ import java.util.Random;
 /**
  * Created by Henke on 2017-05-23.
  */
-public class FuneralHomeDescriptor implements StringDescriptor {
+public class FuneralHomeDescriptor {
 
     public String mosqueDescription;
     public String[] descriptionArray = {"%s finns om någon i din närhet går bort", "Det finns ett %s i närheten av denna bostad", "I %s kan du vila ut i lugn och ro"};

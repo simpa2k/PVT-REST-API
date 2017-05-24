@@ -7,7 +7,7 @@ import java.util.Random;
 /**
  * Created by Henke on 2017-05-23.
  */
-public class RvparkDescriptor implements StringDescriptor {
+public class RvparkDescriptor  {
 
     public String rvparkDescription;
     public String[] descriptionArray = {"Är du redo att skaffa dig en stor och härlig white-trash familj? Då är detta det perfekta boendet för dig. Med %s i närheten kan du och din blivande familj uppleva en fantastisk campingsemester", "Det finns en %s inte så långt ifrån lägenheten", "Nu kan du elda ifred på %s alldeles i närheten av denna bostad"};

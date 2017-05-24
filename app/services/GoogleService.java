@@ -30,6 +30,10 @@ public class GoogleService {
 	private final static String TEXT_SEARCH="textsearch/";
 	
 	private final String[] types={"gym", "grocery_or_supermarket", "convenience_store", "subway_station", "bar", "restaurant"};
+	public final String [] descriptorTypes =  {
+			"atm", "bank", "casino", "cemetery", "church", "fire_station",
+			"funeral_home", "hardware_store", "hindu_temple", "jewelery_store",
+			"locksmith", "mosque", "painter", "pet_store", "rv_park", "synagogue" };
 	
 	private final static String JSON="json?";
 	private final String LOCATION="location=";
@@ -105,6 +109,23 @@ public class GoogleService {
 		}
 		allData=findAdditionalData(allData);
 		for(String type : types){
+			Logger.debug("There are "+allData.get(type).size()+" "+type+'s');
+		}
+		return allData;
+	}
+
+	public ObjectNode gatherNearbyDataDescriptor(Address address){
+		ObjectNode allData=Json.newObject();
+
+		for(String type : descriptorTypes){
+			ArrayNode typeData=allData.putArray(type);
+			ArrayNode tempData=getAllNearbyInterests(type, address);
+			for(JsonNode tempNode : tempData.get(0)){
+				typeData.add(tempNode);
+			}
+		}
+		allData=findAdditionalData(allData);
+		for(String type : descriptorTypes){
 			Logger.debug("There are "+allData.get(type).size()+" "+type+'s');
 		}
 		return allData;
