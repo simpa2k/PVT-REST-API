@@ -78,4 +78,16 @@ public class AccommodationController extends Controller{
         return noContent();
 
     }
+
+    public Result deleteAccommodation(long accommodationId) {
+
+		Accommodation accommodation = accommodationService.deleteAccommodation(accommodationId);
+
+		if (accommodation == null) {
+			return ResponseBuilder.buildNotFound("Could not find any accommodation with that id.");
+		}
+
+		return ResponseBuilder.buildOKObject(accommodation);
+
+	}
 }

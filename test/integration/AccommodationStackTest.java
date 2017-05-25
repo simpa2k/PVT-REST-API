@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import models.accommodation.Accommodation;
 import models.user.User;
+import org.junit.Before;
 import org.junit.Test;
 import repositories.AccommodationRepository;
 import repositories.AddressRepository;
@@ -18,6 +19,7 @@ import java.text.ParseException;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 
 /**
  * @author Simon Olofsson
@@ -28,6 +30,16 @@ public class AccommodationStackTest extends BaseTest {
     private AddressRepository addressRepository = new AddressRepository();
     private UsersRepository usersRepository = new UsersRepository();
     private RentalPeriodRepository rentalPeriodRepository = new RentalPeriodRepository();
+
+    private AccommodationService accommodationService;
+
+    @Before
+    public void setup() {
+
+        accommodationService = new AccommodationService(accommodationRepository,
+                addressRepository, usersRepository, rentalPeriodRepository, new ObjectMapper(), config);
+
+    }
 
     @Test
     public void savesAccommodationToDatabase() throws JsonProcessingException, ParseException {
@@ -80,5 +92,20 @@ public class AccommodationStackTest extends BaseTest {
     @Test
     public void canHandleNullRentalPeriod() {
         // Implement this.
+    }
+
+    @Test
+    public void deletesAccommodation() throws ParseException {
+
+        AccommodationUtils.AccommodationData accommodationData = AccommodationUtils.createAccommodationData();
+        accommodationData.saveAll(usersRepository, addressRepository, rentalPeriodRepository, accommodationRepository);
+
+        Accommodation accommodation = accommodationData.getAccommodation();
+
+        Accommodation deleted = accommodationService.deleteAccommodation(accommodation.id);
+
+        assertEquals(accommodation, deleted);
+        assertNull(accommodationRepository.findById(accommodation.id));
+
     }
 }

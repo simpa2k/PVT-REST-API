@@ -40,7 +40,9 @@ public class AccommodationService {
     public AccommodationService(AccommodationRepository accommodationRepository,
                                 AddressRepository addressRepository,
                                 UsersRepository usersRepository,
-                                RentalPeriodRepository rentalPeriodRepository, ObjectMapper mapper, Configuration configuration) {
+                                RentalPeriodRepository rentalPeriodRepository,
+                                ObjectMapper mapper,
+                                Configuration configuration) {
 
         this.accommodationRepository = accommodationRepository;
         this.addressRepository = addressRepository;
@@ -48,9 +50,9 @@ public class AccommodationService {
         this.rentalPeriodRepository = rentalPeriodRepository;
 
         this.gApiKey=configuration.getString("googleAPIKey");
-        this.gServ=new GoogleService(gApiKey);
+        //this.gServ=new GoogleService(gApiKey);
         this.mapper = mapper;
-        this.tls=new TrafikLabService(gApiKey);
+        //this.tls=new TrafikLabService(gApiKey);
 
     }
 
@@ -150,6 +152,7 @@ public class AccommodationService {
 
     	return a;
     }
+
     private void printAddress(Address a){
         Logger.debug("===============");
         Logger.debug(a.streetName);
@@ -157,5 +160,19 @@ public class AccommodationService {
         Logger.debug(a.latitude+"");
         Logger.debug(a.longitude+"");
         Logger.debug(a.area);
+    }
+
+    public Accommodation deleteAccommodation(long accommodationId) {
+
+        Accommodation accommodation = accommodationRepository.findById(accommodationId);
+        User renter = accommodation.renter;
+
+        renter.accommodation = null;
+        usersRepository.save(renter);
+
+        accommodationRepository.delete(accommodation);
+
+        return accommodation;
+
     }
 }

@@ -12,6 +12,10 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import play.Logger;
 import play.libs.Json;
+import repositories.AccommodationRepository;
+import repositories.AddressRepository;
+import repositories.RentalPeriodRepository;
+import repositories.UsersRepository;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -89,6 +93,20 @@ public class AccommodationUtils {
 
     }
 
+    public static AccommodationData createAccommodationData() throws ParseException {
+
+        User renter = new User("renter@renter.com", "Renter");
+
+        Address address = new Address("Dymlingsgränd", 3, 'A');
+        RentalPeriod rentalPeriod = new RentalPeriod("2017-05-01", "2018-05-01");
+
+        Accommodation accommodation = new Accommodation(5000, 20, 1, 8000, address, renter);
+        accommodation.rentalPeriod = rentalPeriod;
+
+        return new AccommodationData(renter, address, rentalPeriod, accommodation);
+
+    }
+
     public static void performStandardAssertions(Accommodation accommodation) throws ParseException {
 
         assertNotNull(accommodation);
@@ -112,5 +130,50 @@ public class AccommodationUtils {
         assertEquals(start, DateUtils.truncate(accommodation.rentalPeriod.start, Calendar.DAY_OF_MONTH));
         assertEquals(end, DateUtils.truncate(accommodation.rentalPeriod.end, Calendar.DAY_OF_MONTH));
 
+    }
+
+    public static class AccommodationData {
+
+        private User renter;
+        private Address address;
+        private RentalPeriod rentalPeriod;
+        private Accommodation accommodation;
+
+        public AccommodationData(User renter, Address address, RentalPeriod rentalPeriod, Accommodation accommodation) {
+
+            this.renter = renter;
+            this.address = address;
+            this.rentalPeriod = rentalPeriod;
+            this.accommodation = accommodation;
+
+        }
+
+        public User getRenter() {
+            return renter;
+        }
+
+        public Address getAddress() {
+            return address;
+        }
+
+        public RentalPeriod getRentalPeriod() {
+            return rentalPeriod;
+        }
+
+        public Accommodation getAccommodation() {
+            return accommodation;
+        }
+
+        public void saveAll(UsersRepository usersRepository,
+                            AddressRepository addressRepository,
+                            RentalPeriodRepository rentalPeriodRepository,
+                            AccommodationRepository accommodationRepository) {
+
+            usersRepository.save(renter);
+            addressRepository.save(address);
+            rentalPeriodRepository.save(rentalPeriod);
+            accommodationRepository.save(accommodation);
+
+        }
     }
 }

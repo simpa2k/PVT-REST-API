@@ -44,4 +44,8 @@ public class AccommodationRepository {
     public void save(Accommodation accommodation) {
         accommodation.save();
     }
+
+    public void delete(Accommodation accommodation) {
+        accommodation.delete();
+    }
 }

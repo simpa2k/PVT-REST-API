@@ -27,6 +27,7 @@ DELETE  /interests                                controllers.EdgesController.wi
 GET     /accommodation                            controllers.AccommodationController.get(count: Option[java.lang.Integer], offset: Option[java.lang.Integer], rent: Option[java.lang.Double], size: Option[java.lang.Double], smokingAllowed: Option[java.lang.Boolean], animalsAllowed: Option[java.lang.Boolean])
 PUT     /accommodation                            controllers.AccommodationController.put
 POST    /accommodation                            controllers.AccommodationController.createAccommodation
+DELETE  /accommodation                            controllers.AccommodationController.deleteAccommodation(accommodationId: Long)
 
 GET     /swipingsessions                          controllers.SwipingSessionsController.getSwipingSessionWithExactParticipants(emailAddresses)
 GET     /swipingsessions/:emailAddress            controllers.SwipingSessionsController.getSwipingSessionWithParticipant(emailAddress)
