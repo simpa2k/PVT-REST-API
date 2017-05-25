@@ -1,8 +1,8 @@
 const fs = require('fs');
 const functions = require('../functions.js');
 
-let host = 'https://protected-gorge-44302.herokuapp.com';
-//let host = 'http://localhost:8080';
+//let host = 'https://protected-gorge-44302.herokuapp.com';
+let host = 'http://localhost:8080';
 
 /*
  Christel

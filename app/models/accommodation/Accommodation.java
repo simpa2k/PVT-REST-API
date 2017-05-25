@@ -41,6 +41,9 @@ public class Accommodation extends Model {
     @ManyToOne
     public RentalPeriod rentalPeriod;
 
+    @Lob
+    public byte[] image;
+
     private static Finder<Long, Accommodation> find = new Finder<>(Accommodation.class);
 
     public Accommodation(int rent, double size, double rooms, int deposit,

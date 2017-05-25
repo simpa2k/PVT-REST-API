@@ -1,7 +1,8 @@
 let functions = require('./functions');
+const base64 = require('./fileToBase64');
 
-//let server = 'http://localhost:8080';
-let server = 'https://protected-gorge-44302.herokuapp.com';
+let server = 'http://localhost:8080';
+//let server = 'https://protected-gorge-44302.herokuapp.com';
 
 let tenantFacebookToken = 'EAAa2D7XPp6oBAKRKHXPKOJ1Upvm1je5zl7SiMxnnujkYRDxGZB2X8UpTl6dZCDBZApKDKdawdiBvgayezVSM96p6ZCZBYropI7dkZAnSJ71K7WJWP4GVGUWekzHstgIaRQ7NPzVO1uIlo9lRQUlNXwqZCwoy6SvgMPt4rgN7rKS6AZDZD';
 let renterFacebookToken = 'EAAa2D7XPp6oBAId1IIQjj2iMoZBxz4yWYriYnxXSZAHssNT8Qpsg2QlDZAzdtuw3qfcfNjH8HvHaDKqALAcXMyOAev1iUTyvgVwOLP3calNZC30TnHMiOBZBOzvOU1Hwmhc5FgmWvlIU1wZBffkWpeZAz5bJkcsyIgZD';
@@ -53,6 +54,7 @@ functions.facebookLogin(server, tenantFacebookToken, function(responseObject) {
 
             let body = {
 
+                image: base64.toBase64('../../test/testResources/testImage.jpg'),
                 rent: 5000,
                 size: 20,
                 rooms: 1,
@@ -64,7 +66,7 @@ functions.facebookLogin(server, tenantFacebookToken, function(responseObject) {
                 },
                 rentalPeriod: {
                     start: "2017-05-01",
-                        end: "2018-05-01"
+                    end: "2018-05-01"
                 }
 
             };

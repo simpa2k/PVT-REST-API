@@ -6,12 +6,17 @@ import models.accommodation.Accommodation;
 import models.accommodation.Address;
 import models.user.Renter;
 import models.user.User;
+import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.lang3.time.DateUtils;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import play.Logger;
 import play.libs.Json;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -25,10 +30,33 @@ import static junit.framework.TestCase.assertNotNull;
  */
 public class AccommodationUtils {
 
+    private static String getBase64Image() {
+
+        File file = new File("./test/testResources/testImage.jpg");
+
+        // From: https://stackoverflow.com/questions/36492084/how-to-convert-an-image-to-base64-string-in-java
+
+        String encodedfile = null;
+        try {
+
+            FileInputStream fileInputStreamReader = new FileInputStream(file);
+            byte[] bytes = new byte[(int)file.length()];
+            fileInputStreamReader.read(bytes);
+            encodedfile = new String(Base64.encodeBase64(bytes), "UTF-8");
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return encodedfile;
+
+    }
+
     public static ObjectNode createAccommodationJson() {
 
         ObjectNode accommodationJson = Json.newObject();
 
+        accommodationJson.put("image", getBase64Image());
         accommodationJson.put("rent", 5000);
         accommodationJson.put("size", 20);
         accommodationJson.put("rooms", 1);

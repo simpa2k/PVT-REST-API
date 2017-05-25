@@ -82,7 +82,7 @@ public class AccommodationService {
         Logger.debug("accommodation created");
 
         Address address = accommodation.address;
-	    address = GoogleService.getCoordinates(address,gApiKey);
+        /*address = GoogleService.getCoordinates(address,gApiKey);
         Logger.debug(address.streetName+", coords: "+address.latitude+", "+address.longitude);
 
         JsonNode jn=gServ.findNearestStation(address);
@@ -97,16 +97,10 @@ public class AccommodationService {
 
         addressDescription.save();
 
-        address.addressDescription = addressDescription;
-
-    //    address.addressDescription.initialize();
-        /*address.addressDescription.addToList("centralen",jsonNodeTest.findValue("duration").asInt());
-        address.addressDescription.addToList("tunnelbana",jsonNodeTest.findValue("distance").asInt());*/
-   //     Logger.debug(address.addressDescription.cityDistance.duration+"");
-       // Logger.debug("HÄR ÄR JAG");
+        address.addressDescription = addressDescription;*/
 
         RentalPeriod rentalPeriod = accommodation.rentalPeriod;
-        Logger.debug("rentalPeriod: "+rentalPeriod.start);
+        //Logger.debug("rentalPeriod: "+rentalPeriod.start);
         accommodation.renter = user;
 
         Logger.debug("tets");

@@ -12,6 +12,7 @@ create table accommodation (
   renter_id                     bigint,
   address_id                    bigint,
   rental_period_id              bigint,
+  image                         longblob,
   constraint uq_accommodation_renter_id unique (renter_id),
   constraint pk_accommodation primary key (id)
 );
