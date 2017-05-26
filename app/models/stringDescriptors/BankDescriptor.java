@@ -1,5 +1,6 @@
 package models.stringDescriptors;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.JsonNode;
 
 import javax.persistence.*;
@@ -15,16 +16,14 @@ public class BankDescriptor extends StringDescriptor {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JsonIgnore
     public long id;
-    public String bankName;
 
     public BankDescriptor(JsonNode node){
 
         super(node, new String[] {"Har du ont om pengar? %s ligger ett stenkast från denna bostad.",
             "Är du trött på att lägga pengar på hög? Ingen fara. %s ligger precis runt hörnet",
             "Ett normalt stenkast bort ligger %s."});
-
-        bankName = node.findValue("name").asText();
 
         //bankDescription = String.format(chooseRandomDescriptionString(), bankName);
 
@@ -39,7 +38,7 @@ public class BankDescriptor extends StringDescriptor {
     @Override
     public String generateDescription() {
 
-        description = String.format(chooseRandomDescriptionString(), bankName);
+        description = String.format(chooseRandomDescriptionString(), name);
         return description;
     }
 }

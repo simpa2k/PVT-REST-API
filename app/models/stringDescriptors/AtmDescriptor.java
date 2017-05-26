@@ -16,13 +16,10 @@ public class AtmDescriptor extends StringDescriptor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public long id;
-    public String atmName;
 
     public AtmDescriptor(JsonNode node){
 
         super(node, new String[] {"%s har en bankomat i närheten av bostaden."});
-
-        atmName = node.findValue("name").asText();
 
         //atmDescription = String.format(chooseRandomDescriptionString(), atmName);
 
@@ -38,7 +35,7 @@ public class AtmDescriptor extends StringDescriptor {
     @Override
     public String generateDescription() {
 
-        description = String.format(possibleDescriptions[0], atmName);
+        description = String.format(possibleDescriptions[0], name);
 
         return description;
     }

@@ -10,7 +10,7 @@ import java.util.Random;
  */
 @Entity
 @Inheritance
-@DiscriminatorValue("PET_STORE")
+@DiscriminatorValue("PSTORE")
 public class PetStoreDescriptor extends StringDescriptor  {
 
     @Id

@@ -93,12 +93,15 @@ public class AddressService {
 
             Map.Entry<String, JsonNode> next = iter.next();
 
-            StringDescriptor descriptor = creators.get(next.getKey()).apply(next.getValue());
-            addressDescription.addStringDescriptor(descriptor);
+            if (next.getValue().size() != 0) {
 
-            descriptor.addressDescription = addressDescription;
-            descriptor.save();
+                StringDescriptor descriptor = creators.get(next.getKey()).apply(next.getValue());
+                addressDescription.addStringDescriptor(descriptor);
 
+                descriptor.addressDescription = addressDescription;
+                descriptor.save();
+
+            }
         }
 
         addressDescriptionRepository.save(addressDescription);

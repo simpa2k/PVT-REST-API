@@ -33,6 +33,10 @@ public abstract class StringDescriptor extends Model {
     @Transient
     public JsonNode node;
 
+    @JsonIgnore
+    @Transient
+    public String name;
+
     public String description;
 
     @JsonIgnore
@@ -45,8 +49,14 @@ public abstract class StringDescriptor extends Model {
 
     public StringDescriptor(JsonNode node, String[] possibleDescriptions) {
 
+        if (node.size() == 0) {
+            throw new IllegalArgumentException("Empty JsonNode passed to StringDescriptor constructor. A descriptor must have data to work with.");
+        }
+
         this.node = node;
         this.possibleDescriptions = possibleDescriptions;
+
+        this.name = node.findValue("name").asText();
 
     }
 

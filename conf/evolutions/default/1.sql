@@ -114,6 +114,21 @@ create table string_descriptor (
   id                            bigint auto_increment not null,
   description                   varchar(255),
   address_description_id        bigint,
+  mosque_name                   varchar(255),
+  hardware_store_name           varchar(255),
+  firestation_name              varchar(255),
+  jewelry_store_name            varchar(255),
+  funeral_home_name             varchar(255),
+  rv_park_name                  varchar(255),
+  synagogue_name                varchar(255),
+  cemetery_name                 varchar(255),
+  locksmith_name                varchar(255),
+  pet_store_name                varchar(255),
+  painter_name                  varchar(255),
+  church_name                   varchar(255),
+  parking_name                  varchar(255),
+  casino_name                   varchar(255),
+  hindu_temple_name             varchar(255),
   constraint pk_string_descriptor primary key (id)
 );
 

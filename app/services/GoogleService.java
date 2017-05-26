@@ -32,7 +32,7 @@ public class GoogleService {
 	private final String[] types={"gym", "grocery_or_supermarket", "convenience_store", "subway_station", "bar", "restaurant"};
 	public final String [] descriptorTypes =  {
 			"atm", "bank", "casino", "cemetery", "church", "fire_station",
-			"funeral_home", "hardware_store", "hindu_temple", "jewelery_store",
+			"funeral_home", "hardware_store", "hindu_temple", "jewelry_store",
 			"locksmith", "mosque", "painter", "pet_store", "rv_park", "synagogue" };
 	
 	private final static String JSON="json?";
@@ -118,6 +118,7 @@ public class GoogleService {
 		ObjectNode allData=Json.newObject();
 
 		/*for(String type : descriptorTypes){
+
 			ArrayNode typeData=allData.putArray(type);
 			ArrayNode tempData=getAllNearbyInterests(type, address);
 			for(JsonNode tempNode : tempData.get(0)){
@@ -125,7 +126,7 @@ public class GoogleService {
 			}
 		}*/
 
-		for (int i = 0; i < 2; i++) {
+		for (int i = 0; i < descriptorTypes.length; i++) {
 
 			String type = descriptorTypes[i];
 
@@ -177,7 +178,10 @@ public class GoogleService {
 		}else return "NullAddress";
 		return query+"+stockholm";
 	}
-	
+
+	/*
+	 * Har ändrat en del i den här, se till så att allt funkar som det ska med de kategorier som fanns i den första arrayen.
+	 */
 	/**
 	 * Finds the next page data from from the first nextPageToken, if there is any
 	 * @param allData - the Root node the additional data is going to be added to
@@ -193,14 +197,16 @@ public class GoogleService {
 			String type=types[i];
 			while(nextPageToken==null){
 				nextPageToken=nextPageTokens.remove(type);
-				if(nextPageToken==null&&i<5){
+				if(nextPageToken==null&&i<types.length - 1){
 					i++;
 					type=types[i];
-				}else if(i==5)break;
+				}else if(i==types.length - 1) {
+					return allData;
+				}
 			}
 			
 			try{
-				while(status.contentEquals("INVALID_REQUEST")|tempDataNode==null&&nextPageToken!=null){
+				while(status.contentEquals("INVALID_REQUEST") || (tempDataNode == null && nextPageToken != null)){
 					TimeUnit.MILLISECONDS.sleep(500);
 					tempDataNode=gatherData(PLACES_URL+NEARBY_SEARCH+JSON+"pagetoken="+nextPageToken+"&"+PLACES_KEY);
 					status=tempDataNode.findValue("status").asText();
@@ -217,6 +223,7 @@ public class GoogleService {
 					String newNextPageToken=tempDataNode.findValue("next_page_token").textValue();
 					nextPageTokens.put(type,newNextPageToken);
 				}
+
 				if(i<types.length-1)i++;
 				else i=0;
 
