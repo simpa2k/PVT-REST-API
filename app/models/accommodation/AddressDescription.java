@@ -28,20 +28,16 @@ public class AddressDescription extends Model {
     @JsonIgnore
     public long id;
 
-    //private Map<String, Integer> distanceByTypes = new HashMap<>();
-
     @OneToMany(cascade = CascadeType.ALL)
     public List<Distance> distances = new ArrayList<>();
 
-    public List<String> stringDescriptors = new ArrayList<>();
+    @OneToMany(cascade = CascadeType.ALL)
+    public List<StringDescriptor> stringDescriptors = new ArrayList<>();
 
-    //@JsonIgnore
-    // @OneToOne
-//    public Address address;
+    public void addStringDescriptor(StringDescriptor descriptor) {
 
-    //  @OneToOne
-    //  public CityDistance cityDistance;
-    /*public void addToList(String type, int distance) {
-        distanceByTypes.put(type, distance);
-    }*/
+        descriptor.generateDescription();
+        stringDescriptors.add(descriptor);
+
+    }
 }

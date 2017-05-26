@@ -2,31 +2,34 @@ package models.stringDescriptors;
 
 import com.fasterxml.jackson.databind.JsonNode;
 
+import javax.persistence.*;
 import java.util.Random;
 
 /**
  * Created by Henke on 2017-05-23.
  */
-public class FuneralHomeDescriptor {
+@Entity
+@Inheritance
+@DiscriminatorValue("FUNERAL_HOME_DESCRIPTOR")
+public class FuneralHomeDescriptor extends StringDescriptor {
 
-    public String mosqueDescription;
-    public String[] descriptionArray = {"%s finns om någon i din närhet går bort", "Det finns ett %s i närheten av denna bostad", "I %s kan du vila ut i lugn och ro"};
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    public long id;
 
     public FuneralHomeDescriptor(JsonNode node){
 
+        super(node, new String[] {"%s finns om någon i din närhet går bort",
+            "Det finns ett %s i närheten av denna bostad", "I %s kan du vila ut i lugn och ro"});
+
         String funeralHomeName = node.findValue("name").asText();
 
-        mosqueDescription = String.format(chooseRandomDescriptionString(), funeralHomeName);
+        //funeralHomeDescription = String.format(chooseRandomDescriptionString(), funeralHomeName);
 
         }
 
-    public void getHäst(String string) {
-
-
+    @Override
+    public String generateDescription() {
+        return description;
     }
-    public String chooseRandomDescriptionString(){
-        Random random = new Random();
-        return descriptionArray[random.nextInt(3)];
-    }
-
 }

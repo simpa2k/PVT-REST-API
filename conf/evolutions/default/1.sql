@@ -109,6 +109,14 @@ create table renter (
   test                          varchar(255)
 );
 
+create table string_descriptor (
+  dtype                         varchar(10) not null,
+  id                            bigint auto_increment not null,
+  address_description_id        bigint not null,
+  description                   varchar(255),
+  constraint pk_string_descriptor primary key (id)
+);
+
 create table swiping_session (
   id                            bigint auto_increment not null,
   initialization_date           datetime not null,
@@ -193,6 +201,9 @@ create index ix_edge_tenant_id on edge (tenant_id);
 
 alter table facebook_data add constraint fk_facebook_data_user_id foreign key (user_id) references users (id) on delete restrict on update restrict;
 
+alter table string_descriptor add constraint fk_string_descriptor_address_description_id foreign key (address_description_id) references address_description (id) on delete restrict on update restrict;
+create index ix_string_descriptor_address_description_id on string_descriptor (address_description_id);
+
 alter table swiping_session_users add constraint fk_swiping_session_users_swiping_session foreign key (swiping_session_id) references swiping_session (id) on delete restrict on update restrict;
 create index ix_swiping_session_users_swiping_session on swiping_session_users (swiping_session_id);
 
@@ -250,6 +261,9 @@ drop index ix_edge_tenant_id on edge;
 
 alter table facebook_data drop foreign key fk_facebook_data_user_id;
 
+alter table string_descriptor drop foreign key fk_string_descriptor_address_description_id;
+drop index ix_string_descriptor_address_description_id on string_descriptor;
+
 alter table swiping_session_users drop foreign key fk_swiping_session_users_swiping_session;
 drop index ix_swiping_session_users_swiping_session on swiping_session_users;
 
@@ -294,6 +308,8 @@ drop table if exists facebook_data;
 drop table if exists rental_period;
 
 drop table if exists renter;
+
+drop table if exists string_descriptor;
 
 drop table if exists swiping_session;
 

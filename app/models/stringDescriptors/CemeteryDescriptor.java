@@ -2,32 +2,34 @@ package models.stringDescriptors;
 
 import com.fasterxml.jackson.databind.JsonNode;
 
+import javax.persistence.*;
 import java.util.Random;
 
 /**
  * Created by Henke on 2017-05-23.
  */
-public class CemeteryDescriptor  {
+@Entity
+@Inheritance // Ebeans does not support any other strategy than SINGLE_TABLE. This works fine, but remember that no fields in subclasses can be non-nullable. @DiscriminatorValue("ATM_DESCRIPTOR")
+@DiscriminatorValue("CEMETERY_DESCRIPTOR")
+public class CemeteryDescriptor extends StringDescriptor  {
 
-    public String cemeteryDescription;
-    public String[] descriptionArray = {"I närheten finns %s där du kan leka med pinnar och sörja", "Upplev lugnet vid %s", "På x kan du gå promenader eller sörja dina nära och kära"};
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    public long id;
 
     public CemeteryDescriptor(JsonNode node){
 
+        super(node, new String[] {"I närheten finns %s där du kan leka med pinnar och sörja",
+            "Upplev lugnet vid %s", "På %s kan du gå promenader eller sörja dina nära och kära"});
+
         String cemeteryName = node.findValue("name").asText();
 
-        cemeteryDescription = String.format(chooseRandomDescriptionString(), cemeteryName);
+        //cemeteryDescription = String.format(chooseRandomDescriptionString(), cemeteryName);
 
     }
 
-    public void getHäst(String string) {
-
-
+    @Override
+    public String generateDescription() {
+        return description;
     }
-    public String chooseRandomDescriptionString(){
-        Random random = new Random();
-        return descriptionArray[random.nextInt(3)];
-    }
-
-
 }

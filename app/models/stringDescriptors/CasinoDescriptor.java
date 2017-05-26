@@ -2,29 +2,34 @@ package models.stringDescriptors;
 
 import com.fasterxml.jackson.databind.JsonNode;
 
+import javax.persistence.*;
 import java.util.Random;
 
 /**
  * Created by Henke on 2017-05-23.
  */
-public class CasinoDescriptor {
+@Entity
+@Inheritance // Ebeans does not support any other strategy than SINGLE_TABLE. This works fine, but remember that no fields in subclasses can be non-nullable.
+@DiscriminatorValue("CASINO_DESCRIPTOR")
+public class CasinoDescriptor extends StringDescriptor {
 
-    public String casinoDescription;
-    public String[] descriptionArray = {"Med %s runt hörnet kan du köpa din drömcykel och utforska området", "Har du fått punktering på din cykel ligger %s precis runt hörnet av din bostad", "Lär dig cykla utan händer! %s ligger precis runt hörnet."};
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    public long id;
+
     public CasinoDescriptor(JsonNode node){
 
-        String casinoName = node.findValue("name").asText();
+        super(node, new String[] {"Närhet till %s, kul ju!", "Gå till %s och dubbla din lön!", "Sätt allt på rött vid %s!"});
 
-        casinoDescription = String.format(chooseRandomDescriptionString(), casinoName);
+        String casinoName = node.get(0).findValue("name").asText();
 
-    }
-
-    public void getHäst(String string) {
-
+        //casinoDescription = String.format(chooseRandomDescriptionString(), casinoName);
 
     }
-    public String chooseRandomDescriptionString(){
-        Random random = new Random();
-        return descriptionArray[random.nextInt(3)];
+
+
+    @Override
+    public String generateDescription() {
+        return  description;
     }
 }

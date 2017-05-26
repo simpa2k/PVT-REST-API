@@ -2,21 +2,28 @@ package models.stringDescriptors;
 
 import com.fasterxml.jackson.databind.JsonNode;
 
+import javax.persistence.*;
 import java.util.Random;
 
 /**
  * Created by Henke on 2017-05-23.
  */
-public class AtmDescriptor implements StringDescriptor {
+@Entity
+@Inheritance // Ebeans does not support any other strategy than SINGLE_TABLE. This works fine, but remember that no fields in subclasses can be non-nullable.
+@DiscriminatorValue("ATM_DESCRIPTOR")
+public class AtmDescriptor extends StringDescriptor {
 
-    public String atmDescription;
-    public String[] descriptionArray = {"%s finns om någon i din närhet går bort", "Det finns ett %s i närheten av denna bostad", "I %s kan du sova livet ut i lugn och ro"};
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    public long id;
 
     public AtmDescriptor(JsonNode node){
 
+        super(node, new String[] {"Det finns en bankomat i närheten av bostaden."});
+
         String atmName = node.findValue("name").asText();
 
-        atmDescription = String.format(chooseRandomDescriptionString(), atmName);
+        //atmDescription = String.format(chooseRandomDescriptionString(), atmName);
 
     }
 
@@ -26,15 +33,15 @@ public class AtmDescriptor implements StringDescriptor {
     }
     public String chooseRandomDescriptionString(){
         Random random = new Random();
-        return descriptionArray[random.nextInt(3)];
+        return possibleDescriptions[random.nextInt(3)];
     }
 
     public String toString(){
-        return atmDescription;
+        return description;
     }
 
     @Override
-    public String getDescription() {
-        return "There are ATMs!";
+    public String generateDescription() {
+        return description;
     }
 }
