@@ -10,7 +10,7 @@ import java.util.Random;
  */
 @Entity
 @Inheritance // Ebeans does not support any other strategy than SINGLE_TABLE. This works fine, but remember that no fields in subclasses can be non-nullable.
-@DiscriminatorValue("CASINO_DESCRIPTOR")
+@DiscriminatorValue("CASINO")
 public class CasinoDescriptor extends StringDescriptor {
 
     @Id

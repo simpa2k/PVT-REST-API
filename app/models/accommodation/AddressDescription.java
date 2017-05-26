@@ -31,7 +31,7 @@ public class AddressDescription extends Model {
     @OneToMany(cascade = CascadeType.ALL)
     public List<Distance> distances = new ArrayList<>();
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.PERSIST)
     public List<StringDescriptor> stringDescriptors = new ArrayList<>();
 
     public void addStringDescriptor(StringDescriptor descriptor) {

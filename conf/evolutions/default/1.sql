@@ -112,8 +112,8 @@ create table renter (
 create table string_descriptor (
   dtype                         varchar(10) not null,
   id                            bigint auto_increment not null,
-  address_description_id        bigint not null,
   description                   varchar(255),
+  address_description_id        bigint,
   constraint pk_string_descriptor primary key (id)
 );
 

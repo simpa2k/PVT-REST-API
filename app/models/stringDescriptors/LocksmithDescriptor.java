@@ -10,7 +10,7 @@ import java.util.Random;
  */
 @Entity
 @Inheritance
-@DiscriminatorValue("LOCKSMITH_DESCRIPTOR")
+@DiscriminatorValue("LOCKSMITH")
 public class LocksmithDescriptor extends StringDescriptor {
 
     @Id

@@ -87,6 +87,8 @@ public class AddressService {
 
         Iterator<Map.Entry<String, JsonNode>> iter = results.fields();
 
+        addressDescriptionRepository.save(addressDescription);
+
         while (iter.hasNext()) {
 
             Map.Entry<String, JsonNode> next = iter.next();
@@ -94,6 +96,7 @@ public class AddressService {
             StringDescriptor descriptor = creators.get(next.getKey()).apply(next.getValue());
             addressDescription.addStringDescriptor(descriptor);
 
+            descriptor.addressDescription = addressDescription;
             descriptor.save();
 
         }

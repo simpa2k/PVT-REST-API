@@ -10,7 +10,7 @@ import java.util.Random;
  */
 @Entity
 @Inheritance
-@DiscriminatorValue("HARDWARE_STORE_DESCRIPTOR")
+@DiscriminatorValue("HARDWARE_STORE")
 public class HardwareStoreDescriptor extends StringDescriptor {
 
     @Id

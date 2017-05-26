@@ -10,7 +10,7 @@ import java.util.Random;
  */
 @Entity
 @Inheritance
-@DiscriminatorValue("PAINTER_DESCRIPTOR")
+@DiscriminatorValue("PAINTER")
 public class PainterDescriptor extends StringDescriptor {
 
     @Id

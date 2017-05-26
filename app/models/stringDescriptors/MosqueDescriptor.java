@@ -10,7 +10,7 @@ import java.util.Random;
  */
 @Entity
 @Inheritance
-@DiscriminatorValue("MOSQUE_DESCRIPTOR")
+@DiscriminatorValue("MOSQUE")
 public class MosqueDescriptor extends StringDescriptor {
 
     @Id

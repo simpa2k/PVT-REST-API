@@ -1,9 +1,11 @@
 package models.stringDescriptors;
 
 import com.avaje.ebean.Model;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import models.accommodation.Address;
+import models.accommodation.AddressDescription;
 import play.Configuration;
 import play.Logger;
 import services.GoogleService;
@@ -19,18 +21,25 @@ import java.util.Random;
  */
 @Entity
 @Inheritance
-@DiscriminatorValue("STRING_DESCRIPTOR")
+@DiscriminatorValue("STRING")
 public abstract class StringDescriptor extends Model {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JsonIgnore
     public long id;
 
+    @JsonIgnore
     @Transient
     public JsonNode node;
 
     public String description;
 
+    @JsonIgnore
+    @ManyToOne
+    public AddressDescription addressDescription;
+
+    @JsonIgnore
     @Transient
     public String[] possibleDescriptions;
 
