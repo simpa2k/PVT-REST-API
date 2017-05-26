@@ -7,10 +7,11 @@ import java.util.Random;
 /**
  * Created by Henke on 2017-05-23.
  */
-public class CemeteryDescriptor  {
+public class CemeteryDescriptor implements StringDescriptor  {
 
     public String cemeteryDescription;
-    public String[] descriptionArray = {"I närheten finns %s där du kan leka med pinnar och sörja", "Upplev lugnet vid %s", "På x kan du gå promenader eller sörja dina nära och kära"};
+    public String[] descriptionArray = {"I närheten finns %s där du kan leka med pinnar och sörja",
+            "Upplev lugnet vid %s", "På %s kan du gå promenader eller sörja dina nära och kära"};
 
     public CemeteryDescriptor(JsonNode node){
 
@@ -30,4 +31,8 @@ public class CemeteryDescriptor  {
     }
 
 
+    @Override
+    public String getDescription() {
+        return cemeteryDescription;
+    }
 }

@@ -7,24 +7,30 @@ import java.util.Random;
 /**
  * Created by Henke on 2017-05-23.
  */
-public class CasinoDescriptor {
+public class CasinoDescriptor implements StringDescriptor {
 
     public String casinoDescription;
-    public String[] descriptionArray = {"Med %s runt hörnet kan du köpa din drömcykel och utforska området", "Har du fått punktering på din cykel ligger %s precis runt hörnet av din bostad", "Lär dig cykla utan händer! %s ligger precis runt hörnet."};
+    public String[] descriptionArray = {"Närhet till %s, kul ju!", "Gå till %s och dubbla din lön!", "Sätt allt på rött vid %s!"};
     public CasinoDescriptor(JsonNode node){
 
-        String casinoName = node.findValue("name").asText();
+        String casinoName = node.get(0).findValue("name").asText();
 
         casinoDescription = String.format(chooseRandomDescriptionString(), casinoName);
 
     }
 
-    public void getHäst(String string) {
 
-
-    }
     public String chooseRandomDescriptionString(){
         Random random = new Random();
         return descriptionArray[random.nextInt(3)];
+    }
+
+    @Override
+    public String getDescription() {
+        return  casinoDescription;
+
+
+
+
     }
 }

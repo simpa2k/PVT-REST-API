@@ -7,10 +7,11 @@ import java.util.Random;
 /**
  * Created by Henke on 2017-05-23.
  */
-public class ChurchDescriptor {
+public class ChurchDescriptor implements StringDescriptor {
 
     public String churchDescription;
-    public String[] descriptionArray = {"%s ligger i närheten av denna bostad", "I detta område ligger den ståtliga  %s", "Nära till %s om man blir sugen på en liten gudstjänst"};
+    public String[] descriptionArray = {"%s ligger i närheten av denna bostad",
+            "I detta område ligger den ståtliga  %s", "Nära till %s om man blir sugen på en liten gudstjänst"};
 
     public ChurchDescriptor(JsonNode node){
 
@@ -29,4 +30,8 @@ public class ChurchDescriptor {
         return descriptionArray[random.nextInt(3)];
     }
 
+    @Override
+    public String getDescription() {
+        return churchDescription;
+    }
 }

@@ -7,10 +7,12 @@ import java.util.Random;
 /**
  * Created by Henke on 2017-05-23.
  */
-public class JewelryStoreDescriptor  {
+public class JewelryStoreDescriptor implements StringDescriptor  {
 
     public String jewelryStoreDescription;
-    public String[] descriptionArray = {"Gillar du smycken och blingbling? I så fall passar denna lägga perfekt för dig. %s finns i området.", "Gå förbi %s påväg till festen för att se extra piffig ut.", "Vill du fria till Stellan Skarsgård? På %s kan du köpa dig en ögonsten som passar till Stellans finger."};
+    public String[] descriptionArray = {"Gillar du smycken och blingbling? I så fall passar denna lägga perfekt för dig. %s finns i området.",
+            "Gå förbi %s påväg till festen för att se extra piffig ut.",
+            "Vill du fria till Stellan Skarsgård? På %s kan du köpa dig en ögonsten som passar till Stellans finger."};
     public JewelryStoreDescriptor(JsonNode node){
 
         String jewelryStoreName = node.findValue("name").asText();
@@ -19,12 +21,14 @@ public class JewelryStoreDescriptor  {
 
     }
 
-    public void getHäst(String string) {
 
-
-    }
     public String chooseRandomDescriptionString(){
         Random random = new Random();
         return descriptionArray[random.nextInt(3)];
+    }
+
+    @Override
+    public String getDescription() {
+        return jewelryStoreDescription;
     }
 }

@@ -7,11 +7,12 @@ import java.util.Random;
 /**
  * Created by Henke on 2017-05-23.
  */
-public class MosqueDescriptor {
+public class MosqueDescriptor implements StringDescriptor {
 
 
     public String mosqueDescription;
-    public String[] descriptionArray = {"Väldigt nära din lägenhet ligger %s, ett ypperligt tillfälle att kontemplera", "Ett stenkast från denna lya finner du %s", "Alldelles intill din nya lägenhet finner du %s"};
+    public String[] descriptionArray = {"Väldigt nära din lägenhet ligger %s, ett ypperligt tillfälle att kontemplera",
+            "Ett stenkast från denna lya finner du %s", "Alldelles intill din nya lägenhet finner du %s"};
 
     public MosqueDescriptor(JsonNode node){
         if(node.findValue("name").asText()!= null){
@@ -35,4 +36,8 @@ public class MosqueDescriptor {
         return mosqueDescription;
     }
 
+    @Override
+    public String getDescription() {
+        return mosqueDescription;
+    }
 }

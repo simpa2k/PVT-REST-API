@@ -10,7 +10,8 @@ import java.util.Random;
 public class AtmDescriptor implements StringDescriptor {
 
     public String atmDescription;
-    public String[] descriptionArray = {"%s finns om någon i din närhet går bort", "Det finns ett %s i närheten av denna bostad", "I %s kan du sova livet ut i lugn och ro"};
+    public String[] descriptionArray = {"Det finns en bankomat i närheten av bostaden."
+            , };
 
     public AtmDescriptor(JsonNode node){
 
@@ -35,6 +36,7 @@ public class AtmDescriptor implements StringDescriptor {
 
     @Override
     public String getDescription() {
-        return null;
+
+        return atmDescription;
     }
 }

@@ -5,9 +5,7 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 import models.accommodation.Address;
 import models.accommodation.AddressDescription;
 import models.accommodation.Distance;
-import models.stringDescriptors.AtmDescriptor;
-import models.stringDescriptors.BankDescriptor;
-import models.stringDescriptors.StringDescriptor;
+import models.stringDescriptors.*;
 import play.Configuration;
 import play.Logger;
 
@@ -43,23 +41,25 @@ public class AddressService {
 
     private void setCreators() {
 
-        creators.put("atm", (data) -> {
+        creators.put("atm", AtmDescriptor::new);
+        creators.put("bank", BankDescriptor::new);
+        creators.put("casino", CasinoDescriptor::new);
+        creators.put("cemetery", CemeteryDescriptor::new);
+        creators.put("church", ChurchDescriptor::new);
+        creators.put("fire_station", FirestationDescriptor::new);
+        creators.put("funeral_home", FirestationDescriptor::new);
+        creators.put("hardware_store", HardwareStoreDescriptor::new);
+        creators.put("hindu_temple", HinduTempleDescriptor::new);
+        creators.put("jewelry_store", JewelryStoreDescriptor::new);
+        creators.put("locksmith", LocksmithDescriptor::new);
+        creators.put("mosque", MosqueDescriptor::new);
+        creators.put("painter", PainterDescriptor::new);
+        creators.put("parking", ParkingDescriptor::new);
+        creators.put("pet_store", PetStoreDescriptor::new);
+        creators.put("rvpark", RvparkDescriptor::new);
+        creators.put("synagogue", SynagogueDescriptor::new);
 
-            AtmDescriptor atmDescriptor = new AtmDescriptor(data);
-            return atmDescriptor;
 
-        });
-
-        creators.put("bank", (data) -> {
-
-            BankDescriptor bankDescriptor = new BankDescriptor(data);
-            return bankDescriptor;
-
-        });
-
-        /*
-         * Add more creators here.
-         */
 
     }
 

@@ -7,10 +7,11 @@ import java.util.Random;
 /**
  * Created by Henke on 2017-05-23.
  */
-public class SynagogueDescriptor  {
+public class SynagogueDescriptor implements StringDescriptor  {
 
     public String synagogueDescription;
-    public String[] descriptionArray = {"Trött på Buddha? %s finns i närheten av denna bostad", "Vill du täcka din flint? Bär en kippah vid %s", "Ett stenkast från din lägenhet ligger %s"};
+    public String[] descriptionArray = {"Trött på Buddha? %s finns i närheten av denna bostad",
+            "Vill du täcka din flint? Bär en kippah vid %s", "Ett stenkast från din lägenhet ligger %s"};
 
     public SynagogueDescriptor(JsonNode node){
 
@@ -27,5 +28,10 @@ public class SynagogueDescriptor  {
     public String chooseRandomDescriptionString(){
         Random random = new Random();
         return descriptionArray[random.nextInt(3)];
+    }
+
+    @Override
+    public String getDescription() {
+        return synagogueDescription;
     }
 }

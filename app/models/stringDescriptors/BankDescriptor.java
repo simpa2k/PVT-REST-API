@@ -10,7 +10,9 @@ import java.util.Random;
 public class BankDescriptor implements StringDescriptor {
 
     public String bankDescription;
-    public String[] descriptionArray = {"Har du ont om pengar? %s ligger ett getöga från denna bostad.", "är du trött på att lägga pengar på hög? Ingen fara. %s ligger precis runt hörnet", "Ett normalt stenkast bort ligger %s."};
+    public String[] descriptionArray = {"Har du ont om pengar? %s ligger ett stenkast från denna bostad.",
+            "Är du trött på att lägga pengar på hög? Ingen fara. %s ligger precis runt hörnet",
+            "Ett normalt stenkast bort ligger %s."};
 
     public BankDescriptor(JsonNode node){
 
@@ -35,6 +37,6 @@ public class BankDescriptor implements StringDescriptor {
 
     @Override
     public String getDescription() {
-        return null;
+        return bankDescription;
     }
 }
