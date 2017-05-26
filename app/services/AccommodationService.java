@@ -81,7 +81,8 @@ public class AccommodationService {
         Logger.debug("accommodation created");
 
         Address address = accommodation.address;
-        addressService.gatherData(address);
+        address = addressService.gatherData(address);
+
 
         RentalPeriod rentalPeriod = accommodation.rentalPeriod;
         Logger.debug("rentalPeriod: "+rentalPeriod.start);
@@ -99,6 +100,7 @@ public class AccommodationService {
 	    	address=inList;
 	    	accommodation.address=inList;
 	    }
+
 	    Accommodation existing = accommodationRepository.findByRenter(accommodation.renter.id);
         if (existing == null) {
         	Logger.debug("No earlier accommodation");

@@ -35,6 +35,6 @@ public class BankDescriptor implements StringDescriptor {
 
     @Override
     public String getDescription() {
-        return null;
+        return "There are banks!";
     }
 }

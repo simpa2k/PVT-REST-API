@@ -33,7 +33,7 @@ public class AddressDescription extends Model {
     @OneToMany(cascade = CascadeType.ALL)
     public List<Distance> distances = new ArrayList<>();
 
-    public List<String> stringDescriptors;
+    public List<String> stringDescriptors = new ArrayList<>();
 
     //@JsonIgnore
     // @OneToOne

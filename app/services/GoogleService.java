@@ -117,7 +117,18 @@ public class GoogleService {
 	public ObjectNode gatherNearbyDataDescriptor(Address address){
 		ObjectNode allData=Json.newObject();
 
-		for(String type : descriptorTypes){
+		/*for(String type : descriptorTypes){
+			ArrayNode typeData=allData.putArray(type);
+			ArrayNode tempData=getAllNearbyInterests(type, address);
+			for(JsonNode tempNode : tempData.get(0)){
+				typeData.add(tempNode);
+			}
+		}*/
+
+		for (int i = 0; i < 2; i++) {
+
+			String type = descriptorTypes[i];
+
 			ArrayNode typeData=allData.putArray(type);
 			ArrayNode tempData=getAllNearbyInterests(type, address);
 			for(JsonNode tempNode : tempData.get(0)){

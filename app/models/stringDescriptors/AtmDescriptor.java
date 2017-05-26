@@ -35,6 +35,6 @@ public class AtmDescriptor implements StringDescriptor {
 
     @Override
     public String getDescription() {
-        return null;
+        return "There are ATMs!";
     }
 }

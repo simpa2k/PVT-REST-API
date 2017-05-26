@@ -10,8 +10,10 @@ import models.stringDescriptors.BankDescriptor;
 import models.stringDescriptors.StringDescriptor;
 import play.Configuration;
 import play.Logger;
+import repositories.AddressDescriptionRepository;
 
 import javax.inject.Inject;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.function.Consumer;
@@ -28,34 +30,28 @@ public class AddressService {
     private TrafikLabService tls;
 
     private String gApiKey;
-    private Map<String, Function<JsonNode, StringDescriptor>> creators;
+    private AddressDescriptionRepository addressDescriptionRepository;
+    private Map<String, Function<JsonNode, StringDescriptor>> creators = new HashMap<>();
 
     @Inject
-    public AddressService(Configuration configuration) {
+    public AddressService(Configuration configuration,
+                          AddressDescriptionRepository addressDescriptionRepository) {
 
         this.configuration = configuration;
         this.gApiKey=configuration.getString("googleAPIKey");
+        this.addressDescriptionRepository = addressDescriptionRepository;
 
         this.gServ = new GoogleService(gApiKey);
         this.tls = new TrafikLabService(gApiKey);
+
+        setCreators();
 
     }
 
     private void setCreators() {
 
-        creators.put("atm", (data) -> {
-
-            AtmDescriptor atmDescriptor = new AtmDescriptor(data);
-            return atmDescriptor;
-
-        });
-
-        creators.put("bank", (data) -> {
-
-            BankDescriptor bankDescriptor = new BankDescriptor(data);
-            return bankDescriptor;
-
-        });
+        creators.put("atm", AtmDescriptor::new);
+        creators.put("bank", BankDescriptor::new);
 
         /*
          * Add more creators here.
@@ -63,7 +59,7 @@ public class AddressService {
 
     }
 
-    public void gatherData(Address address) {
+    public Address gatherData(Address address) {
 
         address = GoogleService.getCoordinates(address,gApiKey);
         Logger.debug(address.streetName+", coords: "+address.latitude+", "+address.longitude);
@@ -92,9 +88,10 @@ public class AddressService {
 
         }
 
-        addressDescription.save();
-
+        addressDescriptionRepository.save(addressDescription);
         address.addressDescription = addressDescription;
+
+        return address;
 
     }
 }
