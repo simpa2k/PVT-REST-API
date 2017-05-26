@@ -16,13 +16,14 @@ public class ChurchDescriptor extends StringDescriptor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public long id;
+    public String churchName;
 
     public ChurchDescriptor(JsonNode node){
 
         super(node , new String[] {"%s ligger i närheten av denna bostad",
             "I detta område ligger den ståtliga  %s", "Nära till %s om man blir sugen på en liten gudstjänst"});
 
-        String churchName = node.findValue("name").asText();
+         churchName = node.findValue("name").asText();
 
         //churchDescription = String.format(chooseRandomDescriptionString(), churchName);
 
@@ -30,6 +31,7 @@ public class ChurchDescriptor extends StringDescriptor {
 
     @Override
     public String generateDescription() {
+        description = String.format(chooseRandomDescriptionString(), churchName);
         return description;
     }
 }

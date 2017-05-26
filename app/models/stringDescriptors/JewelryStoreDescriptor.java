@@ -16,6 +16,7 @@ public class JewelryStoreDescriptor extends StringDescriptor  {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public long id;
+    public String jewelryStoreName;
 
     public JewelryStoreDescriptor(JsonNode node){
 
@@ -23,7 +24,7 @@ public class JewelryStoreDescriptor extends StringDescriptor  {
             "Gå förbi %s påväg till festen för att se extra piffig ut.",
             "Vill du fria till Stellan Skarsgård? På %s kan du köpa dig en ögonsten som passar till Stellans finger."});
 
-        String jewelryStoreName = node.findValue("name").asText();
+         jewelryStoreName = node.findValue("name").asText();
 
         //jewelryStoreDescription = String.format(chooseRandomDescriptionString(), jewelryStoreName);
 
@@ -31,6 +32,7 @@ public class JewelryStoreDescriptor extends StringDescriptor  {
 
     @Override
     public String generateDescription() {
+        description = String.format(chooseRandomDescriptionString(), jewelryStoreName);
         return description;
     }
 }

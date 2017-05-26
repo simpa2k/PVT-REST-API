@@ -16,6 +16,7 @@ public class MosqueDescriptor extends StringDescriptor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public long id;
+    public String mosqueName;
 
     public MosqueDescriptor(JsonNode node){
 
@@ -23,7 +24,7 @@ public class MosqueDescriptor extends StringDescriptor {
             "Ett stenkast från denna lya finner du %s", "Alldelles intill din nya lägenhet finner du %s"});
         if(node.findValue("name").asText()!= null){
 
-            String mosqueName = node.findValue("name").asText();
+             mosqueName = node.findValue("name").asText();
             //mosqueDescription = String.format(chooseRandomDescriptionString(), mosqueName);
         }
 
@@ -31,6 +32,8 @@ public class MosqueDescriptor extends StringDescriptor {
 
     @Override
     public String generateDescription() {
+
+        description = String.format(chooseRandomDescriptionString(), mosqueName);
         return description;
     }
 }

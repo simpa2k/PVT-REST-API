@@ -16,6 +16,7 @@ public class BankDescriptor extends StringDescriptor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public long id;
+    public String bankName;
 
     public BankDescriptor(JsonNode node){
 
@@ -23,20 +24,13 @@ public class BankDescriptor extends StringDescriptor {
             "Är du trött på att lägga pengar på hög? Ingen fara. %s ligger precis runt hörnet",
             "Ett normalt stenkast bort ligger %s."});
 
-        String bankName = node.findValue("name").asText();
+        bankName = node.findValue("name").asText();
 
         //bankDescription = String.format(chooseRandomDescriptionString(), bankName);
 
     }
 
-    public void getHäst(String string) {
 
-
-    }
-    public String chooseRandomDescriptionString(){
-        Random random = new Random();
-        return possibleDescriptions[random.nextInt(3)];
-    }
 
     public String toString(){
         return description;
@@ -44,6 +38,8 @@ public class BankDescriptor extends StringDescriptor {
 
     @Override
     public String generateDescription() {
+
+        description = String.format(chooseRandomDescriptionString(), bankName);
         return description;
     }
 }

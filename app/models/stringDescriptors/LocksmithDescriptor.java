@@ -16,6 +16,7 @@ public class LocksmithDescriptor extends StringDescriptor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public long id;
+    public String locksmithName;
 
     public LocksmithDescriptor(JsonNode node){
 
@@ -23,7 +24,7 @@ public class LocksmithDescriptor extends StringDescriptor {
             "Med %s i närheten behöver du aldrig oroa dig för att förbli utelåst. ",
             "Behöver du göra fler kopior på nycklar till denna bostad om du flyttar in? I sådant fall finns %s alldeles i närheten"});
 
-        String locksmithName = node.findValue("name").asText();
+         locksmithName = node.findValue("name").asText();
 
         //locksmithDescription = String.format(chooseRandomDescriptionString(), locksmithName);
 
@@ -31,6 +32,7 @@ public class LocksmithDescriptor extends StringDescriptor {
 
     @Override
     public String generateDescription() {
+        description = String.format(chooseRandomDescriptionString(), locksmithName);
         return description;
     }
 }

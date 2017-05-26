@@ -16,6 +16,7 @@ public class PainterDescriptor extends StringDescriptor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public long id;
+    public String painterName;
 
     public PainterDescriptor(JsonNode node){
 
@@ -23,7 +24,7 @@ public class PainterDescriptor extends StringDescriptor {
             "Behöver du också måla om din träskföjt? %s finns i närheten.",
             "Det ligger en %s i området om du blir sugen på att måla." });
 
-        String painterName = node.findValue("name").asText();
+         painterName = node.findValue("name").asText();
 
         //painterDescription = String.format(chooseRandomDescriptionString(), painterName);
 
@@ -31,6 +32,8 @@ public class PainterDescriptor extends StringDescriptor {
 
     @Override
     public String generateDescription() {
+
+        description = String.format(chooseRandomDescriptionString(), painterName);
         return description;
     }
 }

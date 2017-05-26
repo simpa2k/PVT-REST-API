@@ -16,25 +16,20 @@ public class AtmDescriptor extends StringDescriptor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public long id;
+    public String atmName;
 
     public AtmDescriptor(JsonNode node){
 
-        super(node, new String[] {"Det finns en bankomat i närheten av bostaden."});
+        super(node, new String[] {"%s har en bankomat i närheten av bostaden."});
 
-        String atmName = node.findValue("name").asText();
+        atmName = node.findValue("name").asText();
 
         //atmDescription = String.format(chooseRandomDescriptionString(), atmName);
 
     }
 
-    public void getHäst(String string) {
 
 
-    }
-    public String chooseRandomDescriptionString(){
-        Random random = new Random();
-        return possibleDescriptions[random.nextInt(3)];
-    }
 
     public String toString(){
         return description;
@@ -42,6 +37,9 @@ public class AtmDescriptor extends StringDescriptor {
 
     @Override
     public String generateDescription() {
+
+        description = String.format(possibleDescriptions[0], atmName);
+
         return description;
     }
 }

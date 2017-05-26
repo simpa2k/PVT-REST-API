@@ -16,6 +16,7 @@ public class HardwareStoreDescriptor extends StringDescriptor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public long id;
+    public String hardwareStoreName;
 
     public HardwareStoreDescriptor(JsonNode node){
 
@@ -23,7 +24,7 @@ public class HardwareStoreDescriptor extends StringDescriptor {
             "Gillar du att snickra och sådant? Då passar detta boende bra för dig. Nära till %s",
             "Mera bågfil? %s ligger precis runt hörnet."});
 
-        String hardwareStoreName = node.get(0).findValue("name").asText();
+         hardwareStoreName = node.get(0).findValue("name").asText();
 
         //hardwareStoreDescription = String.format(chooseRandomDescriptionString(), hardwareStoreName);
 
@@ -31,6 +32,7 @@ public class HardwareStoreDescriptor extends StringDescriptor {
 
     @Override
     public String generateDescription() {
+        description = String.format(chooseRandomDescriptionString(), hardwareStoreName);
         return description;
     }
 }

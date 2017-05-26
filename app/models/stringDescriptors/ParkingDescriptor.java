@@ -16,6 +16,7 @@ public class ParkingDescriptor extends StringDescriptor  {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public long id;
+    public String parkingName;
 
     public ParkingDescriptor(JsonNode node){
 
@@ -23,7 +24,7 @@ public class ParkingDescriptor extends StringDescriptor  {
             "Sluta oroa dig för perkering, %s tillhandahåller lösningen",
             "Smidigt nog finns det tillgång till parkering i angräsning till bostaden vid %s."});
 
-        String parkingName = node.findValue("name").asText();
+         parkingName = node.findValue("name").asText();
 
         //parkingDescription = String.format(chooseRandomDescriptionString(), parkingName);
 
@@ -31,6 +32,9 @@ public class ParkingDescriptor extends StringDescriptor  {
 
     @Override
     public String generateDescription() {
+
+        description = String.format(chooseRandomDescriptionString(), parkingName);
         return description;
     }
+
 }

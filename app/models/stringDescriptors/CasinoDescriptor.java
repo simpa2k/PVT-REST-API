@@ -16,12 +16,13 @@ public class CasinoDescriptor extends StringDescriptor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public long id;
+    public String casinoName;
 
     public CasinoDescriptor(JsonNode node){
 
         super(node, new String[] {"Närhet till %s, kul ju!", "Gå till %s och dubbla din lön!", "Sätt allt på rött vid %s!"});
 
-        String casinoName = node.get(0).findValue("name").asText();
+        casinoName = node.get(0).findValue("name").asText();
 
         //casinoDescription = String.format(chooseRandomDescriptionString(), casinoName);
 
@@ -30,6 +31,8 @@ public class CasinoDescriptor extends StringDescriptor {
 
     @Override
     public String generateDescription() {
+
+        description = String.format(chooseRandomDescriptionString(), casinoName);
         return  description;
     }
 }

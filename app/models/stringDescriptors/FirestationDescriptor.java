@@ -16,6 +16,7 @@ public class FirestationDescriptor extends StringDescriptor  {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public long id;
+    public String firestationName;
 
     public FirestationDescriptor(JsonNode node){
 
@@ -23,22 +24,17 @@ public class FirestationDescriptor extends StringDescriptor  {
             "I detta område kryllar det av heta brandmän då %s ligger ett stenkast från denna bostad",
             "Fritt från pyromaner och eld när %s finns runt hörnet." });
 
-        String firestationName = node.findValue("name").asText();
+         firestationName = node.findValue("name").asText();
 
         //firestationDescription = String.format(chooseRandomDescriptionString(), firestationName);
 
     }
 
-    public void getHäst(String string) {
-
-    }
-    public String chooseRandomDescriptionString(){
-        Random random = new Random();
-        return possibleDescriptions[random.nextInt(3)];
-    }
 
     @Override
     public String generateDescription() {
+
+        description = String.format(chooseRandomDescriptionString(), firestationName);
         return description;
     }
 }

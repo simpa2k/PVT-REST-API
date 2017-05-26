@@ -16,13 +16,14 @@ public class RvparkDescriptor extends StringDescriptor  {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public long id;
+    public String rvParkName;
 
     public RvparkDescriptor(JsonNode node){
 
         super(node, new String[] {            "Det finns en %s inte så långt ifrån lägenheten",
             "Nu kan du elda ifred på %s alldeles i närheten av denna bostad"});
 
-        String rvparkName = node.findValue("name").asText();
+        rvParkName = node.findValue("name").asText();
 
         //rvparkDescription = String.format(chooseRandomDescriptionString(), rvparkName);
 
@@ -30,6 +31,8 @@ public class RvparkDescriptor extends StringDescriptor  {
 
     @Override
     public String generateDescription() {
+
+        description = String.format(chooseRandomDescriptionString(), rvParkName);
         return description;
     }
 }

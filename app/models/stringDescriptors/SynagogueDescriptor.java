@@ -16,13 +16,14 @@ public class SynagogueDescriptor extends StringDescriptor  {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public long id;
+    public String synagogueName;
 
     public SynagogueDescriptor(JsonNode node){
 
         super(node, new String[] {"Trött på Buddha? %s finns i närheten av denna bostad",
             "Vill du täcka din flint? Bär en kippah vid %s", "Ett stenkast från din lägenhet ligger %s"});
 
-        String synagogueName = node.findValue("name").asText();
+         synagogueName = node.findValue("name").asText();
 
         //synagogueDescription = String.format(chooseRandomDescriptionString(), synagogueName);
 
@@ -30,6 +31,8 @@ public class SynagogueDescriptor extends StringDescriptor  {
 
     @Override
     public String generateDescription() {
+
+        description = String.format(chooseRandomDescriptionString(), synagogueName);
         return description;
     }
 }

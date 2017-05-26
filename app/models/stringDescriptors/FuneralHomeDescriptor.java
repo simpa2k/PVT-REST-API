@@ -16,13 +16,14 @@ public class FuneralHomeDescriptor extends StringDescriptor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public long id;
+    public String funeralHomeName;
 
     public FuneralHomeDescriptor(JsonNode node){
 
         super(node, new String[] {"%s finns om någon i din närhet går bort",
             "Det finns ett %s i närheten av denna bostad", "I %s kan du vila ut i lugn och ro"});
 
-        String funeralHomeName = node.findValue("name").asText();
+         funeralHomeName = node.findValue("name").asText();
 
         //funeralHomeDescription = String.format(chooseRandomDescriptionString(), funeralHomeName);
 
@@ -30,6 +31,8 @@ public class FuneralHomeDescriptor extends StringDescriptor {
 
     @Override
     public String generateDescription() {
+
+        description = String.format(chooseRandomDescriptionString(), funeralHomeName);
         return description;
     }
 }

@@ -16,6 +16,7 @@ public class HinduTempleDescriptor extends StringDescriptor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public long id;
+    public String hinduTempleName;
 
     public HinduTempleDescriptor(JsonNode node){
 
@@ -23,7 +24,7 @@ public class HinduTempleDescriptor extends StringDescriptor {
             "Du är konstant en kort promenad från %s. en plats för kontemplation och lugn",
             "Ta en titt förbi ditt lokala hindutempel. Nära dig ligger nämligen %s"});
 
-        String hinduTempleName = node.findValue("name").asText();
+         hinduTempleName = node.findValue("name").asText();
 
         //hinduTempleDescription = String.format(chooseRandomDescriptionString(), hinduTempleName);
 
@@ -31,6 +32,7 @@ public class HinduTempleDescriptor extends StringDescriptor {
 
     @Override
     public String generateDescription() {
+        description = String.format(chooseRandomDescriptionString(), hinduTempleName);
         return description;
     }
 }

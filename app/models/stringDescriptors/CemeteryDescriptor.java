@@ -16,13 +16,14 @@ public class CemeteryDescriptor extends StringDescriptor  {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public long id;
+    public String cemeteryName;
 
     public CemeteryDescriptor(JsonNode node){
 
         super(node, new String[] {"I närheten finns %s där du kan leka med pinnar och sörja",
             "Upplev lugnet vid %s", "På %s kan du gå promenader eller sörja dina nära och kära"});
 
-        String cemeteryName = node.findValue("name").asText();
+         cemeteryName = node.findValue("name").asText();
 
         //cemeteryDescription = String.format(chooseRandomDescriptionString(), cemeteryName);
 
@@ -30,6 +31,8 @@ public class CemeteryDescriptor extends StringDescriptor  {
 
     @Override
     public String generateDescription() {
+        description = String.format(chooseRandomDescriptionString(), cemeteryName);
         return description;
+
     }
 }
