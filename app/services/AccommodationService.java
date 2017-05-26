@@ -30,9 +30,8 @@ public class AccommodationService {
     private AddressRepository addressRepository;
     private UsersRepository usersRepository;
     private RentalPeriodRepository rentalPeriodRepository;
-    private TrafikLabService tls;
-    private GoogleService gServ;
-	private String gApiKey;
+
+    private AddressService addressService;
 
     private ObjectMapper mapper;
 
@@ -49,10 +48,10 @@ public class AccommodationService {
         this.usersRepository = usersRepository;
         this.rentalPeriodRepository = rentalPeriodRepository;
 
-        this.gApiKey=configuration.getString("googleAPIKey");
-        //this.gServ=new GoogleService(gApiKey);
+        this.addressService = new AddressService(configuration);
+
         this.mapper = mapper;
-        //this.tls=new TrafikLabService(gApiKey);
+
 
     }
 
@@ -84,22 +83,7 @@ public class AccommodationService {
         Logger.debug("accommodation created");
 
         Address address = accommodation.address;
-        /*address = GoogleService.getCoordinates(address,gApiKey);
-        Logger.debug(address.streetName+", coords: "+address.latitude+", "+address.longitude);
-
-        JsonNode jn=gServ.findNearestStation(address);
-        Logger.debug(jn.toString());
-
-        JsonNode jsonNodeTest = tls.getDistanceToCentralen(address);
-
-        AddressDescription addressDescription = new AddressDescription();
-
-        addressDescription.distances.add(new Distance("Centralen", null, jsonNodeTest.findValue("duration").asInt()));
-        addressDescription.distances.add(new Distance("Tunnelbana", jsonNodeTest.findValue("distance").asInt(), null));
-
-        addressDescription.save();
-
-        address.addressDescription = addressDescription;*/
+        //addressService.gatherData(address);
 
         RentalPeriod rentalPeriod = accommodation.rentalPeriod;
         //Logger.debug("rentalPeriod: "+rentalPeriod.start);
