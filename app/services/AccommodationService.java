@@ -7,8 +7,6 @@ import exceptions.OffsetOutOfRangeException;
 import models.RentalPeriod;
 import models.accommodation.Accommodation;
 import models.accommodation.Address;
-import models.accommodation.AddressDescription;
-import models.accommodation.Distance;
 import models.user.User;
 import play.Configuration;
 import play.Logger;
@@ -41,14 +39,14 @@ public class AccommodationService {
                                 UsersRepository usersRepository,
                                 RentalPeriodRepository rentalPeriodRepository,
                                 ObjectMapper mapper,
-                                Configuration configuration) {
+                                Configuration configuration, AddressService addressService) {
 
         this.accommodationRepository = accommodationRepository;
         this.addressRepository = addressRepository;
         this.usersRepository = usersRepository;
         this.rentalPeriodRepository = rentalPeriodRepository;
 
-        this.addressService = new AddressService(configuration);
+        this.addressService = addressService;
 
         this.mapper = mapper;
 

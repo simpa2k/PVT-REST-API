@@ -16,6 +16,7 @@ import repositories.AddressRepository;
 import repositories.RentalPeriodRepository;
 import repositories.UsersRepository;
 import services.AccommodationService;
+import services.AddressService;
 import testResources.AccommodationUtils;
 import testResources.TestData;
 
@@ -32,6 +33,11 @@ import static org.mockito.Mockito.when;
 public class AccommodationServiceTest extends WithApplication {
 
     private Configuration config;
+    private AccommodationService accommodationService;
+    private AccommodationRepository accommodationRepository;
+    private AddressRepository addressRepository;
+    private UsersRepository usersRepository;
+    private RentalPeriodRepository rentalPeriodRepository;
 
     @Before
     public void setup() {
@@ -39,15 +45,22 @@ public class AccommodationServiceTest extends WithApplication {
         TestData testData = app.injector().instanceOf(TestData.class);
         config = testData.getConfig();
 
+        accommodationRepository = mock(AccommodationRepository.class);
+        addressRepository = mock(AddressRepository.class);
+        usersRepository = mock(UsersRepository.class);
+        rentalPeriodRepository = mock(RentalPeriodRepository.class);
+
+
+        AddressService mockAddressService = mock(AddressService.class);
+        Mockito.doNothing().when(mockAddressService).gatherData(any(Address.class));
+
+        accommodationService = new AccommodationService(accommodationRepository,
+                addressRepository, usersRepository, rentalPeriodRepository, new ObjectMapper(), config,
+                mockAddressService);
     }
 
     @Test
     public void createsAccommodation() throws JsonProcessingException, ParseException {
-
-        AccommodationRepository accommodationRepository = mock(AccommodationRepository.class);
-        AddressRepository addressRepository = mock(AddressRepository.class);
-        UsersRepository usersRepository = mock(UsersRepository.class);
-        RentalPeriodRepository rentalPeriodRepository = mock(RentalPeriodRepository.class);
 
         ObjectMapper mapper = mock(ObjectMapper.class);
 
@@ -55,8 +68,8 @@ public class AccommodationServiceTest extends WithApplication {
         Mockito.doNothing().when(addressRepository).save(any(Address.class));
         when(mapper.treeToValue(any(JsonNode.class), eq(Accommodation.class))).thenReturn(AccommodationUtils.createAccommodation());
 
-        AccommodationService accommodationService = new AccommodationService(accommodationRepository,
-                addressRepository, usersRepository, rentalPeriodRepository, mapper, config);
+        /*AccommodationService accommodationService = new AccommodationService(accommodationRepository,
+                addressRepository, usersRepository, rentalPeriodRepository, mapper, config, );*/
 
         User renter = new User("renter@renter.com", "Renter");
 

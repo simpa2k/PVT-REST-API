@@ -4,14 +4,18 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import models.accommodation.Accommodation;
+import models.accommodation.Address;
 import models.user.User;
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Mockito;
 import repositories.AccommodationRepository;
 import repositories.AddressRepository;
 import repositories.RentalPeriodRepository;
 import repositories.UsersRepository;
+import scala.tools.nsc.backend.icode.Primitives;
 import services.AccommodationService;
+import services.AddressService;
 import testResources.AccommodationUtils;
 import testResources.BaseTest;
 
@@ -20,6 +24,8 @@ import java.text.ParseException;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
+import static org.mockito.Matchers.any;
+import static org.mockito.Mockito.mock;
 
 /**
  * @author Simon Olofsson
@@ -36,8 +42,12 @@ public class AccommodationStackTest extends BaseTest {
     @Before
     public void setup() {
 
+        AddressService mockAddressService = mock(AddressService.class);
+        Mockito.doNothing().when(mockAddressService).gatherData(any(Address.class));
+
         accommodationService = new AccommodationService(accommodationRepository,
-                addressRepository, usersRepository, rentalPeriodRepository, new ObjectMapper(), config);
+                addressRepository, usersRepository, rentalPeriodRepository, new ObjectMapper(), config,
+                mockAddressService);
 
     }
 
@@ -46,12 +56,12 @@ public class AccommodationStackTest extends BaseTest {
 
         ObjectMapper mapper = new ObjectMapper();
 
-        AccommodationService accommodationService = new AccommodationService(accommodationRepository,
+        /*AccommodationService accommodationService = new AccommodationService(accommodationRepository,
                 addressRepository,
                 usersRepository,
                 rentalPeriodRepository,
                 mapper,
-                config);
+                config, );*/
 
         User renter = new User("renter@renter.com", "Renter");
 
@@ -75,8 +85,8 @@ public class AccommodationStackTest extends BaseTest {
         ObjectNode accommodationJson = AccommodationUtils.createAccommodationJson();
 
         AccommodationRepository accommodationRepository = new AccommodationRepository();
-        AccommodationService accommodationService = new AccommodationService(accommodationRepository,
-                new AddressRepository(), usersRepository, rentalPeriodRepository, new ObjectMapper(), config);
+        /*AccommodationService accommodationService = new AccommodationService(accommodationRepository,
+                new AddressRepository(), usersRepository, rentalPeriodRepository, new ObjectMapper(), config, );*/
 
         Accommodation accommodation = accommodationService.createAccommodationFromJson(renter, accommodationJson);
 
