@@ -3,6 +3,7 @@ package models.accommodation;
 import com.avaje.ebean.Model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.JsonNode;
+import models.stringDescriptors.StringDescriptor;
 import play.Logger;
 import play.libs.Json;
 import scala.util.parsing.json.JSONObject;
@@ -31,6 +32,8 @@ public class AddressDescription extends Model {
 
     @OneToMany(cascade = CascadeType.ALL)
     public List<Distance> distances = new ArrayList<>();
+
+    public List<String> stringDescriptors;
 
     //@JsonIgnore
     // @OneToOne

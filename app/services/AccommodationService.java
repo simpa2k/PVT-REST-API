@@ -81,10 +81,10 @@ public class AccommodationService {
         Logger.debug("accommodation created");
 
         Address address = accommodation.address;
-        //addressService.gatherData(address);
+        addressService.gatherData(address);
 
         RentalPeriod rentalPeriod = accommodation.rentalPeriod;
-        //Logger.debug("rentalPeriod: "+rentalPeriod.start);
+        Logger.debug("rentalPeriod: "+rentalPeriod.start);
         accommodation.renter = user;
 
         Logger.debug("tets");

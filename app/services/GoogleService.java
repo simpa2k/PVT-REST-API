@@ -30,6 +30,10 @@ public class GoogleService {
 	private final static String TEXT_SEARCH="textsearch/";
 	
 	private final String[] types={"gym", "grocery_or_supermarket", "convenience_store", "subway_station", "bar", "restaurant"};
+	public final String [] descriptorTypes =  {
+			"atm", "bank", "casino", "cemetery", "church", "fire_station",
+			"funeral_home", "hardware_store", "hindu_temple", "jewelery_store",
+			"locksmith", "mosque", "painter", "pet_store", "rv_park", "synagogue" };
 	
 	private final static String JSON="json?";
 	private final String LOCATION="location=";
@@ -103,11 +107,34 @@ public class GoogleService {
 				typeData.add(tempNode);
 			}
 		}
-		allData=findAdditionalData(allData);
+		allData=findAdditionalData(allData, types);
 		for(String type : types){
 			Logger.debug("There are "+allData.get(type).size()+" "+type+'s');
 		}
 		return allData;
+	}
+
+	public ObjectNode gatherNearbyDataDescriptor(Address address){
+		ObjectNode allData=Json.newObject();
+
+		for(String type : descriptorTypes){
+			ArrayNode typeData=allData.putArray(type);
+			ArrayNode tempData=getAllNearbyInterests(type, address);
+			for(JsonNode tempNode : tempData.get(0)){
+				typeData.add(tempNode);
+			}
+		}
+
+		allData=findAdditionalData(allData, descriptorTypes);
+
+		for(String type : descriptorTypes){
+
+			if (allData.get(type) != null) {
+				Logger.debug("There are " + allData.get(type).size() + " " + type + 's');
+			}
+		}
+		return allData;
+
 	}
 	
 	/**
@@ -129,7 +156,7 @@ public class GoogleService {
 		if(a!=null){
 
 			if(a.streetName!=null) {
-				query+=a.streetName.replaceAll("", "+");
+				query+=a.streetName.replaceAll(" ", "+");
 			}
 			
 			if(a.streetName!=null&&a.streetNumber!=-1)query+="+";
@@ -145,7 +172,7 @@ public class GoogleService {
 	 * @param allData - the Root node the additional data is going to be added to
 	 * @return - @allData with the new data added
 	 */
-	private ObjectNode findAdditionalData(ObjectNode allData){
+	private ObjectNode findAdditionalData(ObjectNode allData, String[] types){
 		JsonNode tempDataNode=null;
 		String status="INVALID_REQUEST";
 		
@@ -168,23 +195,32 @@ public class GoogleService {
 					status=tempDataNode.findValue("status").asText();
 				}
 			}catch(NullPointerException|InterruptedException e){Logger.error("THROW");}
-			
-			for(JsonNode tempNode:tempDataNode.findValues("results").get(0)){
-				ArrayNode typeList = (ArrayNode) allData.findValue(type);
-				typeList.add(tempNode);
+
+			if (tempDataNode != null) {
+
+				for(JsonNode tempNode:tempDataNode.findValues("results").get(0)){
+					ArrayNode typeList = (ArrayNode) allData.findValue(type);
+					typeList.add(tempNode);
+				}
+				if(isNextPageTrue(tempDataNode)){
+					String newNextPageToken=tempDataNode.findValue("next_page_token").textValue();
+					nextPageTokens.put(type,newNextPageToken);
+				}
+				if(i<types.length-1)i++;
+				else i=0;
+
 			}
-			if(isNextPageTrue(tempDataNode)){
-				String newNextPageToken=tempDataNode.findValue("next_page_token").textValue();
-				nextPageTokens.put(type,newNextPageToken);
-			}
-			if(i<types.length-1)i++;
-			else i=0;
-		}while(!nextPageTokens.isEmpty());
+
+		} while (!nextPageTokens.isEmpty());
 		return allData;
 	}
 	
 	private ArrayNode getAllNearbyInterests(String type, Address address){
+
 		String urlString = PLACES_URL+NEARBY_SEARCH+JSON+LOCATION+address.latitude+","+address.longitude+"&"+RADIUS+"&"+"type="+type+"&"+PLACES_KEY;
+
+		Logger.debug("Getting all nearby interests: " + urlString);
+
 		Logger.debug("Gathering "+type+"'s");
 		ArrayNode nearbyInterestList=Json.newArray();
 		
