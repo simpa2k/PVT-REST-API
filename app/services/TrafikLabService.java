@@ -48,7 +48,17 @@ public class TrafikLabService {
      */
     public JsonNode getPath(Address address1, Address address2){
 
-        String query = "originCoordLat=" + address1.latitude + "&originCoordLong=" + address1.longitude + "&originCoordName=" + address1.streetName + "5&destCoordLat=" + address2.latitude + "&destCoordLong=" + address2.longitude +"&destCoordName=" + address2.streetName;
+        String streetName1 = address1.streetName;
+        if(streetName1 != null) {
+            streetName1 = streetName1.replaceAll(" ", "+");
+        }
+
+        String streetName2 = address2.streetName;
+        if(streetName2 != null) {
+            streetName2 = streetName2.replaceAll(" ", "+");
+        }
+
+        String query = "originCoordLat=" + address1.latitude + "&originCoordLong=" + address1.longitude + "&originCoordName=" + streetName1 + "5&destCoordLat=" + address2.latitude + "&destCoordLong=" + address2.longitude +"&destCoordName=" + streetName2;
         String urlString=TRAFIKLAB_TRIP+TRAFIKLAB_KEY+query;
         JsonNode node;
         node=GoogleService.gatherData(urlString);
