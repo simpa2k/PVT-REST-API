@@ -29,11 +29,11 @@ public class GoogleService {
 	private final String NEARBY_SEARCH="nearbysearch/";
 	private final static String TEXT_SEARCH="textsearch/";
 	
-	private final String[] types={"gym", "grocery_or_supermarket", "convenience_store", "subway_station", "bar"};
+	private final String[] types={"gym", "grocery_or_supermarket", "convenience_store", "subway_station", "bar", "restaurant"};
 	public final String [] descriptorTypes =  {
 			"atm", "bank", "casino", "cemetery", "church", "fire_station",
 			"funeral_home", "hardware_store", "hindu_temple", "jewelry_store",
-			"locksmith", "mosque", "painter", "pet_store", "rv_park", "synagogue", "restaurant" };
+			"locksmith", "mosque", "painter", "pet_store", "rv_park","restaurant", "synagogue" };
 	
 	private final static String JSON="json?";
 	private final String LOCATION="location=";
@@ -143,6 +143,7 @@ public class GoogleService {
 
 			if (allData.get(type) != null) {
 				Logger.debug("There are " + allData.get(type).size() + " " + type + 's');
+
 			}
 		}
 		return allData;

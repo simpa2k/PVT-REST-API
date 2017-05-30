@@ -20,8 +20,8 @@ public class FuneralHomeDescriptor extends StringDescriptor {
 
     public FuneralHomeDescriptor(JsonNode node){
 
-        super(node, new String[] {"%s finns om någon i din närhet går bort",
-            "Det finns ett %s i närheten av denna bostad", "I %s kan du vila ut i lugn och ro"});
+        super(node, new String[] {"%s finns om någon i din närhet går bort.",
+            "Det finns ett %s i närheten av denna bostad", "Med %s i närheten så kan du planera närståendes bortgång."});
 
          funeralHomeName = node.findValue("name").asText();
 

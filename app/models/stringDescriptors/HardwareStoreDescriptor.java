@@ -20,9 +20,9 @@ public class HardwareStoreDescriptor extends StringDescriptor {
 
     public HardwareStoreDescriptor(JsonNode node){
 
-        super(node, new String[] {"Ingenting spelar någon roll för du bor nära %s",
-            "Gillar du att snickra och sådant? Då passar detta boende bra för dig. Nära till %s",
-            "Mera bågfil? %s ligger precis runt hörnet."});
+        super(node, new String[] {"Inget kras spelar någon roll för du bor nära %s.",
+            "Gillar du att snickra och sådant? Då passar detta boende bra för dig. Nära till %s.",
+            "Behöver du en bågfil? %s ligger precis runt hörnet."});
 
          hardwareStoreName = node.get(0).findValue("name").asText();
 

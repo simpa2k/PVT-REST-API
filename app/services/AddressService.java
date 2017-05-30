@@ -41,11 +41,11 @@ public class AddressService {
         this.gServ = new GoogleService(gApiKey);
         this.tls = new TrafikLabService(gApiKey);
 
-        setCreators();
+        setConstructors();
 
     }
 
-    private void setCreators() {
+    private void setConstructors() {
 
         creators.put("atm", AtmDescriptor::new);
         creators.put("bank", BankDescriptor::new);
@@ -64,6 +64,7 @@ public class AddressService {
         creators.put("pet_store", PetStoreDescriptor::new);
         creators.put("rvpark", RvparkDescriptor::new);
         creators.put("synagogue", SynagogueDescriptor::new);
+        creators.put("restaurant", RestaurantDescriptor::new);
 
     }
 

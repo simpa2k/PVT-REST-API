@@ -20,9 +20,9 @@ public class HinduTempleDescriptor extends StringDescriptor {
 
     public HinduTempleDescriptor(JsonNode node){
 
-        super(node, new String[] {"Ett stenkast från %s templet hittar du denna panglya",
-            "Du är konstant en kort promenad från %s. en plats för kontemplation och lugn",
-            "Ta en titt förbi ditt lokala hindutempel. Nära dig ligger nämligen %s"});
+        super(node, new String[] {"Ett stenkast från %s templet hittar du denna panglya.",
+            "Du är en kort promenad från %s. En plats för kontemplation och lugn.",
+            "Ta en titt förbi ditt lokala hindutempel. Nära dig ligger nämligen %s."});
 
          hinduTempleName = node.findValue("name").asText();
 

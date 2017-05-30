@@ -20,9 +20,9 @@ public class FirestationDescriptor extends StringDescriptor  {
 
     public FirestationDescriptor(JsonNode node){
 
-        super(node, new String[] {"Här kan du bo tryggt och säkert med %s i närheten av denna bostad",
-            "I detta område kryllar det av heta brandmän då %s ligger ett stenkast från denna bostad",
-            "Fritt från pyromaner och eld när %s finns runt hörnet." });
+        super(node, new String[] {"Här kan du bo tryggt och säkert med %s i närheten av denna bostad.",
+            "I detta område kryllar det av heta brandmän då %s ligger ett stenkast från denna bostad.",
+            "Är du brandman i beredskap?, %s finns runt hörnet." });
 
          firestationName = node.findValue("name").asText();
 

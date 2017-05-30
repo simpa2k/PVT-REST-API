@@ -19,7 +19,7 @@ public class AtmDescriptor extends StringDescriptor {
 
     public AtmDescriptor(JsonNode node){
 
-        super(node, new String[] {"%s har en bankomat i närheten av bostaden."});
+        super(node, new String[] {"Det finns en bankomat i närheten av bostaden."});
 
         //atmDescription = String.format(chooseRandomDescriptionString(), atmName);
 
@@ -35,7 +35,7 @@ public class AtmDescriptor extends StringDescriptor {
     @Override
     public String generateDescription() {
 
-        description = String.format(possibleDescriptions[0], name);
+        description = String.format(possibleDescriptions[0]);
 
         return description;
     }

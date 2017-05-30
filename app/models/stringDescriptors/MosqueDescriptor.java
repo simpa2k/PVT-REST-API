@@ -20,8 +20,8 @@ public class MosqueDescriptor extends StringDescriptor {
 
     public MosqueDescriptor(JsonNode node){
 
-        super(node, new String[] {"Väldigt nära din lägenhet ligger %s, ett ypperligt tillfälle att kontemplera",
-            "Ett stenkast från denna lya finner du %s", "Alldelles intill din nya lägenhet finner du %s"});
+        super(node, new String[] {"Väldigt nära din lägenhet ligger %s, ett ypperligt ställe att kontemplera vid.",
+            "Ett stenkast från denna lya finner du %s.", "Allahdelles intill din nya lägenhet finner du %s."});
         if(node.findValue("name").asText()!= null){
 
              mosqueName = node.findValue("name").asText();

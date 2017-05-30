@@ -20,9 +20,9 @@ public class LocksmithDescriptor extends StringDescriptor {
 
     public LocksmithDescriptor(JsonNode node){
 
-        super(node, new String[] {"Tappar du dina nycklar ofta är det inga problem. %s finns i närheten av denna förtjusande bostad",
-            "Med %s i närheten behöver du aldrig oroa dig för att förbli utelåst. ",
-            "Behöver du göra fler kopior på nycklar till denna bostad om du flyttar in? I sådant fall finns %s alldeles i närheten"});
+        super(node, new String[] {"Tappar du dina nycklar ofta är det inga problem. %s finns i närheten av denna förtjusande bostad.",
+            "Med %s i närheten behöver du aldrig oroa dig för att bli utelåst.",
+            "Behöver du göra fler kopior på nycklar till denna bostad om du flyttar in? I sådant fall finns %s alldeles i närheten."});
 
          locksmithName = node.findValue("name").asText();
 

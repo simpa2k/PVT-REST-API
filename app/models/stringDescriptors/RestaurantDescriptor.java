@@ -1,6 +1,7 @@
 package models.stringDescriptors;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import play.Logger;
 
 import javax.persistence.*;
 
@@ -23,8 +24,8 @@ public class RestaurantDescriptor extends StringDescriptor {
 
 
         super(node, new String[] {"Lägenheten ligger i ett mycket restaurangtätt område.",
-                "Lägenheten ligger i ett restaurangtätt område.",
-                "Det finns restauranger i lägenhetens närområde."});
+                                    "Lägenheten ligger i ett restaurangtätt område.",
+                                    "Det finns restauranger i lägenhetens närområde."});
 
 
 
