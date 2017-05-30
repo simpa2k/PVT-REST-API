@@ -37,7 +37,9 @@ public class AddressDescription extends Model {
     public void addStringDescriptor(StringDescriptor descriptor) {
 
         descriptor.generateDescription();
-        stringDescriptors.add(descriptor);
 
+        if (descriptor.getDescription() != null) {
+            stringDescriptors.add(descriptor);
+        }
     }
 }

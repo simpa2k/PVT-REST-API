@@ -68,5 +68,8 @@ public abstract class StringDescriptor extends Model {
 
     public abstract String generateDescription();
 
+    public String getDescription() {
+        return description;
+    }
 }
 
