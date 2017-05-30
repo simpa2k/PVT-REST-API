@@ -69,11 +69,11 @@ public class TrafikLabService {
             return null;
         }
 
-        if (node.findValue("errorCode") != null) {
+        JsonNode error = node.findValue("errorCode");
 
-            JsonNode error = node.findValue("errorCode");
+        if (error != null) {
 
-            if (error != null && error.asText().equals(NO_TRIP_FOUND)) {
+            if (error.asText().equals(NO_TRIP_FOUND)) {
 
                 Short nullDistance = null;
                 Short nullDuration = null;
