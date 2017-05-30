@@ -49,15 +49,8 @@ public class TrafikLabService {
      */
     public JsonNode getPath(Address address1, Address address2){
 
-        String streetName1 = address1.streetName;
-        if(streetName1 != null) {
-            streetName1 = streetName1.replaceAll(" ", "+");
-        }
-
-        String streetName2 = address2.streetName;
-        if(streetName2 != null) {
-            streetName2 = streetName2.replaceAll(" ", "+");
-        }
+        String streetName1 = escapeWhitespace(address1.streetName);
+        String streetName2 = escapeWhitespace(address2.streetName);
 
         String query = "originCoordLat=" + address1.latitude + "&originCoordLong=" + address1.longitude + "&originCoordName=" + streetName1 + "5&destCoordLat=" + address2.latitude + "&destCoordLong=" + address2.longitude +"&destCoordName=" + streetName2;
         String urlString=TRAFIKLAB_TRIP+TRAFIKLAB_KEY+query;
@@ -85,6 +78,15 @@ public class TrafikLabService {
 
         }
         return Json.newObject().put("distance", node.findValue("dist").asInt()).put("duration", node.findValue("dur").asInt());
+
+    }
+
+    private String escapeWhitespace(String stringToEscape) {
+
+        if(stringToEscape != null) {
+            return stringToEscape.replaceAll(" ", "+");
+        }
+        return null;
 
     }
 
