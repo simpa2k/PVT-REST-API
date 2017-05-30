@@ -10,6 +10,7 @@ import play.libs.Json;
  */
 public class TrafikLabService {
 
+    private static final String NO_TRIP_FOUND = "H980";
 
     private final String TRAFIKLAB_TRIP="http://api.sl.se/api2/TravelplannerV2/trip.Json?";
     
@@ -63,7 +64,28 @@ public class TrafikLabService {
         JsonNode node;
         node=GoogleService.gatherData(urlString);
         Logger.debug(urlString);
+
+        if (node == null) {
+            return null;
+        }
+
+        if (node.findValue("errorCode") != null) {
+
+            JsonNode error = node.findValue("errorCode");
+
+            if (error != null && error.asText().equals(NO_TRIP_FOUND)) {
+
+                Short nullDistance = null;
+                Short nullDuration = null;
+
+                return Json.newObject().put("distance", nullDistance).put("duration", nullDuration);
+
+            }
+            return Json.newObject().put("distance", 0).put("duration", 0);
+
+        }
         return Json.newObject().put("distance", node.findValue("dist").asInt()).put("duration", node.findValue("dur").asInt());
+
     }
 
     /**
