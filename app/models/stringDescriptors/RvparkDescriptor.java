@@ -20,8 +20,8 @@ public class RvparkDescriptor extends StringDescriptor  {
 
     public RvparkDescriptor(JsonNode node){
 
-        super(node, new String[] {            "Det finns en %s inte så långt ifrån lägenheten",
-            "Nu kan du elda ifred på %s alldeles i närheten av denna bostad"});
+        super(node, new String[] {"Det finns en %s inte så långt ifrån lägenheten.",
+            "Nu kan du elda ifred på %s alldeles i närheten av denna bostad."});
 
         rvParkName = node.findValue("name").asText();
 

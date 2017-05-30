@@ -20,8 +20,8 @@ public class SynagogueDescriptor extends StringDescriptor  {
 
     public SynagogueDescriptor(JsonNode node){
 
-        super(node, new String[] {"Trött på Buddha? %s finns i närheten av denna bostad",
-            "Vill du täcka din flint? Bär en kippah vid %s", "Ett stenkast från din lägenhet ligger %s"});
+        super(node, new String[] {"Trött på Buddha? %s finns i närheten av denna bostad.",
+            "Vill du täcka din flint? Bär en kippah vid %s.", "Ett stenkast från din lägenhet ligger %s."});
 
          synagogueName = node.findValue("name").asText();
 

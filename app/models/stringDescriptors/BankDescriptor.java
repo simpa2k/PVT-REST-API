@@ -23,7 +23,7 @@ public class BankDescriptor extends StringDescriptor {
 
         super(node, new String[] {"Har du ont om pengar? %s ligger ett stenkast från denna bostad.",
             "Är du trött på att lägga pengar på hög? Ingen fara. %s ligger precis runt hörnet",
-            "Ett normalt stenkast bort ligger %s."});
+            "Ett stenkast bort ligger %s."});
 
         //bankDescription = String.format(chooseRandomDescriptionString(), bankName);
 

@@ -64,6 +64,7 @@ public class AddressService {
         creators.put("pet_store", PetStoreDescriptor::new);
         creators.put("rvpark", RvparkDescriptor::new);
         creators.put("synagogue", SynagogueDescriptor::new);
+        creators.put("restaurant", RestaurantDescriptor::new);
 
     }
 

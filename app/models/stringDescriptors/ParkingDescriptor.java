@@ -20,8 +20,8 @@ public class ParkingDescriptor extends StringDescriptor  {
 
     public ParkingDescriptor(JsonNode node){
 
-        super(node, new String[] {"I närheten av din lägenhet finns parkeringsplatsen %s",
-            "Sluta oroa dig för perkering, %s tillhandahåller lösningen",
+        super(node, new String[] {"I närheten av din lägenhet finns parkeringsplatsen %s.",
+            "Sluta oroa dig för perkering, %s tillhandahåller lösningen.",
             "Smidigt nog finns det tillgång till parkering i angräsning till bostaden vid %s."});
 
          parkingName = node.findValue("name").asText();

@@ -21,8 +21,8 @@ public class PetStoreDescriptor extends StringDescriptor  {
     public PetStoreDescriptor(JsonNode node){
 
         super(node, new String[] {"Ett litet härligt djur för att liva upp lägenheten hittar du på %s som ligger nära denna lya.",
-            "Är du en katt eller hundmänniska? Splear ingen roll, båda finns på %s",
-            "Kaske en papegoja vore ett härligt komplement till din nya ptentiella lägenhet, du hittar den på %s."});
+            "Är du en katt eller hundmänniska? Splear ingen roll, båda finns på %s.",
+            "Kaske en papegoja vore ett härligt komplement till din nya potentiella lägenhet, du hittar den på %s."});
 
          petStoreName = node.findValue("name").asText();
 

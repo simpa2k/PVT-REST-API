@@ -20,8 +20,9 @@ public class CemeteryDescriptor extends StringDescriptor  {
 
     public CemeteryDescriptor(JsonNode node){
 
-        super(node, new String[] {"I närheten finns %s där du kan leka med pinnar och sörja",
-            "Upplev lugnet vid %s", "På %s kan du gå promenader eller sörja dina nära och kära"});
+        super(node, new String[] {"I närheten finns %s där du kan finna ditt lugn.",
+            "Upplev lugnet vid %s, precis i närheten.", "En kort bit bort ligger %s dit du kan gå" +
+                " på promenader eller sörja dina nära och kära."});
 
          cemeteryName = node.findValue("name").asText();
 

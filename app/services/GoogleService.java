@@ -33,7 +33,7 @@ public class GoogleService {
 	public final String [] descriptorTypes =  {
 			"atm", "bank", "casino", "cemetery", "church", "fire_station",
 			"funeral_home", "hardware_store", "hindu_temple", "jewelry_store",
-			"locksmith", "mosque", "painter", "pet_store", "rv_park", "synagogue" };
+			"locksmith", "mosque", "painter", "pet_store", "rv_park","restaurant", "synagogue" };
 	
 	private final static String JSON="json?";
 	private final String LOCATION="location=";
@@ -143,9 +143,14 @@ public class GoogleService {
 
 			if (allData.get(type) != null) {
 				Logger.debug("There are " + allData.get(type).size() + " " + type + 's');
+
 			}
 		}
+
+	//	Logger.debug(allData.get("restaurant").size()+"");
 		return allData;
+
+
 
 	}
 	

@@ -20,8 +20,8 @@ public class ChurchDescriptor extends StringDescriptor {
 
     public ChurchDescriptor(JsonNode node){
 
-        super(node , new String[] {"%s ligger i närheten av denna bostad",
-            "I detta område ligger den ståtliga  %s", "Nära till %s om man blir sugen på en liten gudstjänst"});
+        super(node , new String[] {"%s ligger i närheten av denna bostad.",
+            "I detta område ligger den ståtliga  %s.", "Nära till %s om man blir sugen på en liten gudstjänst."});
 
          churchName = node.findValue("name").asText();
 

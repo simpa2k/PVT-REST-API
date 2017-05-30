@@ -21,8 +21,8 @@ public class JewelryStoreDescriptor extends StringDescriptor  {
     public JewelryStoreDescriptor(JsonNode node){
 
         super(node, new String[] {"Gillar du smycken och blingbling? I så fall passar denna lägga perfekt för dig. %s finns i området.",
-            "Gå förbi %s påväg till festen för att se extra piffig ut.",
-            "Vill du fria till Stellan Skarsgård? På %s kan du köpa dig en ögonsten som passar till Stellans finger."});
+            "Lägenheten ligger nära %s om du ska på fest och vill se extra piffig ut.",
+            "Vill du fria till din partner? På %s precis i närheten kan du köpa dig en ögonsten för ändamålet."});
 
          jewelryStoreName = node.findValue("name").asText();
 
