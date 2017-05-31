@@ -42,7 +42,7 @@ public class RestaurantDescriptor extends StringDescriptor {
 
     @Override
     public String generateDescription() {
-
+        Logger.debug("Hej är ligger " + name);
 
         if(node.size() >= 18){
             description = possibleDescriptions[0];

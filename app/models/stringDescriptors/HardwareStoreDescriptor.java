@@ -33,6 +33,7 @@ public class HardwareStoreDescriptor extends StringDescriptor {
     @Override
     public String generateDescription() {
         description = String.format(chooseRandomDescriptionString(), hardwareStoreName);
+
         return description;
     }
 }

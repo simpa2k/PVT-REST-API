@@ -1,6 +1,7 @@
 package models.stringDescriptors;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import play.Logger;
 
 import javax.persistence.*;
 import java.util.Random;
@@ -19,7 +20,7 @@ public class AtmDescriptor extends StringDescriptor {
 
     public AtmDescriptor(JsonNode node){
 
-        super(node, new String[] {"Det finns en bankomat i närheten av bostaden."});
+        super(node, new String[] {"%s har en bankomat i närheten av denna bostad."});
 
         //atmDescription = String.format(chooseRandomDescriptionString(), atmName);
 
@@ -35,7 +36,14 @@ public class AtmDescriptor extends StringDescriptor {
     @Override
     public String generateDescription() {
 
-        description = String.format(possibleDescriptions[0]);
+        if(name.toLowerCase().contains("bankomat")){
+            description = "Det finns en bankomat i närheten av bostaden.";
+        }
+        else{
+            description = String.format(possibleDescriptions[0], name);
+        }
+
+
 
         return description;
     }

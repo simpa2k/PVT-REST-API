@@ -20,7 +20,7 @@ public class CasinoDescriptor extends StringDescriptor {
 
     public CasinoDescriptor(JsonNode node){
 
-        super(node, new String[] {"Närhet till %s, ett perfekt sätt att spendera en torsdagskväll.",
+        super(node, new String[] {"Närhet till %s, ett perfekt sätt att spendera en torsdagskväll!",
                 "Gå till %s precis i krokarna och dubbla din lön!", "Sätt allt på rött på %s, som ligger precis i krokarna."});
 
         casinoName = node.get(0).findValue("name").asText();
@@ -33,7 +33,13 @@ public class CasinoDescriptor extends StringDescriptor {
     @Override
     public String generateDescription() {
 
+        if(!casinoName.toLowerCase().contains("casino")){
+            casinoName = "Casino " + casinoName;
+        }
+
         description = String.format(chooseRandomDescriptionString(), casinoName);
+
+
         return  description;
     }
 }

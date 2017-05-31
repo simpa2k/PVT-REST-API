@@ -1,6 +1,7 @@
 package models.stringDescriptors;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import play.Logger;
 
 import javax.persistence.*;
 import java.util.Random;
@@ -32,7 +33,12 @@ public class CemeteryDescriptor extends StringDescriptor  {
 
     @Override
     public String generateDescription() {
+
+        if (!cemeteryName.toLowerCase().contains("kyrko")){
+            cemeteryName = cemeteryName + " kyrkogård";
+        }
         description = String.format(chooseRandomDescriptionString(), cemeteryName);
+
         return description;
 
     }

@@ -1,6 +1,7 @@
 package models.stringDescriptors;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import play.Logger;
 
 import javax.persistence.*;
 import java.util.Random;
@@ -10,7 +11,7 @@ import java.util.Random;
  */
 @Entity
 @Inheritance
-@DiscriminatorValue("FSTATION")
+@DiscriminatorValue("STATION")
 public class FirestationDescriptor extends StringDescriptor  {
 
     @Id
@@ -22,7 +23,7 @@ public class FirestationDescriptor extends StringDescriptor  {
 
         super(node, new String[] {"Här kan du bo tryggt och säkert med %s i närheten av denna bostad.",
             "I detta område kryllar det av heta brandmän då %s ligger ett stenkast från denna bostad.",
-            "Är du brandman i beredskap?, %s finns runt hörnet." });
+            "Är du brandman i beredskap? %s finns runt hörnet." });
 
          firestationName = node.findValue("name").asText();
 
@@ -35,6 +36,7 @@ public class FirestationDescriptor extends StringDescriptor  {
     public String generateDescription() {
 
         description = String.format(chooseRandomDescriptionString(), firestationName);
+
         return description;
     }
 }

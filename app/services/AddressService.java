@@ -53,7 +53,7 @@ public class AddressService {
         creators.put("cemetery", CemeteryDescriptor::new);
         creators.put("church", ChurchDescriptor::new);
         creators.put("fire_station", FirestationDescriptor::new);
-        creators.put("funeral_home", FirestationDescriptor::new);
+        creators.put("funeral_home", FuneralHomeDescriptor::new);
         creators.put("hardware_store", HardwareStoreDescriptor::new);
         creators.put("hindu_temple", HinduTempleDescriptor::new);
         creators.put("jewelry_store", JewelryStoreDescriptor::new);

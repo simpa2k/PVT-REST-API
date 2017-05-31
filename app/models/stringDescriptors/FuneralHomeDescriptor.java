@@ -1,6 +1,7 @@
 package models.stringDescriptors;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import play.Logger;
 
 import javax.persistence.*;
 import java.util.Random;
@@ -21,7 +22,7 @@ public class FuneralHomeDescriptor extends StringDescriptor {
     public FuneralHomeDescriptor(JsonNode node){
 
         super(node, new String[] {"%s finns om någon i din närhet går bort.",
-            "Det finns ett %s i närheten av denna bostad", "Med %s i närheten så kan du planera närståendes bortgång."});
+            "%s finns i närheten av denna bostad.", "Med %s i närheten så kan du planera närståendes bortgång."});
 
          funeralHomeName = node.findValue("name").asText();
 
@@ -32,7 +33,12 @@ public class FuneralHomeDescriptor extends StringDescriptor {
     @Override
     public String generateDescription() {
 
+        if (!funeralHomeName.toLowerCase().contains("begravningsbyrå")){
+            funeralHomeName = funeralHomeName + " begravningsbyrå";
+        }
+
         description = String.format(chooseRandomDescriptionString(), funeralHomeName);
+
         return description;
     }
 }

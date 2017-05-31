@@ -31,8 +31,8 @@ public class GoogleService {
 	
 	private final String[] types={"gym", "grocery_or_supermarket", "convenience_store", "subway_station", "bar", "restaurant"};
 	public final String [] descriptorTypes =  {
-			"atm", "bank", "casino", "cemetery", "church", "fire_station",
-			"funeral_home", "hardware_store", "hindu_temple", "jewelry_store",
+			"atm", "bank", "casino", "cemetery", "church","funeral_home",
+			"fire_station", "hardware_store", "hindu_temple", "jewelry_store",
 			"locksmith", "mosque", "painter", "pet_store", "rv_park","restaurant", "synagogue" };
 	
 	private final static String JSON="json?";

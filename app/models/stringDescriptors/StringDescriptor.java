@@ -68,7 +68,9 @@ public abstract class StringDescriptor extends Model {
 
     public abstract String generateDescription();
 
-    public String getDescription() {
+    public String getDescription()
+    {
+        Logger.debug(description);
         return description;
     }
 }

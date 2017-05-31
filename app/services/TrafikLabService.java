@@ -28,19 +28,6 @@ public class TrafikLabService {
         tCentralen = GoogleService.getCoordinates(tCentralen,apiKey);
     }
 
-
-    // http://api.sl.se/api2/TravelplannerV2/trip.Json?
-    // key=cd8b0846848440649bda73e42406dc61&
-    // originCoordLat=59.7605294&originCoordLong=18.7123039&originCoordName=Vegagatan&
-    // destCoordLat=59.3048662&destCoordLong=18.0930015&destCoordName=Lumaparksvägen3
-
-
-    // http://api.sl.se/api2/TravelplannerV2/trip.Json?
-    // key=cd8b0846848440649bda73e42406dc61&originCoordLat=18.7123039&
-    // originCoordLong=59.7605294&originCoordName=Vegagatan&
-    // destCoordLat=18.0930015&destCoordLong=59.3048662&destCoordName=Lumaparksvagen3
-
-
     /**
      * The method takes two addresses and returns the time taken for the travel as well as the distance in meters to the closest station.
      * @param address1 - Origin address. Starting point.
