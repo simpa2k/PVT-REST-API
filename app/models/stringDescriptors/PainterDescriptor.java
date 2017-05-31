@@ -21,7 +21,7 @@ public class PainterDescriptor extends StringDescriptor {
     public PainterDescriptor(JsonNode node){
 
         super(node, new String[] {"Måla läggan med färg från %s som ligger nära beläget.",
-            "Måla stockholmsvitt?, %s finns i närheten.",
+            "Måla stockholmsvitt? %s finns i närheten.",
             "%s ligger i området om du blir sugen på att måla." });
 
          painterName = node.findValue("name").asText();
