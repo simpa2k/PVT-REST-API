@@ -87,7 +87,7 @@ public class AccommodationController extends Controller{
 			return ResponseBuilder.buildNotFound("Could not find any accommodation with that id.");
 		}
 
-		return ResponseBuilder.buildOKObject(accommodation);
+		return noContent();
 
 	}
 }
